@@ -11,7 +11,7 @@
     grid-gap: $spacing-30;
     grid-template-areas:
       'summary summary summary'
-      'stocks stocks graph'
+      'stocks stocks trends'
       'log log log';
   }
 
@@ -22,5 +22,9 @@
 
   &-stocks {
     grid-area: stocks;
+  }
+
+  &-trends {
+    grid-area: trends;
   }
 }
