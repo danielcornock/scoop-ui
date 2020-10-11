@@ -1,0 +1,40 @@
+@import 'src/assets/styles/themes.scss';
+
+.SettingsMenu {
+  &-container {
+    border: 0;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    transition: background-color 250ms ease-in-out;
+    padding: $spacing-10;
+    margin: -$spacing-10;
+    border-radius: $br-med;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $color-primary-light;
+    }
+  }
+
+  &-profileName {
+    color: $color-table-header;
+    font-size: 16px;
+    font-weight: 500;
+    margin-right: 3px;
+  }
+
+  &-profileIcon {
+    width: 35px;
+    margin-right: $spacing-10;
+    display: block;
+  }
+
+  &-openIcon {
+    color: $color-table-header;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: 2px;
+  }
+}

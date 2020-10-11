@@ -8,6 +8,7 @@
 
   &-content {
     @include page-container;
+    position: relative;
     background-color: $color-page-background;
     height: 100%;
     flex: 1 1 100%;
@@ -15,5 +16,11 @@
 
   &-sidebar {
     display: block;
+  }
+
+  &-settingsMenu {
+    position: absolute;
+    right: $spacing-50;
+    top: $spacing-50;
   }
 }
