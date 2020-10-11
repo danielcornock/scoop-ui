@@ -1,0 +1,30 @@
+@import 'src/assets/styles/themes.scss';
+
+.InvestmentsSummary {
+  &-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: $spacing-20;
+  }
+
+  &-item {
+    @include center-contents;
+    @include shadow-light;
+    flex-direction: column;
+    height: 150px;
+    background-color: $color-white;
+    border-radius: $br-med;
+  }
+
+  &-label {
+    font-weight: 500;
+    font-size: 14px;
+    color: $color-subheading;
+  }
+
+  &-value {
+    font-size: 34px;
+    font-weight: 500;
+    color: $color-primary;
+  }
+}

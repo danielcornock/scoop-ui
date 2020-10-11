@@ -1,0 +1,20 @@
+@mixin page-container {
+  padding: $spacing-50;
+}
+
+@mixin page-heading-single {
+  font-size: 28px;
+  font-weight: bold;
+  color: $color-heading;
+  margin-bottom: $spacing-50;
+}
+
+@mixin center-contents {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin shadow-light {
+  box-shadow: 0px 4px 32px rgba($color-primary, 0.05);
+}

@@ -1,0 +1,62 @@
+@import 'src/assets/styles/themes.scss';
+
+.Sidebar {
+  &-container {
+    height: 100%;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: $spacing-50 0;
+    background-image: linear-gradient(
+      to bottom,
+      $color-primary,
+      $color-primary-gradient
+    );
+  }
+
+  &-branding {
+    color: $color-white;
+    display: flex;
+    align-items: center;
+    margin-bottom: $spacing-30;
+  }
+
+  &-brandingLogo {
+    display: block;
+    height: 30px;
+    margin-right: $spacing-10;
+  }
+
+  &-brandingText {
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 1;
+    position: relative;
+    bottom: 4px;
+  }
+
+  &-nav {
+    width: 100%;
+  }
+
+  &-navItem {
+    display: flex;
+    color: $color-white;
+    padding: $spacing-15 $spacing-40;
+    cursor: pointer;
+    border-radius: $br-med;
+
+    &:hover {
+      background-color: $color-primary;
+    }
+  }
+
+  &-navIcon {
+    margin-right: $spacing-20;
+  }
+
+  &-navText {
+    font-size: 18px;
+  }
+}
