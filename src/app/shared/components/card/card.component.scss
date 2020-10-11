@@ -1,0 +1,25 @@
+@import 'src/assets/styles/themes.scss';
+
+.Card {
+  &-container {
+    @include shadow-light;
+    background-color: $color-white;
+    border-radius: $br-med;
+  }
+
+  &-header {
+    background-color: $color-grey-background;
+    padding: $spacing-20;
+    border-radius: $br-med $br-med 0 0;
+  }
+
+  &-headerTitle {
+    color: $color-subheading;
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  &-content {
+    padding: $spacing-20;
+  }
+}

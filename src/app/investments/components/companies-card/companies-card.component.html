@@ -1,0 +1,11 @@
+<app-card cardTitle="Portfolio">
+  <ng-container>
+    <app-table [tableColumns]="['stock', 'value', 'percentage']">
+      <tr class="CompaniesCard-row" *ngFor="let row of companiesCardStocks">
+        <td class="CompaniesCard-rowItem">{{ row.stock }}</td>
+        <td class="CompaniesCard-rowItem">{{ row.value }}</td>
+        <td class="CompaniesCard-rowItem">{{ row.percentage }}</td>
+      </tr>
+    </app-table>
+  </ng-container>
+</app-card>

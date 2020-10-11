@@ -4,4 +4,23 @@
   &-heading {
     @include page-heading-single;
   }
+
+  &-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: $spacing-30;
+    grid-template-areas:
+      'summary summary summary'
+      'stocks stocks graph'
+      'log log log';
+  }
+
+  &-summary {
+    display: block;
+    grid-area: summary;
+  }
+
+  &-stocks {
+    grid-area: stocks;
+  }
 }
