@@ -6,13 +6,15 @@ import { CompaniesCardComponent } from './components/companies-card/companies-ca
 import { InvestmentsSummaryComponent } from './components/investments-summary/investments-summary.component';
 import { TrendsCardComponent } from './components/trends-card/trends-card.component';
 import { InvestmentsComponent } from './views/investments/investments.component';
+import { MonthlyLogCardComponent } from './components/monthly-log-card/monthly-log-card.component';
 
 @NgModule({
   declarations: [
     InvestmentsComponent,
     InvestmentsSummaryComponent,
     CompaniesCardComponent,
-    TrendsCardComponent
+    TrendsCardComponent,
+    MonthlyLogCardComponent
   ],
   imports: [CommonModule, SharedModule]
 })

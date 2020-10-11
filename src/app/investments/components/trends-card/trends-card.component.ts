@@ -50,6 +50,8 @@ export class TrendsCardComponent implements OnInit {
                 display: false
               },
               ticks: {
+                fontFamily: 'Quicksand',
+                fontStyle: '500',
                 fontColor: '#a0a0a0',
                 fontSize: 12,
                 stepSize: 400,
@@ -63,6 +65,8 @@ export class TrendsCardComponent implements OnInit {
                 display: false
               },
               ticks: {
+                fontFamily: 'Quicksand',
+                fontStyle: '500',
                 fontColor: '#a0a0a0',
                 fontSize: 12,
                 beginAtZero: false

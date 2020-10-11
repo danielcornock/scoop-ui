@@ -8,6 +8,7 @@
 
   &-content {
     @include page-container;
+    overflow: hidden;
     position: relative;
     background-color: $color-page-background;
     height: 100%;
@@ -16,6 +17,7 @@
 
   &-sidebar {
     display: block;
+    height: 100%;
   }
 
   &-settingsMenu {

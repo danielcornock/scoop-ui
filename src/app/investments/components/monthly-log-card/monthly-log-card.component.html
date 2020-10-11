@@ -1,0 +1,23 @@
+<app-card cardTitle="Monthly Log">
+  <app-table
+    [tableColumns]="[
+      'Date',
+      'Added',
+      'Invested',
+      'Portfolio Value',
+      'Returns',
+      'Percentage',
+      'Change'
+    ]"
+  >
+    <tr class="MonthlyLogCard-row" *ngFor="let row of logs">
+      <td class="MonthlyLogCard-rowItem">{{ row.date }}</td>
+      <td class="MonthlyLogCard-rowItem">{{ row.added }}</td>
+      <td class="MonthlyLogCard-rowItem">{{ row.invested }}</td>
+      <td class="MonthlyLogCard-rowItem">{{ row.value }}</td>
+      <td class="MonthlyLogCard-rowItem">{{ row.returns }}</td>
+      <td class="MonthlyLogCard-rowItem">{{ row.percentage }}</td>
+      <td class="MonthlyLogCard-rowItem">{{ row.change }}</td>
+    </tr>
+  </app-table>
+</app-card>
