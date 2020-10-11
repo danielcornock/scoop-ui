@@ -17,19 +17,25 @@ export class TrendsCardComponent implements OnInit {
     return new Chart('canvas', {
       type: 'line',
       data: {
-        labels: ['12/04/2020', '12/05/2020', '12/06/2020'],
+        labels: [
+          '12/04/2020',
+          '12/05/2020',
+          '12/06/2020',
+          '12/07/2020',
+          '20/07/2020'
+        ],
         datasets: [
           {
             label: 'Total Invested',
-            data: [300, 600, 1200],
+            data: [300, 600, 1200, 1200, 1200],
             borderColor: 'rgba(28,128,220, 1)',
             backgroundColor: 'rgba(28,128,220, 0.08)',
             borderWidth: 2
           },
           {
-            label: 'Total Investment',
-            data: [306, 634, 1350],
-            borderColor: 'rgba(54,87,220, 1)',
+            label: 'Investment Value',
+            data: [306, 634, 1350, 1210, 1130],
+            borderColor: 'green',
             backgroundColor: 'rgba(54,87,220, 0.08)',
             borderWidth: 2
           }
@@ -61,6 +67,7 @@ export class TrendsCardComponent implements OnInit {
           ],
           xAxes: [
             {
+              display: false,
               gridLines: {
                 display: false
               },
