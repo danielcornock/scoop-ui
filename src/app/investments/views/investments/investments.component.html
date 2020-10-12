@@ -2,9 +2,10 @@
   <h1 class="Investments-heading">Investments</h1>
 
   <div class="Investments-content">
-    <app-investments-summary
+    <app-dashboard-summary
       class="Investments-summary"
-    ></app-investments-summary>
+      [dashboardSummaryItems]="summaryItems"
+    ></app-dashboard-summary>
 
     <app-companies-card class="Investments-stocks"></app-companies-card>
 
