@@ -1,8 +1,11 @@
 <div class="NetWorth-container">
   <h1 class="NetWorth-heading">Net Worth</h1>
+  <div class="NetWorth-content">
+    <app-dashboard-summary
+      class="NetWorth-summary"
+      [dashboardSummaryItems]="summaryItems"
+    ></app-dashboard-summary>
 
-  <app-dashboard-summary
-    class="NetWorth-summary"
-    [dashboardSummaryItems]="summaryItems"
-  ></app-dashboard-summary>
+    <app-net-worth-log class="NetWorth-log"></app-net-worth-log>
+  </div>
 </div>

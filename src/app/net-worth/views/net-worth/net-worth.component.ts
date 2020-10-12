@@ -14,21 +14,25 @@ export class NetWorthComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
+    this._assignSummaryItems();
+  }
+
+  private _assignSummaryItems(): void {
     this.summaryItems = [
       {
         label: 'Net Worth',
         value: '£13000'
       },
       {
-        label: 'Total Saved',
+        label: 'Savings',
         value: '£8100'
       },
       {
-        label: 'Total Investments',
+        label: 'Investments',
         value: '£2700'
       },
       {
-        label: 'Change',
+        label: 'Change this month',
         value: '£1200'
       }
     ];
