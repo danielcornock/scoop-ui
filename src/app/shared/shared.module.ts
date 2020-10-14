@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FeatherModule } from 'angular-feather';
+import { allIcons } from 'angular-feather/icons';
 
 import { CardComponent } from './components/card/card.component';
 import { DashboardSummaryComponent } from './components/dashboard-summary/dashboard-summary.component';
@@ -17,14 +19,15 @@ import { KeysPipe } from './pipes/keys/keys.pipe';
     FormInputComponent,
     FormSubmitComponent
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, FeatherModule.pick(allIcons)],
   exports: [
     CardComponent,
     TableComponent,
     DashboardSummaryComponent,
     KeysPipe,
     FormInputComponent,
-    FormSubmitComponent
+    FormSubmitComponent,
+    FeatherModule
   ]
 })
 export class SharedModule {}
