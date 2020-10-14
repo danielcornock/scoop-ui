@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'chart.js';
+import { ChartService } from 'src/app/shared/services/chart/chart.service';
 
 @Component({
   selector: 'app-trends-card',
@@ -9,14 +10,15 @@ import { Chart } from 'chart.js';
 export class TrendsCardComponent implements OnInit {
   public chart: Chart;
 
+  constructor(private readonly _chartService: ChartService) {}
+
   ngOnInit(): void {
     this.chart = this._createGraphConfig();
   }
 
   private _createGraphConfig(): Chart {
-    return new Chart('canvas', {
-      type: 'line',
-      data: {
+    return this._chartService.createLineChart(
+      {
         labels: [
           '12/04/2020',
           '12/05/2020',
@@ -41,47 +43,7 @@ export class TrendsCardComponent implements OnInit {
           }
         ]
       },
-      options: {
-        hover: {},
-        legend: {
-          display: false,
-          labels: {
-            fontColor: '#a0a0a0'
-          }
-        },
-        scales: {
-          yAxes: [
-            {
-              gridLines: {
-                display: false
-              },
-              ticks: {
-                fontFamily: 'Quicksand',
-                fontStyle: '500',
-                fontColor: '#a0a0a0',
-                fontSize: 12,
-                stepSize: 400,
-                beginAtZero: false
-              }
-            }
-          ],
-          xAxes: [
-            {
-              display: false,
-              gridLines: {
-                display: false
-              },
-              ticks: {
-                fontFamily: 'Quicksand',
-                fontStyle: '500',
-                fontColor: '#a0a0a0',
-                fontSize: 12,
-                beginAtZero: false
-              }
-            }
-          ]
-        }
-      }
-    });
+      { yAxisStepSize: 400 }
+    );
   }
 }
