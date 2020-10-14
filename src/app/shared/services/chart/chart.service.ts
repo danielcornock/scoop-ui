@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Chart, ChartData } from 'chart.js';
+import * as Chart from 'chart.js';
+import { ChartData } from 'chart.js';
 import { ILineChartConfig } from './interfaces/line-chart-config.interface';
+import { IPiechartConfig } from './interfaces/pie-chart-config.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -23,16 +25,28 @@ export class ChartService {
     });
   }
 
+  public createPieChart(
+    data: ChartData,
+    pieChartConfig: IPiechartConfig
+  ): Chart {
+    return this.createChart({
+      type: 'pie',
+      data,
+      options: {
+        legend: {
+          position: pieChartConfig.legendPosition
+        }
+      }
+    });
+  }
+
   private _getLineChartOptions(
     lineChartConfig: ILineChartConfig
   ): Chart.ChartOptions {
     return {
       hover: {},
       legend: {
-        display: false,
-        labels: {
-          fontColor: '#a0a0a0'
-        }
+        display: false
       },
       scales: {
         yAxes: [
