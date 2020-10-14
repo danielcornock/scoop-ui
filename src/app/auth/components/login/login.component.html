@@ -1,0 +1,24 @@
+<div class="Login-container">
+  <form [formGroup]="loginForm" class="Login-form">
+    <div class="Login-branding">
+      <img
+        class="Login-brandingLogo"
+        src="../../../../assets/images/Gem-blue.svg"
+        alt=""
+      />
+      <span class="Login-brandingText">scoop</span>
+    </div>
+    <app-form-input
+      class="Login-formInput"
+      [control]="loginForm.controls.email"
+      label="Email address"
+    ></app-form-input>
+    <app-form-input
+      class="Login-formInput"
+      [control]="loginForm.controls.email"
+      label="Password"
+      type="password"
+    ></app-form-input>
+    <app-form-submit class="Login-submit" value="Log in"></app-form-submit>
+  </form>
+</div>

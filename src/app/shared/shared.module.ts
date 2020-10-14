@@ -3,11 +3,28 @@ import { NgModule } from '@angular/core';
 
 import { CardComponent } from './components/card/card.component';
 import { DashboardSummaryComponent } from './components/dashboard-summary/dashboard-summary.component';
+import { FormInputComponent } from './components/form-input/form-input.component';
+import { FormSubmitComponent } from './components/form-submit/form-submit.component';
 import { TableComponent } from './components/table/table.component';
+import { KeysPipe } from './pipes/keys/keys.pipe';
 
 @NgModule({
-  declarations: [CardComponent, TableComponent, DashboardSummaryComponent],
+  declarations: [
+    CardComponent,
+    TableComponent,
+    DashboardSummaryComponent,
+    KeysPipe,
+    FormInputComponent,
+    FormSubmitComponent
+  ],
   imports: [CommonModule],
-  exports: [CardComponent, TableComponent, DashboardSummaryComponent]
+  exports: [
+    CardComponent,
+    TableComponent,
+    DashboardSummaryComponent,
+    KeysPipe,
+    FormInputComponent,
+    FormSubmitComponent
+  ]
 })
 export class SharedModule {}

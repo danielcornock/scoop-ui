@@ -1,0 +1,25 @@
+@import 'src/assets/styles/themes.scss';
+
+:host {
+  display: block;
+}
+.FormSubmit {
+  &-button {
+    // To make submit button match input height
+    padding: $spacing-10 + 1px;
+    text-align: center;
+    font-weight: 500;
+    color: $color-white;
+    background-color: $color-primary;
+    border: none;
+    font-size: 18px;
+    border-radius: $br-sm;
+    cursor: pointer;
+    transition: 100ms;
+    width: 100%;
+
+    &:hover {
+      background-color: $color-primary-gradient;
+    }
+  }
+}

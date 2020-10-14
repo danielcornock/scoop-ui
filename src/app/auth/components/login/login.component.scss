@@ -1,0 +1,56 @@
+@import 'src/assets/styles/themes.scss';
+
+.Login {
+  &-container {
+    @include center-contents;
+    height: 100%;
+    background-image: linear-gradient(
+      to bottom,
+      $color-primary,
+      $color-primary-gradient
+    );
+  }
+
+  &-form {
+    @include shadow-dark;
+    background-color: $color-white;
+    padding: $spacing-80 $spacing-50 $spacing-50;
+    border-radius: $br-med;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-branding {
+    color: $color-primary;
+    display: flex;
+    align-items: center;
+    margin: auto;
+    margin-bottom: $spacing-60;
+  }
+
+  &-formInput {
+    width: 350px;
+
+    & + & {
+      margin-top: $spacing-20;
+    }
+  }
+
+  &-submit {
+    margin-top: $spacing-30;
+  }
+
+  &-brandingLogo {
+    display: block;
+    height: 55px;
+    margin-right: $spacing-10;
+  }
+
+  &-brandingText {
+    font-size: 55px;
+    font-weight: 600;
+    line-height: 1;
+    position: relative;
+    bottom: 4px;
+  }
+}

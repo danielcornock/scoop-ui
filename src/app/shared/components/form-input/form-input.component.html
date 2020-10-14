@@ -1,0 +1,7 @@
+<div class="FormInput-container">
+  <label class="FormInput-label" [for]="label"
+    >{{ label }}
+    <span class="FormInput-isRequired" *ngIf="isRequired"> *</span>
+  </label>
+  <input class="FormInput-input" [type]="type" [id]="label" />
+</div>

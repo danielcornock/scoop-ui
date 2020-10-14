@@ -1,6 +1,10 @@
 @import 'src/assets/styles/themes.scss';
 
 .MonthlyDistribution {
+  &-container {
+    @include page-container;
+  }
+
   &-heading {
     @include page-heading-single;
   }

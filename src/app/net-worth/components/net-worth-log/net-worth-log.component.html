@@ -11,13 +11,9 @@
     ]"
   >
     <tr class="NetWorthLog-row" *ngFor="let row of logs">
-      <td class="NetWorthLog-rowItem">{{ row.date }}</td>
-      <td class="NetWorthLog-rowItem">{{ row.santander }}</td>
-      <td class="NetWorthLog-rowItem">{{ row.monzo }}</td>
-      <td class="NetWorthLog-rowItem">{{ row.isa }}</td>
-      <td class="NetWorthLog-rowItem">{{ row.investments }}</td>
-      <td class="NetWorthLog-rowItem">{{ row.total }}</td>
-      <td class="NetWorthLog-rowItem">{{ row.change }}</td>
+      <td class="NetWorthLog-rowItem" *ngFor="let item of row | keys">
+        {{ row[item] }}
+      </td>
     </tr></app-table
   >
 </app-card>

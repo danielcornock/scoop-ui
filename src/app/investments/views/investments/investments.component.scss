@@ -1,6 +1,10 @@
 @import 'src/assets/styles/themes.scss';
 
 .Investments {
+  &-container {
+    @include page-container;
+  }
+
   &-heading {
     @include page-heading-single;
   }
