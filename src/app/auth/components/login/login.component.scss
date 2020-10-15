@@ -26,6 +26,16 @@
     align-items: center;
     margin: auto;
     margin-bottom: $spacing-60;
+    position: relative;
+  }
+
+  &-brandingBeta {
+    position: absolute;
+    top: 83%;
+    right: 35px;
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: 4px;
   }
 
   &-formInput {
