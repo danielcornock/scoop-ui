@@ -10,15 +10,31 @@ import { IPiechartConfig } from './interfaces/pie-chart-config.interface';
 export class ChartService {
   constructor() {}
 
-  public createChart(config: Chart.ChartConfiguration): Chart {
-    return new Chart('canvas', config);
+  public createChart(
+    chartName: string,
+    config: Chart.ChartConfiguration
+  ): Chart {
+    return new Chart(chartName, config);
+  }
+
+  public createBarChart(
+    chartName: string,
+    data: ChartData,
+    config: Chart.ChartConfiguration
+  ): Chart {
+    return this.createChart(chartName, {
+      type: 'bar',
+      data,
+      options: this._getLineChartOptions({ yAxisStepSize: 200 })
+    });
   }
 
   public createLineChart(
+    chartName: string,
     data: ChartData,
     lineChartConfig: ILineChartConfig
   ): Chart {
-    return this.createChart({
+    return this.createChart(chartName, {
       type: 'line',
       data,
       options: this._getLineChartOptions(lineChartConfig)
@@ -26,10 +42,11 @@ export class ChartService {
   }
 
   public createPieChart(
+    chartName: string,
     data: ChartData,
     pieChartConfig: IPiechartConfig
   ): Chart {
-    return this.createChart({
+    return this.createChart(chartName, {
       type: 'pie',
       data,
       options: {

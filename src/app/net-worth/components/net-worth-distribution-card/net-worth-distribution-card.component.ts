@@ -8,10 +8,12 @@ import * as Chart from 'chart.js';
   styleUrls: ['./net-worth-distribution-card.component.scss']
 })
 export class NetWorthDistributionCardComponent implements OnInit {
+  public chartName = 'netWorthPieChart';
   constructor(private readonly _chartService: ChartService) {}
 
   ngOnInit(): void {
     this._chartService.createPieChart(
+      'netWorthPieChart',
       {
         labels: ['Savings', 'Investments', 'ISA', 'Other'],
         datasets: [

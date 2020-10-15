@@ -8,16 +8,15 @@ import { ChartService } from 'src/app/shared/services/chart/chart.service';
   styleUrls: ['./trends-card.component.scss']
 })
 export class TrendsCardComponent implements OnInit {
-  public chart: Chart;
-
   constructor(private readonly _chartService: ChartService) {}
 
   ngOnInit(): void {
-    this.chart = this._createGraphConfig();
+    this._createGraphConfig();
   }
 
-  private _createGraphConfig(): Chart {
-    return this._chartService.createLineChart(
+  private _createGraphConfig(): void {
+    this._chartService.createLineChart(
+      'investmentTrend',
       {
         labels: [
           '12/04/2020',

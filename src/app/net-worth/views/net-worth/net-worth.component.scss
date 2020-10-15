@@ -15,6 +15,7 @@
     grid-gap: $spacing-30;
     grid-template-areas:
       'summary summary summary'
+      'pie line bar'
       'log log log';
   }
 
@@ -24,5 +25,17 @@
 
   &-log {
     grid-area: log;
+  }
+
+  &-pieChart {
+    grid-area: pie;
+  }
+
+  &-lineChart {
+    grid-area: line;
+  }
+
+  &-barChart {
+    grid-area: bar;
   }
 }
