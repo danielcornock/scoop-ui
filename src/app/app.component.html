@@ -1,7 +1,10 @@
 <div class="App-container">
-  <app-sidebar class="App-sidebar"></app-sidebar>
+  <app-sidebar class="App-sidebar" *ngIf="isLoggedIn()"></app-sidebar>
   <div class="App-content">
-    <app-user-settings-menu class="App-settingsMenu"></app-user-settings-menu>
+    <app-user-settings-menu
+      class="App-settingsMenu"
+      *ngIf="isLoggedIn()"
+    ></app-user-settings-menu>
     <router-outlet></router-outlet>
   </div>
 </div>

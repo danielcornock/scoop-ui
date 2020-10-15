@@ -3,5 +3,10 @@
     >{{ label }}
     <span class="FormInput-isRequired" *ngIf="isRequired"> *</span>
   </label>
-  <input class="FormInput-input" [type]="type" [id]="label" />
+  <input
+    class="FormInput-input"
+    [type]="type"
+    [id]="label"
+    [formControl]="control"
+  />
 </div>

@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FeatherModule } from 'angular-feather';
 import { allIcons } from 'angular-feather/icons';
 
@@ -19,7 +20,12 @@ import { KeysPipe } from './pipes/keys/keys.pipe';
     FormInputComponent,
     FormSubmitComponent
   ],
-  imports: [CommonModule, FeatherModule.pick(allIcons)],
+  imports: [
+    CommonModule,
+    FeatherModule.pick(allIcons),
+    FormsModule,
+    ReactiveFormsModule
+  ],
   exports: [
     CardComponent,
     TableComponent,

@@ -1,5 +1,5 @@
 <div class="Login-container">
-  <form [formGroup]="loginForm" class="Login-form">
+  <form [formGroup]="loginForm" class="Login-form" (ngSubmit)="login()">
     <div class="Login-branding">
       <img
         class="Login-brandingLogo"
@@ -16,7 +16,7 @@
     ></app-form-input>
     <app-form-input
       class="Login-formInput"
-      [control]="loginForm.controls.email"
+      [control]="loginForm.controls.password"
       label="Password"
       type="password"
     ></app-form-input>

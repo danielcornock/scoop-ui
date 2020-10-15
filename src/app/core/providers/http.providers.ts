@@ -10,7 +10,7 @@ export const httpProviders: Provider[] = [
       if (environment.production) {
         return '';
       } else {
-        return 'http://localhost:3000/';
+        return 'http://localhost:3000/api/v1/';
       }
     }
   }
