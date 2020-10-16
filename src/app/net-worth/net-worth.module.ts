@@ -8,6 +8,7 @@ import { NetWorthDistributionCardComponent } from './components/net-worth-distri
 import { NetWorthTrendsCardComponent } from './components/net-worth-trends-card/net-worth-trends-card.component';
 import { NetWorthMonthlyChangeCardComponent } from './components/net-worth-monthly-change-card/net-worth-monthly-change-card.component';
 import { NetWorthEntryFormComponent } from './views/net-worth-entry-form/net-worth-entry-form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,6 @@ import { NetWorthEntryFormComponent } from './views/net-worth-entry-form/net-wor
     NetWorthMonthlyChangeCardComponent,
     NetWorthEntryFormComponent
   ],
-  imports: [CommonModule, SharedModule]
+  imports: [CommonModule, SharedModule, FormsModule, ReactiveFormsModule]
 })
 export class NetWorthModule {}

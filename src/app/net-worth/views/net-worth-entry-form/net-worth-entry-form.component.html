@@ -1,3 +1,23 @@
 <div class="NetWorthEntryForm-container">
   <h1 class="NetWorthEntryForm-heading">Create net worth entry</h1>
+  <form [formGroup]="form" class="NetWorthEntryForm-form">
+    <app-form-input
+      [control]="form.controls.date"
+      label="Month"
+      type="month"
+    ></app-form-input>
+    <h2 class="NetWorthEntryForm-subheading">Entries</h2>
+    <div class="NetWorthEntryForm-input" *ngFor="let column of columns">
+      <app-form-input
+        [control]="form.controls[column]"
+        [label]="column"
+        type="text"
+      ></app-form-input>
+    </div>
+
+    <app-form-submit
+      class="NetWorthEntryForm-submit"
+      value="Save Entry"
+    ></app-form-submit>
+  </form>
 </div>

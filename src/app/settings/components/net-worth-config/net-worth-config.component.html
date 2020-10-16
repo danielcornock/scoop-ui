@@ -1,0 +1,39 @@
+<div class="NetWorthConfig-container">
+  <h2 class="NetWorthConfig-heading">Net Worth Table Configuration</h2>
+  <p class="NetWorthConfig-description">
+    Move the columns around to choose the order that you want them to be
+    displayed when in tables. You can add more using the input below, or remove
+    them by clicking the 'x' next to the column name.
+  </p>
+
+  <div class="NetWorthConfig-columnsList">
+    <span class="NetWorthConfig-columnListEntry">Date</span>
+    <span
+      class="NetWorthConfig-configurableEntries"
+      cdkDropList
+      (cdkDropListDropped)="dropColumn($event)"
+      cdkDropListOrientation="horizontal"
+    >
+      <div
+        class="NetWorthConfig-columnListEntry is-movable"
+        *ngFor="let column of columns"
+        cdkDrag
+      >
+        {{ column }}
+        <button class="NetWorthConfig-removeItem" (click)="remove(column)">
+          <i-feather name="x"></i-feather>
+        </button>
+      </div>
+    </span>
+    <span class="NetWorthConfig-columnListEntry">Total</span>
+    <span class="NetWorthConfig-columnListEntry">Change</span>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="add()">
+    <app-form-input
+      class="NetWorthConfig-input"
+      [control]="form.controls.column"
+      label="Add a new column"
+    ></app-form-input>
+  </form>
+</div>

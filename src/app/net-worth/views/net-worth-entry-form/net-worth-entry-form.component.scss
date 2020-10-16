@@ -8,4 +8,18 @@
   &-heading {
     @include page-heading-single;
   }
+
+  &-form {
+    max-width: 600px;
+  }
+
+  &-subheading {
+    margin-top: $spacing-30;
+    margin-bottom: $spacing-20;
+    @include page-subheading;
+  }
+
+  &-submit {
+    margin-top: $spacing-30;
+  }
 }

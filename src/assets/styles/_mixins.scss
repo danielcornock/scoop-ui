@@ -61,3 +61,19 @@
     color: $color-form-input-error-text;
   }
 }
+
+@mixin button-default {
+  @include button-reset;
+  color: $color-white;
+  background-color: $color-primary;
+  font-size: 16px;
+  font-weight: 500;
+  padding: $spacing-10 $spacing-15;
+  border-radius: $br-sm;
+}
+
+@mixin page-subheading {
+  font-weight: 500;
+  color: $color-subheading;
+  font-size: 22px;
+}
