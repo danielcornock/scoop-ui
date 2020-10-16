@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { AuthGuardService } from '../auth/services/auth-guard/auth-guard.service';
-import { PageNotFoundComponent } from '../core/components/page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from '../core/components/views/page-not-found/page-not-found.component';
 
 export const coreRoutes: Routes = [
   {

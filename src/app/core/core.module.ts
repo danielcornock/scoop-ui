@@ -7,11 +7,14 @@ import { SharedModule } from '../shared/shared.module';
 import { UserSettingsMenuComponent } from './components/settings-menu/user-settings-menu.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { httpProviders } from './providers/http.providers';
-import { MatMenuModule } from '@angular/material/menu';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from './components/views/page-not-found/page-not-found.component';
 
 @NgModule({
-  declarations: [SidebarComponent, UserSettingsMenuComponent, PageNotFoundComponent],
+  declarations: [
+    SidebarComponent,
+    UserSettingsMenuComponent,
+    PageNotFoundComponent
+  ],
   imports: [CommonModule, SharedModule, RouterModule, HttpClientModule],
   providers: [...httpProviders],
   exports: [SidebarComponent, UserSettingsMenuComponent]
