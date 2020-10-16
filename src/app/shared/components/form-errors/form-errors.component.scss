@@ -1,0 +1,17 @@
+@import 'src/assets/styles/themes.scss';
+
+.FormErrors {
+  &-container {
+    @include form-error-text;
+    animation: slide-in 150ms;
+  }
+}
+
+@keyframes slide-in {
+  from {
+    height: 0;
+  }
+  to {
+    height: 18px;
+  }
+}

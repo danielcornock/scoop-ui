@@ -1,5 +1,8 @@
 @import 'src/assets/styles/themes.scss';
 
+:host {
+  // margin-top: $spacing-10;
+}
 .FormInput {
   &-input {
     display: block;
@@ -8,6 +11,9 @@
     border-radius: $br-sm;
     font-size: 18px;
     width: 100%;
+    margin-bottom: 23px;
+
+    @include form-input-error-styles;
   }
 
   &-label {
@@ -18,5 +24,7 @@
     font-weight: 500;
     letter-spacing: 0.5px;
     color: $color-form-label;
+
+    @include form-label-error-styles;
   }
 }

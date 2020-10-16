@@ -1,12 +1,17 @@
 <div class="FormInput-container">
-  <label class="FormInput-label" [for]="label"
+  <label class="FormInput-label" [for]="label" [class.is-errored]="isErrored"
     >{{ label }}
     <span class="FormInput-isRequired" *ngIf="isRequired"> *</span>
   </label>
   <input
     class="FormInput-input"
+    [class.is-errored]="isErrored"
     [type]="type"
     [id]="label"
     [formControl]="control"
   />
+  <app-form-input-errors
+    *ngIf="isErrored"
+    [errors]="control.errors"
+  ></app-form-input-errors>
 </div>

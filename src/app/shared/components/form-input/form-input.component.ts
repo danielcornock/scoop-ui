@@ -27,6 +27,10 @@ export class FormInputComponent implements OnInit {
     this.isRequired = this._getRequiredStatus();
   }
 
+  public get isErrored(): boolean {
+    return this.control.touched && this.control.invalid;
+  }
+
   private _getRequiredStatus(): boolean {
     if (this.control.validator) {
       const validator = this.control.validator({} as FormControl);

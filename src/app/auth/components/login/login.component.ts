@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpService } from 'src/app/core/services/http/http.service';
+import { IHttpError } from 'src/app/core/services/http/interfaces/http-error.interface';
 import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
@@ -11,6 +12,7 @@ import { AuthService } from '../../services/auth/auth.service';
 })
 export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
+  public errors: IHttpError;
 
   constructor(
     private readonly _formBuilder: FormBuilder,
@@ -24,14 +26,17 @@ export class LoginComponent implements OnInit {
   }
 
   public async login(): Promise<void> {
-    console.log(this.loginForm);
-
-    const { data } = await this._httpService.post(
-      'auth/login',
-      this.loginForm.value
-    );
-    this._authService.setJwt(data.jwt);
-    this._router.navigateByUrl('investments');
+    try {
+      this.errors = null;
+      const { data } = await this._httpService.post(
+        'auth/login',
+        this.loginForm.value
+      );
+      this._authService.setJwt(data.jwt);
+      this._router.navigateByUrl('investments');
+    } catch ({ error }) {
+      this.errors = error;
+    }
   }
 
   private _createForm(): void {

@@ -14,7 +14,7 @@
   &-form {
     @include shadow-dark;
     background-color: $color-white;
-    padding: $spacing-80 $spacing-50 $spacing-50;
+    padding: $spacing-80 $spacing-40 $spacing-50;
     border-radius: $br-med;
     display: flex;
     flex-direction: column;
@@ -40,14 +40,10 @@
 
   &-formInput {
     width: 350px;
-
-    & + & {
-      margin-top: $spacing-20;
-    }
   }
 
   &-submit {
-    margin-top: $spacing-30;
+    margin-top: $spacing-20;
   }
 
   &-brandingLogo {

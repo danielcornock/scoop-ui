@@ -38,3 +38,26 @@
   background-color: transparent;
   cursor: pointer;
 }
+
+@mixin form-error-text {
+  color: $color-form-input-error-text;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+@mixin form-input-error-styles {
+  &.is-errored {
+    border-color: $color-form-input-error-border;
+    margin-bottom: 0;
+
+    &:focus {
+      outline-color: $color-form-input-error-border;
+    }
+  }
+}
+
+@mixin form-label-error-styles {
+  &.is-errored {
+    color: $color-form-input-error-text;
+  }
+}

@@ -12,6 +12,8 @@ import { TableComponent } from './components/table/table.component';
 import { KeysPipe } from './pipes/keys/keys.pipe';
 import { ContextMenuComponent } from './components/context-menu/context-menu.component';
 import { MatMenuModule } from '@angular/material/menu';
+import { FormInputErrorsComponent } from './components/form-input-errors/form-input-errors.component';
+import { FormErrorsComponent } from './components/form-errors/form-errors.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { MatMenuModule } from '@angular/material/menu';
     KeysPipe,
     FormInputComponent,
     FormSubmitComponent,
-    ContextMenuComponent
+    ContextMenuComponent,
+    FormInputErrorsComponent,
+    FormErrorsComponent
   ],
   imports: [
     CommonModule,
@@ -38,7 +42,8 @@ import { MatMenuModule } from '@angular/material/menu';
     FormInputComponent,
     FormSubmitComponent,
     FeatherModule,
-    ContextMenuComponent
+    ContextMenuComponent,
+    FormErrorsComponent
   ]
 })
 export class SharedModule {}
