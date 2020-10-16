@@ -7,6 +7,7 @@ import { NetWorthLogComponent } from './components/net-worth-log/net-worth-log.c
 import { NetWorthDistributionCardComponent } from './components/net-worth-distribution-card/net-worth-distribution-card.component';
 import { NetWorthTrendsCardComponent } from './components/net-worth-trends-card/net-worth-trends-card.component';
 import { NetWorthMonthlyChangeCardComponent } from './components/net-worth-monthly-change-card/net-worth-monthly-change-card.component';
+import { NetWorthEntryFormComponent } from './views/net-worth-entry-form/net-worth-entry-form.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { NetWorthMonthlyChangeCardComponent } from './components/net-worth-month
     NetWorthLogComponent,
     NetWorthDistributionCardComponent,
     NetWorthTrendsCardComponent,
-    NetWorthMonthlyChangeCardComponent
+    NetWorthMonthlyChangeCardComponent,
+    NetWorthEntryFormComponent
   ],
   imports: [CommonModule, SharedModule]
 })

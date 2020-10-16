@@ -11,6 +11,21 @@
     background-color: $color-grey-background;
     padding: $spacing-20;
     border-radius: $br-med $br-med 0 0;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &-headerMenu {
+    height: 18px;
+    color: $color-table-header;
+    width: 18px;
+    transform: scale(2);
+    transform-origin: right;
+    transition: color 150ms;
+
+    &:hover {
+      color: $color-subheading;
+    }
   }
 
   &-headerTitle {

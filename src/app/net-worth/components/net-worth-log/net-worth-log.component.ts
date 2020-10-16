@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { IContextMenuItem } from 'src/app/shared/components/context-menu/interfaces/context-menu-item.interface';
 
 @Component({
   selector: 'app-net-worth-log',
@@ -7,11 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NetWorthLogComponent implements OnInit {
   public logs: Array<any>;
+  public contextMenuItems: Array<IContextMenuItem>;
 
-  constructor() {}
+  constructor(private readonly _router: Router) {}
 
   ngOnInit(): void {
     this._assignLogs();
+    this._assignContextMenuItems();
+  }
+
+  private _assignContextMenuItems(): void {
+    this.contextMenuItems = [
+      {
+        label: 'Create Entry',
+        action: () => this._router.navigateByUrl('net-worth/create'),
+        icon: 'plus'
+      }
+    ];
   }
 
   private _assignLogs(): void {

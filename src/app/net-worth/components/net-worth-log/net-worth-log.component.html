@@ -1,4 +1,8 @@
-<app-card class="NetWorthLog-container" cardTitle="Monthly Log">
+<app-card
+  class="NetWorthLog-container"
+  cardTitle="Monthly Log"
+  [cardActions]="contextMenuItems"
+>
   <app-table
     [tableColumns]="[
       'Date',

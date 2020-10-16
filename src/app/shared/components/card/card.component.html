@@ -1,6 +1,9 @@
 <div class="Card-container">
   <header class="Card-header">
     <h2 class="Card-headerTitle">{{ cardTitle }}</h2>
+    <app-context-menu *ngIf="cardActions" [contextMenuItems]="cardActions">
+      <i-feather class="Card-headerMenu" name="more-horizontal"></i-feather>
+    </app-context-menu>
   </header>
   <div class="Card-content">
     <ng-content></ng-content>

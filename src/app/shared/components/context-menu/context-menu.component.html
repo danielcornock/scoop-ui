@@ -7,7 +7,7 @@
     class="ContextMenu-item"
     (click)="selectItem(i)"
   >
-    <i-feather [name]="item.icon"></i-feather>
+    <i-feather [name]="item.icon" *ngIf="item.icon"></i-feather>
     {{ item.label }}
   </button>
 </mat-menu>
