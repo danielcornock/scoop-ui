@@ -8,9 +8,10 @@ import { UserSettingsMenuComponent } from './components/settings-menu/user-setti
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { httpProviders } from './providers/http.providers';
 import { MatMenuModule } from '@angular/material/menu';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
-  declarations: [SidebarComponent, UserSettingsMenuComponent],
+  declarations: [SidebarComponent, UserSettingsMenuComponent, PageNotFoundComponent],
   imports: [CommonModule, SharedModule, RouterModule, HttpClientModule],
   providers: [...httpProviders],
   exports: [SidebarComponent, UserSettingsMenuComponent]

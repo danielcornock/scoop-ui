@@ -1,0 +1,15 @@
+@import 'src/assets/styles/themes.scss';
+
+.PageNotFound {
+  &-container {
+    @include page-container;
+  }
+
+  &-title {
+    @include page-heading-single;
+  }
+
+  &-text {
+    font-size: 18px;
+  }
+}
