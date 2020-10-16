@@ -32,3 +32,9 @@
   color: $color-table-content;
   border-top: 1px solid $color-table-divider;
 }
+
+@mixin button-reset {
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+}

@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { UserSettingsMenuComponent } from './components/settings-menu/user-settings-menu.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { httpProviders } from './providers/http.providers';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [SidebarComponent, UserSettingsMenuComponent],

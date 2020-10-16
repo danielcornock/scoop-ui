@@ -1,0 +1,13 @@
+<button class="ContextMenu-button" [matMenuTriggerFor]="menu">
+  <ng-content></ng-content>
+</button>
+<mat-menu #menu="matMenu" yPosition="below" xPosition="before" class="dropdown">
+  <button
+    *ngFor="let item of contextMenuItems; let i = index"
+    class="ContextMenu-item"
+    (click)="selectItem(i)"
+  >
+    <i-feather [name]="item.icon"></i-feather>
+    {{ item.label }}
+  </button>
+</mat-menu>

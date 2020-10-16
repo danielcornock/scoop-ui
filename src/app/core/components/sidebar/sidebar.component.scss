@@ -56,6 +56,19 @@
     cursor: pointer;
     border-radius: $br-med;
     text-decoration: none;
+    position: relative;
+
+    &--active {
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 3px;
+        background-color: $color-white;
+      }
+    }
 
     &:hover {
       background-color: $color-primary;

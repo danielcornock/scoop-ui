@@ -8,6 +8,7 @@ import { InvestmentsModule } from './investments/investments.module';
 import { NetWorthModule } from './net-worth/net-worth.module';
 import { AppRoutingModule } from './routing/app-routing.module';
 import { SharedModule } from './shared/shared.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,7 +19,8 @@ import { SharedModule } from './shared/shared.module';
     CoreModule,
     InvestmentsModule,
     NetWorthModule,
-    AuthModule
+    AuthModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
