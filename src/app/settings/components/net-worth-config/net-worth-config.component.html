@@ -29,11 +29,10 @@
     <span class="NetWorthConfig-columnListEntry">Change</span>
   </div>
 
-  <form [formGroup]="form" (ngSubmit)="add()">
+  <form [formGroup]="form.formGroup" (ngSubmit)="add()">
     <app-form-input
       class="NetWorthConfig-input"
-      [control]="form.controls.column"
-      label="Add a new column"
+      [formInputField]="form.fields[0]"
     ></app-form-input>
   </form>
 </div>

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { FormInputField } from 'src/app/lib/form/instances/form-input-field/form-input-field';
 
 @Component({
   selector: 'app-form-input',
@@ -8,22 +9,18 @@ import { FormControl } from '@angular/forms';
 })
 export class FormInputComponent implements OnInit {
   @Input()
-  public control: FormControl;
-
-  @Input()
-  public name: string;
-
-  @Input()
-  public label: string;
+  public formInputField: FormInputField;
 
   @Input()
   public type = 'text';
 
+  public control: FormControl;
   public isRequired: boolean;
 
   constructor() {}
 
   ngOnInit(): void {
+    this.control = this.formInputField.control;
     this.isRequired = this._getRequiredStatus();
   }
 

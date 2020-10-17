@@ -1,6 +1,8 @@
 import { CdkDragSortEvent, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormControl } from '@angular/forms';
+import { FormContainer } from 'src/app/lib/form/instances/form-container/form-container';
+import { FormFactory } from 'src/app/lib/form/services/form-factory/form-factory.service';
 
 @Component({
   selector: 'app-net-worth-config',
@@ -9,14 +11,17 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 })
 export class NetWorthConfigComponent implements OnInit {
   public columns = ['ISA', 'Santander'];
-  public form: FormGroup;
+  public form: FormContainer;
 
-  constructor(private readonly _formBuilder: FormBuilder) {}
+  constructor(private readonly _formFactory: FormFactory) {}
 
   public ngOnInit(): void {
-    this.form = this._formBuilder.group({
-      column: this._formBuilder.control('')
-    });
+    this.form = this._formFactory.createForm([
+      {
+        name: 'column',
+        label: 'Add a new column'
+      }
+    ]);
   }
 
   public dropColumn(event: CdkDragSortEvent): void {
@@ -24,7 +29,8 @@ export class NetWorthConfigComponent implements OnInit {
   }
 
   public add(): void {
-    const control: FormControl = this.form.controls.column as FormControl;
+    const control: FormControl = this.form.formGroup.controls
+      .column as FormControl;
 
     if ((control.value || '').trim()) {
       this.columns.push(control.value);

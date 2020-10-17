@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpService } from 'src/app/core/services/http/http.service';
 import { IHttpError } from 'src/app/core/services/http/interfaces/http-error.interface';
+import { FormContainer } from 'src/app/lib/form/instances/form-container/form-container';
+import { FormFactory } from 'src/app/lib/form/services/form-factory/form-factory.service';
+
 import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
@@ -11,11 +13,11 @@ import { AuthService } from '../../services/auth/auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  public loginForm: FormGroup;
+  public loginForm: FormContainer;
   public errors: IHttpError;
 
   constructor(
-    private readonly _formBuilder: FormBuilder,
+    private readonly _formFactory: FormFactory,
     private readonly _httpService: HttpService,
     private readonly _router: Router,
     private readonly _authService: AuthService
@@ -40,9 +42,23 @@ export class LoginComponent implements OnInit {
   }
 
   private _createForm(): void {
-    this.loginForm = this._formBuilder.group({
-      email: this._formBuilder.control('', Validators.required),
-      password: this._formBuilder.control('', Validators.required)
-    });
+    this.loginForm = this._formFactory.createForm([
+      {
+        name: 'email',
+        label: 'Email address',
+        validators: {
+          required: true,
+          email: true
+        }
+      },
+      {
+        name: 'password',
+        type: 'password',
+        label: 'Password',
+        validators: {
+          required: true
+        }
+      }
+    ]);
   }
 }

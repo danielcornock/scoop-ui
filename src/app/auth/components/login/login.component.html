@@ -1,5 +1,9 @@
 <div class="Login-container">
-  <form [formGroup]="loginForm" class="Login-form" (ngSubmit)="login()">
+  <form
+    [formGroup]="loginForm.formGroup"
+    class="Login-form"
+    (ngSubmit)="login()"
+  >
     <div class="Login-branding">
       <img
         class="Login-brandingLogo"
@@ -11,14 +15,8 @@
     </div>
     <app-form-input
       class="Login-formInput"
-      [control]="loginForm.controls.email"
-      label="Email address"
-    ></app-form-input>
-    <app-form-input
-      class="Login-formInput"
-      [control]="loginForm.controls.password"
-      label="Password"
-      type="password"
+      *ngFor="let field of loginForm.fields"
+      [formInputField]="field"
     ></app-form-input>
     <app-form-errors [appFormErrors]="errors"></app-form-errors>
     <app-form-submit class="Login-submit" value="Log in"></app-form-submit>
