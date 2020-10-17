@@ -1,4 +1,13 @@
-<div class="Settings-container">
+<div class="Settings-container" *ngIf="settings">
   <h1 class="Settings-title">Settings</h1>
-  <app-net-worth-config></app-net-worth-config>
+  <button
+    class="Settings-updateButton"
+    (click)="saveChanges()"
+    *ngIf="hasChanged()"
+  >
+    Save Changes
+  </button>
+  <app-net-worth-config
+    [netWorthColumns]="settings.netWorthFields"
+  ></app-net-worth-config>
 </div>

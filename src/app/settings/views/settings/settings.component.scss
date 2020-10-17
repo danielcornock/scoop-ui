@@ -8,4 +8,11 @@
   &-title {
     @include page-heading-single;
   }
+
+  &-updateButton {
+    @include button-default;
+    position: fixed;
+    bottom: $spacing-30;
+    right: $spacing-30;
+  }
 }

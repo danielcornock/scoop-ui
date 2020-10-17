@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatChipsModule } from '@angular/material/chips';
 
+import { CoreModule } from '../core/core.module';
 import { SharedModule } from '../shared/shared.module';
 import { NetWorthConfigComponent } from './components/net-worth-config/net-worth-config.component';
 import { SettingsComponent } from './views/settings/settings.component';
@@ -16,7 +17,8 @@ import { SettingsComponent } from './views/settings/settings.component';
     DragDropModule,
     SharedModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CoreModule
   ]
 })
 export class SettingsModule {}
