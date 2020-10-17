@@ -21,7 +21,7 @@
 
   &-settingsMenu {
     position: absolute;
-    right: $spacing-40;
-    top: $spacing-40;
+    right: $spacing-page-top - $spacing-10;
+    top: $spacing-page-top - $spacing-10;
   }
 }
