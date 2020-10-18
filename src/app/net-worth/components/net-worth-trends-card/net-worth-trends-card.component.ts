@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ChartService } from 'src/app/shared/services/chart/chart.service';
+
+import { INetWorthApiResponse } from '../../interfaces/net-worth-api-response.interface';
 
 @Component({
   selector: 'app-net-worth-trends-card',
@@ -7,23 +9,23 @@ import { ChartService } from 'src/app/shared/services/chart/chart.service';
   styleUrls: ['./net-worth-trends-card.component.scss']
 })
 export class NetWorthTrendsCardComponent implements OnInit {
+  @Input()
+  public netWorthTrendsData: Array<INetWorthApiResponse>;
+
+  private _processedTrendsData: Array<{ date: string; total: number }>;
+
   constructor(private readonly _chartService: ChartService) {}
 
   ngOnInit(): void {
+    this._processTrendsData();
     this._chartService.createLineChart(
       'netWorthTrends',
       {
-        labels: [
-          '12/04/2020',
-          '12/05/2020',
-          '12/06/2020',
-          '12/07/2020',
-          '20/07/2020'
-        ],
+        labels: this._getArrayOfFields('date'),
         datasets: [
           {
             label: 'Net Worth',
-            data: [3000, 6000, 12000, 13500, 12000],
+            data: this._getArrayOfFields('total') as number[],
             borderColor: 'rgba(28,128,220, 1)',
             backgroundColor: 'rgba(28,128,220, 0.08)',
             borderWidth: 2
@@ -32,5 +34,22 @@ export class NetWorthTrendsCardComponent implements OnInit {
       },
       { yAxisStepSize: 2000 }
     );
+  }
+
+  private _getArrayOfFields(key: string): Array<string | number> {
+    const fields = this._processedTrendsData.map((item) => item[key]);
+
+    return fields;
+  }
+
+  private _processTrendsData(): void {
+    this._processedTrendsData = [...this.netWorthTrendsData]
+      .reverse()
+      .map((data) => {
+        return {
+          date: data.date,
+          total: data.total
+        };
+      });
   }
 }
