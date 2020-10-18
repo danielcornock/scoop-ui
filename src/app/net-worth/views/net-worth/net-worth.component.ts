@@ -1,3 +1,4 @@
+import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/core/services/http/http.service';
 import {
@@ -15,10 +16,13 @@ export class NetWorthComponent implements OnInit {
   public summaryItems: Array<IDashboardSummaryItem>;
   public netWorthItems: Array<INetWorthApiResponse>;
 
-  constructor(private readonly _httpService: HttpService) {}
+  constructor(
+    private readonly _httpService: HttpService,
+    private readonly _currency: CurrencyPipe
+  ) {}
 
-  ngOnInit(): void {
-    this._getNetWorthEntries();
+  async ngOnInit(): Promise<void> {
+    await this._getNetWorthEntries();
     this._assignSummaryItems();
   }
 
@@ -29,23 +33,29 @@ export class NetWorthComponent implements OnInit {
   }
 
   private _assignSummaryItems(): void {
+    const latestNetWorth = this.netWorthItems[0];
+
     this.summaryItems = [
       {
         label: 'Net Worth',
-        value: '£13000'
+        value: this._toCurrency(latestNetWorth.total)
       },
       {
         label: 'Savings',
-        value: '£8100'
+        value: this._toCurrency(latestNetWorth.customValues.savings)
       },
       {
         label: 'Investments',
-        value: '£2700'
+        value: this._toCurrency(latestNetWorth.customValues.investments)
       },
       {
         label: 'Change this month',
-        value: '£1200'
+        value: this._toCurrency(latestNetWorth.change)
       }
     ];
+  }
+
+  private _toCurrency(amount: number): string {
+    return this._currency.transform(amount, '£', 'symbol', '1.0-0');
   }
 }
