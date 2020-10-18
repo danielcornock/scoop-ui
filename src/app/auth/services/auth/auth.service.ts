@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
+
 import { IJwt } from '../../interfaces/jwt.interface';
 
 @Injectable({
@@ -24,6 +25,12 @@ export class AuthService {
     const token: IJwt = this._getDecodedJwt();
 
     return token.email;
+  }
+
+  public getLoggedInUserName(): string {
+    const token: IJwt = this._getDecodedJwt();
+
+    return token.name;
   }
 
   public getFullJwt(): string | null {

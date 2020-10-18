@@ -10,6 +10,7 @@ import { IContextMenuItem } from 'src/app/shared/components/context-menu/interfa
 })
 export class UserSettingsMenuComponent implements OnInit {
   public menuItems: Array<IContextMenuItem>;
+  public name: string;
 
   constructor(
     private readonly _authService: AuthService,
@@ -17,6 +18,7 @@ export class UserSettingsMenuComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.name = this._authService.getLoggedInUserName();
     this.menuItems = [
       {
         label: 'Log Out',
