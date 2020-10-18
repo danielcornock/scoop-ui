@@ -77,3 +77,10 @@
   color: $color-subheading;
   font-size: 22px;
 }
+
+@mixin settings-description {
+  color: $color-table-content;
+  margin-bottom: $spacing-20;
+  max-width: 700px;
+  line-height: 160%;
+}

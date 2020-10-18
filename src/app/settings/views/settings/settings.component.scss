@@ -15,4 +15,12 @@
     bottom: $spacing-30;
     right: $spacing-30;
   }
+
+  &-section {
+    display: block;
+
+    & + & {
+      padding-top: $spacing-20;
+    }
+  }
 }

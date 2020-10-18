@@ -1,0 +1,12 @@
+@import 'src/assets/styles/themes.scss';
+
+.NetWorthSummaryConfig {
+  &-heading {
+    @include page-subheading;
+    margin-bottom: $spacing-20;
+  }
+
+  &-description {
+    @include settings-description;
+  }
+}
