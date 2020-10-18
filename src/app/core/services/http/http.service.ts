@@ -21,10 +21,10 @@ export class HttpService {
       .toPromise() as Promise<IHttpResponse>;
   }
 
-  public get(url: string): Promise<IHttpResponse> {
+  public get<T = any>(url: string): Promise<IHttpResponse<T>> {
     return this._httpClient
       .get(`${this._apiUrl}${url}`, { headers: this._addHeaders() })
-      .toPromise() as Promise<IHttpResponse>;
+      .toPromise() as Promise<IHttpResponse<T>>;
   }
 
   public put(url: string, data: any): Promise<IHttpResponse> {

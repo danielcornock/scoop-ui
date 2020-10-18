@@ -3,20 +3,16 @@
   cardTitle="Monthly Log"
   [cardActions]="contextMenuItems"
 >
-  <app-table
-    [tableColumns]="[
-      'Date',
-      'Santander',
-      'Monzo',
-      'ISA',
-      'Investments',
-      'Total',
-      'Change'
-    ]"
-  >
+  <app-table [tableColumns]="columns">
     <tr class="NetWorthLog-row" *ngFor="let row of logs">
-      <td class="NetWorthLog-rowItem" *ngFor="let item of row | keys">
-        {{ row[item] }}
+      <td class="NetWorthLog-rowItem">
+        {{ row.date | date: 'MMMM y' }}
+      </td>
+      <td
+        class="NetWorthLog-rowItem"
+        *ngFor="let item of row | keys | slice: 1"
+      >
+        {{ row[item] | currency: 'GBP':'symbol':'1.0-0' }}
       </td>
     </tr></app-table
   >

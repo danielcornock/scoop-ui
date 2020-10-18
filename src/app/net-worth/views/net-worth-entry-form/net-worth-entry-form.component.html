@@ -1,6 +1,11 @@
 <div class="NetWorthEntryForm-container">
   <h1 class="NetWorthEntryForm-heading">Create net worth entry</h1>
-  <form [formGroup]="form.formGroup" class="NetWorthEntryForm-form">
+  <form
+    [formGroup]="form.formGroup"
+    *ngIf="form"
+    class="NetWorthEntryForm-form"
+    (ngSubmit)="submitForm()"
+  >
     <app-form-input
       [formInputField]="form.fields[0]"
       label="Month"
@@ -13,6 +18,8 @@
     >
       <app-form-input [formInputField]="field"></app-form-input>
     </div>
+
+    <app-form-errors [appFormErrors]="errors"></app-form-errors>
 
     <app-form-submit
       class="NetWorthEntryForm-submit"

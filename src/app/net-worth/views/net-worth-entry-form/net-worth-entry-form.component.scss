@@ -10,11 +10,11 @@
   }
 
   &-form {
-    max-width: 600px;
+    max-width: 400px;
   }
 
   &-subheading {
-    margin-top: $spacing-30;
+    padding-top: $spacing-30;
     margin-bottom: $spacing-20;
     @include page-subheading;
   }

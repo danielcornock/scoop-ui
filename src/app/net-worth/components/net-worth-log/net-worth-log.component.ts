@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Dictionary, map } from 'lodash';
+import { HttpService } from 'src/app/core/services/http/http.service';
 import { IContextMenuItem } from 'src/app/shared/components/context-menu/interfaces/context-menu-item.interface';
+
+import { INetWorthApiResponse } from '../../interfaces/net-worth-api-response.interface';
 
 @Component({
   selector: 'app-net-worth-log',
@@ -8,13 +12,18 @@ import { IContextMenuItem } from 'src/app/shared/components/context-menu/interfa
   styleUrls: ['./net-worth-log.component.scss']
 })
 export class NetWorthLogComponent implements OnInit {
-  public logs: Array<any>;
+  public logs: Array<Dictionary<string | number>>;
+  public columns: Array<string>;
   public contextMenuItems: Array<IContextMenuItem>;
 
-  constructor(private readonly _router: Router) {}
+  constructor(
+    private readonly _router: Router,
+    private readonly _httpService: HttpService
+  ) {}
 
-  ngOnInit(): void {
-    this._assignLogs();
+  async ngOnInit(): Promise<void> {
+    const { data } = await this._httpService.get('net-worth');
+    this._assignLogs(data);
     this._assignContextMenuItems();
   }
 
@@ -28,26 +37,16 @@ export class NetWorthLogComponent implements OnInit {
     ];
   }
 
-  private _assignLogs(): void {
-    this.logs = [
-      {
-        date: 'February 2020',
-        santander: '£8900',
-        monzo: '£1730',
-        isa: '£3000',
-        investments: '£3050',
-        total: '£13000',
-        change: '£1200'
-      },
-      {
-        date: 'March 2020',
-        santander: '£9900',
-        monzo: '£1830',
-        isa: '£3200',
-        investments: '£3350',
-        total: '£15100',
-        change: '£2100'
-      }
-    ];
+  private _assignLogs(data: Array<INetWorthApiResponse>): void {
+    this.logs = data.map((entry) => {
+      return {
+        date: entry.date,
+        ...entry.customValues,
+        total: entry.total,
+        change: entry.change
+      };
+    });
+
+    this.columns = map(this.logs[0], (_val, key) => key);
   }
 }
