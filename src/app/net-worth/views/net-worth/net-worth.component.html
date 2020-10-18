@@ -15,6 +15,10 @@
     <app-net-worth-monthly-change-card
       class="NetWorth-barChart"
     ></app-net-worth-monthly-change-card>
-    <app-net-worth-log class="NetWorth-log"></app-net-worth-log>
+    <app-net-worth-log
+      class="NetWorth-log"
+      *ngIf="netWorthItems"
+      [netWorthLogItems]="netWorthItems"
+    ></app-net-worth-log>
   </div>
 </div>
