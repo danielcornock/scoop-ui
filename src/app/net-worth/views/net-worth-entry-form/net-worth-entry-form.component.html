@@ -11,7 +11,16 @@
       label="Month"
       type="month"
     ></app-form-input>
-    <h2 class="NetWorthEntryForm-subheading">Entries</h2>
+    <h2 class="NetWorthEntryForm-subheading">
+      Entries
+      <a
+        class="NetWorthEntryForm-moreFieldsLink"
+        routerLink="../../settings"
+        fragment="net-worth-summary-config"
+      >
+        <i-feather name="plus"></i-feather> Add more fields</a
+      >
+    </h2>
     <div
       class="NetWorthEntryForm-input"
       *ngFor="let field of form.fields | slice: 1"

@@ -17,9 +17,25 @@
     padding-top: $spacing-30;
     margin-bottom: $spacing-20;
     @include page-subheading;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
   }
 
   &-submit {
     margin-top: $spacing-30;
+  }
+
+  &-moreFieldsLink {
+    @include link;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+
+    i-feather {
+      height: 14px;
+      width: 14px;
+      margin-right: 5px;
+    }
   }
 }

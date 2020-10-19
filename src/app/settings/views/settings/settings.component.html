@@ -9,11 +9,13 @@
   </button>
   <app-net-worth-config
     class="Settings-section first"
+    id="net-worth-table-config"
     [netWorthColumns]="settings.netWorthFields"
   ></app-net-worth-config>
 
   <app-net-worth-summary-config
     class="Settings-section last"
+    id="net-worth-summary-config"
     [netWorthSummaryConfigOptions]="settings.netWorthSummaryOptions"
     [netWorthSummaryConfigSelectedItems]="settings.netWorthSummaryItems"
   ></app-net-worth-summary-config>
