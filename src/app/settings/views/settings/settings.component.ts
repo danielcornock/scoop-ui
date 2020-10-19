@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { cloneDeep, isEqual } from 'lodash';
 import { HttpService } from 'src/app/core/services/http/http.service';
+import { PopupService } from 'src/app/shared/services/popup/popup.service';
 
 import { ISettings } from '../../interfaces/settings.interface';
 import { SettingsService } from '../../services/settings/settings.service';
@@ -16,7 +17,8 @@ export class SettingsComponent implements OnInit {
 
   constructor(
     private readonly _httpService: HttpService,
-    private readonly _settingsService: SettingsService
+    private readonly _settingsService: SettingsService,
+    private readonly _popupService: PopupService
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -30,7 +32,11 @@ export class SettingsComponent implements OnInit {
   }
 
   public async saveChanges(): Promise<void> {
-    this.settings = await this._settingsService.updateSettings(this.settings);
-    this.originalSettings = cloneDeep(this.settings);
+    try {
+      this.settings = await this._settingsService.updateSettings(this.settings);
+      this.originalSettings = cloneDeep(this.settings);
+    } catch ({ error }) {
+      this._popupService.showApiError(error);
+    }
   }
 }

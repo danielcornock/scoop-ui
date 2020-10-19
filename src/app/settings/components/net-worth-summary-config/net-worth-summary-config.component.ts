@@ -1,4 +1,4 @@
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, CdkDropList, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormContainer } from 'src/app/lib/form/instances/form-container/form-container';
 import { FormFactory } from 'src/app/lib/form/services/form-factory/form-factory.service';
@@ -21,6 +21,7 @@ export class NetWorthSummaryConfigComponent implements OnInit {
   public form: FormContainer;
   public availableFields: string[];
   public showForm: boolean;
+  public isInvalid: boolean;
 
   constructor(
     private readonly _formFactory: FormFactory,
@@ -69,11 +70,14 @@ export class NetWorthSummaryConfigComponent implements OnInit {
         event.currentIndex
       );
     } else {
-      if (
-        event.container.id === 'cdk-drop-list-1' &&
-        event.container.data.length >= 4
-      ) {
+      if (this._selectedItemsIsBiggerThan4(event.container)) {
         return;
+      }
+
+      if (this._selectedItemsIsLessThan4(event.previousContainer)) {
+        this.isInvalid = true;
+      } else {
+        this.isInvalid = false;
       }
 
       transferArrayItem(
@@ -87,5 +91,20 @@ export class NetWorthSummaryConfigComponent implements OnInit {
 
   public getListedItemsString(items: Array<string>): string {
     return items.join(', ');
+  }
+
+  private _selectedItemsIsLessThan4(previousContainer: CdkDropList): boolean {
+    /* Not sure why it is picking up the previous array length as
+      one higher than it actually is. Quick fix for now is making it
+      check length is less than 5 */
+
+    return (
+      previousContainer.id === 'cdk-drop-list-1' &&
+      previousContainer.data.length < 5
+    );
+  }
+
+  private _selectedItemsIsBiggerThan4(container: CdkDropList): boolean {
+    return container.id === 'cdk-drop-list-1' && container.data.length >= 4;
   }
 }

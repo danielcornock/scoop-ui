@@ -30,6 +30,10 @@
     </div>
   </div>
 
+  <p class="NetWorthSummaryConfig-error" *ngIf="isInvalid">
+    You must have exactly 4 entries for net worth summary items.
+  </p>
+
   <h3 class="NetWorthSummaryConfig-subheading">Available options</h3>
   <div
     class="NetWorthSummaryConfig-selectedItems"

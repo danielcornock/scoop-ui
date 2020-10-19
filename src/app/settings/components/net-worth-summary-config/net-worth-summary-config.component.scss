@@ -12,7 +12,6 @@
 
   &-selectedItems {
     display: flex;
-    margin-bottom: $spacing-30;
     min-width: 100px;
     min-height: 68px;
   }
@@ -38,6 +37,7 @@
     font-weight: 500;
     color: $color-subheading;
     margin-bottom: $spacing-10;
+    margin-top: $spacing-30;
   }
 
   &-form {
@@ -58,5 +58,11 @@
   &-submitNew {
     display: block;
     margin-left: $spacing-20;
+  }
+
+  &-error {
+    color: $color-form-input-error-text;
+    font-size: 14px;
+    margin-top: $spacing-10;
   }
 }

@@ -3,8 +3,10 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FeatherModule } from 'angular-feather';
 import { allIcons } from 'angular-feather/icons';
+import { ToastrModule } from 'ngx-toastr';
 
 import { CardComponent } from './components/card/card.component';
 import { ContextMenuComponent } from './components/context-menu/context-menu.component';
@@ -36,7 +38,11 @@ import { KeysPipe } from './pipes/keys/keys.pipe';
     FormsModule,
     ReactiveFormsModule,
     MatMenuModule,
-    MatSelectModule
+    MatSelectModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-center'
+    })
   ],
   exports: [
     CardComponent,
