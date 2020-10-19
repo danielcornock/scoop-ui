@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as Chart from 'chart.js';
 import { ChartData } from 'chart.js';
+import { fill, range } from 'lodash';
 import { ILineChartConfig } from './interfaces/line-chart-config.interface';
 import { IPiechartConfig } from './interfaces/pie-chart-config.interface';
 
@@ -22,6 +23,8 @@ export class ChartService {
     data: ChartData,
     config: Chart.ChartConfiguration
   ): Chart {
+    this._repeatColors(data.datasets[0]);
+
     return this.createChart(chartName, {
       type: 'bar',
       data,
@@ -46,6 +49,8 @@ export class ChartService {
     data: ChartData,
     pieChartConfig: IPiechartConfig
   ): Chart {
+    this._repeatColors(data.datasets[0]);
+
     return this.createChart(chartName, {
       type: 'pie',
       data,
@@ -55,6 +60,23 @@ export class ChartService {
         }
       }
     });
+  }
+
+  private _repeatColors(dataset: Chart.ChartDataSets): void {
+    /* To get the correct amount of colors - it cannot be dynamically
+    set so it must be repeated */
+
+    const colors = dataset.backgroundColor as string[];
+    const dataLength = dataset.data.length;
+
+    let colorArr = [...colors];
+
+    const iterable = range(Math.ceil(dataLength / colors.length) - 1);
+    iterable.forEach(() => {
+      colorArr = [...colorArr, ...colors];
+    });
+
+    dataset.backgroundColor = colorArr;
   }
 
   private _getLineChartOptions(

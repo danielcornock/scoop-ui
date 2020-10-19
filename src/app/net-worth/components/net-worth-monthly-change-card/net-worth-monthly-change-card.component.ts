@@ -1,4 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import {
+  barChartColors,
+  chartColors
+} from 'src/app/shared/constants/chart-colors.constant';
 import { ChartService } from 'src/app/shared/services/chart/chart.service';
 
 import { INetWorthApiResponse } from '../../interfaces/net-worth-api-response.interface';
@@ -27,28 +31,7 @@ export class NetWorthMonthlyChangeCardComponent implements OnInit {
             label: 'Total Invested',
             data: this._getArrayOfFields('change') as number[],
             borderColor: 'rgba(255,255,255, 0)',
-            backgroundColor: [
-              'rgba(28,128,220, 0.2)',
-              'rgba(28,128,220, 0.4)',
-              'rgba(28,128,220, 0.6)',
-              'rgba(28,128,220, 0.8)',
-              'rgba(28,128,220, 1)',
-              'rgba(28,128,220, 0.2)',
-              'rgba(28,128,220, 0.4)',
-              'rgba(28,128,220, 0.6)',
-              'rgba(28,128,220, 0.8)',
-              'rgba(28,128,220, 1)',
-              'rgba(28,128,220, 0.2)',
-              'rgba(28,128,220, 0.4)',
-              'rgba(28,128,220, 0.6)',
-              'rgba(28,128,220, 0.8)',
-              'rgba(28,128,220, 1)',
-              'rgba(28,128,220, 0.2)',
-              'rgba(28,128,220, 0.4)',
-              'rgba(28,128,220, 0.6)',
-              'rgba(28,128,220, 0.8)',
-              'rgba(28,128,220, 1)'
-            ],
+            backgroundColor: [...barChartColors],
             borderWidth: 2
           }
         ]

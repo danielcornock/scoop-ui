@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { upperFirst } from 'lodash';
+import { chartColors } from 'src/app/shared/constants/chart-colors.constant';
 import { ChartService } from 'src/app/shared/services/chart/chart.service';
 
 import { INetWorthApiResponse } from '../../interfaces/net-worth-api-response.interface';
@@ -30,13 +31,7 @@ export class NetWorthDistributionCardComponent implements OnInit {
               (fieldName) =>
                 this.netWorthDistributionData.customValues[fieldName]
             ),
-            backgroundColor: [
-              'rgba(28,128,220, 1)',
-              'rgba(28,128,220, 0.8)',
-              'rgba(28,128,220, 0.6)',
-              'rgba(28,128,220, 0.4)',
-              'rgba(28,128,220, 0.2)'
-            ]
+            backgroundColor: [...chartColors].reverse()
           }
         ]
       },
