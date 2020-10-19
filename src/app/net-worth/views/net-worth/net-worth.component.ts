@@ -1,5 +1,6 @@
 import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Dictionary } from 'lodash';
 import { HttpService } from 'src/app/core/services/http/http.service';
 import {
   IDashboardSummaryItem,
@@ -15,6 +16,7 @@ import { INetWorthApiResponse } from '../../interfaces/net-worth-api-response.in
 export class NetWorthComponent implements OnInit {
   public summaryItems: Array<IDashboardSummaryItem>;
   public netWorthItems: Array<INetWorthApiResponse>;
+  public netWorthMeta: Dictionary<any>;
 
   constructor(
     private readonly _httpService: HttpService,
@@ -27,8 +29,8 @@ export class NetWorthComponent implements OnInit {
   }
 
   private async _getNetWorthEntries(): Promise<void> {
-    const { data } = await this._httpService.get('net-worth');
-
+    const { data, meta } = await this._httpService.get('net-worth');
+    this.netWorthMeta = meta;
     this.netWorthItems = data;
   }
 

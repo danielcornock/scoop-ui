@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Dictionary, map } from 'lodash';
-import { HttpService } from 'src/app/core/services/http/http.service';
+import { Dictionary } from 'lodash';
 import { IContextMenuItem } from 'src/app/shared/components/context-menu/interfaces/context-menu-item.interface';
 
 import { INetWorthApiResponse } from '../../interfaces/net-worth-api-response.interface';
@@ -15,16 +14,16 @@ export class NetWorthLogComponent implements OnInit {
   @Input()
   public netWorthLogItems: Array<INetWorthApiResponse>;
 
+  @Input()
+  public netWorthColumns: Array<string>;
+
   public logs: Array<Dictionary<string | number>>;
   public columns: Array<string>;
   public contextMenuItems: Array<IContextMenuItem>;
 
-  constructor(
-    private readonly _router: Router,
-    private readonly _httpService: HttpService
-  ) {}
+  constructor(private readonly _router: Router) {}
 
-  ngOnInit(): void {
+  async ngOnInit(): void {
     this._assignLogs();
     this._assignContextMenuItems();
   }
@@ -41,14 +40,14 @@ export class NetWorthLogComponent implements OnInit {
 
   private _assignLogs(): void {
     this.logs = this.netWorthLogItems.map((entry) => {
-      return {
-        date: entry.date,
-        ...entry.customValues,
-        total: entry.total,
-        change: entry.change
-      };
-    });
+      const baseObject = {};
 
-    this.columns = map(this.logs[0], (_val, key) => key);
+      this.netWorthColumns.forEach((fieldName) => {
+        baseObject[fieldName] =
+          entry[fieldName] || entry.customValues[fieldName] || 0;
+      });
+
+      return baseObject;
+    });
   }
 }

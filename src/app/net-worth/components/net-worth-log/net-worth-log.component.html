@@ -3,7 +3,7 @@
   cardTitle="Monthly Log"
   [cardActions]="contextMenuItems"
 >
-  <app-table [tableColumns]="columns">
+  <app-table [tableColumns]="netWorthColumns">
     <tr class="NetWorthLog-row" *ngFor="let row of logs">
       <td class="NetWorthLog-rowItem">
         {{ row.date | date: 'MMMM y' }}
