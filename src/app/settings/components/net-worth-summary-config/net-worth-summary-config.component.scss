@@ -9,4 +9,60 @@
   &-description {
     @include settings-description;
   }
+
+  &-selectedItems {
+    display: flex;
+    margin-bottom: $spacing-30;
+    min-width: 100px;
+    min-height: 68px;
+  }
+
+  &-selectedItem {
+    cursor: pointer;
+    padding: $spacing-20 $spacing-30;
+
+    text-align: center;
+
+    font-size: 18px;
+    font-weight: 400;
+    color: $color-subheading;
+    background-color: $color-table-divider;
+    border-radius: $br-med;
+
+    & + & {
+      margin-left: $spacing-20;
+    }
+  }
+
+  &-selectedItemAttributes {
+    font-size: 12px;
+    text-transform: uppercase;
+  }
+
+  &-subheading {
+    font-size: 18px;
+    font-weight: 500;
+    color: $color-subheading;
+    margin-bottom: $spacing-10;
+  }
+
+  &-form {
+    display: flex;
+    align-items: center;
+    max-width: 800px;
+  }
+
+  &-labelField {
+    flex: 1 1 30%;
+  }
+
+  &-selectionField {
+    margin-left: $spacing-20;
+    flex: 1 1 70%;
+  }
+
+  &-submitNew {
+    display: block;
+    margin-left: $spacing-20;
+  }
 }

@@ -1,4 +1,4 @@
 export interface IDashboardSummaryItem {
   label: string;
-  value: string;
+  value: string | number;
 }

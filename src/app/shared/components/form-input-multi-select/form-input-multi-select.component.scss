@@ -1,10 +1,10 @@
 @import 'src/assets/styles/themes.scss';
 
-:host {
-  // margin-top: $spacing-10;
-}
-.FormInput {
-  &-input {
+.FormInputMultiSelect {
+  &-container {
+  }
+
+  &-select {
     @include form-input;
   }
 

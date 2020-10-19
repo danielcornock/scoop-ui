@@ -1,0 +1,26 @@
+<div class="FormInputMultiSelect-container">
+  <label
+    class="FormInputMultiSelect-label"
+    [for]="formInputField.name"
+    [class.is-errored]="isErrored"
+    >{{ formInputField.label }}</label
+  >
+  <mat-select
+    [formControl]="control"
+    [class.is-errored]="isErrored"
+    multiple
+    [id]="formInputField.name"
+    class="FormInputMultiSelect-select"
+  >
+    <mat-option
+      *ngFor="let field of formInputMultiSelectOptions"
+      [value]="field"
+      >{{ field | titlecase }}</mat-option
+    >
+  </mat-select>
+
+  <app-form-input-errors
+    *ngIf="isErrored"
+    [errors]="control.errors"
+  ></app-form-input-errors>
+</div>

@@ -7,11 +7,15 @@ import { MatChipsModule } from '@angular/material/chips';
 import { CoreModule } from '../core/core.module';
 import { SharedModule } from '../shared/shared.module';
 import { NetWorthConfigComponent } from './components/net-worth-config/net-worth-config.component';
-import { SettingsComponent } from './views/settings/settings.component';
 import { NetWorthSummaryConfigComponent } from './components/net-worth-summary-config/net-worth-summary-config.component';
+import { SettingsComponent } from './views/settings/settings.component';
 
 @NgModule({
-  declarations: [SettingsComponent, NetWorthConfigComponent, NetWorthSummaryConfigComponent],
+  declarations: [
+    SettingsComponent,
+    NetWorthConfigComponent,
+    NetWorthSummaryConfigComponent
+  ],
   imports: [
     CommonModule,
     MatChipsModule,

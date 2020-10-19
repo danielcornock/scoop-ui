@@ -1,12 +1,11 @@
 import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Dictionary } from 'lodash';
 import { HttpService } from 'src/app/core/services/http/http.service';
 import {
   IDashboardSummaryItem,
 } from 'src/app/shared/components/dashboard-summary/interfaces/dashboard-summary-item.interface';
 
-import { INetWorthApiResponse } from '../../interfaces/net-worth-api-response.interface';
+import { INetWorthApiMetaResponse, INetWorthApiResponse } from '../../interfaces/net-worth-api-response.interface';
 
 @Component({
   selector: 'app-net-worth',
@@ -16,7 +15,7 @@ import { INetWorthApiResponse } from '../../interfaces/net-worth-api-response.in
 export class NetWorthComponent implements OnInit {
   public summaryItems: Array<IDashboardSummaryItem>;
   public netWorthItems: Array<INetWorthApiResponse>;
-  public netWorthMeta: Dictionary<any>;
+  public netWorthMeta: INetWorthApiMetaResponse;
 
   constructor(
     private readonly _httpService: HttpService,
@@ -35,26 +34,14 @@ export class NetWorthComponent implements OnInit {
   }
 
   private _assignSummaryItems(): void {
-    const latestNetWorth = this.netWorthItems[0];
+    const rawData = this.netWorthMeta.summaryItems;
 
-    this.summaryItems = [
-      {
-        label: 'Net Worth',
-        value: this._toCurrency(latestNetWorth.total)
-      },
-      {
-        label: 'Savings',
-        value: this._toCurrency(latestNetWorth.customValues.savings)
-      },
-      {
-        label: 'Investments',
-        value: this._toCurrency(latestNetWorth.customValues.investments)
-      },
-      {
-        label: 'Change this month',
-        value: this._toCurrency(latestNetWorth.change)
-      }
-    ];
+    this.summaryItems = rawData.map((item) => {
+      return {
+        label: item.label,
+        value: this._toCurrency(item.value)
+      };
+    });
   }
 
   private _toCurrency(amount: number): string {

@@ -23,7 +23,7 @@ export class NetWorthLogComponent implements OnInit {
 
   constructor(private readonly _router: Router) {}
 
-  async ngOnInit(): void {
+  ngOnInit(): void {
     this._assignLogs();
     this._assignContextMenuItems();
   }

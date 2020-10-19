@@ -4,6 +4,73 @@
   </h2>
   <p class="NetWorthSummaryConfig-description">
     Here you can configure the cards that display at the top of the net worth
-    page. Choose from predefined measures or create your own.
+    page. Choose from predefined measures or create your own by combining your
+    fields.
   </p>
+
+  <h3 class="NetWorthSummaryConfig-subheading">Selected options (max. 4)</h3>
+  <div
+    class="NetWorthSummaryConfig-selectedItems"
+    #selectedList="cdkDropList"
+    cdkDropList
+    [cdkDropListData]="netWorthSummaryConfigSelectedItems"
+    [cdkDropListConnectedTo]="optionsList"
+    (cdkDropListDropped)="dropColumn($event)"
+    cdkDropListOrientation="horizontal"
+  >
+    <div
+      class="NetWorthSummaryConfig-selectedItem"
+      *ngFor="let item of netWorthSummaryConfigSelectedItems"
+      cdkDrag
+    >
+      <p>{{ item.label }}</p>
+      <p class="NetWorthSummaryConfig-selectedItemAttributes">
+        {{ getListedItemsString(item.sumOf) }}
+      </p>
+    </div>
+  </div>
+
+  <h3 class="NetWorthSummaryConfig-subheading">Available options</h3>
+  <div
+    class="NetWorthSummaryConfig-selectedItems"
+    cdkDropList
+    [cdkDropListConnectedTo]="selectedList"
+    [cdkDropListData]="netWorthSummaryConfigOptions"
+    #optionsList="cdkDropList"
+    (cdkDropListDropped)="dropColumn($event)"
+    cdkDropListOrientation="horizontal"
+  >
+    <div
+      class="NetWorthSummaryConfig-selectedItem"
+      *ngFor="let item of netWorthSummaryConfigOptions"
+      cdkDrag
+    >
+      <p>{{ item.label }}</p>
+      <p class="NetWorthSummaryConfig-selectedItemAttributes">
+        {{ getListedItemsString(item.sumOf) }}
+      </p>
+    </div>
+  </div>
+
+  <h3 class="NetWorthSummaryConfig-subheading">Add another item</h3>
+  <form
+    [formGroup]="form.formGroup"
+    (ngSubmit)="addOption()"
+    class="NetWorthSummaryConfig-form"
+    *ngIf="form"
+  >
+    <app-form-input
+      class="NetWorthSummaryConfig-labelField"
+      [formInputField]="form.fields[0]"
+    ></app-form-input>
+    <app-form-input-multi-select
+      class="NetWorthSummaryConfig-selectionField"
+      [formInputMultiSelectOptions]="availableFields"
+      [formInputField]="form.fields[1]"
+    ></app-form-input-multi-select>
+    <app-form-submit
+      class="NetWorthSummaryConfig-submitNew"
+      value="Add Option"
+    ></app-form-submit>
+  </form>
 </div>
