@@ -7,7 +7,7 @@ import { IHttpError } from 'src/app/core/services/http/interfaces/http-error.int
 import { FormContainer } from 'src/app/lib/form/instances/form-container/form-container';
 import { IFormFactoryConfig } from 'src/app/lib/form/interfaces/form-factory-config.interface';
 import { FormFactory } from 'src/app/lib/form/services/form-factory/form-factory.service';
-import { ISettings } from 'src/app/settings/interfaces/settings.interface';
+import { SettingsService } from 'src/app/settings/services/settings/settings.service';
 import { DateService } from 'src/app/shared/services/current-date/date.service';
 
 @Component({
@@ -25,12 +25,13 @@ export class NetWorthEntryFormComponent implements OnInit {
     private readonly _formFactory: FormFactory,
     private readonly _currentDateService: DateService,
     private readonly _httpService: HttpService,
-    private readonly _router: Router
+    private readonly _router: Router,
+    private readonly _settingsService: SettingsService
   ) {}
 
   async ngOnInit(): Promise<void> {
-    const { data } = await this._httpService.get<ISettings>('settings');
-    this.columns = data.netWorthFields;
+    const settings = await this._settingsService.getSettings();
+    this.columns = settings.netWorthFields;
     this._createForm();
   }
 

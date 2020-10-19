@@ -3,6 +3,7 @@ import { cloneDeep, isEqual } from 'lodash';
 import { HttpService } from 'src/app/core/services/http/http.service';
 
 import { ISettings } from '../../interfaces/settings.interface';
+import { SettingsService } from '../../services/settings/settings.service';
 
 @Component({
   selector: 'app-settings',
@@ -13,12 +14,14 @@ export class SettingsComponent implements OnInit {
   public settings: ISettings;
   public originalSettings: ISettings;
 
-  constructor(private readonly _httpService: HttpService) {}
+  constructor(
+    private readonly _httpService: HttpService,
+    private readonly _settingsService: SettingsService
+  ) {}
 
   async ngOnInit(): Promise<void> {
-    const { data } = await this._httpService.get('settings');
+    this.settings = await this._settingsService.getSettings();
 
-    this.settings = data;
     this.originalSettings = cloneDeep(this.settings);
   }
 
@@ -27,9 +30,7 @@ export class SettingsComponent implements OnInit {
   }
 
   public async saveChanges(): Promise<void> {
-    const { data } = await this._httpService.put('settings', this.settings);
-
-    this.settings = data;
+    this.settings = await this._settingsService.updateSettings(this.settings);
     this.originalSettings = cloneDeep(this.settings);
   }
 }
