@@ -122,3 +122,13 @@
     background-color: $color-settings-item-hover;
   }
 }
+
+@mixin link {
+  color: $color-primary;
+  font-weight: 500;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

@@ -13,29 +13,38 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: $spacing-30;
-    grid-template-areas:
-      'summary summary summary'
-      'pie line bar'
-      'log log log';
+    // grid-template-areas:
+    //   'summary summary summary'
+    //   'pie line bar'
+    //   'log log log';
   }
 
   &-summary {
-    grid-area: summary;
+    grid-column: 1 / 4;
   }
 
   &-log {
-    grid-area: log;
+    grid-column: 1 / 4;
   }
 
   &-pieChart {
-    grid-area: pie;
+    grid-column: 1 / 2;
   }
 
   &-lineChart {
-    grid-area: line;
+    grid-column: 2 / 3;
   }
 
   &-barChart {
-    grid-area: bar;
+    grid-column: 3 / 4;
+  }
+
+  &-noItems {
+    @include settings-description;
+    font-size: 18px;
+
+    a {
+      @include link;
+    }
   }
 }

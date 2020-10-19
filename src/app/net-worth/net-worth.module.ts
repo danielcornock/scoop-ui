@@ -1,6 +1,7 @@
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 import { SharedModule } from '../shared/shared.module';
 import {
@@ -23,7 +24,13 @@ import { NetWorthComponent } from './views/net-worth/net-worth.component';
     NetWorthMonthlyChangeCardComponent,
     NetWorthEntryFormComponent
   ],
-  imports: [CommonModule, SharedModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule
+  ],
   providers: [CurrencyPipe]
 })
 export class NetWorthModule {}

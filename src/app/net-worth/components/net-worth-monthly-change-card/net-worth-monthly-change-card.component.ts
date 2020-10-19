@@ -71,6 +71,8 @@ export class NetWorthMonthlyChangeCardComponent implements OnInit {
   private _getArrayOfFields(key: string): Array<string | number> {
     const fields = this._processedTrendsData.map((item) => item[key]);
 
+    /* To remove the first item, as it is always 0 */
+    fields.shift();
     return fields;
   }
 }

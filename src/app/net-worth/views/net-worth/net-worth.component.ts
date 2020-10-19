@@ -36,6 +36,10 @@ export class NetWorthComponent implements OnInit {
   private _assignSummaryItems(): void {
     const rawData = this.netWorthMeta.summaryItems;
 
+    if (!rawData) {
+      return;
+    }
+
     this.summaryItems = rawData.map((item) => {
       return {
         label: item.label,

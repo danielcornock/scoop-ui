@@ -35,6 +35,12 @@ export class HttpService {
       .toPromise() as Promise<IHttpResponse>;
   }
 
+  public delete(url: string): Promise<void> {
+    return this._httpClient
+      .delete(`${this._apiUrl}${url}`, { headers: this._addHeaders() })
+      .toPromise() as Promise<any>;
+  }
+
   private _addHeaders(): HttpHeaders {
     const jwt: string | null = this._authService.getFullJwt();
 

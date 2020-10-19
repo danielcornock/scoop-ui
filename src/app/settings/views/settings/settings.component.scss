@@ -18,9 +18,19 @@
 
   &-section {
     display: block;
+    padding-bottom: $spacing-40;
+    padding-top: $spacing-40;
+
+    &.last {
+      padding-bottom: 0;
+    }
+
+    &.first {
+      padding-top: 0;
+    }
 
     & + & {
-      padding-top: $spacing-30;
+      border-top: 1px solid $color-table-divider;
     }
   }
 }

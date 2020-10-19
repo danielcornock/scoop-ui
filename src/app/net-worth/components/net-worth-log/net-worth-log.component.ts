@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Dictionary } from 'lodash';
+import { HttpService } from 'src/app/core/services/http/http.service';
 import { IContextMenuItem } from 'src/app/shared/components/context-menu/interfaces/context-menu-item.interface';
 
 import { INetWorthApiResponse } from '../../interfaces/net-worth-api-response.interface';
@@ -18,14 +19,21 @@ export class NetWorthLogComponent implements OnInit {
   public netWorthColumns: Array<string>;
 
   public logs: Array<Dictionary<string | number>>;
-  public columns: Array<string>;
   public contextMenuItems: Array<IContextMenuItem>;
 
-  constructor(private readonly _router: Router) {}
+  constructor(
+    private readonly _router: Router,
+    private readonly _httpService: HttpService
+  ) {}
 
   ngOnInit(): void {
     this._assignLogs();
     this._assignContextMenuItems();
+  }
+
+  public async removeLog(date: string): Promise<void> {
+    await this._httpService.delete(`net-worth/${date}`);
+    this.logs = this.logs.filter((log) => log.date !== date);
   }
 
   private _assignContextMenuItems(): void {
@@ -40,7 +48,7 @@ export class NetWorthLogComponent implements OnInit {
 
   private _assignLogs(): void {
     this.logs = this.netWorthLogItems.map((entry) => {
-      const baseObject = {};
+      const baseObject: Dictionary<string | number> = {};
 
       this.netWorthColumns.forEach((fieldName) => {
         baseObject[fieldName] =

@@ -1,34 +1,41 @@
 <div class="NetWorth-container">
   <h1 class="NetWorth-heading">Net Worth</h1>
+  <p class="NetWorth-noItems" *ngIf="!netWorthItems?.length">
+    To get started, you can configure your table columns in the
+    <a routerLink="../settings">settings</a> area, or go ahead and create a net
+    worth log <a routerLink="create">here</a>.
+  </p>
   <div class="NetWorth-content">
-    <app-dashboard-summary
-      class="NetWorth-summary"
-      [dashboardSummaryItems]="summaryItems"
-    ></app-dashboard-summary>
+    <ng-container *ngIf="netWorthItems?.length">
+      <app-dashboard-summary
+        class="NetWorth-summary"
+        [dashboardSummaryItems]="summaryItems"
+      ></app-dashboard-summary>
 
-    <app-net-worth-distribution-card
-      class="NetWorth-pieChart"
-      *ngIf="netWorthItems"
-      [netWorthDistributionData]="netWorthItems[0]"
-    ></app-net-worth-distribution-card>
+      <app-net-worth-distribution-card
+        class="NetWorth-pieChart"
+        *ngIf="netWorthItems"
+        [netWorthDistributionData]="netWorthItems[0]"
+      ></app-net-worth-distribution-card>
 
-    <app-net-worth-trends-card
-      class="NetWorth-lineChart"
-      *ngIf="netWorthItems"
-      [netWorthTrendsData]="netWorthItems"
-    ></app-net-worth-trends-card>
+      <app-net-worth-trends-card
+        class="NetWorth-lineChart"
+        *ngIf="netWorthItems"
+        [netWorthTrendsData]="netWorthItems"
+      ></app-net-worth-trends-card>
 
-    <app-net-worth-monthly-change-card
-      class="NetWorth-barChart"
-      *ngIf="netWorthItems"
-      [netWorthMonthlyChangeData]="netWorthItems"
-    ></app-net-worth-monthly-change-card>
+      <app-net-worth-monthly-change-card
+        class="NetWorth-barChart"
+        *ngIf="netWorthItems"
+        [netWorthMonthlyChangeData]="netWorthItems"
+      ></app-net-worth-monthly-change-card>
 
-    <app-net-worth-log
-      class="NetWorth-log"
-      *ngIf="netWorthItems"
-      [netWorthLogItems]="netWorthItems"
-      [netWorthColumns]="netWorthMeta.fields"
-    ></app-net-worth-log>
+      <app-net-worth-log
+        class="NetWorth-log"
+        *ngIf="netWorthItems"
+        [netWorthLogItems]="netWorthItems"
+        [netWorthColumns]="netWorthMeta.fields"
+      ></app-net-worth-log>
+    </ng-container>
   </div>
 </div>

@@ -20,7 +20,6 @@ export class NetWorthDistributionCardComponent implements OnInit {
   ngOnInit(): void {
     this._fields = Object.keys(this.netWorthDistributionData.customValues);
 
-    console.log(this._fields);
     this._chartService.createPieChart(
       'netWorthPieChart',
       {

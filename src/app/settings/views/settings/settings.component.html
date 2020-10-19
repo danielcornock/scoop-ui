@@ -8,12 +8,12 @@
     Save Changes
   </button>
   <app-net-worth-config
-    class="Settings-section"
+    class="Settings-section first"
     [netWorthColumns]="settings.netWorthFields"
   ></app-net-worth-config>
 
   <app-net-worth-summary-config
-    class="Settings-section"
+    class="Settings-section last"
     [netWorthSummaryConfigOptions]="settings.netWorthSummaryOptions"
     [netWorthSummaryConfigSelectedItems]="settings.netWorthSummaryItems"
   ></app-net-worth-summary-config>
