@@ -20,6 +20,7 @@ export class NetWorthSummaryConfigComponent implements OnInit {
 
   public form: FormContainer;
   public availableFields: string[];
+  public showForm: boolean;
 
   constructor(
     private readonly _formFactory: FormFactory,
@@ -46,6 +47,10 @@ export class NetWorthSummaryConfigComponent implements OnInit {
         }
       }
     ]);
+  }
+
+  public toggleForm(): void {
+    this.showForm = !this.showForm;
   }
 
   public addOption(): void {

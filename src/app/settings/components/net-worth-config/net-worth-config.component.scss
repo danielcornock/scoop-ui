@@ -26,18 +26,18 @@
 
   &-columnListEntry {
     @include table-row;
+    @include settings-moveable-item;
     display: inline-flex;
     align-items: center;
     padding: $spacing-10 $spacing-20;
     text-align: left;
     font-size: 16px;
-    font-weight: 400;
-    color: $color-subheading;
-    background-color: $color-table-divider;
-    border-radius: $br-med;
 
-    &.is-movable {
-      cursor: pointer;
+    &:not(.is-movable) {
+      cursor: initial;
+      &:hover {
+        background-color: $color-settings-item;
+      }
     }
 
     & + & {

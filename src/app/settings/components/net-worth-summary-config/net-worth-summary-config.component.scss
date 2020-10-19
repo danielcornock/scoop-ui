@@ -18,19 +18,13 @@
   }
 
   &-selectedItem {
-    cursor: pointer;
+    @include settings-moveable-item;
     padding: $spacing-20 $spacing-30;
-
     text-align: center;
-
     font-size: 18px;
-    font-weight: 400;
-    color: $color-subheading;
-    background-color: $color-table-divider;
-    border-radius: $br-med;
 
     & + & {
-      margin-left: $spacing-20;
+      margin-left: $spacing-10;
     }
   }
 
