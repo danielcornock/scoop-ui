@@ -25,6 +25,8 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      background-color: transparent;
+      width: 100%;
     }
   }
 
@@ -38,6 +40,7 @@
 
     @include media-phone {
       margin-top: 0;
+      color: $color-white;
     }
   }
 
@@ -52,10 +55,28 @@
 
   &-formInput {
     width: 350px;
+
+    @include media-phone {
+      width: 100%;
+      ::ng-deep.FormInput-label {
+        color: $color-white;
+      }
+    }
   }
 
   &-submit {
     margin-top: $spacing-20;
+
+    @include media-phone {
+      ::ng-deep.FormSubmit-button {
+        color: $color-primary;
+        background-color: $color-white;
+
+        &:hover {
+          color: $color-white;
+        }
+      }
+    }
   }
 
   &-brandingLogo {

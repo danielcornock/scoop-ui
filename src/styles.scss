@@ -11,13 +11,26 @@ body {
   height: 100%;
 }
 
-body {
-}
-
 :root {
   --spacing-page-top: #{$spacing-50};
 
   @include media-phone {
     --spacing-page-top: #{$spacing-20};
+  }
+}
+
+.mobile-only {
+  display: none;
+
+  @include media-phone {
+    display: block;
+  }
+}
+
+.not-mobile {
+  display: block;
+
+  @include media-phone {
+    display: none;
   }
 }
