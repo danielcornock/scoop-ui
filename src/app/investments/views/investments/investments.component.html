@@ -3,14 +3,20 @@
 
   <div class="Investments-content">
     <app-dashboard-summary
-      class="Investments-summary"
+      class="Investments-section Investments-summary"
       [dashboardSummaryItems]="summaryItems"
     ></app-dashboard-summary>
 
-    <app-companies-card class="Investments-stocks"></app-companies-card>
+    <app-companies-card
+      class="Investments-section Investments-stocks"
+    ></app-companies-card>
 
-    <app-trends-card class="Investments-trends"></app-trends-card>
+    <app-trends-card
+      class="Investments-section Investments-trends"
+    ></app-trends-card>
 
-    <app-monthly-log-card class="Investments-log"></app-monthly-log-card>
+    <app-monthly-log-card
+      class="Investments-section Investments-log"
+    ></app-monthly-log-card>
   </div>
 </div>

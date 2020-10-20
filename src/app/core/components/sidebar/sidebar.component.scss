@@ -7,12 +7,23 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: $spacing-page-top 0;
+    padding: var(--spacing-page-top) 0;
     background-image: linear-gradient(
       to bottom,
       $color-primary,
       $color-primary-gradient
     );
+
+    @include media-tablet {
+      width: 80px;
+    }
+
+    @include media-phone {
+      width: 100%;
+      height: auto;
+      background-color: $color-primary;
+      padding: 0;
+    }
   }
 
   &-branding {
@@ -21,12 +32,20 @@
     align-items: center;
     margin-bottom: $spacing-30;
     position: relative;
+
+    @include media-phone {
+      display: none;
+    }
   }
 
   &-brandingLogo {
     display: block;
     height: 30px;
     margin-right: $spacing-10;
+
+    @include media-tablet {
+      margin-right: 0;
+    }
   }
 
   &-brandingBeta {
@@ -35,6 +54,10 @@
     right: 20px;
     font-size: 10px;
     letter-spacing: 3px;
+
+    @include media-tablet {
+      display: none;
+    }
   }
 
   &-brandingText {
@@ -43,10 +66,18 @@
     line-height: 1;
     position: relative;
     bottom: 4px;
+
+    @include media-tablet {
+      display: none;
+    }
   }
 
   &-nav {
     width: 100%;
+
+    @include media-phone {
+      display: flex;
+    }
   }
 
   &-navItem {
@@ -70,7 +101,26 @@
         width: 10px;
 
         background-color: $color-white;
+
+        @include media-tablet {
+          height: 100%;
+          border-radius: 0;
+        }
+
+        @include media-phone {
+          content: initial;
+        }
       }
+    }
+
+    @include media-tablet {
+      padding: $spacing-15 0;
+      justify-content: center;
+    }
+
+    @include media-phone {
+      flex: 1 1 25%;
+      padding: $spacing-20 0;
     }
 
     &:hover {
@@ -80,9 +130,17 @@
 
   &-navIcon {
     margin-right: $spacing-20;
+
+    @include media-tablet {
+      margin-right: 0;
+    }
   }
 
   &-navText {
     font-size: 18px;
+
+    @include media-tablet {
+      display: none;
+    }
   }
 }

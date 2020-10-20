@@ -17,6 +17,19 @@
       'summary summary summary'
       'stocks stocks trends'
       'log log log';
+
+    @include media-phone {
+      display: block;
+    }
+  }
+
+  &-section {
+    @include media-phone {
+      display: block;
+      & + & {
+        margin-top: $spacing-20;
+      }
+    }
   }
 
   &-summary {

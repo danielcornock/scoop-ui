@@ -21,12 +21,20 @@
     font-size: 16px;
     font-weight: 500;
     margin-right: 3px;
+
+    @include media-phone {
+      display: none;
+    }
   }
 
   &-profileIcon {
     width: 35px;
     margin-right: $spacing-10;
     display: block;
+
+    @include media-phone {
+      margin-right: $spacing-5;
+    }
   }
 
   &-openIcon {
@@ -34,5 +42,9 @@
     width: 20px;
     height: 20px;
     position: relative;
+
+    @include media-phone {
+      display: none;
+    }
   }
 }

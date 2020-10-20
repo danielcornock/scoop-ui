@@ -14,22 +14,34 @@
     display: flex;
     min-width: 100px;
     min-height: 68px;
+
+    overflow-y: auto;
   }
 
   &-selectedItem {
     @include settings-moveable-item;
+    @include center-contents;
+    flex-direction: column;
     padding: $spacing-20 $spacing-30;
     text-align: center;
     font-size: 18px;
+    min-width: 170px;
 
     & + & {
       margin-left: $spacing-10;
     }
+
+    @include media-phone {
+      padding: $spacing-10 $spacing-20;
+    }
   }
 
   &-selectedItemAttributes {
-    font-size: 12px;
+    font-size: 10px;
     text-transform: uppercase;
+
+    @include media-phone {
+    }
   }
 
   &-subheading {
@@ -44,6 +56,10 @@
     display: flex;
     align-items: center;
     max-width: 800px;
+
+    @include media-tablet {
+      display: block;
+    }
   }
 
   &-labelField {
@@ -58,6 +74,11 @@
   &-submitNew {
     display: block;
     margin-left: $spacing-20;
+
+    @include media-tablet {
+      margin-left: 0;
+      margin-top: $spacing-20;
+    }
   }
 
   &-error {

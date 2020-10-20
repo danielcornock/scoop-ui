@@ -19,6 +19,7 @@ export class NetWorthConfigComponent implements OnInit {
   > = new EventEmitter();
 
   public form: FormContainer;
+  public netWorthColumnsWithDisabledFields: Array<string>;
 
   constructor(private readonly _formFactory: FormFactory) {}
 

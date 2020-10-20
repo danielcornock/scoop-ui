@@ -17,6 +17,19 @@
     //   'summary summary summary'
     //   'pie line bar'
     //   'log log log';
+
+    @include media-phone {
+      display: block;
+    }
+  }
+
+  &-item {
+    @include media-phone {
+      & + & {
+        display: block;
+        margin-top: $spacing-20;
+      }
+    }
   }
 
   &-summary {

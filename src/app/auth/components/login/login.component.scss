@@ -18,6 +18,14 @@
     border-radius: $br-med;
     display: flex;
     flex-direction: column;
+
+    @include media-phone {
+      height: 100%;
+      padding: $spacing-40;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
   }
 
   &-branding {
@@ -27,6 +35,10 @@
     margin: auto;
     margin-bottom: $spacing-60;
     position: relative;
+
+    @include media-phone {
+      margin-top: 0;
+    }
   }
 
   &-brandingBeta {

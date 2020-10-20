@@ -12,16 +12,31 @@
     background-color: $color-page-background;
     height: 100%;
     flex: 1 1 100%;
+
+    &.logged-in {
+      @include media-phone {
+        padding-bottom: 64px;
+      }
+    }
   }
 
   &-sidebar {
     display: block;
     height: 100%;
+
+    @include media-phone {
+      height: auto;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+    }
   }
 
   &-settingsMenu {
     position: absolute;
-    right: $spacing-page-top - $spacing-10;
-    top: $spacing-page-top - $spacing-10;
+    right: calc(var(--spacing-page-top) - 10px);
+    top: calc(var(--spacing-page-top) - 10px);
   }
 }
