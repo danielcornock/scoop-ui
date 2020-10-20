@@ -22,7 +22,7 @@
     font-weight: 500;
     margin-right: 3px;
 
-    @include media-phone {
+    @include media-tablet {
       display: none;
     }
   }
@@ -32,7 +32,7 @@
     margin-right: $spacing-10;
     display: block;
 
-    @include media-phone {
+    @include media-tablet {
       margin-right: $spacing-5;
     }
   }
