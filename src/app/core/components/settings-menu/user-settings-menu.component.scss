@@ -35,6 +35,10 @@
     @include media-tablet {
       margin-right: $spacing-5;
     }
+
+    @include media-phone {
+      margin-right: 0;
+    }
   }
 
   &-openIcon {
