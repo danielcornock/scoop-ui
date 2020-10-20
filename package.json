@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build:mac": "rm -rf ../scoop-api/client && mkdir ../scoop-api/client && ng build --prod && mv dist/scoop-ui/* ../scoop-api/client/"
   },
   "private": true,
   "dependencies": {

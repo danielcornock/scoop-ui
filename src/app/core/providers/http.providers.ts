@@ -8,7 +8,7 @@ export const httpProviders: Provider[] = [
     provide: API_URL,
     useFactory: () => {
       if (environment.production) {
-        return '';
+        return 'api/v1/';
       } else {
         return 'http://localhost:3000/api/v1/';
       }
