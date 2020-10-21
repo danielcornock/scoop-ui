@@ -1,18 +1,21 @@
 @import 'src/assets/styles/themes.scss';
 
 .SettingsMenu {
+  $cmp: &;
+
   &-container {
     border: 0;
     background-color: transparent;
     display: flex;
     align-items: center;
     transition: background-color 250ms ease-in-out;
-    padding: $spacing-10;
     border-radius: $br-med;
     cursor: pointer;
 
     &:hover {
-      background-color: $color-primary-light;
+      #{$cmp}-profileIcon {
+        transform: scale(1.1);
+      }
     }
   }
 
@@ -31,6 +34,11 @@
     width: 35px;
     margin-right: $spacing-10;
     display: block;
+    font-size: 28px;
+    font-weight: bold;
+    color: $color-heading;
+    line-height: 100%;
+    transition: transform 250ms;
 
     @include media-tablet {
       margin-right: $spacing-5;

@@ -5,10 +5,6 @@
     @include page-container;
   }
 
-  &-title {
-    @include page-heading-single;
-  }
-
   &-updateButton {
     @include button-default;
     position: fixed;

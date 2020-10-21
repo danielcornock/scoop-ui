@@ -4,8 +4,4 @@
   &-container {
     @include page-container;
   }
-
-  &-heading {
-    @include page-heading-single;
-  }
 }

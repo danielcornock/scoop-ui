@@ -6,10 +6,6 @@
     margin-bottom: $spacing-20;
   }
 
-  &-configurableEntries {
-    // margin: 0 $spacing-10;
-  }
-
   &-description {
     @include settings-description;
   }

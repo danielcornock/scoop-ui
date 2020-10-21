@@ -5,10 +5,6 @@
     @include page-container;
   }
 
-  &-heading {
-    @include page-heading-single;
-  }
-
   &-content {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

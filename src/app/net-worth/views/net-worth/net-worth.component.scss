@@ -5,10 +5,6 @@
     @include page-container;
   }
 
-  &-heading {
-    @include page-heading-single;
-  }
-
   &-content {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -22,7 +18,6 @@
     @include media-sd() {
       grid-template-columns: repeat(2, 1fr);
       grid-template-areas: 'summary line' 'pie bar' 'log log';
-      // display: block;
     }
 
     @include media-tablet {

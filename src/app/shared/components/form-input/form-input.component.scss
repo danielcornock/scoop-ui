@@ -1,8 +1,5 @@
 @import 'src/assets/styles/themes.scss';
 
-:host {
-  // margin-top: $spacing-10;
-}
 .FormInput {
   &-input {
     @include form-input;

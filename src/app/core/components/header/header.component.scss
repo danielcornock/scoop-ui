@@ -1,0 +1,25 @@
+@import 'src/assets/styles/themes.scss';
+:host {
+  display: block;
+}
+
+.Header {
+  &-container {
+    margin: var(--spacing-page-top) var(--spacing-page-side) 0;
+    position: relative;
+  }
+
+  &-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: $color-heading;
+    line-height: 100%;
+  }
+
+  &-menu {
+    position: absolute;
+    top: 50%;
+    transform: translatey(-50%);
+    right: 0;
+  }
+}

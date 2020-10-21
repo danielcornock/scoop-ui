@@ -3,7 +3,6 @@
 .CompaniesCard {
   &-table {
     display: block;
-    // overflow-y: auto;
   }
   &-rowItem {
     @include table-row-item;

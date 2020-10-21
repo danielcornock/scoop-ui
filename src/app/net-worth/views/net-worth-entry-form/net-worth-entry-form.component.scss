@@ -5,10 +5,6 @@
     @include page-container;
   }
 
-  &-heading {
-    @include page-heading-single;
-  }
-
   &-form {
     max-width: 400px;
 

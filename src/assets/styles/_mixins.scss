@@ -2,19 +2,6 @@
   padding: var(--spacing-page-top) var(--spacing-page-side);
 }
 
-@mixin page-heading-single {
-  font-size: 28px;
-  font-weight: bold;
-  color: $color-heading;
-  margin-bottom: $spacing-40;
-  line-height: 100%;
-
-  @include media-phone {
-    font-size: 26px;
-    margin-bottom: $spacing-30;
-  }
-}
-
 @mixin center-contents {
   display: flex;
   align-items: center;
@@ -39,6 +26,10 @@
   border-top: 1px solid $color-table-divider;
   white-space: nowrap;
   padding-right: $spacing-10;
+
+  @include media-tablet {
+    padding-right: $spacing-15;
+  }
 }
 
 @mixin button-reset {
