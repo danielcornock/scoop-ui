@@ -13,9 +13,16 @@ body {
 
 :root {
   --spacing-page-top: #{$spacing-50};
+  --spacing-page-side: #{$spacing-50};
+
+  @include media-tablet {
+    --spacing-page-top: #{$spacing-30};
+    --spacing-page-side: #{$spacing-30};
+  }
 
   @include media-phone {
-    --spacing-page-top: #{$spacing-20};
+    --spacing-page-top: #{$spacing-30};
+    --spacing-page-side: #{$spacing-20};
   }
 }
 

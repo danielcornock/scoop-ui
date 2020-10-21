@@ -36,7 +36,7 @@
 
   &-settingsMenu {
     position: absolute;
-    right: calc(var(--spacing-page-top) - 10px);
+    right: calc(var(--spacing-page-side) - 10px);
     top: calc(var(--spacing-page-top) - 10px);
   }
 }

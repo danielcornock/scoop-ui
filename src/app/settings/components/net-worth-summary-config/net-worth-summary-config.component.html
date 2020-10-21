@@ -22,7 +22,7 @@
   >
     <div
       class="NetWorthSummaryConfig-selectedItem"
-      *ngFor="let item of netWorthSummaryConfigSelectedItems"
+      *ngFor="let item of netWorthSummaryConfigSelectedItems; let i = index"
       cdkDrag
     >
       <p>{{ item.label }}</p>

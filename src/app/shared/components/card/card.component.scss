@@ -13,6 +13,10 @@
     border-radius: $br-med $br-med 0 0;
     display: flex;
     justify-content: space-between;
+
+    @include media-phone {
+      padding: $spacing-15 $spacing-20;
+    }
   }
 
   &-headerMenu {

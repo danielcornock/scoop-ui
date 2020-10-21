@@ -1,5 +1,10 @@
 <div class="Settings-container" *ngIf="settings">
   <h1 class="Settings-title">Settings</h1>
+  <div class="Settings-warning mobile-only">
+    Please note, some of the features on the settings page do not work as
+    smoothly as on a desktop. To change your configuration, it is recommended to
+    do so on a bigger screen.
+  </div>
   <button
     class="Settings-updateButton"
     (click)="saveChanges()"

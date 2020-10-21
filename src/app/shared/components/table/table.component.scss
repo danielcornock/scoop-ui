@@ -12,6 +12,7 @@
     font-size: 16px;
     font-weight: 400;
     color: $color-table-header;
-    min-width: 100px;
+    white-space: nowrap;
+    padding-right: $spacing-10;
   }
 }

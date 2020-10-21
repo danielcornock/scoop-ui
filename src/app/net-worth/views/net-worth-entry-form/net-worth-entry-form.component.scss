@@ -11,6 +11,10 @@
 
   &-form {
     max-width: 400px;
+
+    @include media-tablet {
+      max-width: initial;
+    }
   }
 
   &-subheading {
@@ -23,7 +27,7 @@
   }
 
   &-submit {
-    margin-top: $spacing-30;
+    margin-top: $spacing-50;
   }
 
   &-moreFieldsLink {

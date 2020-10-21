@@ -33,4 +33,12 @@
       border-top: 1px solid $color-table-divider;
     }
   }
+
+  &-warning {
+    background-color: $color-danger-background;
+    color: $color-form-input-error-text;
+    padding: $spacing-20;
+    border-radius: $br-med;
+    margin-bottom: $spacing-20;
+  }
 }

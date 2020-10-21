@@ -13,43 +13,52 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: $spacing-30;
-    // grid-template-areas:
-    //   'summary summary summary'
-    //   'pie line bar'
-    //   'log log log';
 
-    @include media-phone {
+    grid-template-areas:
+      'summary summary summary'
+      'pie line bar'
+      'log log log';
+
+    @include media-sd() {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-areas: 'summary line' 'pie bar' 'log log';
+      // display: block;
+    }
+
+    @include media-tablet {
       display: block;
     }
   }
 
   &-item {
-    @include media-phone {
+    display: block;
+    min-width: 0;
+
+    @include media-tablet {
       & + & {
-        display: block;
-        margin-top: $spacing-20;
+        margin-top: $spacing-30;
       }
     }
   }
 
   &-summary {
-    grid-column: 1 / 4;
+    grid-area: summary;
   }
 
   &-log {
-    grid-column: 1 / 4;
+    grid-area: log;
   }
 
   &-pieChart {
-    grid-column: 1 / 2;
+    grid-area: pie;
   }
 
   &-lineChart {
-    grid-column: 2 / 3;
+    grid-area: line;
   }
 
   &-barChart {
-    grid-column: 3 / 4;
+    grid-area: bar;
   }
 
   &-noItems {
