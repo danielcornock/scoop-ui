@@ -2,6 +2,9 @@
 
 .Sidebar {
   &-container {
+    @include shadow-dark;
+    position: relative;
+    z-index: 10;
     height: 100%;
     width: 300px;
     display: flex;

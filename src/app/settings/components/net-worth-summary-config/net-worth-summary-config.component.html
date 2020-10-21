@@ -29,6 +29,12 @@
       <p class="NetWorthSummaryConfig-selectedItemAttributes">
         {{ getListedItemsString(item.sumOf) }}
       </p>
+      <button
+        class="NetWorthSummaryConfig-removeItem"
+        (click)="removeItem(i, netWorthSummaryConfigSelectedItems)"
+      >
+        <i-feather name="x"></i-feather>
+      </button>
     </div>
   </div>
 
@@ -48,13 +54,19 @@
   >
     <div
       class="NetWorthSummaryConfig-selectedItem"
-      *ngFor="let item of netWorthSummaryConfigOptions"
+      *ngFor="let item of netWorthSummaryConfigOptions; let i = index"
       cdkDrag
     >
       <p>{{ item.label }}</p>
       <p class="NetWorthSummaryConfig-selectedItemAttributes">
         {{ getListedItemsString(item.sumOf) }}
       </p>
+      <button
+        class="NetWorthSummaryConfig-removeItem"
+        (click)="removeItem(i, netWorthSummaryConfigOptions)"
+      >
+        <i-feather name="x"></i-feather>
+      </button>
     </div>
     <button class="NetWorthSummaryConfig-selectedItem" (click)="toggleForm()">
       <i-feather name="plus"></i-feather>

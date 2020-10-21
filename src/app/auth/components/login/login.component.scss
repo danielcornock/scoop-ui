@@ -66,17 +66,6 @@
 
   &-submit {
     margin-top: $spacing-20;
-
-    @include media-phone {
-      ::ng-deep.FormSubmit-button {
-        color: $color-primary;
-        background-color: $color-white;
-
-        &:hover {
-          color: $color-white;
-        }
-      }
-    }
   }
 
   &-brandingLogo {

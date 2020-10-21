@@ -1,4 +1,9 @@
-import { CdkDragDrop, CdkDropList, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import {
+  CdkDragDrop,
+  CdkDropList,
+  moveItemInArray,
+  transferArrayItem
+} from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormContainer } from 'src/app/lib/form/instances/form-container/form-container';
 import { FormFactory } from 'src/app/lib/form/services/form-factory/form-factory.service';
@@ -48,6 +53,13 @@ export class NetWorthSummaryConfigComponent implements OnInit {
         }
       }
     ]);
+  }
+
+  public removeItem(
+    index: number,
+    array: Array<INetWorthSummaryItemConfig>
+  ): void {
+    array.splice(index, 1);
   }
 
   public toggleForm(): void {
