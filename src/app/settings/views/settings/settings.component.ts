@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { cloneDeep, isEqual } from 'lodash';
-import { HttpService } from 'src/app/core/services/http/http.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { PopupService } from 'src/app/shared/services/popup/popup.service';
 
 import { ISettings } from '../../interfaces/settings.interface';
@@ -16,13 +16,15 @@ export class SettingsComponent implements OnInit {
   public originalSettings: ISettings;
 
   constructor(
-    private readonly _httpService: HttpService,
     private readonly _settingsService: SettingsService,
-    private readonly _popupService: PopupService
+    private readonly _popupService: PopupService,
+    private readonly _spinnerService: NgxSpinnerService
   ) {}
 
   async ngOnInit(): Promise<void> {
+    this._spinnerService.show();
     this.settings = await this._settingsService.getSettings();
+    this._spinnerService.hide();
 
     this.originalSettings = cloneDeep(this.settings);
   }

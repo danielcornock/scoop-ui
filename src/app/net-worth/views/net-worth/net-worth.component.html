@@ -13,23 +13,23 @@
         ></app-dashboard-summary>
 
         <app-net-worth-distribution-card
-          class="NetWorth-item NetWorth-pieChart"
+          class="NetWorth-item NetWorth-pieChart animate-list-item"
           [netWorthDistributionData]="netWorthItems[0]"
         ></app-net-worth-distribution-card>
 
         <app-net-worth-trends-card
-          class="NetWorth-item NetWorth-lineChart"
+          class="NetWorth-item NetWorth-lineChart animate-list-item"
           [netWorthTrendsData]="netWorthItems"
         ></app-net-worth-trends-card>
 
         <app-net-worth-monthly-change-card
-          class="NetWorth-item NetWorth-barChart"
+          class="NetWorth-item NetWorth-barChart animate-list-item"
           [netWorthMonthlyChangeData]="netWorthItems"
         ></app-net-worth-monthly-change-card>
       </ng-container>
 
       <app-net-worth-log
-        class="NetWorth-item NetWorth-log"
+        class="NetWorth-item NetWorth-log animate-list-item"
         *ngIf="netWorthItems?.length"
         [netWorthLogItems]="netWorthItems"
         [netWorthColumns]="netWorthMeta.fields"
@@ -37,3 +37,5 @@
     </div>
   </ng-container>
 </div>
+
+<app-loading-spinner></app-loading-spinner>

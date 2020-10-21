@@ -1,11 +1,19 @@
 @mixin page-container {
   padding: var(--spacing-page-top) var(--spacing-page-side);
+  height: 100%;
 }
 
 @mixin center-contents {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@mixin center-self {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 @mixin shadow-light {

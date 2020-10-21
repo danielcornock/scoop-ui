@@ -6,6 +6,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FeatherModule } from 'angular-feather';
 import { allIcons } from 'angular-feather/icons';
+import { NgxSpinnerModule } from 'ngx-spinner';
 import { ToastrModule } from 'ngx-toastr';
 
 import { CardComponent } from './components/card/card.component';
@@ -16,6 +17,7 @@ import { FormInputErrorsComponent } from './components/form-input-errors/form-in
 import { FormInputMultiSelectComponent } from './components/form-input-multi-select/form-input-multi-select.component';
 import { FormInputComponent } from './components/form-input/form-input.component';
 import { FormSubmitComponent } from './components/form-submit/form-submit.component';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { TableComponent } from './components/table/table.component';
 import { KeysPipe } from './pipes/keys/keys.pipe';
 
@@ -30,11 +32,13 @@ import { KeysPipe } from './pipes/keys/keys.pipe';
     ContextMenuComponent,
     FormInputErrorsComponent,
     FormErrorsComponent,
-    FormInputMultiSelectComponent
+    FormInputMultiSelectComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     CommonModule,
     FeatherModule.pick(allIcons),
+    NgxSpinnerModule,
     FormsModule,
     ReactiveFormsModule,
     MatMenuModule,
@@ -54,7 +58,8 @@ import { KeysPipe } from './pipes/keys/keys.pipe';
     FeatherModule,
     ContextMenuComponent,
     FormErrorsComponent,
-    FormInputMultiSelectComponent
+    FormInputMultiSelectComponent,
+    LoadingSpinnerComponent
   ]
 })
 export class SharedModule {}

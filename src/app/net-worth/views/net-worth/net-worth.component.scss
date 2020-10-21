@@ -3,6 +3,7 @@
 .NetWorth {
   &-container {
     @include page-container;
+    position: relative;
   }
 
   &-content {
