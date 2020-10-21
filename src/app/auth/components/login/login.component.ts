@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     if (this._authService.isAuthenticated()) {
-      this._router.navigateByUrl('investments');
+      this._router.navigateByUrl('net-worth');
     }
 
     this._createForm();
@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
         this.loginForm.value
       );
       this._authService.setJwt(data.jwt);
-      this._router.navigateByUrl('investments');
+      this._router.navigate(['net-worth']);
     } catch ({ error }) {
       this.errors = error;
     }

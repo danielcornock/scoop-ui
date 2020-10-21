@@ -1,4 +1,8 @@
 @import 'src/assets/styles/themes.scss';
+:host {
+  display: block;
+  height: 100%;
+}
 
 .Login {
   &-container {
@@ -9,6 +13,10 @@
       $color-primary,
       $color-primary-gradient
     );
+
+    @include media-phone {
+      padding: $spacing-10;
+    }
   }
 
   &-form {
@@ -19,14 +27,9 @@
     display: flex;
     flex-direction: column;
 
-    @include media-phone {
-      height: 100%;
-      padding: $spacing-40;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      background-color: transparent;
+    @include media-phone-sm {
       width: 100%;
+      padding: $spacing-80 $spacing-20 $spacing-50;
     }
   }
 
@@ -37,11 +40,6 @@
     margin: auto;
     margin-bottom: $spacing-60;
     position: relative;
-
-    @include media-phone {
-      margin-top: 0;
-      color: $color-white;
-    }
   }
 
   &-brandingBeta {
@@ -56,11 +54,8 @@
   &-formInput {
     width: 350px;
 
-    @include media-phone {
+    @include media-phone-sm {
       width: 100%;
-      ::ng-deep.FormInput-label {
-        color: $color-white;
-      }
     }
   }
 

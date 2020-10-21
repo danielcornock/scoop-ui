@@ -1,7 +1,4 @@
 @import 'src/assets/styles/themes.scss';
-:host {
-  display: block;
-}
 
 .Header {
   &-container {
@@ -14,6 +11,10 @@
     font-weight: bold;
     color: $color-heading;
     line-height: 100%;
+
+    @include media-phone {
+      font-size: 24px;
+    }
   }
 
   &-menu {

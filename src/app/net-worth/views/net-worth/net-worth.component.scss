@@ -35,6 +35,12 @@
         margin-top: $spacing-30;
       }
     }
+
+    @include media-phone {
+      & + & {
+        margin-top: $spacing-20;
+      }
+    }
   }
 
   &-summary {

@@ -1,41 +1,39 @@
-<div class="NetWorth-container">
-  <ng-container *ngIf="netWorthItems">
-    <p class="NetWorth-noItems" *ngIf="!netWorthItems.length">
-      To get started, you can configure your table columns in the
-      <a routerLink="../settings">settings</a> area, or go ahead and create a
-      net worth log <a routerLink="create">here</a>.
-    </p>
-    <div class="NetWorth-content">
-      <ng-container *ngIf="netWorthItems?.length">
-        <app-dashboard-summary
-          class="NetWorth-item NetWorth-summary"
-          [dashboardSummaryItems]="summaryItems"
-        ></app-dashboard-summary>
+<div class="NetWorth-container" *ngIf="netWorthItems">
+  <p class="NetWorth-noItems" *ngIf="!netWorthItems.length">
+    To get started, you can configure your table columns in the
+    <a routerLink="../settings">settings</a> area, or go ahead and create a net
+    worth log <a routerLink="create">here</a>.
+  </p>
+  <div class="NetWorth-content">
+    <ng-container *ngIf="netWorthItems?.length">
+      <app-dashboard-summary
+        class="NetWorth-item NetWorth-summary"
+        [dashboardSummaryItems]="summaryItems"
+      ></app-dashboard-summary>
 
-        <app-net-worth-distribution-card
-          class="NetWorth-item NetWorth-pieChart animate-list-item"
-          [netWorthDistributionData]="netWorthItems[0]"
-        ></app-net-worth-distribution-card>
+      <app-net-worth-distribution-card
+        class="NetWorth-item NetWorth-pieChart animate-list-item"
+        [netWorthDistributionData]="netWorthItems[0]"
+      ></app-net-worth-distribution-card>
 
-        <app-net-worth-trends-card
-          class="NetWorth-item NetWorth-lineChart animate-list-item"
-          [netWorthTrendsData]="netWorthItems"
-        ></app-net-worth-trends-card>
+      <app-net-worth-trends-card
+        class="NetWorth-item NetWorth-lineChart animate-list-item"
+        [netWorthTrendsData]="netWorthItems"
+      ></app-net-worth-trends-card>
 
-        <app-net-worth-monthly-change-card
-          class="NetWorth-item NetWorth-barChart animate-list-item"
-          [netWorthMonthlyChangeData]="netWorthItems"
-        ></app-net-worth-monthly-change-card>
-      </ng-container>
+      <app-net-worth-monthly-change-card
+        class="NetWorth-item NetWorth-barChart animate-list-item"
+        [netWorthMonthlyChangeData]="netWorthItems"
+      ></app-net-worth-monthly-change-card>
+    </ng-container>
 
-      <app-net-worth-log
-        class="NetWorth-item NetWorth-log animate-list-item"
-        *ngIf="netWorthItems?.length"
-        [netWorthLogItems]="netWorthItems"
-        [netWorthColumns]="netWorthMeta.fields"
-      ></app-net-worth-log>
-    </div>
-  </ng-container>
+    <app-net-worth-log
+      class="NetWorth-item NetWorth-log animate-list-item"
+      *ngIf="netWorthItems?.length"
+      [netWorthLogItems]="netWorthItems"
+      [netWorthColumns]="netWorthMeta.fields"
+    ></app-net-worth-log>
+  </div>
 </div>
 
 <app-loading-spinner></app-loading-spinner>
