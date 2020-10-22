@@ -80,15 +80,15 @@
       class="NetWorthSummaryConfig-form"
       *ngIf="form"
     >
-      <app-form-input
+      <ngx-form-input
         class="NetWorthSummaryConfig-labelField"
         [formInputField]="form.fields[0]"
-      ></app-form-input>
-      <app-form-input-multi-select
+      ></ngx-form-input>
+      <ngx-form-input-multi-select
         class="NetWorthSummaryConfig-selectionField"
         [formInputMultiSelectOptions]="availableFields"
         [formInputField]="form.fields[1]"
-      ></app-form-input-multi-select>
+      ></ngx-form-input-multi-select>
       <app-form-submit
         class="NetWorthSummaryConfig-submitNew"
         value="Add option"

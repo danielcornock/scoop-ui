@@ -1,8 +1,7 @@
 import { CdkDragSortEvent, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { FormContainer } from 'src/app/lib/form/instances/form-container/form-container';
-import { FormFactory } from 'src/app/lib/form/services/form-factory/form-factory.service';
+import { FormContainer, FormFactory } from 'ngx-form-trooper';
 
 @Component({
   selector: 'app-net-worth-config',

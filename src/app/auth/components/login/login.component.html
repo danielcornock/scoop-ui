@@ -14,11 +14,11 @@
       <span class="Login-brandingText">scoop</span>
       <span class="Login-brandingBeta">BETA</span>
     </div>
-    <app-form-input
+    <ngx-form-input
       class="Login-formInput"
       *ngFor="let field of loginForm.fields"
       [formInputField]="field"
-    ></app-form-input>
+    ></ngx-form-input>
     <app-form-errors [appFormErrors]="errors"></app-form-errors>
     <app-form-submit class="Login-submit" value="Log in"></app-form-submit>
   </form>

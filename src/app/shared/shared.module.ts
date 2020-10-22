@@ -13,9 +13,7 @@ import { CardComponent } from './components/card/card.component';
 import { ContextMenuComponent } from './components/context-menu/context-menu.component';
 import { DashboardSummaryComponent } from './components/dashboard-summary/dashboard-summary.component';
 import { FormErrorsComponent } from './components/form-errors/form-errors.component';
-import { FormInputErrorsComponent } from './components/form-input-errors/form-input-errors.component';
 import { FormInputMultiSelectComponent } from './components/form-input-multi-select/form-input-multi-select.component';
-import { FormInputComponent } from './components/form-input/form-input.component';
 import { FormSubmitComponent } from './components/form-submit/form-submit.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { TableComponent } from './components/table/table.component';
@@ -27,10 +25,8 @@ import { KeysPipe } from './pipes/keys/keys.pipe';
     TableComponent,
     DashboardSummaryComponent,
     KeysPipe,
-    FormInputComponent,
     FormSubmitComponent,
     ContextMenuComponent,
-    FormInputErrorsComponent,
     FormErrorsComponent,
     FormInputMultiSelectComponent,
     LoadingSpinnerComponent
@@ -53,11 +49,10 @@ import { KeysPipe } from './pipes/keys/keys.pipe';
     TableComponent,
     DashboardSummaryComponent,
     KeysPipe,
-    FormInputComponent,
     FormSubmitComponent,
     FeatherModule,
-    ContextMenuComponent,
     FormErrorsComponent,
+    ContextMenuComponent,
     FormInputMultiSelectComponent,
     LoadingSpinnerComponent
   ]

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormContainer, FormFactory } from 'ngx-form-trooper';
 import { HttpService } from 'src/app/core/services/http/http.service';
 import { IHttpError } from 'src/app/core/services/http/interfaces/http-error.interface';
-import { FormContainer } from 'src/app/lib/form/instances/form-container/form-container';
-import { FormFactory } from 'src/app/lib/form/services/form-factory/form-factory.service';
 
 import { AuthService } from '../../services/auth/auth.service';
 

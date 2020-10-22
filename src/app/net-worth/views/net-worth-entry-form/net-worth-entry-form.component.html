@@ -5,11 +5,11 @@
     class="NetWorthEntryForm-form"
     (ngSubmit)="submitForm()"
   >
-    <app-form-input
+    <ngx-form-input
       [formInputField]="form.fields[0]"
       label="Month"
       type="month"
-    ></app-form-input>
+    ></ngx-form-input>
     <h2 class="NetWorthEntryForm-subheading">
       Entries
       <a
@@ -24,7 +24,7 @@
       class="NetWorthEntryForm-input"
       *ngFor="let field of form.fields | slice: 1"
     >
-      <app-form-input [formInputField]="field"></app-form-input>
+      <ngx-form-input [formInputField]="field"></ngx-form-input>
     </div>
 
     <app-form-errors [appFormErrors]="errors"></app-form-errors>

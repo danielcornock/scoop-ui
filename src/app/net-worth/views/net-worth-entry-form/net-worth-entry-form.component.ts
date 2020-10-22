@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { capitalize } from 'lodash';
+import {
+  FormContainer,
+  FormFactory,
+  IFormFactoryConfig
+} from 'ngx-form-trooper';
 import { HttpService } from 'src/app/core/services/http/http.service';
 import { IHttpError } from 'src/app/core/services/http/interfaces/http-error.interface';
-import { FormContainer } from 'src/app/lib/form/instances/form-container/form-container';
-import { IFormFactoryConfig } from 'src/app/lib/form/interfaces/form-factory-config.interface';
-import { FormFactory } from 'src/app/lib/form/services/form-factory/form-factory.service';
 import { SettingsService } from 'src/app/settings/services/settings/settings.service';
 import { DateService } from 'src/app/shared/services/current-date/date.service';
 

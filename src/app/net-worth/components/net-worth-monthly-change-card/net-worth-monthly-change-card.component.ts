@@ -1,8 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {
-  barChartColors,
-  chartColors
-} from 'src/app/shared/constants/chart-colors.constant';
+import { barChartColors } from 'src/app/shared/constants/chart-colors.constant';
 import { ChartService } from 'src/app/shared/services/chart/chart.service';
 
 import { INetWorthApiResponse } from '../../interfaces/net-worth-api-response.interface';
@@ -28,7 +25,7 @@ export class NetWorthMonthlyChangeCardComponent implements OnInit {
         labels: this._getArrayOfFields('date'),
         datasets: [
           {
-            label: 'Total Invested',
+            label: 'Change from previous month',
             data: this._getArrayOfFields('change') as number[],
             borderColor: 'rgba(255,255,255, 0)',
             backgroundColor: [...barChartColors],

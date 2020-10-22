@@ -1,13 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
-
-import { FormInputComponent } from '../form-input/form-input.component';
+import { NgxFormInputComponent } from 'ngx-form-trooper';
 
 @Component({
-  selector: 'app-form-input-multi-select',
+  selector: 'ngx-form-input-multi-select',
   templateUrl: './form-input-multi-select.component.html',
   styleUrls: ['./form-input-multi-select.component.scss']
 })
-export class FormInputMultiSelectComponent extends FormInputComponent
+export class FormInputMultiSelectComponent extends NgxFormInputComponent
   implements OnInit {
   @Input()
   formInputMultiSelectOptions: Array<string>;

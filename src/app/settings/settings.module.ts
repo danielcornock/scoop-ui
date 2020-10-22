@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatChipsModule } from '@angular/material/chips';
+import { NgxFormTrooperModule } from 'ngx-form-trooper';
 
 import { CoreModule } from '../core/core.module';
 import { SharedModule } from '../shared/shared.module';
@@ -23,7 +24,8 @@ import { SettingsComponent } from './views/settings/settings.component';
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    CoreModule
+    CoreModule,
+    NgxFormTrooperModule
   ]
 })
 export class SettingsModule {}
