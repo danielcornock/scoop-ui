@@ -1,0 +1,16 @@
+<div class="InvestmentsEntryForm-container">
+  <form
+    class="InvestmentsEntryForm-form"
+    [formGroup]="form.formGroup"
+    (ngSubmit)="createLog()"
+  >
+    <ngx-form-input
+      *ngFor="let field of form.fields"
+      [formInputField]="field"
+    ></ngx-form-input>
+
+    <app-form-errors [appFormErrors]="errors"></app-form-errors>
+
+    <app-form-submit value="Save Investment Entry"></app-form-submit>
+  </form>
+</div>

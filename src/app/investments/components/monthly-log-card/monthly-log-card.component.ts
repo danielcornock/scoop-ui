@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { IContextMenuItem } from 'src/app/shared/components/context-menu/interfaces/context-menu-item.interface';
 
 @Component({
   selector: 'app-monthly-log-card',
@@ -7,10 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MonthlyLogCardComponent implements OnInit {
   public logs: Array<any>;
+  public actions: Array<IContextMenuItem>;
 
-  constructor() {}
+  constructor(private readonly _router: Router) {}
 
   ngOnInit(): void {
+    this._createCardActions();
+
     this.logs = [
       {
         date: 'February 20',
@@ -38,6 +43,16 @@ export class MonthlyLogCardComponent implements OnInit {
         returns: '£300',
         percentage: '25%',
         change: '10.4%'
+      }
+    ];
+  }
+
+  private _createCardActions(): void {
+    this.actions = [
+      {
+        label: 'Create entry',
+        action: () => this._router.navigateByUrl('investments/create'),
+        icon: 'plus'
       }
     ];
   }
