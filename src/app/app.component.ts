@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Event, NavigationStart, Router, RouterEvent } from '@angular/router';
+import { Event, NavigationEnd, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
+import { filter, map, tap } from 'rxjs/operators';
 
 import { AuthService } from './auth/services/auth/auth.service';
 import { PageTitleService } from './core/services/page-title/page-title.service';
@@ -30,10 +30,9 @@ export class AppComponent implements OnInit {
 
   private _subscribeToTitleChange(): void {
     this.title = this._router.events.pipe(
-      filter((event: Event) => event instanceof NavigationStart),
-      map((event) =>
-        this._pageTitleService.getTitle((event as RouterEvent).url)
-      )
+      tap(console.log),
+      filter((event: Event) => event instanceof NavigationEnd),
+      map((event: NavigationEnd) => this._pageTitleService.getTitle(event))
     );
   }
 }

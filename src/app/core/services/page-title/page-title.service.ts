@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { NavigationEnd } from '@angular/router';
 
 import { pageTitles } from './constants/page-title.constant';
 
@@ -6,8 +7,9 @@ import { pageTitles } from './constants/page-title.constant';
   providedIn: 'root'
 })
 export class PageTitleService {
-  public getTitle(url: string): string {
-    const title: string = pageTitles[url];
+  public getTitle(event: NavigationEnd): string {
+    const title: string =
+      pageTitles[event.url] || pageTitles[event.urlAfterRedirects];
 
     if (!title) {
       return '404 Page Not Found';
