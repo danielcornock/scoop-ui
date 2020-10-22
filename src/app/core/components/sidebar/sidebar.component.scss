@@ -110,7 +110,11 @@
         }
 
         @include media-phone {
-          content: initial;
+          transform: translate(0, 0);
+          height: 5px;
+          top: initial;
+          bottom: 0;
+          width: 100%;
         }
       }
     }
