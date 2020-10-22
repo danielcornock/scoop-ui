@@ -1,7 +1,6 @@
-<div class="NetWorthEntryForm-container">
+<div class="NetWorthEntryForm-container animate-page-in" *ngIf="form">
   <form
     [formGroup]="form.formGroup"
-    *ngIf="form"
     class="NetWorthEntryForm-form"
     (ngSubmit)="submitForm()"
   >

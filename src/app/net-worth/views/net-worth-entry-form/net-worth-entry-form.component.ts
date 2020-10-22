@@ -2,11 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { capitalize } from 'lodash';
-import {
-  FormContainer,
-  FormFactory,
-  IFormFactoryConfig
-} from 'ngx-form-trooper';
+import { FormContainer, FormFactory, IFormFactoryConfig } from 'ngx-form-trooper';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpService } from 'src/app/core/services/http/http.service';
 import { IHttpError } from 'src/app/core/services/http/interfaces/http-error.interface';
 import { SettingsService } from 'src/app/settings/services/settings/settings.service';
@@ -28,13 +25,16 @@ export class NetWorthEntryFormComponent implements OnInit {
     private readonly _currentDateService: DateService,
     private readonly _httpService: HttpService,
     private readonly _router: Router,
-    private readonly _settingsService: SettingsService
+    private readonly _settingsService: SettingsService,
+    private readonly _spinnerService: NgxSpinnerService
   ) {}
 
   async ngOnInit(): Promise<void> {
+    this._spinnerService.show();
     const settings = await this._settingsService.getSettings();
     this.columns = settings.netWorthFields;
     this._createForm();
+    this._spinnerService.hide();
   }
 
   public async submitForm(): Promise<void> {
@@ -45,10 +45,12 @@ export class NetWorthEntryFormComponent implements OnInit {
     }
 
     try {
+      this._spinnerService.show();
       await this._httpService.post('net-worth', this.form.value);
 
       this._router.navigateByUrl('net-worth');
     } catch ({ error }) {
+      this._spinnerService.hide();
       this.errors = error;
     }
   }
@@ -70,7 +72,8 @@ export class NetWorthEntryFormComponent implements OnInit {
     this.columns.forEach((colName: string) => {
       formConfig.push({
         name: colName,
-        label: capitalize(colName)
+        label: capitalize(colName),
+        type: 'number'
       });
     });
 
