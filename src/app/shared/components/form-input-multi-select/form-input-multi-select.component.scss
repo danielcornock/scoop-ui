@@ -12,3 +12,11 @@
     @include form-input-label;
   }
 }
+
+::ng-deep .mat-pseudo-checkbox-checked {
+  background-color: #3657dc !important;
+}
+
+::ng-deep .mat-select-panel {
+  border-radius: 10px !important;
+}
