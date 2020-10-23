@@ -1,0 +1,65 @@
+@import 'src/assets/styles/themes.scss';
+
+.IconPicker {
+  &-container {
+    position: relative;
+  }
+
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: $spacing-20;
+  }
+
+  &-openButton {
+    @include button-tertiary;
+  }
+
+  &-close {
+    @include button-reset;
+  }
+
+  &-iconsContainer {
+    position: absolute;
+    bottom: 120%;
+    background-color: $color-white;
+    padding: $spacing-20;
+    border-radius: $br-med;
+  }
+
+  &-iconButton {
+    @include button-reset;
+    padding: $spacing-5;
+    color: $color-table-content;
+    border-radius: $br-sm;
+
+    &:hover {
+      background-color: $color-primary-light;
+      color: $color-primary;
+    }
+  }
+
+  &-iconsList {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+  }
+
+  &-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: $spacing-10;
+  }
+
+  &-navigationButton {
+    @include button-reset;
+    color: $color-table-content;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &-nextButton {
+    margin-left: auto;
+  }
+}

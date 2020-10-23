@@ -1,0 +1,46 @@
+<div class="IconPicker-container">
+  <button class="IconPicker-openButton" (click)="openIcons()">
+    <span *ngIf="selectedIcon; else noIcon">
+      <i-feather [name]="selectedIcon"></i-feather>
+    </span>
+    <ng-template #noIcon>Select an icon</ng-template>
+  </button>
+
+  <div class="IconPicker-iconsContainer" *ngIf="displayIcons">
+    <div class="IconPicker-header">
+      <h3 class="IconPicker-text">
+        Select an icon
+      </h3>
+      <button class="IconPicker-close" (click)="closeIcons()">
+        <i-feather name="x"></i-feather>
+      </button>
+    </div>
+
+    <div class="IconPicker-iconsList">
+      <button
+        class="IconPicker-iconButton"
+        (click)="selectIcon(iconName)"
+        *ngFor="let iconName of visibleIcons"
+      >
+        <i-feather [name]="iconName"></i-feather>
+      </button>
+    </div>
+
+    <div class="IconPicker-navigation">
+      <button
+        class="IconPicker-navigationButton IconPicker-prevButton"
+        (click)="goToPreviousPage()"
+        *ngIf="showPrevButton"
+      >
+        Prev
+      </button>
+      <button
+        class="IconPicker-navigationButton IconPicker-nextButton"
+        (click)="goToNextPage()"
+        *ngIf="showNextButton"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+</div>

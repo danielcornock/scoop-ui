@@ -77,31 +77,21 @@
 
   &-form {
     display: flex;
-    align-items: center;
-    max-width: 800px;
+    flex-direction: column;
+    max-width: 600px;
 
     @include media-tablet {
       display: block;
     }
   }
 
-  &-labelField {
-    flex: 1 1 30%;
-  }
-
-  &-selectionField {
-    margin-left: $spacing-20;
-    flex: 1 1 70%;
+  &-iconPickerLabel {
+    @include form-input-label;
   }
 
   &-submitNew {
     display: block;
-    margin-left: $spacing-20;
-
-    @include media-tablet {
-      margin-left: 0;
-      margin-top: $spacing-20;
-    }
+    margin-top: $spacing-50;
   }
 
   &-error {

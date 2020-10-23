@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatDialogModule } from '@angular/material/dialog';
 import { NgxFormTrooperModule } from 'ngx-form-trooper';
 
 import { CoreModule } from '../core/core.module';
@@ -25,7 +26,8 @@ import { SettingsComponent } from './views/settings/settings.component';
     FormsModule,
     ReactiveFormsModule,
     CoreModule,
-    NgxFormTrooperModule
+    NgxFormTrooperModule,
+    MatDialogModule
   ]
 })
 export class SettingsModule {}
