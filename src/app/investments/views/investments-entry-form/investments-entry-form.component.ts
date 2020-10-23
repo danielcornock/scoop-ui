@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormContainer, FormFactory } from 'ngx-form-trooper';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpService } from 'src/app/core/services/http/http.service';
 import { IHttpError } from 'src/app/core/services/http/interfaces/http-error.interface';
 import { DateService } from 'src/app/shared/services/current-date/date.service';
@@ -16,7 +18,9 @@ export class InvestmentsEntryFormComponent implements OnInit {
   constructor(
     private readonly _formFactory: FormFactory,
     private readonly _currentDateService: DateService,
-    private readonly _httpService: HttpService
+    private readonly _httpService: HttpService,
+    private readonly _router: Router,
+    private readonly _spinnerService: NgxSpinnerService
   ) {}
 
   ngOnInit(): void {
@@ -25,8 +29,11 @@ export class InvestmentsEntryFormComponent implements OnInit {
 
   public async createLog(): Promise<void> {
     try {
+      this._spinnerService.show();
       await this._httpService.post('investments', this.form.value);
+      this._router.navigateByUrl('investments');
     } catch ({ error }) {
+      this._spinnerService.hide();
       this.errors = error;
     }
   }
@@ -45,9 +52,9 @@ export class InvestmentsEntryFormComponent implements OnInit {
         }
       },
       {
-        name: 'totalInvested',
+        name: 'addedSinceLast',
         type: 'number',
-        label: 'Total money added to investments',
+        label: 'Money added to investments this month',
         validators: {
           required: true
         }
@@ -55,7 +62,7 @@ export class InvestmentsEntryFormComponent implements OnInit {
       {
         name: 'totalValue',
         type: 'number',
-        label: 'Current overall value of your investments',
+        label: 'Current value of your investments',
         validators: {
           required: true
         }

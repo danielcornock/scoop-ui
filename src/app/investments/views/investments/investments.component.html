@@ -1,4 +1,4 @@
-<div class="Investments-container">
+<div class="Investments-container" *ngIf="investmentLogs">
   <div class="Investments-content">
     <app-dashboard-summary
       class="Investments-section Investments-summary"
@@ -15,6 +15,7 @@
 
     <app-monthly-log-card
       class="Investments-section Investments-log animate-list-item"
+      [monthlyLogCardItems]="investmentLogs"
     ></app-monthly-log-card>
   </div>
 </div>

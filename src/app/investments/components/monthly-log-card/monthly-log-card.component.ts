@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IContextMenuItem } from 'src/app/shared/components/context-menu/interfaces/context-menu-item.interface';
+
+import { IInvestmentLog } from '../../interfaces/investment-log.interface';
 
 @Component({
   selector: 'app-monthly-log-card',
@@ -8,6 +10,8 @@ import { IContextMenuItem } from 'src/app/shared/components/context-menu/interfa
   styleUrls: ['./monthly-log-card.component.scss']
 })
 export class MonthlyLogCardComponent implements OnInit {
+  @Input()
+  public monthlyLogCardItems: Array<IInvestmentLog>;
   public logs: Array<any>;
   public actions: Array<IContextMenuItem>;
 
@@ -15,36 +19,6 @@ export class MonthlyLogCardComponent implements OnInit {
 
   ngOnInit(): void {
     this._createCardActions();
-
-    this.logs = [
-      {
-        date: 'February 20',
-        added: '£400',
-        invested: '£1200',
-        value: '£1500',
-        returns: '£300',
-        percentage: '25%',
-        change: '10.4%'
-      },
-      {
-        date: 'March 20',
-        added: '£400',
-        invested: '£1200',
-        value: '£1500',
-        returns: '£300',
-        percentage: '25%',
-        change: '10.4%'
-      },
-      {
-        date: 'April 20',
-        added: '£400',
-        invested: '£1200',
-        value: '£1500',
-        returns: '£300',
-        percentage: '25%',
-        change: '10.4%'
-      }
-    ];
   }
 
   private _createCardActions(): void {

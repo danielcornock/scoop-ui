@@ -33,11 +33,7 @@
   color: $color-table-content;
   border-top: 1px solid $color-table-divider;
   white-space: nowrap;
-  padding-right: $spacing-10;
-
-  @include media-tablet {
-    padding-right: $spacing-15;
-  }
+  padding-right: $spacing-15;
 }
 
 @mixin button-reset {

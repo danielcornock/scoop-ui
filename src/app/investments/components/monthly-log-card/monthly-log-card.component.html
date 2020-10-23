@@ -7,17 +7,29 @@
       'Portfolio Value',
       'Returns',
       'Percentage',
-      'Change'
+      'Change since last month'
     ]"
   >
-    <tr class="MonthlyLogCard-row" *ngFor="let row of logs">
-      <td class="MonthlyLogCard-rowItem">{{ row.date }}</td>
-      <td class="MonthlyLogCard-rowItem">{{ row.added }}</td>
-      <td class="MonthlyLogCard-rowItem">{{ row.invested }}</td>
-      <td class="MonthlyLogCard-rowItem">{{ row.value }}</td>
-      <td class="MonthlyLogCard-rowItem">{{ row.returns }}</td>
-      <td class="MonthlyLogCard-rowItem">{{ row.percentage }}</td>
-      <td class="MonthlyLogCard-rowItem">{{ row.change }}</td>
+    <tr class="MonthlyLogCard-row" *ngFor="let row of monthlyLogCardItems">
+      <td class="MonthlyLogCard-rowItem">{{ row.date | date: 'MMMM y' }}</td>
+      <td class="MonthlyLogCard-rowItem">
+        {{ row.addedSinceLast | currency: 'GBP':'symbol':'1.0-2' }}
+      </td>
+      <td class="MonthlyLogCard-rowItem">
+        {{ row.totalInvested | currency: 'GBP':'symbol':'1.0-2' }}
+      </td>
+      <td class="MonthlyLogCard-rowItem">
+        {{ row.totalValue | currency: 'GBP':'symbol':'1.0-2' }}
+      </td>
+      <td class="MonthlyLogCard-rowItem">
+        {{ row.profit | currency: 'GBP':'symbol':'1.0-2' }}
+      </td>
+      <td class="MonthlyLogCard-rowItem">
+        {{ row.profitPercentage | percent }}
+      </td>
+      <td class="MonthlyLogCard-rowItem">
+        {{ row.profitChangeSinceLast | currency: 'GBP':'symbol':'1.0-2' }}
+      </td>
     </tr>
   </app-table>
 </app-card>
