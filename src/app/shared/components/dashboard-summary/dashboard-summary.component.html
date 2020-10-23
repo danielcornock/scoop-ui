@@ -3,7 +3,12 @@
     class="DashboardSummary-item animate-list-item"
     *ngFor="let item of dashboardSummaryItems"
   >
-    <h3 class="DashboardSummary-label">{{ item.label }}</h3>
-    <p class="DashboardSummary-value">{{ item.value }}</p>
+    <div class="DashboardSummary-icon">
+      <i-feather [name]="item.icon"></i-feather>
+    </div>
+    <div class="DashboardSummary-details">
+      <p class="DashboardSummary-value">{{ item.value }}</p>
+      <p class="DashboardSummary-label">{{ item.label }}</p>
+    </div>
   </div>
 </div>

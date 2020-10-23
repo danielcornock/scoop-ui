@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Chart } from 'chart.js';
 import { ChartService } from 'src/app/shared/services/chart/chart.service';
 
 @Component({

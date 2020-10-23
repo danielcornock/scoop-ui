@@ -39,19 +39,23 @@ export class InvestmentsComponent implements OnInit {
     this.summaryItems = [
       {
         label: 'Total Returns',
-        value: this._toCurrency(this.investmentLogs[0].profit)
+        value: this._toCurrency(this.investmentLogs[0].profit),
+        icon: 'dollar-sign'
       },
       {
         label: 'Percentage Returns',
-        value: this._toPercentage(this.investmentLogs[0].profitPercentage)
+        value: this._toPercentage(this.investmentLogs[0].profitPercentage),
+        icon: 'trending-up'
       },
       {
         label: 'Investment Value',
-        value: this._toCurrency(this.investmentLogs[0].totalValue)
+        value: this._toCurrency(this.investmentLogs[0].totalValue),
+        icon: 'chevrons-up'
       },
       {
         label: 'Invested',
-        value: this._toCurrency(this.investmentLogs[0].totalInvested)
+        value: this._toCurrency(this.investmentLogs[0].totalInvested),
+        icon: 'save'
       }
     ];
   }

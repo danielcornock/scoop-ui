@@ -18,19 +18,23 @@
   }
 
   &-item {
-    @include center-contents;
+    display: flex;
+    align-items: center;
     @include shadow-light;
-    flex-direction: column;
-    height: 150px;
+    padding: $spacing-30;
     background-color: $color-white;
     border-radius: $br-med;
 
     @include media-sd {
       height: 100%;
+      justify-content: center;
+      flex-direction: column;
+      padding: 0;
     }
 
     @include media-tablet {
-      height: 150px;
+      padding: $spacing-30;
+      align-items: center;
     }
 
     @include media-phone {
@@ -38,6 +42,51 @@
       flex-direction: row;
       justify-content: space-between;
       padding: $spacing-15 $spacing-20;
+      flex-direction: row-reverse;
+    }
+  }
+
+  &-icon {
+    background-color: $indigo-100;
+    border-radius: $br-max;
+    margin-right: $spacing-30;
+    height: 60px;
+    width: 60px;
+    @include center-contents;
+    color: $indigo-700;
+
+    i-feather {
+      height: 30px;
+      width: 30px;
+    }
+
+    @include media-sd {
+      height: 40px;
+      width: 40px;
+      margin-right: 0;
+      margin-bottom: $spacing-10;
+
+      i-feather {
+        height: 20px;
+        width: 20px;
+      }
+    }
+
+    @include media-tablet {
+      height: 60px;
+      width: 60px;
+
+      i-feather {
+        height: 30px;
+        width: 30px;
+      }
+    }
+
+    @include media-phone {
+      margin-bottom: 0;
+      background-color: transparent;
+      height: auto;
+      width: auto;
     }
   }
 
@@ -45,19 +94,33 @@
     font-weight: 500;
     font-size: 14px;
     color: $color-subheading;
+    line-height: 1;
+    margin-bottom: 2px;
 
     @include media-phone {
-      font-size: 16px;
+      font-size: 14px;
+    }
+  }
+
+  &-details {
+    @include media-sd {
+      text-align: center;
+    }
+
+    @include media-phone {
+      text-align: left;
     }
   }
 
   &-value {
-    font-size: 38px;
+    font-size: 28px;
     font-weight: 500;
     color: $color-primary;
+    line-height: 1;
+    margin-bottom: $spacing-5;
 
     @include media-phone {
-      font-size: 30px;
+      font-size: 26px;
     }
   }
 }

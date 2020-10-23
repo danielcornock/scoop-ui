@@ -2,12 +2,11 @@ import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpService } from 'src/app/core/services/http/http.service';
-import { IDashboardSummaryItem } from 'src/app/shared/components/dashboard-summary/interfaces/dashboard-summary-item.interface';
-
 import {
-  INetWorthApiMetaResponse,
-  INetWorthApiResponse
-} from '../../interfaces/net-worth-api-response.interface';
+  IDashboardSummaryItem,
+} from 'src/app/shared/components/dashboard-summary/interfaces/dashboard-summary-item.interface';
+
+import { INetWorthApiMetaResponse, INetWorthApiResponse } from '../../interfaces/net-worth-api-response.interface';
 
 @Component({
   selector: 'app-net-worth',
@@ -48,7 +47,8 @@ export class NetWorthComponent implements OnInit {
     this.summaryItems = rawData.map((item) => {
       return {
         label: item.label,
-        value: this._toCurrency(item.value)
+        value: this._toCurrency(item.value),
+        icon: 'trending-up'
       };
     });
   }
