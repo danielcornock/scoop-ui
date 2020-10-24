@@ -9,6 +9,7 @@ import { InvestmentsLogCardComponent } from './components/investments-log-card/i
 import { TrendsCardComponent } from './components/trends-card/trends-card.component';
 import { InvestmentsEntryFormComponent } from './views/investments-entry-form/investments-entry-form.component';
 import { InvestmentsComponent } from './views/investments/investments.component';
+import { InvestmentsMonthlyChangeCardComponent } from './components/investments-monthly-change-card/investments-monthly-change-card.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { InvestmentsComponent } from './views/investments/investments.component'
     CompaniesCardComponent,
     TrendsCardComponent,
     InvestmentsLogCardComponent,
-    InvestmentsEntryFormComponent
+    InvestmentsEntryFormComponent,
+    InvestmentsMonthlyChangeCardComponent
   ],
   imports: [
     CommonModule,

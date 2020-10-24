@@ -5,9 +5,14 @@
       [dashboardSummaryItems]="summaryItems"
     ></app-dashboard-summary>
 
-    <app-companies-card
+    <!-- <app-companies-card
       class="Investments-section Investments-stocks animate-list-item"
-    ></app-companies-card>
+    ></app-companies-card> -->
+
+    <app-investments-monthly-change-card
+      class="Investments-section Investments-monthlyChange animate-list-item"
+      [investmentsMonthlyChangeData]="investmentLogs"
+    ></app-investments-monthly-change-card>
 
     <app-trends-card
       class="Investments-section Investments-trends animate-list-item"

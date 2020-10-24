@@ -7,12 +7,12 @@
 
   &-content {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 1fr;
     grid-gap: $spacing-30;
     grid-template-areas:
-      'summary summary summary'
-      'stocks stocks trends'
-      'log log log';
+      'summary summary'
+      'monthly trends'
+      'log log';
 
     @include media-phone {
       display: block;
@@ -26,6 +26,10 @@
         margin-top: $spacing-20;
       }
     }
+  }
+
+  &-monthlyChange {
+    grid-area: monthly;
   }
 
   &-summary {

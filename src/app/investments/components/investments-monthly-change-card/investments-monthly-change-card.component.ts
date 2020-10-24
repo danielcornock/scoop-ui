@@ -2,16 +2,16 @@ import { Component, Input, OnInit } from '@angular/core';
 import { barChartColors } from 'src/app/shared/constants/chart-colors.constant';
 import { ChartService } from 'src/app/shared/services/chart/chart.service';
 
-import { INetWorthApiResponse } from '../../interfaces/net-worth-api-response.interface';
+import { IInvestmentLog } from '../../interfaces/investment-log.interface';
 
 @Component({
-  selector: 'app-net-worth-monthly-change-card',
-  templateUrl: './net-worth-monthly-change-card.component.html',
-  styleUrls: ['./net-worth-monthly-change-card.component.scss']
+  selector: 'app-investments-monthly-change-card',
+  templateUrl: './investments-monthly-change-card.component.html',
+  styleUrls: ['./investments-monthly-change-card.component.scss']
 })
-export class NetWorthMonthlyChangeCardComponent implements OnInit {
+export class InvestmentsMonthlyChangeCardComponent implements OnInit {
   @Input()
-  public netWorthMonthlyChangeData: Array<INetWorthApiResponse>;
+  public investmentsMonthlyChangeData: Array<IInvestmentLog>;
 
   private _processedTrendsData: Array<{ date: string; change: number }>;
 
@@ -22,8 +22,19 @@ export class NetWorthMonthlyChangeCardComponent implements OnInit {
     this._createBarChart();
   }
 
+  private _processTrendsData(): void {
+    this._processedTrendsData = [...this.investmentsMonthlyChangeData]
+      .reverse()
+      .map((item) => {
+        return {
+          date: item.date,
+          change: item.profitChangeSinceLast
+        };
+      });
+  }
+
   private _createBarChart(): void {
-    this._chartService.createBarChart('netWorthMonthlyChange', {
+    this._chartService.createBarChart('investmentsMonthlyChange', {
       labels: this._getArrayOfFields('date'),
       datasets: [
         {
@@ -35,17 +46,6 @@ export class NetWorthMonthlyChangeCardComponent implements OnInit {
         }
       ]
     });
-  }
-
-  private _processTrendsData(): void {
-    this._processedTrendsData = [...this.netWorthMonthlyChangeData]
-      .reverse()
-      .map((data) => {
-        return {
-          date: data.date,
-          change: data.change
-        };
-      });
   }
 
   private _getArrayOfFields(key: string): Array<string | number> {
