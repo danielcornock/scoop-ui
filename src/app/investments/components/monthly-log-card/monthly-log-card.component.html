@@ -30,6 +30,11 @@
       <td class="MonthlyLogCard-rowItem">
         {{ row.profitChangeSinceLast | currency: 'GBP':'symbol':'1.0-2' }}
       </td>
+      <app-table-actions
+        class="MonthlyLogCard-rowItem"
+        *ngIf="isEditing"
+        (tableActionsRemove)="removeLog(row.date)"
+      ></app-table-actions>
     </tr>
   </app-table>
 </app-card>

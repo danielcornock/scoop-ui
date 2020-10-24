@@ -17,6 +17,7 @@ import { FormErrorsComponent } from './components/form-errors/form-errors.compon
 import { FormSubmitComponent } from './components/form-submit/form-submit.component';
 import { IconPickerComponent } from './components/icon-picker/icon-picker.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
+import { TableActionsComponent } from './components/table-actions/table-actions.component';
 import { TableComponent } from './components/table/table.component';
 import { JoinPipe } from './pipes/join/join.pipe';
 import { KebabCasePipe } from './pipes/kebab-case/kebab-case.pipe';
@@ -34,7 +35,8 @@ import { KeysPipe } from './pipes/keys/keys.pipe';
     LoadingSpinnerComponent,
     IconPickerComponent,
     KebabCasePipe,
-    JoinPipe
+    JoinPipe,
+    TableActionsComponent
   ],
   imports: [
     CommonModule,
@@ -61,7 +63,8 @@ import { KeysPipe } from './pipes/keys/keys.pipe';
     ContextMenuComponent,
     LoadingSpinnerComponent,
     IconPickerComponent,
-    JoinPipe
+    JoinPipe,
+    TableActionsComponent
   ]
 })
 export class SharedModule {}

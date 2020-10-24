@@ -14,10 +14,10 @@
       >
         {{ row[item] | currency: 'GBP':'symbol':'1.0-2' }}
       </td>
-      <td class="NetWorthLog-rowItem NetWorthLog-actions" *ngIf="isEditing">
-        <button class="NetWorthLog-deleteButton" (click)="removeLog(row.date)">
-          <i-feather name="trash"></i-feather>
-        </button>
-      </td></tr
+      <app-table-actions
+        class="NetWorthLog-rowItem"
+        *ngIf="isEditing"
+        (tableActionsRemove)="removeLog(row.date)"
+      ></app-table-actions></tr
   ></app-table>
 </app-card>

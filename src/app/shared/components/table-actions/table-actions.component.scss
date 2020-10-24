@@ -1,0 +1,30 @@
+@import 'src/assets/styles/themes.scss';
+
+:host {
+  display: block;
+}
+
+.TableActions {
+  &-container {
+    display: flex;
+  }
+
+  &-deleteButton {
+    @include button-reset;
+    margin-left: auto;
+    transition: all 100ms;
+
+    i-feather {
+      height: 20px;
+      width: 20px;
+      color: $color-form-input-error-border;
+    }
+
+    &:hover {
+      transform: scale(1.2);
+      i-feather {
+        color: $color-form-input-error-text;
+      }
+    }
+  }
+}
