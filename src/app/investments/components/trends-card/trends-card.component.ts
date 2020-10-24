@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ChartService } from 'src/app/shared/services/chart/chart.service';
+
+import { IInvestmentLog } from '../../interfaces/investment-log.interface';
 
 @Component({
   selector: 'app-trends-card',
@@ -7,9 +9,19 @@ import { ChartService } from 'src/app/shared/services/chart/chart.service';
   styleUrls: ['./trends-card.component.scss']
 })
 export class TrendsCardComponent implements OnInit {
+  @Input()
+  public trendsCardData: Array<IInvestmentLog>;
+
+  private _processedTrendsData: Array<{
+    date: string;
+    invested: number;
+    value: number;
+  }>;
+
   constructor(private readonly _chartService: ChartService) {}
 
   ngOnInit(): void {
+    this._processTrendsData();
     this._createGraphConfig();
   }
 
@@ -17,24 +29,18 @@ export class TrendsCardComponent implements OnInit {
     this._chartService.createLineChart(
       'investmentTrend',
       {
-        labels: [
-          '12/04/2020',
-          '12/05/2020',
-          '12/06/2020',
-          '12/07/2020',
-          '20/07/2020'
-        ],
+        labels: this._getArrayOfFields('date'),
         datasets: [
           {
             label: 'Total Invested',
-            data: [300, 600, 1200, 1200, 1200],
+            data: this._getArrayOfFields('invested') as number[],
             borderColor: 'rgba(28,128,220, 1)',
             backgroundColor: 'rgba(28,128,220, 0.08)',
             borderWidth: 2
           },
           {
             label: 'Investment Value',
-            data: [306, 634, 1350, 1210, 1130],
+            data: this._getArrayOfFields('value') as number[],
             borderColor: 'green',
             backgroundColor: 'rgba(54,87,220, 0.08)',
             borderWidth: 2
@@ -43,5 +49,23 @@ export class TrendsCardComponent implements OnInit {
       },
       { yAxisStepSize: 400 }
     );
+  }
+
+  private _getArrayOfFields(key: string): Array<string | number> {
+    const fields = this._processedTrendsData.map((item) => item[key]);
+
+    return fields;
+  }
+
+  private _processTrendsData(): void {
+    this._processedTrendsData = [...this.trendsCardData]
+      .reverse()
+      .map((data) => {
+        return {
+          date: data.date,
+          invested: data.totalInvested,
+          value: data.totalValue
+        };
+      });
   }
 }

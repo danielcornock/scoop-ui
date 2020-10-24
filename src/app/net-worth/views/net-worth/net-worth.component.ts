@@ -48,7 +48,7 @@ export class NetWorthComponent implements OnInit {
       return {
         label: item.label,
         value: this._toCurrency(item.value),
-        icon: 'trending-up'
+        icon: item.icon
       };
     });
   }

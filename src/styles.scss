@@ -12,7 +12,7 @@ body {
 }
 
 :root {
-  --spacing-page-top: #{$spacing-50};
+  --spacing-page-top: #{$spacing-40};
   --spacing-page-side: #{$spacing-50};
 
   @include media-tablet {
