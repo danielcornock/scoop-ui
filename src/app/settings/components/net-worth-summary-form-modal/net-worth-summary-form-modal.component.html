@@ -1,0 +1,25 @@
+<div class="NetWorthSummaryFormModal-container">
+  <h3 class="NetWorthSummaryFormModal-subheading">
+    Add another item
+  </h3>
+  <form
+    [formGroup]="form.formGroup"
+    (ngSubmit)="addOption()"
+    class="NetWorthSummaryFormModal-form"
+    *ngIf="form"
+  >
+    <ngx-form-input [formInputField]="form.fields[0]"></ngx-form-input>
+    <ngx-form-input-multi-select
+      [formInputMultiSelectOptions]="availableFields"
+      [formInputField]="form.fields[1]"
+    ></ngx-form-input-multi-select>
+    <p class="NetWorthSummaryFormModal-iconPickerLabel">Selected Icon</p>
+    <app-icon-picker
+      (iconPickerSelected)="onIconSelect($event)"
+    ></app-icon-picker>
+    <app-form-submit
+      class="NetWorthSummaryFormModal-submitNew"
+      value="Add option"
+    ></app-form-submit>
+  </form>
+</div>

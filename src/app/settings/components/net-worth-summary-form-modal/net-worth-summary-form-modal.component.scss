@@ -1,0 +1,31 @@
+@import 'src/assets/styles/themes.scss';
+
+.NetWorthSummaryFormModal {
+  &-container {
+    min-width: 400px;
+  }
+
+  &-subheading {
+    @include page-subheading;
+    margin-bottom: $spacing-20;
+  }
+
+  &-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+
+    @include media-tablet {
+      display: block;
+    }
+  }
+
+  &-iconPickerLabel {
+    @include form-input-label;
+  }
+
+  &-submitNew {
+    display: block;
+    margin-top: $spacing-50;
+  }
+}

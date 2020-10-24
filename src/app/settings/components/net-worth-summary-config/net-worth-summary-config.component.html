@@ -68,33 +68,11 @@
         <i-feather name="x"></i-feather>
       </button>
     </div>
-    <button class="NetWorthSummaryConfig-selectedItem" (click)="toggleForm()">
+    <button
+      class="NetWorthSummaryConfig-selectedItem"
+      (click)="openFormModal()"
+    >
       <i-feather name="plus"></i-feather>
     </button>
   </div>
-  <ng-container *ngIf="showForm">
-    <h3 class="NetWorthSummaryConfig-subheading">Add another item</h3>
-    <form
-      [formGroup]="form.formGroup"
-      (ngSubmit)="addOption()"
-      class="NetWorthSummaryConfig-form"
-      *ngIf="form"
-    >
-      <ngx-form-input
-        class="NetWorthSummaryConfig-labelField"
-        [formInputField]="form.fields[0]"
-      ></ngx-form-input>
-      <ngx-form-input-multi-select
-        class="NetWorthSummaryConfig-selectionField"
-        [formInputMultiSelectOptions]="availableFields"
-        [formInputField]="form.fields[1]"
-      ></ngx-form-input-multi-select>
-      <p class="NetWorthSummaryConfig-iconPickerLabel">Selected Icon</p>
-      <app-icon-picker></app-icon-picker>
-      <app-form-submit
-        class="NetWorthSummaryConfig-submitNew"
-        value="Add option"
-      ></app-form-submit>
-    </form>
-  </ng-container>
 </div>

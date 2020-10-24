@@ -10,13 +10,17 @@ import { CoreModule } from '../core/core.module';
 import { SharedModule } from '../shared/shared.module';
 import { NetWorthConfigComponent } from './components/net-worth-config/net-worth-config.component';
 import { NetWorthSummaryConfigComponent } from './components/net-worth-summary-config/net-worth-summary-config.component';
+import {
+  NetWorthSummaryFormModalComponent,
+} from './components/net-worth-summary-form-modal/net-worth-summary-form-modal.component';
 import { SettingsComponent } from './views/settings/settings.component';
 
 @NgModule({
   declarations: [
     SettingsComponent,
     NetWorthConfigComponent,
-    NetWorthSummaryConfigComponent
+    NetWorthSummaryConfigComponent,
+    NetWorthSummaryFormModalComponent
   ],
   imports: [
     CommonModule,

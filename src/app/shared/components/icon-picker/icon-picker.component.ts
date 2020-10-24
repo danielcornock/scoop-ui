@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { allIcons } from 'angular-feather/icons';
 import { chunk, kebabCase } from 'lodash';
 
@@ -8,6 +8,9 @@ import { chunk, kebabCase } from 'lodash';
   styleUrls: ['./icon-picker.component.scss']
 })
 export class IconPickerComponent implements OnInit {
+  @Output()
+  public iconPickerSelected: EventEmitter<string> = new EventEmitter();
+
   public displayIcons: boolean;
   public allIcons = allIcons;
   public chunkedIconKeys: string[][];
@@ -32,6 +35,7 @@ export class IconPickerComponent implements OnInit {
   public selectIcon(name: string): void {
     this.selectedIcon = kebabCase(name);
     this.displayIcons = false;
+    this.iconPickerSelected.emit(this.selectedIcon);
   }
 
   public closeIcons(): void {

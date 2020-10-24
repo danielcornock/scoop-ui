@@ -1,14 +1,10 @@
-import {
-  CdkDragDrop,
-  CdkDropList,
-  moveItemInArray,
-  transferArrayItem
-} from '@angular/cdk/drag-drop';
+import { CdkDragDrop, CdkDropList, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit } from '@angular/core';
-import { FormContainer, FormFactory } from 'ngx-form-trooper';
+import { MatDialog } from '@angular/material/dialog';
 
 import { INetWorthSummaryItemConfig } from '../../interfaces/settings.interface';
 import { SettingsService } from '../../services/settings/settings.service';
+import { NetWorthSummaryFormModalComponent } from '../net-worth-summary-form-modal/net-worth-summary-form-modal.component';
 
 @Component({
   selector: 'app-net-worth-summary-config',
@@ -22,36 +18,18 @@ export class NetWorthSummaryConfigComponent implements OnInit {
   @Input()
   public netWorthSummaryConfigOptions: Array<INetWorthSummaryItemConfig>;
 
-  public form: FormContainer;
   public availableFields: string[];
-  public showForm: boolean;
   public isInvalid: boolean;
 
   constructor(
-    private readonly _formFactory: FormFactory,
-    private readonly _settingsService: SettingsService
+    private readonly _settingsService: SettingsService,
+    private readonly _matDialog: MatDialog
   ) {}
 
   async ngOnInit(): Promise<void> {
     const settings = await this._settingsService.getSettings();
 
     this.availableFields = settings.netWorthFields;
-    this.form = this._formFactory.createForm([
-      {
-        name: 'label',
-        label: 'Label',
-        validators: {
-          required: true
-        }
-      },
-      {
-        name: 'sumOf',
-        label: 'Combined Fields',
-        validators: {
-          required: true
-        }
-      }
-    ]);
   }
 
   public removeItem(
@@ -61,16 +39,21 @@ export class NetWorthSummaryConfigComponent implements OnInit {
     array.splice(index, 1);
   }
 
-  public toggleForm(): void {
-    this.showForm = !this.showForm;
+  public openFormModal(): void {
+    this._matDialog
+      .open(NetWorthSummaryFormModalComponent, {
+        data: {
+          availableFields: this.availableFields
+        }
+      })
+      .afterClosed()
+      .subscribe(this._addOption.bind(this));
   }
 
-  public addOption(): void {
-    if (this.form.formGroup.invalid) {
-      return;
+  private _addOption(data: INetWorthSummaryItemConfig): void {
+    if (data) {
+      this.netWorthSummaryConfigOptions.push(data);
     }
-
-    this.netWorthSummaryConfigOptions.push(this.form.value);
   }
 
   public dropColumn(event: CdkDragDrop<INetWorthSummaryItemConfig[]>): void {
