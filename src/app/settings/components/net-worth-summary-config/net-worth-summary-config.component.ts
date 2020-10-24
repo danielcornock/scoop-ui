@@ -83,10 +83,6 @@ export class NetWorthSummaryConfigComponent implements OnInit {
     }
   }
 
-  public getListedItemsString(items: Array<string>): string {
-    return items.join(', ');
-  }
-
   private _selectedItemsIsLessThan4(previousContainer: CdkDropList): boolean {
     /* Not sure why it is picking up the previous array length as
       one higher than it actually is. Quick fix for now is making it

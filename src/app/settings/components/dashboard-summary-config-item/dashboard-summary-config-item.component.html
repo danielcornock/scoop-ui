@@ -1,0 +1,10 @@
+<div class="DashboardSummaryConfigItem-container">
+  <i-feather [name]="dashboardSummaryConfigItem.icon || 'triangle'"></i-feather>
+  <p>{{ dashboardSummaryConfigItem.label }}</p>
+  <p class="DashboardSummaryConfigItem-selectedItemAttributes">
+    {{ dashboardSummaryConfigItem.sumOf | join: ', ' }}
+  </p>
+  <button class="DashboardSummaryConfigItem-removeItem" (click)="removeItem()">
+    <i-feather name="x"></i-feather>
+  </button>
+</div>

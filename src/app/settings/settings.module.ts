@@ -14,13 +14,15 @@ import {
   NetWorthSummaryFormModalComponent,
 } from './components/net-worth-summary-form-modal/net-worth-summary-form-modal.component';
 import { SettingsComponent } from './views/settings/settings.component';
+import { DashboardSummaryConfigItemComponent } from './components/dashboard-summary-config-item/dashboard-summary-config-item.component';
 
 @NgModule({
   declarations: [
     SettingsComponent,
     NetWorthConfigComponent,
     NetWorthSummaryConfigComponent,
-    NetWorthSummaryFormModalComponent
+    NetWorthSummaryFormModalComponent,
+    DashboardSummaryConfigItemComponent
   ],
   imports: [
     CommonModule,

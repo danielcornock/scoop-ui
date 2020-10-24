@@ -20,22 +20,15 @@
     (cdkDropListDropped)="dropColumn($event)"
     cdkDropListOrientation="horizontal"
   >
-    <div
+    <app-dashboard-summary-config-item
       class="NetWorthSummaryConfig-selectedItem"
       *ngFor="let item of netWorthSummaryConfigSelectedItems; let i = index"
+      [dashboardSummaryConfigItem]="item"
+      (dashboardSummaryConfigItemRemove)="
+        removeItem(i, netWorthSummaryConfigSelectedItems)
+      "
       cdkDrag
-    >
-      <p>{{ item.label }}</p>
-      <p class="NetWorthSummaryConfig-selectedItemAttributes">
-        {{ getListedItemsString(item.sumOf) }}
-      </p>
-      <button
-        class="NetWorthSummaryConfig-removeItem"
-        (click)="removeItem(i, netWorthSummaryConfigSelectedItems)"
-      >
-        <i-feather name="x"></i-feather>
-      </button>
-    </div>
+    ></app-dashboard-summary-config-item>
   </div>
 
   <p class="NetWorthSummaryConfig-error" *ngIf="isInvalid">
@@ -52,24 +45,17 @@
     (cdkDropListDropped)="dropColumn($event)"
     cdkDropListOrientation="horizontal"
   >
-    <div
+    <app-dashboard-summary-config-item
       class="NetWorthSummaryConfig-selectedItem"
       *ngFor="let item of netWorthSummaryConfigOptions; let i = index"
+      [dashboardSummaryConfigItem]="item"
+      (dashboardSummaryConfigItemRemove)="
+        removeItem(i, netWorthSummaryConfigOptions)
+      "
       cdkDrag
-    >
-      <p>{{ item.label }}</p>
-      <p class="NetWorthSummaryConfig-selectedItemAttributes">
-        {{ getListedItemsString(item.sumOf) }}
-      </p>
-      <button
-        class="NetWorthSummaryConfig-removeItem"
-        (click)="removeItem(i, netWorthSummaryConfigOptions)"
-      >
-        <i-feather name="x"></i-feather>
-      </button>
-    </div>
+    ></app-dashboard-summary-config-item>
     <button
-      class="NetWorthSummaryConfig-selectedItem"
+      class="NetWorthSummaryConfig-addMoreButton"
       (click)="openFormModal()"
     >
       <i-feather name="plus"></i-feather>

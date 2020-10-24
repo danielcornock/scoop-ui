@@ -1,0 +1,48 @@
+@import 'src/assets/styles/themes.scss';
+
+.DashboardSummaryConfigItem {
+  $cmp: &;
+
+  &-container {
+    @include settings-moveable-item;
+    @include center-contents;
+    flex-direction: column;
+    padding: $spacing-20 $spacing-30;
+    text-align: center;
+    font-size: 18px;
+    position: relative;
+    min-width: 170px;
+
+    @include media-phone {
+      padding: $spacing-10 $spacing-20;
+    }
+
+    &:hover {
+      #{$cmp}-removeItem {
+        display: block;
+      }
+    }
+  }
+
+  &-removeItem {
+    @include button-reset;
+    display: none;
+    position: absolute;
+    top: $spacing-5;
+    right: $spacing-5;
+    color: $color-subheading;
+    transition: 100ms;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+
+  &-selectedItemAttributes {
+    font-size: 10px;
+    text-transform: uppercase;
+
+    @include media-phone {
+    }
+  }
+}
