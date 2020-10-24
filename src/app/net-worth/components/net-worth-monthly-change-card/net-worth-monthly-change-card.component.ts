@@ -19,22 +19,18 @@ export class NetWorthMonthlyChangeCardComponent implements OnInit {
 
   ngOnInit(): void {
     this._processTrendsData();
-    this._chartService.createBarChart(
-      'netWorthMonthlyChange',
-      {
-        labels: this._getArrayOfFields('date'),
-        datasets: [
-          {
-            label: 'Change from previous month',
-            data: this._getArrayOfFields('change') as number[],
-            borderColor: 'rgba(255,255,255, 0)',
-            backgroundColor: [...barChartColors],
-            borderWidth: 2
-          }
-        ]
-      },
-      {}
-    );
+    this._chartService.createBarChart('netWorthMonthlyChange', {
+      labels: this._getArrayOfFields('date'),
+      datasets: [
+        {
+          label: 'Change from previous month',
+          data: this._getArrayOfFields('change') as number[],
+          borderColor: 'rgba(255,255,255, 0)',
+          backgroundColor: [...barChartColors],
+          borderWidth: 2
+        }
+      ]
+    });
   }
 
   private _processTrendsData(): void {

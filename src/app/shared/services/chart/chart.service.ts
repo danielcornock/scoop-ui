@@ -21,21 +21,21 @@ export class ChartService {
   public createBarChart(
     chartName: string,
     data: ChartData,
-    config: Chart.ChartConfiguration
+    config?: ILineChartConfig
   ): Chart {
     this._repeatColors(data.datasets[0]);
 
     return this.createChart(chartName, {
       type: 'bar',
       data,
-      options: this._getLineChartOptions({ yAxisStepSize: 200 })
+      options: this._getLineChartOptions(config)
     });
   }
 
   public createLineChart(
     chartName: string,
     data: ChartData,
-    lineChartConfig: ILineChartConfig
+    lineChartConfig?: ILineChartConfig
   ): Chart {
     return this.createChart(chartName, {
       type: 'line',
@@ -80,7 +80,7 @@ export class ChartService {
   }
 
   private _getLineChartOptions(
-    lineChartConfig: ILineChartConfig
+    lineChartConfig?: ILineChartConfig
   ): Chart.ChartOptions {
     return {
       hover: {},
@@ -98,7 +98,7 @@ export class ChartService {
               fontStyle: '500',
               fontColor: '#a0a0a0',
               fontSize: 12,
-              stepSize: lineChartConfig.yAxisStepSize,
+              stepSize: lineChartConfig?.yAxisStepSize,
               beginAtZero: false
             }
           }

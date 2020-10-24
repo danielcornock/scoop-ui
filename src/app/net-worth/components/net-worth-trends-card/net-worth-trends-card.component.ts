@@ -18,22 +18,18 @@ export class NetWorthTrendsCardComponent implements OnInit {
 
   ngOnInit(): void {
     this._processTrendsData();
-    this._chartService.createLineChart(
-      'netWorthTrends',
-      {
-        labels: this._getArrayOfFields('date'),
-        datasets: [
-          {
-            label: 'Net Worth',
-            data: this._getArrayOfFields('total') as number[],
-            borderColor: 'rgba(28,128,220, 1)',
-            backgroundColor: 'rgba(28,128,220, 0.08)',
-            borderWidth: 2
-          }
-        ]
-      },
-      { yAxisStepSize: 2000 }
-    );
+    this._chartService.createLineChart('netWorthTrends', {
+      labels: this._getArrayOfFields('date'),
+      datasets: [
+        {
+          label: 'Net Worth',
+          data: this._getArrayOfFields('total') as number[],
+          borderColor: 'rgba(28,128,220, 1)',
+          backgroundColor: 'rgba(28,128,220, 0.08)',
+          borderWidth: 2
+        }
+      ]
+    });
   }
 
   private _getArrayOfFields(key: string): Array<string | number> {

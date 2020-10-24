@@ -47,7 +47,7 @@ export class TrendsCardComponent implements OnInit {
           }
         ]
       },
-      { yAxisStepSize: 400 }
+      { yAxisStepSize: undefined }
     );
   }
 
