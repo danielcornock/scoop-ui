@@ -5,7 +5,7 @@ import { NgxFormTrooperModule } from 'ngx-form-trooper';
 
 import { SharedModule } from '../shared/shared.module';
 import { CompaniesCardComponent } from './components/companies-card/companies-card.component';
-import { MonthlyLogCardComponent } from './components/monthly-log-card/monthly-log-card.component';
+import { InvestmentsLogCardComponent } from './components/investments-log-card/investments-log-card.component';
 import { TrendsCardComponent } from './components/trends-card/trends-card.component';
 import { InvestmentsEntryFormComponent } from './views/investments-entry-form/investments-entry-form.component';
 import { InvestmentsComponent } from './views/investments/investments.component';
@@ -15,7 +15,7 @@ import { InvestmentsComponent } from './views/investments/investments.component'
     InvestmentsComponent,
     CompaniesCardComponent,
     TrendsCardComponent,
-    MonthlyLogCardComponent,
+    InvestmentsLogCardComponent,
     InvestmentsEntryFormComponent
   ],
   imports: [

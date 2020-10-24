@@ -10,7 +10,7 @@ import { IInvestmentLog } from '../../interfaces/investment-log.interface';
   templateUrl: './monthly-log-card.component.html',
   styleUrls: ['./monthly-log-card.component.scss']
 })
-export class MonthlyLogCardComponent implements OnInit {
+export class InvestmentsLogCardComponent implements OnInit {
   @Input()
   public monthlyLogCardItems: Array<IInvestmentLog>;
 

@@ -10,28 +10,30 @@
       'Change since last month'
     ]"
   >
-    <tr class="MonthlyLogCard-row" *ngFor="let row of monthlyLogCardItems">
-      <td class="MonthlyLogCard-rowItem">{{ row.date | date: 'MMMM y' }}</td>
-      <td class="MonthlyLogCard-rowItem">
+    <tr class="InvestmentsLogCard-row" *ngFor="let row of monthlyLogCardItems">
+      <td class="InvestmentsLogCard-rowItem">
+        {{ row.date | date: 'MMMM y' }}
+      </td>
+      <td class="InvestmentsLogCard-rowItem">
         {{ row.addedSinceLast | currency: 'GBP':'symbol':'1.0-2' }}
       </td>
-      <td class="MonthlyLogCard-rowItem">
+      <td class="InvestmentsLogCard-rowItem">
         {{ row.totalInvested | currency: 'GBP':'symbol':'1.0-2' }}
       </td>
-      <td class="MonthlyLogCard-rowItem">
+      <td class="InvestmentsLogCard-rowItem">
         {{ row.totalValue | currency: 'GBP':'symbol':'1.0-2' }}
       </td>
-      <td class="MonthlyLogCard-rowItem">
+      <td class="InvestmentsLogCard-rowItem">
         {{ row.profit | currency: 'GBP':'symbol':'1.0-2' }}
       </td>
-      <td class="MonthlyLogCard-rowItem">
+      <td class="InvestmentsLogCard-rowItem">
         {{ row.profitPercentage | percent }}
       </td>
-      <td class="MonthlyLogCard-rowItem">
+      <td class="InvestmentsLogCard-rowItem">
         {{ row.profitChangeSinceLast | currency: 'GBP':'symbol':'1.0-2' }}
       </td>
       <app-table-actions
-        class="MonthlyLogCard-rowItem"
+        class="InvestmentsLogCard-rowItem"
         *ngIf="isEditing"
         (tableActionsRemove)="removeLog(row.date)"
       ></app-table-actions>
