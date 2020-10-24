@@ -1,4 +1,5 @@
 @import 'src/assets/styles/themes.scss';
+@import '../../../shared//components//dashboard-summary/dashboard-summary.component.scss';
 
 .Investments {
   &-container {
@@ -20,6 +21,8 @@
   }
 
   &-section {
+    display: block;
+    min-width: 0;
     @include media-phone {
       display: block;
       & + & {

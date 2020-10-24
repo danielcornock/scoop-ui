@@ -30,6 +30,7 @@
       justify-content: center;
       flex-direction: column;
       padding: 0;
+      min-height: 130px;
     }
 
     @include media-tablet {
@@ -43,6 +44,7 @@
       justify-content: space-between;
       padding: $spacing-15 $spacing-20;
       flex-direction: row-reverse;
+      min-height: 0;
     }
   }
 
