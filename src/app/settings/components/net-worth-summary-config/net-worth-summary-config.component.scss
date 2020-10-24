@@ -1,8 +1,6 @@
 @import 'src/assets/styles/themes.scss';
 
 .NetWorthSummaryConfig {
-  $cmp: &;
-
   &-heading {
     @include page-subheading;
     margin-bottom: $spacing-20;
