@@ -8,6 +8,6 @@
     (click)="selectItem(i)"
   >
     <i-feather [name]="item.icon" *ngIf="item.icon"></i-feather>
-    {{ item.label }}
+    {{ item.label ? item.label : item.generateLabel() }}
   </button>
 </mat-menu>

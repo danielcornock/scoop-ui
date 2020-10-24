@@ -20,6 +20,7 @@ export class NetWorthLogComponent implements OnInit {
 
   public logs: Array<Dictionary<string | number>>;
   public contextMenuItems: Array<IContextMenuItem>;
+  public isEditing: boolean;
 
   constructor(
     private readonly _router: Router,
@@ -42,8 +43,17 @@ export class NetWorthLogComponent implements OnInit {
         label: 'Create Entry',
         action: () => this._router.navigateByUrl('net-worth/create'),
         icon: 'plus'
+      },
+      {
+        generateLabel: this._getContextMenuEditText.bind(this),
+        action: () => (this.isEditing = !this.isEditing),
+        icon: 'edit'
       }
     ];
+  }
+
+  private _getContextMenuEditText(): string {
+    return this.isEditing ? 'Stop Editing' : 'Enable Editing';
   }
 
   private _assignLogs(): void {
