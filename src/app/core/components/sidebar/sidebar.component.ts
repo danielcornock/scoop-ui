@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ExperimentalService } from 'src/app/shared/services/experimental/experimental.service';
+
 import { INavigationItem } from './interfaces/navigation-item.interface';
 
 @Component({
@@ -8,6 +10,8 @@ import { INavigationItem } from './interfaces/navigation-item.interface';
 })
 export class SidebarComponent implements OnInit {
   public navItems: Array<INavigationItem>;
+
+  constructor(private readonly _experimentalService: ExperimentalService) {}
 
   ngOnInit(): void {
     this._assignNavItems();
@@ -21,11 +25,6 @@ export class SidebarComponent implements OnInit {
         icon: 'trending-up'
       },
       {
-        label: 'Monthly Distribution',
-        link: 'monthly-distribution',
-        icon: 'calendar'
-      },
-      {
         label: 'Net Worth',
         link: 'net-worth',
         icon: 'file-text'
@@ -36,5 +35,13 @@ export class SidebarComponent implements OnInit {
         icon: 'settings'
       }
     ];
+
+    if (this._experimentalService.isDevelopment()) {
+      this.navItems.splice(1, 0, {
+        label: 'Monthly Distribution',
+        link: 'monthly-distribution',
+        icon: 'calendar'
+      });
+    }
   }
 }
