@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, isDevMode } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,7 @@ export class ExperimentalService {
   constructor() {}
 
   public isDevelopment(): boolean {
-    return this._isExperimental;
+    return isDevMode();
   }
 
   public toggleExperimental(): void {
