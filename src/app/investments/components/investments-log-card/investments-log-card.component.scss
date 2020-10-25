@@ -7,5 +7,13 @@
 
   &-rowItem {
     @include table-row-item;
+
+    &.is-negative {
+      color: $color-form-input-error-border;
+    }
+
+    &.is-positive {
+      color: $green-500;
+    }
   }
 }

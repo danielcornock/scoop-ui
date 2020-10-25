@@ -3,6 +3,10 @@
 .IconPicker {
   &-container {
     position: relative;
+
+    @include media-phone {
+      position: static;
+    }
   }
 
   &-header {
@@ -26,6 +30,14 @@
     background-color: $color-white;
     padding: $spacing-20;
     border-radius: $br-med;
+
+    @include media-phone {
+      z-index: 100;
+      left: $spacing-10;
+      right: $spacing-10;
+      bottom: initial;
+      top: $spacing-10;
+    }
   }
 
   &-iconButton {
@@ -37,6 +49,13 @@
     &:hover {
       background-color: $color-primary-light;
       color: $color-primary;
+    }
+
+    @include media-phone {
+      i-feather {
+        height: 15px;
+        width: 15px;
+      }
     }
   }
 

@@ -23,13 +23,25 @@
       <td class="InvestmentsLogCard-rowItem">
         {{ row.totalValue | currency: 'GBP':'symbol':'1.0-2' }}
       </td>
-      <td class="InvestmentsLogCard-rowItem">
+      <td
+        class="InvestmentsLogCard-rowItem"
+        [class.is-negative]="row.profitChangeSinceLast < 0"
+        [class.is-positive]="row.profitChangeSinceLast > 0"
+      >
         {{ row.profit | currency: 'GBP':'symbol':'1.0-2' }}
       </td>
-      <td class="InvestmentsLogCard-rowItem">
+      <td
+        class="InvestmentsLogCard-rowItem"
+        [class.is-negative]="row.profitChangeSinceLast < 0"
+        [class.is-positive]="row.profitChangeSinceLast > 0"
+      >
         {{ row.profitPercentage | percent }}
       </td>
-      <td class="InvestmentsLogCard-rowItem">
+      <td
+        class="InvestmentsLogCard-rowItem"
+        [class.is-negative]="row.profitChangeSinceLast < 0"
+        [class.is-positive]="row.profitChangeSinceLast > 0"
+      >
         {{ row.profitChangeSinceLast | currency: 'GBP':'symbol':'1.0-2' }}
       </td>
       <app-table-actions

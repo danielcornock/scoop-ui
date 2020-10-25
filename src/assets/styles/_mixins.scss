@@ -186,3 +186,12 @@
     @content;
   }
 }
+
+@mixin modal-title {
+  @include page-subheading;
+  margin-bottom: $spacing-20;
+
+  @include media-phone {
+    font-size: 20px;
+  }
+}
