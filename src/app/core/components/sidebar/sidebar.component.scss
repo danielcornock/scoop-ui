@@ -19,6 +19,7 @@
 
     @include media-ld {
       width: 80px;
+      padding-top: var(--spacing-page-top);
     }
 
     @include media-phone {
@@ -43,19 +44,20 @@
 
   &-brandingLogo {
     display: block;
-    height: 30px;
+    height: 34px;
     margin-right: $spacing-10;
 
     @include media-ld {
+      height: 30px;
       margin-right: 0;
     }
   }
 
   &-brandingBeta {
     position: absolute;
-    top: 80%;
-    right: 20px;
-    font-size: 10px;
+    top: 30px;
+    right: 24px;
+    font-size: 12px;
     letter-spacing: 3px;
 
     @include media-ld {
@@ -64,7 +66,7 @@
   }
 
   &-brandingText {
-    font-size: 32px;
+    font-size: 38px;
     font-weight: 600;
     line-height: 1;
     position: relative;
