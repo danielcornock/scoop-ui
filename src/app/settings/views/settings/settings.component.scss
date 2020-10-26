@@ -10,6 +10,13 @@
     position: fixed;
     bottom: $spacing-30;
     right: $spacing-30;
+    z-index: 100;
+
+    @include media-phone {
+      /* To account for menu at botton */
+      bottom: 64px + $spacing-10;
+      right: $spacing-10;
+    }
   }
 
   &-section {

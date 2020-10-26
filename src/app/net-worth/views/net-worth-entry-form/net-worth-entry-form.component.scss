@@ -14,9 +14,7 @@
   }
 
   &-subheading {
-    padding-top: $spacing-30;
-    margin-bottom: $spacing-20;
-    @include page-subheading;
+    @include form-subheading;
     display: flex;
     align-items: baseline;
     justify-content: space-between;

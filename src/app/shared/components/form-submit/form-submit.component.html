@@ -1,1 +1,6 @@
-<input type="submit" class="FormSubmit-button" [value]="value" />
+<input
+  type="submit"
+  class="FormSubmit-button"
+  [value]="value"
+  (click)="markFormAsTouched()"
+/>

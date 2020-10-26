@@ -1,0 +1,21 @@
+@import 'src/assets/styles/themes.scss';
+
+.MonthlyDistributionEntryForm {
+  &-container {
+    @include page-container;
+  }
+
+  &-form {
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+
+    @include media-tablet {
+      max-width: initial;
+    }
+  }
+
+  &-subtitle {
+    @include form-subheading;
+  }
+}

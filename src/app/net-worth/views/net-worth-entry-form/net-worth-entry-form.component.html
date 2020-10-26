@@ -4,33 +4,25 @@
     class="NetWorthEntryForm-form"
     (ngSubmit)="submitForm()"
   >
-    <ngx-form-input
-      [formInputField]="form.fields[0]"
-      label="Month"
-      type="month"
-    ></ngx-form-input>
+    <ngx-form-input [formInputField]="form.fields[0]"></ngx-form-input>
     <h2 class="NetWorthEntryForm-subheading">
       Entries
-      <a
-        class="NetWorthEntryForm-moreFieldsLink"
-        routerLink="../../settings"
-        fragment="net-worth-summary-config"
-      >
+      <a class="NetWorthEntryForm-moreFieldsLink" routerLink="../../settings">
         <i-feather name="plus"></i-feather> Add more fields</a
       >
     </h2>
-    <div
-      class="NetWorthEntryForm-input"
+
+    <ngx-form-input
       *ngFor="let field of form.fields | slice: 1"
-    >
-      <ngx-form-input [formInputField]="field"></ngx-form-input>
-    </div>
+      [formInputField]="field"
+    ></ngx-form-input>
 
     <app-form-errors [appFormErrors]="errors"></app-form-errors>
 
     <app-form-submit
       class="NetWorthEntryForm-submit"
       value="Save Entry"
+      [form]="form.formGroup"
     ></app-form-submit>
   </form>
 </div>

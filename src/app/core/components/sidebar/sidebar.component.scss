@@ -23,6 +23,7 @@
     }
 
     @include media-phone {
+      border-top: 1px solid $color-page-background;
       width: 100%;
       height: auto;
       background-color: $color-primary;

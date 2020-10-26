@@ -1,8 +1,3 @@
-@mixin page-container {
-  padding: var(--spacing-page-top) var(--spacing-page-side);
-  height: 100%;
-}
-
 @mixin center-contents {
   display: flex;
   align-items: center;
@@ -193,5 +188,24 @@
 
   @include media-phone {
     font-size: 20px;
+  }
+}
+
+@mixin form-subheading {
+  padding-top: $spacing-30;
+  margin-bottom: $spacing-20;
+  @include page-subheading;
+
+  @include media-phone {
+    padding-top: $spacing-10;
+  }
+}
+
+@mixin page-container {
+  padding: var(--spacing-page-top) var(--spacing-page-side);
+  height: 100%;
+
+  @include media-phone {
+    padding-top: $spacing-30;
   }
 }

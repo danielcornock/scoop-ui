@@ -1,0 +1,38 @@
+<div
+  class="MonthlyDistributionEntryForm-container animate-page-in"
+  *ngIf="form"
+>
+  <form
+    class="MonthlyDistributionEntryForm-form"
+    (ngSubmit)="submitForm()"
+    [formGroup]="form.formGroup"
+  >
+    <ngx-form-input [formInputField]="form.fields[0]"></ngx-form-input>
+    <div class="MonthlyDistributionEntryForm-section">
+      <h2 class="MonthlyDistributionEntryForm-subtitle">
+        {{ form.fields[1].label }}
+      </h2>
+      <ngx-form-input
+        *ngFor="let field of form.fields[1].fields"
+        [formInputField]="field"
+      ></ngx-form-input>
+    </div>
+    <div class="MonthlyDistributionEntryForm-section">
+      <h2 class="MonthlyDistributionEntryForm-subtitle">
+        {{ form.fields[2].label }}
+      </h2>
+      <ngx-form-input
+        *ngFor="let field of form.fields[2].fields"
+        [formInputField]="field"
+      ></ngx-form-input>
+    </div>
+
+    <app-form-errors [appFormErrors]="errors"></app-form-errors>
+
+    <app-form-submit
+      class="MonthlyDistributionEntryForm-submit"
+      value="Create monthly distribution log"
+      [form]="form.formGroup"
+    ></app-form-submit>
+  </form>
+</div>

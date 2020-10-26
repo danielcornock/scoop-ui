@@ -20,6 +20,10 @@
       [formInputField]="field"
     ></ngx-form-input>
     <app-form-errors [appFormErrors]="errors"></app-form-errors>
-    <app-form-submit class="Login-submit" value="Log in"></app-form-submit>
+    <app-form-submit
+      class="Login-submit"
+      [form]="loginForm.formGroup"
+      value="Log in"
+    ></app-form-submit>
   </form>
 </div>
