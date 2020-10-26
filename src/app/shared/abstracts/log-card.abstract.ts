@@ -1,9 +1,8 @@
-import { OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { IContextMenuItem } from '../components/context-menu/interfaces/context-menu-item.interface';
 
-export class LogCard implements OnInit {
+export class LogCard {
   public isEditing: boolean;
   public cardActions: Array<IContextMenuItem>;
 
