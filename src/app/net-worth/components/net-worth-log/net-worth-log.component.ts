@@ -4,6 +4,7 @@ import { Dictionary } from 'lodash';
 import { HttpService } from 'src/app/core/services/http/http.service';
 import { IContextMenuItem } from 'src/app/shared/components/context-menu/interfaces/context-menu-item.interface';
 
+import { LogCard } from '../../../shared/abstracts/log-card.abstract';
 import { INetWorthApiResponse } from '../../interfaces/net-worth-api-response.interface';
 
 @Component({
@@ -11,7 +12,7 @@ import { INetWorthApiResponse } from '../../interfaces/net-worth-api-response.in
   templateUrl: './net-worth-log.component.html',
   styleUrls: ['./net-worth-log.component.scss']
 })
-export class NetWorthLogComponent implements OnInit {
+export class NetWorthLogComponent extends LogCard implements OnInit {
   @Input()
   public netWorthLogItems: Array<INetWorthApiResponse>;
 
@@ -22,38 +23,17 @@ export class NetWorthLogComponent implements OnInit {
   public contextMenuItems: Array<IContextMenuItem>;
   public isEditing: boolean;
 
-  constructor(
-    private readonly _router: Router,
-    private readonly _httpService: HttpService
-  ) {}
+  constructor(private readonly _httpService: HttpService, router: Router) {
+    super(router);
+  }
 
   ngOnInit(): void {
     this._assignLogs();
-    this._assignContextMenuItems();
   }
 
   public async removeLog(date: string): Promise<void> {
     await this._httpService.delete(`net-worth/${date}`);
     this.logs = this.logs.filter((log) => log.date !== date);
-  }
-
-  private _assignContextMenuItems(): void {
-    this.contextMenuItems = [
-      {
-        label: 'Create Entry',
-        action: () => this._router.navigateByUrl('net-worth/create'),
-        icon: 'plus'
-      },
-      {
-        generateLabel: this._getContextMenuEditText.bind(this),
-        action: () => (this.isEditing = !this.isEditing),
-        icon: 'edit'
-      }
-    ];
-  }
-
-  private _getContextMenuEditText(): string {
-    return this.isEditing ? 'Stop Editing' : 'Enable Editing';
   }
 
   private _assignLogs(): void {

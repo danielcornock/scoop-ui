@@ -1,7 +1,7 @@
 <app-card
   class="NetWorthLog-container"
   cardTitle="Monthly Log"
-  [cardActions]="contextMenuItems"
+  [cardActions]="cardActions"
 >
   <app-table [tableColumns]="netWorthColumns">
     <tr class="NetWorthLog-row" *ngFor="let row of logs">
