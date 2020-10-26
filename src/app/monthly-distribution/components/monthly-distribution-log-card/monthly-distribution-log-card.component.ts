@@ -24,7 +24,7 @@ export class MonthlyDistributionLogCardComponent extends LogCard
   public isEditing: boolean;
 
   constructor(private readonly _httpService: HttpService, router: Router) {
-    super(router);
+    super(router, 'monthly-distribution');
   }
 
   ngOnInit(): void {

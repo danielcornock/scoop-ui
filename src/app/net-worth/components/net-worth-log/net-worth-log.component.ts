@@ -24,7 +24,7 @@ export class NetWorthLogComponent extends LogCard implements OnInit {
   public isEditing: boolean;
 
   constructor(private readonly _httpService: HttpService, router: Router) {
-    super(router);
+    super(router, 'net-worth');
   }
 
   ngOnInit(): void {

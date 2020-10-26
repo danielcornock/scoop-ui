@@ -19,7 +19,7 @@ export class InvestmentsLogCardComponent extends LogCard {
   public actions: Array<IContextMenuItem>;
 
   constructor(private readonly _httpService: HttpService, router: Router) {
-    super(router);
+    super(router, 'investments');
   }
 
   public async removeLog(date: string): Promise<void> {
