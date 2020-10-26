@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { capitalize } from 'lodash';
+import { startCase } from 'lodash';
 import { FormContainer, FormFactory, IFormFactoryConfig, IFormInputFactoryFieldConfig } from 'ngx-form-trooper';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpService } from 'src/app/core/services/http/http.service';
@@ -89,7 +89,7 @@ export class MonthlyDistributionEntryFormComponent implements OnInit {
     return fields.map((field: string) => {
       return {
         name: field,
-        label: capitalize(field),
+        label: startCase(field),
         type: 'number'
       };
     });
