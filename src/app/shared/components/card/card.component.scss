@@ -9,8 +9,9 @@
 
   &-header {
     //* Removed temporarily
-    //! background-color: $color-grey-background;
-    padding: $spacing-20;
+    // ! background-color: $color-grey-background;
+    //* Changed from 20 all round
+    padding: $spacing-20 $spacing-20 $spacing-10;
     border-radius: $br-med $br-med 0 0;
     display: flex;
     justify-content: space-between;

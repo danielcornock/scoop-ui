@@ -1,1 +1,6 @@
-<div class="MonthlyDistribution-container"></div>
+<div class="MonthlyDistribution-container" *ngIf="monthlyDistributionItems">
+  <app-monthly-distribution-log-card
+    [monthlyDistributionLogCardItems]="monthlyDistributionItems"
+    [monthlyDistributionLogCardMeta]="monthlyDistributionMeta"
+  ></app-monthly-distribution-log-card>
+</div>

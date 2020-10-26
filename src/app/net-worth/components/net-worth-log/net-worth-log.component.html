@@ -11,6 +11,8 @@
       <td
         class="NetWorthLog-rowItem"
         *ngFor="let item of row | keys | slice: 1"
+        [class.is-negative]="item === 'change' && row[item] < 0"
+        [class.is-positive]="item === 'change' && row[item] > 0"
       >
         {{ row[item] | currency: 'GBP':'symbol':'1.0-2' }}
       </td>

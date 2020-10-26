@@ -209,3 +209,19 @@
     padding-top: $spacing-30;
   }
 }
+
+@mixin status-indicator($color) {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    height: 8px;
+    width: 8px;
+    border-radius: $br-max;
+    left: -$spacing-15;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: $color;
+  }
+}

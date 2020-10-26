@@ -1,0 +1,34 @@
+<app-card cardTitle="Logs" [cardActions]="cardActions">
+  <app-table [tableColumns]="fields">
+    <tr
+      class="MonthlyDistributionLogCard-row"
+      *ngFor="let log of monthlyDistributionLogCardItems"
+    >
+      <td class="MonthlyDistributionLogCard-rowItem">
+        {{ log.date | date: 'MMMM y' }}
+      </td>
+      <td
+        class="MonthlyDistributionLogCard-rowItem"
+        [class.is-negative]="log.income[fieldName] < 0"
+        [class.is-positive]="log.income[fieldName] > 0"
+        *ngFor="let fieldName of log.income | keys"
+      >
+        {{ log.income[fieldName] | currency: 'GBP':'symbol':'1.0-2' }}
+      </td>
+      <td
+        class="MonthlyDistributionLogCard-rowItem"
+        *ngFor="let fieldName of log.outgoing | keys"
+      >
+        {{ log.outgoing[fieldName] | currency: 'GBP':'symbol':'1.0-2' }}
+      </td>
+      <td class="MonthlyDistributionLogCard-rowItem">
+        {{ log.remaining | currency: 'GBP':'symbol':'1.0-2' }}
+      </td>
+      <app-table-actions
+        class="MonthlyDistributionLogCard-rowItem"
+        *ngIf="isEditing"
+        (tableActionsRemove)="removeLog(log.date)"
+      ></app-table-actions>
+    </tr>
+  </app-table>
+</app-card>

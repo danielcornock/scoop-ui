@@ -8,11 +8,13 @@ import {
   MonthlyDistributionEntryFormComponent,
 } from './views/monthly-distribution-entry-form/monthly-distribution-entry-form.component';
 import { MonthlyDistributionComponent } from './views/monthly-distribution/monthly-distribution.component';
+import { MonthlyDistributionLogCardComponent } from './components/monthly-distribution-log-card/monthly-distribution-log-card.component';
 
 @NgModule({
   declarations: [
     MonthlyDistributionComponent,
-    MonthlyDistributionEntryFormComponent
+    MonthlyDistributionEntryFormComponent,
+    MonthlyDistributionLogCardComponent
   ],
   imports: [
     CommonModule,
