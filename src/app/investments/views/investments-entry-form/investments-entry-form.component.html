@@ -11,6 +11,9 @@
 
     <app-form-errors [appFormErrors]="errors"></app-form-errors>
 
-    <app-form-submit value="Save Investment Entry"></app-form-submit>
+    <app-form-submit
+      value="Save Investment Entry"
+      [form]="form.formGroup"
+    ></app-form-submit>
   </form>
 </div>
