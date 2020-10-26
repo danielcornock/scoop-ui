@@ -1,0 +1,26 @@
+<div class="FieldsConfig-container">
+  <div
+    class="FieldsConfig-columnsList"
+    cdkDropList
+    (cdkDropListDropped)="dropColumn($event)"
+    cdkDropListOrientation="horizontal"
+  >
+    <div
+      class="FieldsConfig-columnListEntry is-movable"
+      *ngFor="let column of fieldsConfigColumns"
+      cdkDrag
+    >
+      {{ column | titlecase }}
+
+      <button class="FieldsConfig-removeItem" (click)="remove(column)">
+        <i-feather name="x"></i-feather>
+      </button>
+    </div>
+  </div>
+  <form [formGroup]="form.formGroup" (ngSubmit)="add()">
+    <ngx-form-input
+      class="FieldsConfig-input"
+      [formInputField]="form.fields[0]"
+    ></ngx-form-input>
+  </form>
+</div>

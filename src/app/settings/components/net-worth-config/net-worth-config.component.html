@@ -6,33 +6,7 @@
     them by clicking the 'x' next to the column name.
   </p>
 
-  <div class="NetWorthConfig-columnsList">
-    <span class="NetWorthConfig-columnListEntry">Date</span>
-    <span
-      class="NetWorthConfig-configurableEntries"
-      cdkDropList
-      (cdkDropListDropped)="dropColumn($event)"
-      cdkDropListOrientation="horizontal"
-    >
-      <div
-        class="NetWorthConfig-columnListEntry is-movable"
-        *ngFor="let column of netWorthColumns"
-        cdkDrag
-      >
-        {{ column | titlecase }}
-        <button class="NetWorthConfig-removeItem" (click)="remove(column)">
-          <i-feather name="x"></i-feather>
-        </button>
-      </div>
-    </span>
-    <span class="NetWorthConfig-columnListEntry">Total</span>
-    <span class="NetWorthConfig-columnListEntry">Change</span>
-  </div>
-
-  <form [formGroup]="form.formGroup" (ngSubmit)="add()">
-    <ngx-form-input
-      class="NetWorthConfig-input"
-      [formInputField]="form.fields[0]"
-    ></ngx-form-input>
-  </form>
+  <app-fields-config
+    [fieldsConfigColumns]="netWorthColumns"
+  ></app-fields-config>
 </div>
