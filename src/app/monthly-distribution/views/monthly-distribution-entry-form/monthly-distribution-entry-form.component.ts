@@ -18,7 +18,7 @@ import { DateService } from 'src/app/shared/services/current-date/date.service';
 export class MonthlyDistributionEntryFormComponent implements OnInit {
   public form: FormContainer;
   public errors: IHttpError;
-  public remainingBalance: Observable<string>;
+  public remainingBalance: Observable<number>;
 
   private _incomingFields: Array<string>;
   private _outgoingFields: Array<string>;
