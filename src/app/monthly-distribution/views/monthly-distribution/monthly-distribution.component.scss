@@ -4,4 +4,13 @@
   &-container {
     @include page-container;
   }
+
+  &-noItems {
+    @include settings-description;
+    font-size: 18px;
+
+    a {
+      @include link;
+    }
+  }
 }

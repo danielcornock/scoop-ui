@@ -1,11 +1,11 @@
 <div class="NetWorth-container" *ngIf="netWorthItems">
-  <p class="NetWorth-noItems" *ngIf="!netWorthItems.length">
+  <p class="NetWorth-noItems" *ngIf="!netWorthItems.length; else noContent">
     To get started, you can configure your table columns in the
     <a routerLink="../settings">settings</a> area, or go ahead and create a net
     worth log <a routerLink="create">here</a>.
   </p>
-  <div class="NetWorth-content">
-    <ng-container *ngIf="netWorthItems?.length">
+  <ng-template #noContent>
+    <div class="NetWorth-content">
       <app-dashboard-summary
         class="NetWorth-item NetWorth-summary"
         [dashboardSummaryItems]="summaryItems"
@@ -25,13 +25,12 @@
         class="NetWorth-item NetWorth-barChart animate-list-item"
         [netWorthMonthlyChangeData]="netWorthItems"
       ></app-net-worth-monthly-change-card>
-    </ng-container>
 
-    <app-net-worth-log
-      class="NetWorth-item NetWorth-log animate-list-item"
-      *ngIf="netWorthItems?.length"
-      [netWorthLogItems]="netWorthItems"
-      [netWorthColumns]="netWorthMeta.fields"
-    ></app-net-worth-log>
-  </div>
+      <app-net-worth-log
+        class="NetWorth-item NetWorth-log animate-list-item"
+        [netWorthLogItems]="netWorthItems"
+        [netWorthColumns]="netWorthMeta.fields"
+      ></app-net-worth-log>
+    </div>
+  </ng-template>
 </div>

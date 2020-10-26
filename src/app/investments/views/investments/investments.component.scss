@@ -50,4 +50,13 @@
   &-log {
     grid-area: log;
   }
+
+  &-noItems {
+    @include settings-description;
+    font-size: 18px;
+
+    a {
+      @include link;
+    }
+  }
 }

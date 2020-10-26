@@ -1,27 +1,33 @@
 <div class="Investments-container" *ngIf="investmentLogs">
-  <div class="Investments-content">
-    <app-dashboard-summary
-      class="Investments-section Investments-summary maintain-row"
-      [dashboardSummaryItems]="summaryItems"
-    ></app-dashboard-summary>
+  <p class="Investments-noItems" *ngIf="!investmentLogs.length; else noContent">
+    To get started, create your first investment log
+    <a routerLink="create">here</a>.
+  </p>
+  <ng-template #noContent>
+    <div class="Investments-content">
+      <app-dashboard-summary
+        class="Investments-section Investments-summary maintain-row"
+        [dashboardSummaryItems]="summaryItems"
+      ></app-dashboard-summary>
 
-    <!-- <app-companies-card
-      class="Investments-section Investments-stocks animate-list-item"
-    ></app-companies-card> -->
+      <!-- <app-companies-card
+        class="Investments-section Investments-stocks animate-list-item"
+      ></app-companies-card> -->
 
-    <app-investments-monthly-change-card
-      class="Investments-section Investments-monthlyChange animate-list-item"
-      [investmentsMonthlyChangeData]="investmentLogs"
-    ></app-investments-monthly-change-card>
+      <app-investments-monthly-change-card
+        class="Investments-section Investments-monthlyChange animate-list-item"
+        [investmentsMonthlyChangeData]="investmentLogs"
+      ></app-investments-monthly-change-card>
 
-    <app-trends-card
-      class="Investments-section Investments-trends animate-list-item"
-      [trendsCardData]="investmentLogs"
-    ></app-trends-card>
+      <app-trends-card
+        class="Investments-section Investments-trends animate-list-item"
+        [trendsCardData]="investmentLogs"
+      ></app-trends-card>
 
-    <app-investments-log-card
-      class="Investments-section Investments-log animate-list-item"
-      [monthlyLogCardItems]="investmentLogs"
-    ></app-investments-log-card>
-  </div>
+      <app-investments-log-card
+        class="Investments-section Investments-log animate-list-item"
+        [monthlyLogCardItems]="investmentLogs"
+      ></app-investments-log-card>
+    </div>
+  </ng-template>
 </div>

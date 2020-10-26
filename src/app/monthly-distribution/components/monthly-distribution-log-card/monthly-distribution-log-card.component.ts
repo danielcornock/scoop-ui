@@ -29,22 +29,12 @@ export class MonthlyDistributionLogCardComponent extends LogCard
 
   ngOnInit(): void {
     this.fields = this.monthlyDistributionLogCardMeta.fields.map(startCase);
-    this._mapLogs();
   }
 
   public async removeLog(date: string): Promise<void> {
     await this._httpService.delete(`monthly-distribution/${date}`);
-    this.logs = this.logs.filter((log) => log.date !== date);
-  }
-
-  private _mapLogs(): void {
-    this.logs = this.monthlyDistributionLogCardItems.map((item) => {
-      return {
-        date: item.date,
-        ...item.income,
-        ...item.outgoing,
-        remaining: item.remaining
-      };
-    });
+    this.monthlyDistributionLogCardItems = this.monthlyDistributionLogCardItems.filter(
+      (log) => log.date !== date
+    );
   }
 }
