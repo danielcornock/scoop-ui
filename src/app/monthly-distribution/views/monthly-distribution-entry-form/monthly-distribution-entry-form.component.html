@@ -27,6 +27,15 @@
       ></ngx-form-input>
     </div>
 
+    <div class="MonthlyDistributionEntryForm-remainingBalance">
+      <p class="MonthlyDistributionEntryForm-label">
+        Remaining spending money:
+      </p>
+      <p class="MonthlyDistributionEntryForm-value">
+        {{ remainingBalance | async | currency: '£' }}
+      </p>
+    </div>
+
     <app-form-errors [appFormErrors]="errors"></app-form-errors>
 
     <app-form-submit

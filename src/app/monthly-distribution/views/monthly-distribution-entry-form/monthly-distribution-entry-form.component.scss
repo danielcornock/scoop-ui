@@ -18,4 +18,23 @@
   &-subtitle {
     @include form-subheading;
   }
+
+  &-remainingBalance {
+    background-color: $color-primary-light;
+    padding: $spacing-30;
+    border-radius: $br-med;
+    text-align: center;
+  }
+
+  &-label {
+    font-size: 16px;
+    margin-bottom: $spacing-10;
+    color: $color-form-label;
+  }
+
+  &-value {
+    font-size: 24px;
+    font-weight: 500;
+    color: $color-primary;
+  }
 }

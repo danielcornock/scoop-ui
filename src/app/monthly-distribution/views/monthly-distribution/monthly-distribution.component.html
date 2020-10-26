@@ -1,4 +1,7 @@
-<div class="MonthlyDistribution-container" *ngIf="monthlyDistributionItems">
+<div
+  class="MonthlyDistribution-container animate-page-in"
+  *ngIf="monthlyDistributionItems"
+>
   <app-monthly-distribution-log-card
     [monthlyDistributionLogCardItems]="monthlyDistributionItems"
     [monthlyDistributionLogCardMeta]="monthlyDistributionMeta"
