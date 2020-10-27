@@ -12,6 +12,8 @@ import { NetWorthModule } from './net-worth/net-worth.module';
 import { AppRoutingModule } from './routing/app-routing.module';
 import { SettingsModule } from './settings/settings.module';
 import { SharedModule } from './shared/shared.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,7 +28,8 @@ import { SharedModule } from './shared/shared.module';
     BrowserAnimationsModule,
     MonthlyDistributionModule,
     SettingsModule,
-    NgxFormTrooperModule
+    NgxFormTrooperModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]
