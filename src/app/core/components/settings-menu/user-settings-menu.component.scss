@@ -4,6 +4,36 @@
   $cmp: &;
 
   &-container {
+    display: flex;
+    align-items: center;
+  }
+
+  &-item {
+    & + & {
+      margin-left: $spacing-20;
+      padding-left: $spacing-20;
+      border-left: 1px solid $color-primary-light;
+      display: block;
+    }
+  }
+
+  &-notifications {
+    &:hover {
+      #{$cmp}-notificationsIcon {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  &-notificationsIcon {
+    height: 25px;
+    width: 25px;
+    color: $color-primary;
+    transform-origin: center;
+    transition: transform 250ms;
+  }
+
+  &-profile {
     border: 0;
     background-color: transparent;
     display: flex;

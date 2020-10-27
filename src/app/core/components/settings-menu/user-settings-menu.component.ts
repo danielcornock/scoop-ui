@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, isDevMode, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth/auth.service';
 import { IContextMenuItem } from 'src/app/shared/components/context-menu/interfaces/context-menu-item.interface';
@@ -11,6 +11,7 @@ import { IContextMenuItem } from 'src/app/shared/components/context-menu/interfa
 export class UserSettingsMenuComponent implements OnInit {
   public menuItems: Array<IContextMenuItem>;
   public name: string;
+  public isDevMode: boolean;
 
   constructor(
     private readonly _authService: AuthService,
@@ -18,6 +19,7 @@ export class UserSettingsMenuComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.isDevMode = isDevMode();
     this.name = this._authService.getLoggedInUserName();
     this.menuItems = [
       {

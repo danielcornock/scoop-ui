@@ -3,6 +3,7 @@
 .ContextMenu {
   &-button {
     @include button-reset;
+    display: block;
 
     &:focus {
       outline: 0; // TODO: Fix this - not good for accessibility
