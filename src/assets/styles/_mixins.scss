@@ -224,6 +224,14 @@
     transform: translateY(-50%);
     background-color: $color;
   }
+
+  @include media-tablet {
+    color: $color !important;
+
+    &::after {
+      content: initial;
+    }
+  }
 }
 
 @mixin subheading-sm {
