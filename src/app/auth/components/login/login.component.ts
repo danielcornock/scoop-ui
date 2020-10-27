@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormContainer, FormFactory } from 'ngx-form-trooper';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpService } from 'src/app/core/services/http/http.service';
 import { IHttpError } from 'src/app/core/services/http/interfaces/http-error.interface';
 
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
     private readonly _formFactory: FormFactory,
     private readonly _httpService: HttpService,
     private readonly _router: Router,
-    private readonly _authService: AuthService
+    private readonly _authService: AuthService,
+    private readonly _spinnerService: NgxSpinnerService
   ) {}
 
   ngOnInit(): void {
@@ -31,7 +33,12 @@ export class LoginComponent implements OnInit {
   }
 
   public async login(): Promise<void> {
+    if (this.loginForm.isInvalid) {
+      return;
+    }
+
     try {
+      this._spinnerService.show();
       this.errors = null;
       const { data } = await this._httpService.post(
         'auth/login',
@@ -40,6 +47,7 @@ export class LoginComponent implements OnInit {
       this._authService.setJwt(data.jwt);
       this._router.navigate(['net-worth']);
     } catch ({ error }) {
+      this._spinnerService.hide();
       this.errors = error;
     }
   }
