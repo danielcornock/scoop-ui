@@ -65,11 +65,15 @@ export class MonthlyDistributionEntryFormComponent implements OnInit {
           0
         );
 
+        console.log('incoming', incoming);
+
         const outgoing: number = reduce(
           value.outgoing,
           (prev, next) => prev + parseFloat(next || 0),
           0
         );
+
+        console.log('outgoing', outgoing);
 
         return of(incoming - outgoing);
       })

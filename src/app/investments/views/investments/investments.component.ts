@@ -1,4 +1,4 @@
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, PercentPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpService } from 'src/app/core/services/http/http.service';
@@ -20,7 +20,8 @@ export class InvestmentsComponent implements OnInit {
   constructor(
     private readonly _httpService: HttpService,
     private readonly _spinnerService: NgxSpinnerService,
-    private readonly _currencyPipe: CurrencyPipe
+    private readonly _currencyPipe: CurrencyPipe,
+    private readonly _percentPipe: PercentPipe
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -68,7 +69,7 @@ export class InvestmentsComponent implements OnInit {
   }
 
   private _toPercentage(value: number): string {
-    return `${value * 100}%`;
+    return this._percentPipe.transform(value, '1.0-2');
   }
 
   private _toCurrency(amount: number): string {

@@ -8,9 +8,7 @@ export abstract class ModalDialogInstanceComponent<
   constructor(
     private readonly _dialogRef: MatDialogRef<TComponent>,
     private _data: TData
-  ) {
-    console.log(this._data);
-  }
+  ) {}
 
   protected close(data: TReturnData): void {
     this._dialogRef.close(data);
