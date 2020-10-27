@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-monthly-distribution-fields-config',
   templateUrl: './monthly-distribution-fields-config.component.html',
   styleUrls: ['./monthly-distribution-fields-config.component.scss']
 })
-export class MonthlyDistributionFieldsConfigComponent implements OnInit {
+export class MonthlyDistributionFieldsConfigComponent {
+  @Input()
+  public monthlyDistributionIncomeColumns: Array<string>;
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  @Input()
+  public monthlyDistributionOutgoingColumns: Array<string>;
 }

@@ -1,9 +1,9 @@
 <div class="Investments-container" *ngIf="investmentLogs">
-  <p class="Investments-noItems" *ngIf="!investmentLogs.length; else noContent">
+  <p class="Investments-noItems" *ngIf="!investmentLogs.length; else content">
     To get started, create your first investment log
     <a routerLink="create">here</a>.
   </p>
-  <ng-template #noContent>
+  <ng-template #content>
     <div class="Investments-content">
       <app-dashboard-summary
         class="Investments-section Investments-summary maintain-row"

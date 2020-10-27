@@ -225,3 +225,11 @@
     background-color: $color;
   }
 }
+
+@mixin subheading-sm {
+  font-size: 18px;
+  font-weight: 400;
+  color: $color-subheading;
+  margin-bottom: $spacing-10;
+  margin-top: $spacing-30;
+}

@@ -18,9 +18,19 @@
   ></app-net-worth-config>
 
   <app-net-worth-summary-config
-    class="Settings-section last"
+    class="Settings-section"
     id="net-worth-summary-config"
     [netWorthSummaryConfigOptions]="settings.netWorthSummaryOptions"
     [netWorthSummaryConfigSelectedItems]="settings.netWorthSummaryItems"
   ></app-net-worth-summary-config>
+
+  <app-monthly-distribution-fields-config
+    class="Settings-section last"
+    [monthlyDistributionIncomeColumns]="
+      settings.monthlyDistributionIncomeFields
+    "
+    [monthlyDistributionOutgoingColumns]="
+      settings.monthlyDistributionOutgoingFields
+    "
+  ></app-monthly-distribution-fields-config>
 </div>

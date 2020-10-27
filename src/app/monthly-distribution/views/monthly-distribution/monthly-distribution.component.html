@@ -4,14 +4,14 @@
 >
   <p
     class="MonthlyDistribution-noItems"
-    *ngIf="!monthlyDistributionItems.length; else noContent"
+    *ngIf="!monthlyDistributionItems.length; else content"
   >
     To get started, you can configure your table columns in the
     <a routerLink="../settings">settings</a> area, or go ahead and create a new
     log <a routerLink="create">here</a>.
   </p>
 
-  <ng-template #noContent>
+  <ng-template #content>
     <app-monthly-distribution-log-card
       [monthlyDistributionLogCardItems]="monthlyDistributionItems"
       [monthlyDistributionLogCardMeta]="monthlyDistributionMeta"
