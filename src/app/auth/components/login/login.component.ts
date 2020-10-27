@@ -25,6 +25,9 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    /* In case the user is redirected here when authorisation fails */
+    this._spinnerService.hide();
+
     if (this._authService.isAuthenticated()) {
       this._router.navigateByUrl('net-worth');
     }
