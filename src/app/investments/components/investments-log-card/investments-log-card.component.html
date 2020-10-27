@@ -25,15 +25,15 @@
       </td>
       <td
         class="InvestmentsLogCard-rowItem"
-        [class.is-negative]="row.profitChangeSinceLast < 0"
-        [class.is-positive]="row.profitChangeSinceLast > 0"
+        [class.is-negative]="row.profit < 0"
+        [class.is-positive]="row.profit > 0"
       >
         {{ row.profit | currency: 'GBP':'symbol':'1.0-2' }}
       </td>
       <td
         class="InvestmentsLogCard-rowItem"
-        [class.is-negative]="row.profitChangeSinceLast < 0"
-        [class.is-positive]="row.profitChangeSinceLast > 0"
+        [class.is-negative]="row.profitPercentage < 0"
+        [class.is-positive]="row.profitPercentage > 0"
       >
         {{ row.profitPercentage | percent }}
       </td>
