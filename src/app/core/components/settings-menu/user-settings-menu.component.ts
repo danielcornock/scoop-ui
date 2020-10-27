@@ -21,11 +21,20 @@ export class UserSettingsMenuComponent implements OnInit {
     this.name = this._authService.getLoggedInUserName();
     this.menuItems = [
       {
+        label: 'User Settings',
+        action: this._goToUserSettings.bind(this),
+        icon: 'user'
+      },
+      {
         label: 'Log Out',
         action: this._logOut.bind(this),
         icon: 'log-out'
       }
     ];
+  }
+
+  private _goToUserSettings(): void {
+    this._router.navigateByUrl('user-settings');
   }
 
   private _logOut(): void {

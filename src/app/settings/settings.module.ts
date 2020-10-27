@@ -17,6 +17,7 @@ import { SettingsComponent } from './views/settings/settings.component';
 import { DashboardSummaryConfigItemComponent } from './components/dashboard-summary-config-item/dashboard-summary-config-item.component';
 import { MonthlyDistributionFieldsConfigComponent } from './components/monthly-distribution-fields-config/monthly-distribution-fields-config.component';
 import { FieldsConfigComponent } from './components/fields-config/fields-config.component';
+import { UserSettingsComponent } from './views/user-settings/user-settings.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { FieldsConfigComponent } from './components/fields-config/fields-config.
     NetWorthSummaryFormModalComponent,
     DashboardSummaryConfigItemComponent,
     MonthlyDistributionFieldsConfigComponent,
-    FieldsConfigComponent
+    FieldsConfigComponent,
+    UserSettingsComponent
   ],
   imports: [
     CommonModule,

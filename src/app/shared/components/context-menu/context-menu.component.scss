@@ -33,8 +33,9 @@
 }
 
 ::ng-deep .dropdown {
-  box-shadow: 0 2px 8px rgba(black, 0.1);
+  box-shadow: 0 2px 8px rgba(black, 0.2);
   background-color: $color-white;
   color: blue;
   padding: 0;
+  margin-top: $spacing-10;
 }
