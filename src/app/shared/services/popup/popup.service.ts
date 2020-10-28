@@ -15,4 +15,12 @@ export class PopupService {
       this._toast.error(error.message, 'Uh oh!');
     }
   }
+
+  public showCustomError(text: string, title: string): void {
+    this._toast.error(text, title);
+  }
+
+  public showSuccess(text: string, title: string): void {
+    this._toast.success(text, title);
+  }
 }

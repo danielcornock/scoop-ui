@@ -1,0 +1,114 @@
+@import 'src/assets/styles/themes.scss';
+
+$spacing-menu-horizontal--normal: $spacing-20;
+$spacing-menu-horizontal--mobile: $spacing-10;
+
+.DetailedContextMenu {
+  &-button {
+    @include button-reset;
+    display: block;
+
+    &:focus {
+      outline: 0; // TODO: Fix this - not good for accessibility
+    }
+  }
+
+  &-heading {
+    padding: $spacing-10 $spacing-menu-horizontal--normal;
+    font-weight: 600;
+    color: $color-table-content;
+    font-weight: 500;
+    font-size: 18px;
+
+    @include media-phone {
+      padding: $spacing-5 $spacing-menu-horizontal--mobile;
+    }
+  }
+
+  &-item {
+    display: flex;
+    padding: $spacing-15 $spacing-menu-horizontal--normal;
+    border-radius: $br-med;
+    align-items: center;
+
+    &:hover {
+      background-color: $color-grey-background;
+    }
+
+    @include media-phone {
+      padding: $spacing-15 $spacing-menu-horizontal--mobile;
+    }
+  }
+
+  &-title {
+    color: $color-subheading;
+    font-weight: 500;
+    margin-bottom: 2px;
+    font-size: 18px;
+  }
+
+  &-text {
+    color: $color-table-header;
+    max-width: 400px;
+  }
+
+  &-iconContainer {
+    margin-right: $spacing-menu-horizontal--normal;
+    max-height: 56px;
+    padding: 14px;
+    background-color: $color-primary-light;
+    color: $color-primary;
+    border-radius: $br-max;
+
+    i-feather {
+      height: 28px;
+      width: 28px;
+    }
+
+    @include media-phone {
+      padding: 10px;
+      max-height: 40px;
+      margin-right: $spacing-menu-horizontal--mobile;
+
+      i-feather {
+        height: 20px;
+        width: 20px;
+      }
+    }
+  }
+
+  &-actions {
+    padding-left: $spacing-30;
+    margin-left: auto;
+  }
+
+  &-action {
+    @include button-reset;
+    @include center-contents;
+    border-radius: $br-max;
+    height: 26px;
+    width: 26px;
+
+    i-feather {
+      color: $color-subheading;
+      height: 20px;
+      width: 20px;
+    }
+
+    &:hover {
+      background-color: $color-settings-item;
+    }
+  }
+}
+
+::ng-deep .dropdown {
+  box-shadow: 0 2px 8px rgba(black, 0.2);
+  background-color: $color-white;
+  color: blue;
+  padding: 0;
+  margin-top: $spacing-10;
+}
+
+::ng-deep .mat-menu-panel {
+  max-width: initial;
+}

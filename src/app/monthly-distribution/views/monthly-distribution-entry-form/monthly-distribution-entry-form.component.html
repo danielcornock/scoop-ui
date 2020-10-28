@@ -11,6 +11,12 @@
     <div class="MonthlyDistributionEntryForm-section">
       <h2 class="MonthlyDistributionEntryForm-subtitle">
         {{ form.fields[1].label }}
+        <a
+          class="MonthlyDistributionEntryForm-moreFieldsLink"
+          routerLink="../../settings"
+        >
+          <i-feather name="plus"></i-feather> Add more fields</a
+        >
       </h2>
       <ngx-form-input
         *ngFor="let field of form.fields[1].fields"
@@ -20,6 +26,12 @@
     <div class="MonthlyDistributionEntryForm-section">
       <h2 class="MonthlyDistributionEntryForm-subtitle">
         {{ form.fields[2].label }}
+        <a
+          class="MonthlyDistributionEntryForm-moreFieldsLink"
+          routerLink="../../settings"
+        >
+          <i-feather name="plus"></i-feather> Add more fields</a
+        >
       </h2>
       <ngx-form-input
         *ngFor="let field of form.fields[2].fields"

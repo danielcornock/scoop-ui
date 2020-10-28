@@ -2,14 +2,14 @@ export type IContextMenuItem =
   | IContextMenuItemWithoutFactory
   | IContextMenuItemWithFactory;
 
-interface IContextMenuItemWithFactory {
+export interface IContextMenuItemWithFactory {
   icon?: string;
   label?: never;
   generateLabel(): string;
   action(): any;
 }
 
-interface IContextMenuItemWithoutFactory {
+export interface IContextMenuItemWithoutFactory {
   label: string;
   icon?: string;
   generateLabel?(): never;

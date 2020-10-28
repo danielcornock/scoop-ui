@@ -1,13 +1,19 @@
 <div class="SettingsMenu-container">
-  <app-context-menu
-    [contextMenuItems]=""
+  <app-detailed-context-menu
+    [detailedContextMenuItems]="notifications"
+    [detailedContextMenuTitle]="
+      notifications.length ? 'Notifications' : 'No notifications to show.'
+    "
     class="SettingsMenu-item"
-    *ngIf="isDevMode"
+    *ngIf="notifications"
   >
-    <div class="SettingsMenu-notifications">
+    <div
+      class="SettingsMenu-notifications"
+      [class.has-notifications]="notifications.length"
+    >
       <i-feather class="SettingsMenu-notificationsIcon" name="bell"></i-feather>
     </div>
-  </app-context-menu>
+  </app-detailed-context-menu>
   <app-context-menu [contextMenuItems]="menuItems" class="SettingsMenu-item">
     <div class="SettingsMenu-profile">
       <img

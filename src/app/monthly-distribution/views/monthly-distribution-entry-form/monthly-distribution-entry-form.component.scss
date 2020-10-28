@@ -17,6 +17,22 @@
 
   &-subtitle {
     @include form-subheading;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+
+  &-moreFieldsLink {
+    @include link;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+
+    i-feather {
+      height: 14px;
+      width: 14px;
+      margin-right: 5px;
+    }
   }
 
   &-remainingBalance {

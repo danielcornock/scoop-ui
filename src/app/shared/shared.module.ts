@@ -13,6 +13,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { CardComponent } from './components/card/card.component';
 import { ContextMenuComponent } from './components/context-menu/context-menu.component';
 import { DashboardSummaryComponent } from './components/dashboard-summary/dashboard-summary.component';
+import { DetailedContextMenuComponent } from './components/detailed-context-menu/detailed-context-menu.component';
 import { FormErrorsComponent } from './components/form-errors/form-errors.component';
 import { FormSubmitComponent } from './components/form-submit/form-submit.component';
 import { IconPickerComponent } from './components/icon-picker/icon-picker.component';
@@ -36,7 +37,8 @@ import { KeysPipe } from './pipes/keys/keys.pipe';
     IconPickerComponent,
     KebabCasePipe,
     JoinPipe,
-    TableActionsComponent
+    TableActionsComponent,
+    DetailedContextMenuComponent
   ],
   imports: [
     CommonModule,
@@ -64,7 +66,8 @@ import { KeysPipe } from './pipes/keys/keys.pipe';
     LoadingSpinnerComponent,
     IconPickerComponent,
     JoinPipe,
-    TableActionsComponent
+    TableActionsComponent,
+    DetailedContextMenuComponent
   ]
 })
 export class SharedModule {}

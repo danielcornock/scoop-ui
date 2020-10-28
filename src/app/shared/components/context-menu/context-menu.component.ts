@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { isFunction } from 'lodash';
 
 import { IContextMenuItem } from './interfaces/context-menu-item.interface';
 
@@ -11,8 +10,6 @@ import { IContextMenuItem } from './interfaces/context-menu-item.interface';
 export class ContextMenuComponent {
   @Input()
   public contextMenuItems: Array<IContextMenuItem>;
-
-  public isFunction = isFunction;
 
   public selectItem(index: number): void {
     this.contextMenuItems[index].action();

@@ -1,0 +1,31 @@
+<button class="DetailedContextMenu-button" [matMenuTriggerFor]="menu">
+  <ng-content></ng-content>
+</button>
+<mat-menu #menu="matMenu" yPosition="below" xPosition="before" class="dropdown">
+  <h2 class="DetailedContextMenu-heading">{{ detailedContextMenuTitle }}</h2>
+  <div
+    *ngFor="let item of detailedContextMenuItems; let i = index"
+    class="DetailedContextMenu-item"
+  >
+    <div class="DetailedContextMenu-iconContainer">
+      <i-feather [name]="item.icon || 'bell'"></i-feather>
+    </div>
+    <div class="DetailedContectMenuItem-content">
+      <h3 class="DetailedContextMenu-title">{{ item.title }}</h3>
+      <p class="DetailedContextMenu-text">{{ item.text }}</p>
+    </div>
+    <div class="DetailedContextMenu-actions">
+      <button
+        class="DetailedContextMenu-action"
+        *ngFor="let action of item.actions; let i = index"
+        (click)="action.action(i)"
+        [attr.aria-label]="action.label"
+      >
+        <i-feather
+          class="DetailedContextMenu-actionIcon"
+          [name]="action.icon"
+        ></i-feather>
+      </button>
+    </div>
+  </div>
+</mat-menu>
