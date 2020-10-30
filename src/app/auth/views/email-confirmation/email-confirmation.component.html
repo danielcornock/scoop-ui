@@ -1,0 +1,28 @@
+<app-unauthenticated-page-wrapper>
+  <div class="EmailConfirmation-container" [ngSwitch]="state">
+    <ng-container *ngSwitchCase="tokenState.LOADING"
+      >Please wait while we activate your account...</ng-container
+    >
+    <ng-container *ngSwitchCase="tokenState.INVALID"
+      >Unfortunately your authentication token doesn't exist or has expired.
+      Click
+      <button class="EmailConfirmation-resendEmail" (click)="resendEmail()">
+        here
+      </button>
+      to resend a confirmation email.</ng-container
+    >
+    <ng-container *ngSwitchCase="tokenState.ACTIVATED"
+      ><p class="EmailConfirmation-text">
+        Thanks for verifying your account with scoop!
+      </p>
+      <p class="EmailConfirmation-text">
+        Click <a class="EmailConfirmation-link" routerLink="login">here</a> to
+        login.
+      </p></ng-container
+    >
+    <ng-container *ngSwitchCase="tokenState.RESENT">
+      A new confirmation link has been sent to the email address linked with
+      your account.
+    </ng-container>
+  </div>
+</app-unauthenticated-page-wrapper>

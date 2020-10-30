@@ -5,50 +5,10 @@
 }
 
 .Login {
-  &-container {
-    @include center-contents;
-    height: 100%;
-    background-image: linear-gradient(
-      to bottom,
-      $color-primary,
-      $color-primary-gradient
-    );
-
-    @include media-phone {
-      padding: $spacing-10;
-    }
-  }
-
   &-form {
-    @include shadow-dark;
-    background-color: $color-white;
-    padding: $spacing-80 $spacing-40 $spacing-50;
-    border-radius: $br-med;
     display: flex;
     flex-direction: column;
-
-    @include media-phone-sm {
-      width: 100%;
-      padding: $spacing-80 $spacing-20 $spacing-50;
-    }
-  }
-
-  &-branding {
-    color: $color-primary;
-    display: flex;
-    align-items: center;
-    margin: auto;
-    margin-bottom: $spacing-60;
-    position: relative;
-  }
-
-  &-brandingBeta {
-    position: absolute;
-    top: 83%;
-    right: 35px;
-    font-weight: 500;
-    font-size: 18px;
-    letter-spacing: 4px;
+    width: 100%;
   }
 
   &-formInput {
@@ -57,19 +17,5 @@
     @include media-phone-sm {
       width: 100%;
     }
-  }
-
-  &-brandingLogo {
-    display: block;
-    height: 55px;
-    margin-right: $spacing-10;
-  }
-
-  &-brandingText {
-    font-size: 55px;
-    font-weight: 700;
-    line-height: 1;
-    position: relative;
-    bottom: 4px;
   }
 }

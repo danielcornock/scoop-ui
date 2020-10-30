@@ -1,19 +1,9 @@
-<div class="Login-container">
+<app-unauthenticated-page-wrapper>
   <form
     [formGroup]="loginForm.formGroup"
     class="Login-form"
     (ngSubmit)="login()"
   >
-    <div class="Login-branding">
-      <img
-        class="Login-brandingLogo"
-        src="../../../../assets/images/Gem-blue.svg"
-        alt=""
-      />
-
-      <span class="Login-brandingText">scoop</span>
-      <span class="Login-brandingBeta">BETA</span>
-    </div>
     <ngx-form-input
       class="Login-formInput"
       *ngFor="let field of loginForm.fields"
@@ -26,4 +16,4 @@
       value="Log in"
     ></app-form-submit>
   </form>
-</div>
+</app-unauthenticated-page-wrapper>

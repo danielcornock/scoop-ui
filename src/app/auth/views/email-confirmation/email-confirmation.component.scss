@@ -1,0 +1,29 @@
+@import 'src/assets/styles/themes.scss';
+:host {
+  display: block;
+  height: 100%;
+}
+
+.EmailConfirmation {
+  &-container {
+    font-size: 18px;
+    color: $color-subheading;
+    font-weight: 500;
+    text-align: center;
+  }
+
+  &-link {
+    @include link;
+  }
+
+  &-text {
+    & + & {
+      margin-top: $spacing-10;
+    }
+  }
+
+  &-resendEmail {
+    @include button-reset;
+    @include link;
+  }
+}
