@@ -1,0 +1,31 @@
+<app-unauthenticated-page-wrapper>
+  <form
+    [formGroup]="form.formGroup"
+    class="Register-form"
+    (ngSubmit)="login()"
+    *ngIf="!isSubmitted; else submitted"
+  >
+    <ngx-form-input
+      class="Register-formInput"
+      *ngFor="let field of form.fields"
+      [formInputField]="field"
+    ></ngx-form-input>
+    <app-form-errors [appFormErrors]="errors"></app-form-errors>
+    <app-form-submit
+      class="Register-submit"
+      [form]="form.formGroup"
+      value="Create account"
+    ></app-form-submit>
+    <p class="Register-subtext">
+      Already have an account? <a routerLink="login">Log in</a> instead.
+    </p>
+  </form>
+  <ng-template #submitted>
+    <div class="Register-confirmed">
+      <p class="Register-confirmedText">Your account has been created.</p>
+      <p class="Register-confirmedText">
+        Please check your emails in order to activate your account.
+      </p>
+    </div></ng-template
+  >
+</app-unauthenticated-page-wrapper>

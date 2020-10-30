@@ -9,9 +9,10 @@ import { SharedModule } from '../shared/shared.module';
 import { LoginComponent } from './components/login/login.component';
 import { EmailConfirmationComponent } from './views/email-confirmation/email-confirmation.component';
 import { UnauthenticatedPageWrapperComponent } from './components/unauthenticated-page-wrapper/unauthenticated-page-wrapper.component';
+import { RegisterComponent } from './views/register/register.component';
 
 @NgModule({
-  declarations: [LoginComponent, EmailConfirmationComponent, UnauthenticatedPageWrapperComponent],
+  declarations: [LoginComponent, EmailConfirmationComponent, UnauthenticatedPageWrapperComponent, RegisterComponent],
   imports: [
     ReactiveFormsModule,
     FormsModule,

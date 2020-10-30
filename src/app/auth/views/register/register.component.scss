@@ -4,7 +4,7 @@
   height: 100%;
 }
 
-.Login {
+.Register {
   &-form {
     display: flex;
     flex-direction: column;
@@ -27,6 +27,19 @@
 
     a {
       @include link;
+    }
+  }
+
+  &-confirmed {
+    font-size: 18px;
+    color: $color-subheading;
+    font-weight: 500;
+    text-align: center;
+  }
+
+  &-confirmedText {
+    & + & {
+      margin-top: $spacing-10;
     }
   }
 }

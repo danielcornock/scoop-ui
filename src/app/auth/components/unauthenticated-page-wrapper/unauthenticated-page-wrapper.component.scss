@@ -29,8 +29,8 @@
     flex-direction: column;
     align-items: center;
     /* Matches width of login form */
+    max-width: 430px;
     width: 100%;
-    max-width: 504px;
 
     @include media-phone-sm {
       padding: $spacing-80 $spacing-20 $spacing-50;
