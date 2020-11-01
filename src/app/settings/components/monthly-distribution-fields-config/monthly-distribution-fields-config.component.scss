@@ -3,7 +3,6 @@
 .MonthlyDistributionFieldsConfig {
   &-heading {
     @include page-subheading;
-    margin-bottom: $spacing-20;
   }
 
   &-description {

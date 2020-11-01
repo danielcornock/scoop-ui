@@ -51,7 +51,7 @@ import { KeysPipe } from './pipes/keys/keys.pipe';
     BrowserAnimationsModule,
     NgxFormTrooperModule,
     ToastrModule.forRoot({
-      positionClass: 'toast-top-center'
+      positionClass: 'toast-top-right'
     })
   ],
   exports: [

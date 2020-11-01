@@ -9,7 +9,14 @@
       *ngFor="let field of loginForm.fields"
       [formInputField]="field"
     ></ngx-form-input>
-    <app-form-errors [appFormErrors]="errors"></app-form-errors>
+    <a class="Login-forgotPassword" routerLink="../forgottenPassword">
+      Forgotten your password?
+    </a>
+    <app-form-errors
+      class="Login-errors"
+      *ngIf="errors"
+      [appFormErrors]="errors"
+    ></app-form-errors>
     <app-form-submit
       class="Login-submit"
       [form]="loginForm.formGroup"

@@ -29,4 +29,14 @@
       @include link;
     }
   }
+
+  &-forgotPassword {
+    @include button-reset;
+    @include link;
+    text-align: left;
+  }
+
+  &-errors {
+    margin-top: $spacing-20;
+  }
 }
