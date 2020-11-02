@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, isDevMode, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormContainer, FormFactory } from 'ngx-form-trooper';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -15,6 +15,7 @@ import { AuthService } from '../../services/auth/auth.service';
 export class LoginComponent implements OnInit {
   public loginForm: FormContainer;
   public errors: IHttpError;
+  public isDevelopment: boolean;
 
   constructor(
     private readonly _formFactory: FormFactory,
@@ -25,6 +26,7 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.isDevelopment = isDevMode();
     /* In case the user is redirected here when authorisation fails */
     this._spinnerService.hide();
 

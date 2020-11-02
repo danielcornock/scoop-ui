@@ -7,9 +7,16 @@
   >
     <ngx-form-input
       class="Register-formInput"
-      *ngFor="let field of form.fields"
-      [formInputField]="field"
+      [formInputField]="form.fields[0]"
     ></ngx-form-input>
+    <ngx-form-input
+      class="Register-formInput"
+      [formInputField]="form.fields[1]"
+    ></ngx-form-input>
+    <ngx-form-input-password
+      class="Register-formInput"
+      [formInputField]="form.fields[2]"
+    ></ngx-form-input-password>
     <app-form-errors [appFormErrors]="errors"></app-form-errors>
     <app-form-submit
       class="Register-submit"

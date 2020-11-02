@@ -6,9 +6,12 @@
   >
     <ngx-form-input
       class="Login-formInput"
-      *ngFor="let field of loginForm.fields"
-      [formInputField]="field"
+      [formInputField]="loginForm.fields[0]"
     ></ngx-form-input>
+    <ngx-form-input-password
+      class="Login-formInput"
+      [formInputField]="loginForm.fields[1]"
+    ></ngx-form-input-password>
     <a class="Login-forgotPassword" routerLink="../forgottenPassword">
       Forgotten your password?
     </a>
@@ -23,7 +26,7 @@
       value="Log in"
     ></app-form-submit>
 
-    <p class="Login-subtext">
+    <p class="Login-subtext" *ngIf="isDevelopment">
       No account? <a routerLink="../register">Create one here</a> instead.
     </p>
   </form>
