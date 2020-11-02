@@ -4,4 +4,19 @@
   &-container {
     @include page-container;
   }
+
+  &-subheading {
+    @include page-subheading;
+  }
+
+  &-form {
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-confirmation {
+    @include default-text;
+    margin-bottom: $spacing-20;
+  }
 }

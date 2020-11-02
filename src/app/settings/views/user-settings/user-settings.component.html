@@ -1,1 +1,28 @@
-<div class="UserSettings-container"></div>
+<div class="UserSettings-container">
+  <h2 class="UserSettings-subheading">Change your password</h2>
+
+  <form
+    class="UserSettings-form"
+    [formGroup]="form.formGroup"
+    (ngSubmit)="submitPasswordChange()"
+    *ngIf="!passwordChanged; else passwordChangedTemplate"
+  >
+    <ngx-form-input-password
+      *ngFor="let field of form.fields"
+      [formInputField]="field"
+    ></ngx-form-input-password>
+
+    <app-form-errors [appFormErrors]="errors"></app-form-errors>
+
+    <app-form-submit
+      [form]="form.formGroup"
+      value="Update password"
+    ></app-form-submit>
+  </form>
+  <ng-template #passwordChangedTemplate>
+    <p class="UserSettings-confirmation">
+      You have successfully changed your password. Your sessions on other
+      devices have now been logged out.
+    </p>
+  </ng-template>
+</div>
