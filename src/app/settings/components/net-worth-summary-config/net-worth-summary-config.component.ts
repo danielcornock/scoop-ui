@@ -1,9 +1,8 @@
 import { CdkDragDrop, CdkDropList, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import { INetWorthSummaryItemConfig } from '../../interfaces/settings.interface';
-import { SettingsService } from '../../services/settings/settings.service';
 import { NetWorthSummaryFormModalComponent } from '../net-worth-summary-form-modal/net-worth-summary-form-modal.component';
 
 @Component({
@@ -11,26 +10,19 @@ import { NetWorthSummaryFormModalComponent } from '../net-worth-summary-form-mod
   templateUrl: './net-worth-summary-config.component.html',
   styleUrls: ['./net-worth-summary-config.component.scss']
 })
-export class NetWorthSummaryConfigComponent implements OnInit {
+export class NetWorthSummaryConfigComponent {
   @Input()
   public netWorthSummaryConfigSelectedItems: Array<INetWorthSummaryItemConfig>;
 
   @Input()
   public netWorthSummaryConfigOptions: Array<INetWorthSummaryItemConfig>;
 
-  public availableFields: string[];
+  @Input()
+  public netWorthSummaryConfigAvailableFields: Array<string>;
+
   public isInvalid: boolean;
 
-  constructor(
-    private readonly _settingsService: SettingsService,
-    private readonly _matDialog: MatDialog
-  ) {}
-
-  async ngOnInit(): Promise<void> {
-    const settings = await this._settingsService.getSettings();
-
-    this.availableFields = settings.netWorthFields;
-  }
+  constructor(private readonly _matDialog: MatDialog) {}
 
   public removeItem(
     index: number,
@@ -43,7 +35,7 @@ export class NetWorthSummaryConfigComponent implements OnInit {
     this._matDialog
       .open(NetWorthSummaryFormModalComponent, {
         data: {
-          availableFields: this.availableFields
+          availableFields: this.netWorthSummaryConfigAvailableFields
         }
       })
       .afterClosed()

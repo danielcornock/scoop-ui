@@ -1,32 +1,34 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from 'src/app/core/services/http/http.service';
+import { IHttpResponse } from 'src/app/core/services/http/interfaces/http-response.interface';
 
+import { ISettingsMeta } from '../../interfaces/settings-meta.interface';
 import { ISettings } from '../../interfaces/settings.interface';
 
+export type SettingsHttpResponse = IHttpResponse<ISettings, ISettingsMeta>;
 @Injectable({
   providedIn: 'root'
 })
 export class SettingsService {
-  private _settings: ISettings;
+  private _settings: SettingsHttpResponse;
 
   constructor(private readonly _httpService: HttpService) {}
 
-  public async getSettings(): Promise<ISettings> {
+  public async getSettings(): Promise<SettingsHttpResponse> {
     if (this._settings) {
       return this._settings;
     } else {
-      const { data } = await this._httpService.get('settings');
-      this._settings = data;
+      this._settings = await this._httpService.get('settings');
 
-      return data;
+      return this._settings;
     }
   }
 
-  public async updateSettings(newData: ISettings): Promise<ISettings> {
-    const { data } = await this._httpService.put('settings', newData);
+  public async updateSettings(
+    newData: ISettings
+  ): Promise<SettingsHttpResponse> {
+    this._settings = await this._httpService.put('settings', newData);
 
-    this._settings = data;
-
-    return data;
+    return this._settings;
   }
 }

@@ -77,13 +77,10 @@ export class MonthlyDistributionEntryFormComponent implements OnInit {
   }
 
   private async _getFields(): Promise<void> {
-    const {
-      monthlyDistributionIncomeFields,
-      monthlyDistributionOutgoingFields
-    } = await this._settingsService.getSettings();
+    const { data } = await this._settingsService.getSettings();
 
-    this._incomingFields = monthlyDistributionIncomeFields;
-    this._outgoingFields = monthlyDistributionOutgoingFields;
+    this._incomingFields = data.monthlyDistributionIncomeFields;
+    this._outgoingFields = data.monthlyDistributionOutgoingFields;
   }
 
   private _createForm(): void {

@@ -32,7 +32,7 @@ export class NetWorthEntryFormComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this._spinnerService.show();
     const settings = await this._settingsService.getSettings();
-    this.columns = settings.netWorthFields;
+    this.columns = settings.data.netWorthFields;
     this._createForm();
     this._spinnerService.hide();
   }

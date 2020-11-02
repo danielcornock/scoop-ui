@@ -3,6 +3,7 @@ import { cloneDeep, isEqual } from 'lodash';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { PopupService } from 'src/app/shared/services/popup/popup.service';
 
+import { ISettingsMeta } from '../../interfaces/settings-meta.interface';
 import { ISettings } from '../../interfaces/settings.interface';
 import { SettingsService } from '../../services/settings/settings.service';
 
@@ -14,6 +15,7 @@ import { SettingsService } from '../../services/settings/settings.service';
 export class SettingsComponent implements OnInit {
   public settings: ISettings;
   public originalSettings: ISettings;
+  public meta: ISettingsMeta;
 
   constructor(
     private readonly _settingsService: SettingsService,
@@ -23,7 +25,9 @@ export class SettingsComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this._spinnerService.show();
-    this.settings = await this._settingsService.getSettings();
+    const { data, meta } = await this._settingsService.getSettings();
+    this.settings = data;
+    this.meta = meta;
     this._spinnerService.hide();
 
     this.originalSettings = cloneDeep(this.settings);
@@ -35,7 +39,11 @@ export class SettingsComponent implements OnInit {
 
   public async saveChanges(): Promise<void> {
     try {
-      this.settings = await this._settingsService.updateSettings(this.settings);
+      const { data, meta } = await this._settingsService.updateSettings(
+        this.settings
+      );
+      this.settings = data;
+      this.meta = meta;
       this.originalSettings = cloneDeep(this.settings);
     } catch ({ error }) {
       this._popupService.showApiError(error);

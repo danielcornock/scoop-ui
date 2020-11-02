@@ -22,6 +22,9 @@
     id="net-worth-summary-config"
     [netWorthSummaryConfigOptions]="settings.netWorthSummaryOptions"
     [netWorthSummaryConfigSelectedItems]="settings.netWorthSummaryItems"
+    [netWorthSummaryConfigAvailableFields]="
+      meta.netWorthSummaryItems.sumOf.options
+    "
   ></app-net-worth-summary-config>
 
   <app-monthly-distribution-fields-config

@@ -1,4 +1,4 @@
-export interface IHttpResponse<T = any> {
+export interface IHttpResponse<T = any, TMeta = any> {
   data: T;
-  meta: any;
+  meta: TMeta;
 }
