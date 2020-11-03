@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -11,6 +12,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { ToastrModule } from 'ngx-toastr';
 
 import { CardComponent } from './components/card/card.component';
+import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 import { ContextMenuComponent } from './components/context-menu/context-menu.component';
 import { DashboardSummaryComponent } from './components/dashboard-summary/dashboard-summary.component';
 import { DetailedContextMenuComponent } from './components/detailed-context-menu/detailed-context-menu.component';
@@ -38,7 +40,8 @@ import { KeysPipe } from './pipes/keys/keys.pipe';
     KebabCasePipe,
     JoinPipe,
     TableActionsComponent,
-    DetailedContextMenuComponent
+    DetailedContextMenuComponent,
+    ConfirmationModalComponent
   ],
   imports: [
     CommonModule,
@@ -50,6 +53,7 @@ import { KeysPipe } from './pipes/keys/keys.pipe';
     MatSelectModule,
     BrowserAnimationsModule,
     NgxFormTrooperModule,
+    MatDialogModule,
     ToastrModule.forRoot({
       positionClass: 'toast-top-right'
     })

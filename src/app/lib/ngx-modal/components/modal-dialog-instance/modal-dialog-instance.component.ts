@@ -1,12 +1,11 @@
 import { MatDialogRef } from '@angular/material/dialog';
 
 export abstract class ModalDialogInstanceComponent<
-  TComponent,
   TData = any,
   TReturnData = any
 > {
   constructor(
-    private readonly _dialogRef: MatDialogRef<TComponent>,
+    private readonly _dialogRef: MatDialogRef<any>,
     private _data: TData
   ) {}
 
@@ -14,7 +13,7 @@ export abstract class ModalDialogInstanceComponent<
     this._dialogRef.close(data);
   }
 
-  protected get data(): any {
+  public get data(): TData {
     return this._data;
   }
 }

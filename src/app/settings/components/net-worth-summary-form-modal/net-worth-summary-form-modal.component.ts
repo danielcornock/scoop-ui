@@ -5,13 +5,15 @@ import {
   ModalDialogInstanceComponent,
 } from 'src/app/lib/ngx-modal/components/modal-dialog-instance/modal-dialog-instance.component';
 
+import { INetWorthSummaryItemConfig } from '../../interfaces/settings.interface';
+
 @Component({
   selector: 'app-net-worth-summary-form-modal',
   templateUrl: './net-worth-summary-form-modal.component.html',
   styleUrls: ['./net-worth-summary-form-modal.component.scss']
 })
 export class NetWorthSummaryFormModalComponent
-  extends ModalDialogInstanceComponent<NetWorthSummaryFormModalComponent>
+  extends ModalDialogInstanceComponent<string[], INetWorthSummaryItemConfig>
   implements OnInit {
   public form: FormContainer;
   public availableFields: Array<string>;
@@ -19,7 +21,7 @@ export class NetWorthSummaryFormModalComponent
   private _selectedIcon: string;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) data: any,
+    @Inject(MAT_DIALOG_DATA) data: string[],
     dialogRef: MatDialogRef<NetWorthSummaryFormModalComponent>,
     private readonly _formFactory: FormFactory
   ) {
@@ -27,7 +29,7 @@ export class NetWorthSummaryFormModalComponent
   }
 
   ngOnInit(): void {
-    this.availableFields = this.data.availableFields;
+    this.availableFields = this.data;
     this.form = this._formFactory.createForm([
       {
         name: 'label',

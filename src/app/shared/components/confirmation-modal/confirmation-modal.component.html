@@ -1,0 +1,25 @@
+<div class="ConfirmationModal-container">
+  <div class="ConfirmationModal-iconContainer">
+    <i-feather class="ConfirmationModal-icon" name="trash"></i-feather>
+  </div>
+  <div class="ConfirmationModal-content">
+    <h2 class="ConfirmationModal-title">
+      {{ data.prompt }}
+    </h2>
+    <span class="ConfirmationModal-message">{{ data.details }}</span>
+  </div>
+  <div class="ConfirmationModal-buttons">
+    <button
+      class="ConfirmationModal-button ConfirmationModal-cancelButton"
+      (click)="deny()"
+    >
+      Cancel
+    </button>
+    <button
+      class="ConfirmationModal-button ConfirmationModal-confirmButton"
+      (click)="accept()"
+    >
+      Delete
+    </button>
+  </div>
+</div>

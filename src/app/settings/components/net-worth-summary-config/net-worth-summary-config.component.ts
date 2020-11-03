@@ -1,6 +1,6 @@
 import { CdkDragDrop, CdkDropList, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, Input } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { ModalService } from 'src/app/shared/services/modal/modal.service';
 
 import { INetWorthSummaryItemConfig } from '../../interfaces/settings.interface';
 import { NetWorthSummaryFormModalComponent } from '../net-worth-summary-form-modal/net-worth-summary-form-modal.component';
@@ -22,7 +22,7 @@ export class NetWorthSummaryConfigComponent {
 
   public isInvalid: boolean;
 
-  constructor(private readonly _matDialog: MatDialog) {}
+  constructor(private readonly _modalService: ModalService) {}
 
   public removeItem(
     index: number,
@@ -31,22 +31,20 @@ export class NetWorthSummaryConfigComponent {
     array.splice(index, 1);
   }
 
-  public openFormModal(): void {
-    this._matDialog
-      .open(NetWorthSummaryFormModalComponent, {
-        data: {
-          availableFields: this.netWorthSummaryConfigAvailableFields
-        }
-      })
-      .afterClosed()
-      .subscribe(this._addOption.bind(this));
-  }
+  public async openFormModal(): Promise<void> {
+    const data = await this._modalService.open<
+      string[],
+      INetWorthSummaryItemConfig
+    >(NetWorthSummaryFormModalComponent, {
+      data: this.netWorthSummaryConfigAvailableFields
+    });
 
-  private _addOption(data: INetWorthSummaryItemConfig): void {
     if (data) {
       this.netWorthSummaryConfigOptions.push(data);
     }
   }
+
+  private _addOption(data: INetWorthSummaryItemConfig): void {}
 
   public dropColumn(event: CdkDragDrop<INetWorthSummaryItemConfig[]>): void {
     if (event.previousContainer === event.container) {
