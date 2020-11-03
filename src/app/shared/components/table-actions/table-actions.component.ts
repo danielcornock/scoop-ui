@@ -16,9 +16,9 @@ export class TableActionsComponent {
   public remove(): void {
     this._modalService.openConfirmationModal({
       onConfirm: () => this.tableActionsRemove.emit(),
-      prompt: 'You are about to delete a monthly log.',
+      prompt: 'You are about to delete an item from this table.',
       details:
-        'This will permanently delete your monthly log. Do you wish to continue?'
+        'This will permanently delete your entry. Do you wish to continue?'
     });
   }
 }

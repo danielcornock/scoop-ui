@@ -1,5 +1,15 @@
 @import 'src/assets/styles/themes.scss';
 
+@mixin item-tag {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  margin-left: $spacing-10;
+  padding: 4px $spacing-5;
+  border-radius: $br-sm;
+  font-weight: 500;
+}
+
 .UsersList {
   &-row {
     @include table-row;
@@ -7,5 +17,28 @@
 
   &-rowItem {
     @include table-row-item;
+  }
+
+  &-detailedItem {
+    display: flex;
+    align-items: center;
+  }
+
+  &-icon {
+    height: 12px;
+    width: 12px;
+    margin-right: $spacing-5;
+  }
+
+  &-isVerified {
+    @include item-tag;
+    color: $color-positive;
+    background-color: $color-positive-background;
+  }
+
+  &-isAdmin {
+    @include item-tag;
+    color: $color-positive;
+    background-color: $color-positive-background;
   }
 }

@@ -1,8 +1,29 @@
 <app-card cardTitle="Users">
   <app-table [tableColumns]="['email', 'name']">
     <tr class="UsersList-row" *ngFor="let user of users">
-      <td class="UsersList-rowItem">{{ user.email }}</td>
-      <td class="UsersList-rowItem">{{ user.name }}</td>
+      <td class="UsersList-rowItem">
+        <div class="UsersList-detailedItem">
+          {{ user.email }}
+          <span class="UsersList-isVerified" *ngIf="user.isVerified">
+            <i-feather class="UsersList-icon" name="check"></i-feather>
+            VERIFIED
+          </span>
+        </div>
+      </td>
+      <td class="UsersList-rowItem">
+        <div class="UsersList-detailedItem">
+          {{ user.name }}
+          <span class="UsersList-isAdmin" *ngIf="user.isAdmin">
+            <i-feather class="UsersList-icon" name="lock"></i-feather>
+            ADMIN
+          </span>
+        </div>
+      </td>
+      <td class="UsersList-rowItem">
+        <app-table-actions
+          (tableActionsRemove)="deleteUser(user._id)"
+        ></app-table-actions>
+      </td>
     </tr>
   </app-table>
 </app-card>
