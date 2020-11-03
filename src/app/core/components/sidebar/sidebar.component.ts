@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ExperimentalService } from 'src/app/shared/services/experimental/experimental.service';
+import { AuthService } from 'src/app/auth/services/auth/auth.service';
 
 import { INavigationItem } from './interfaces/navigation-item.interface';
 
@@ -11,7 +11,7 @@ import { INavigationItem } from './interfaces/navigation-item.interface';
 export class SidebarComponent implements OnInit {
   public navItems: Array<INavigationItem>;
 
-  constructor(private readonly _experimentalService: ExperimentalService) {}
+  constructor(private readonly _authService: AuthService) {}
 
   ngOnInit(): void {
     this._assignNavItems();
@@ -40,5 +40,13 @@ export class SidebarComponent implements OnInit {
         icon: 'settings'
       }
     ];
+
+    if (this._authService.isUserAdmin()) {
+      this.navItems.push({
+        label: 'Admin',
+        link: 'admin',
+        icon: 'lock'
+      });
+    }
   }
 }

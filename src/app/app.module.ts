@@ -6,6 +6,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { NgxFormTrooperModule } from 'ngx-form-trooper';
 
 import { environment } from '../environments/environment';
+import { AdminModule } from './admin/admin.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { AuthInterceptor } from './auth/interceptors/auth/auth.interceptor';
@@ -32,6 +33,7 @@ import { SharedModule } from './shared/shared.module';
     MonthlyDistributionModule,
     SettingsModule,
     NgxFormTrooperModule,
+    AdminModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production
     })

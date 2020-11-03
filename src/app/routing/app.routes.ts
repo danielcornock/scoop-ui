@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 
+import { adminRoutes } from '../admin/admin.routes';
 import { authRoutes } from '../auth/auth.routes';
 import { AuthGuardService } from '../auth/services/auth-guard/auth-guard.service';
 import { PageNotFoundComponent } from '../core/components/views/page-not-found/page-not-found.component';
@@ -22,7 +23,8 @@ export const routes: Routes = [
       ...investmentRoutes,
       ...netWorthRoutes,
       ...monthlyDistributionRoutes,
-      ...settingsRoutes
+      ...settingsRoutes,
+      ...adminRoutes
     ]
   },
   {

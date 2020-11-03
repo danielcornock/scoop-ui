@@ -1,0 +1,8 @@
+<app-card cardTitle="Users">
+  <app-table [tableColumns]="['email', 'name']">
+    <tr class="UsersList-row" *ngFor="let user of users">
+      <td class="UsersList-rowItem">{{ user.email }}</td>
+      <td class="UsersList-rowItem">{{ user.name }}</td>
+    </tr>
+  </app-table>
+</app-card>

@@ -1,0 +1,7 @@
+@import 'src/assets/styles/themes.scss';
+
+.Admin {
+  &-container {
+    @include page-container;
+  }
+}

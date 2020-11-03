@@ -33,6 +33,12 @@ export class AuthService {
     return token.name;
   }
 
+  public isUserAdmin(): boolean {
+    const token: IJwt = this._getDecodedJwt();
+
+    return token.isAdmin;
+  }
+
   public getFullJwt(): string | null {
     const token = this._jwtService.tokenGetter();
     return token ? `Bearer ${token}` : null;

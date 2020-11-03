@@ -8,5 +8,6 @@ export const pageTitles: Dictionary<string> = {
   '/investments': 'Investments',
   '/investments/create': 'New investment entry',
   '/monthly-distribution/create': 'New monthly entry',
-  '/user-settings': 'User settings'
+  '/user-settings': 'User settings',
+  '/admin': 'Admin'
 };
