@@ -5,6 +5,7 @@ import { filter, map } from 'rxjs/operators';
 
 import { AuthService } from './auth/services/auth/auth.service';
 import { PageTitleService } from './core/services/page-title/page-title.service';
+import { ExperimentalService } from './shared/services/experimental/experimental.service';
 import { PopupService } from './shared/services/popup/popup.service';
 
 @Component({
@@ -14,21 +15,28 @@ import { PopupService } from './shared/services/popup/popup.service';
 })
 export class AppComponent implements OnInit {
   public title: Observable<string>;
+  public isDevelopment: boolean;
 
   constructor(
     private readonly _authService: AuthService,
     private readonly _router: Router,
     private readonly _pageTitleService: PageTitleService,
-    private readonly _popupService: PopupService
+    private readonly _popupService: PopupService,
+    private readonly _experimentalService: ExperimentalService
   ) {}
 
   public ngOnInit(): void {
+    this.isDevelopment = this._experimentalService.isDevelopment();
     this._subscribeToTitleChange();
     this._listenToConnectionState();
   }
 
   public isLoggedIn(): boolean {
     return this._authService.isAuthenticated();
+  }
+
+  public toggleExperimental(): void {
+    this._experimentalService.toggleExperimental();
   }
 
   private _listenToConnectionState(): void {

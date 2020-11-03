@@ -6,6 +6,18 @@
     height: 100%;
   }
 
+  &-experimentalSwitch {
+    @include button-reset;
+    background-color: $color-grey-background;
+    padding: $spacing-5;
+    color: $color-subheading;
+    position: absolute;
+    top: $spacing-10;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+  }
+
   &-content {
     overflow-y: scroll;
     position: relative;

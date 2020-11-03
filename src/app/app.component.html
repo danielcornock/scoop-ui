@@ -1,4 +1,11 @@
 <div class="App-container">
+  <button
+    class="App-experimentalSwitch"
+    (click)="toggleExperimental()"
+    *ngIf="isDevelopment"
+  >
+    EXPERIMENTAL MODE
+  </button>
   <app-sidebar class="App-sidebar" *ngIf="isLoggedIn()"></app-sidebar>
   <div class="App-content" [class.logged-in]="isLoggedIn()">
     <app-header *ngIf="isLoggedIn()" [headerTitle]="title | async"></app-header>

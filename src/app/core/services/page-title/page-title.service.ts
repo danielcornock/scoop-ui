@@ -8,8 +8,11 @@ import { pageTitles } from './constants/page-title.constant';
 })
 export class PageTitleService {
   public getTitle(event: NavigationEnd): string {
+    const formattedUrlString = event.url.split('?')[0];
+    const formattedRedirectUrl = event.urlAfterRedirects.split('?')[0];
+
     const title: string =
-      pageTitles[event.url] || pageTitles[event.urlAfterRedirects];
+      pageTitles[formattedUrlString] || pageTitles[formattedRedirectUrl];
 
     if (!title) {
       return '404 Page Not Found';

@@ -12,7 +12,11 @@
       class="Login-formInput"
       [formInputField]="loginForm.fields[1]"
     ></ngx-form-input-password>
-    <a class="Login-forgotPassword" routerLink="../forgottenPassword">
+    <a
+      class="Login-forgotPassword"
+      routerLink="../forgottenPassword"
+      *ngIf="isExperimental"
+    >
       Forgotten your password?
     </a>
     <app-form-errors
@@ -26,7 +30,7 @@
       value="Log in"
     ></app-form-submit>
 
-    <p class="Login-subtext" *ngIf="isDevelopment">
+    <p class="Login-subtext" *ngIf="isExperimental">
       No account? <a routerLink="../register">Create one here</a> instead.
     </p>
   </form>
