@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormContainer, FormFactory } from 'ngx-form-trooper';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { AuthService } from 'src/app/auth/services/auth/auth.service';
-import { HttpService } from 'src/app/core/services/http/http.service';
-import { IHttpError } from 'src/app/core/services/http/interfaces/http-error.interface';
+import { ExperimentalService } from 'src/app/shared/services/experimental/experimental.service';
+import { PopupService } from 'src/app/shared/services/popup/popup.service';
+
+import { IUserSettings } from '../../interfaces/user-settings.interface';
+import { SettingsService } from '../../services/settings/settings.service';
 
 @Component({
   selector: 'app-user-settings',
@@ -11,50 +13,87 @@ import { IHttpError } from 'src/app/core/services/http/interfaces/http-error.int
   styleUrls: ['./user-settings.component.scss']
 })
 export class UserSettingsComponent implements OnInit {
-  public form: FormContainer;
-  public passwordChanged: boolean;
-  public errors: IHttpError;
+  public userSettings: IUserSettings;
+  public settingsForm: FormContainer;
+  public isExperimental: boolean;
+  public displaySaveButton: boolean;
+
   constructor(
     private readonly _formFactory: FormFactory,
-    private readonly _httpService: HttpService,
-    private readonly _authService: AuthService,
-    private readonly _spinnerService: NgxSpinnerService
+    private readonly _spinnerService: NgxSpinnerService,
+    private readonly _settingsService: SettingsService,
+    private readonly _popupService: PopupService,
+    private readonly _experimentalService: ExperimentalService
   ) {}
 
-  ngOnInit(): void {
-    this.form = this._formFactory.createForm([
-      {
-        name: 'oldPassword',
-        label: 'Old password',
-        type: 'password',
-        validators: {
-          required: true
-        }
-      },
-      {
-        name: 'newPassword',
-        label: 'New Password',
-        type: 'password',
-        validators: {
-          required: true
-        }
-      }
-    ]);
+  async ngOnInit(): Promise<void> {
+    this.isExperimental = this._experimentalService.isExperimental();
+    await this._createSettingsForm();
   }
 
-  public async submitPasswordChange(): Promise<void> {
+  public async saveChanges(): Promise<void> {
     try {
       this._spinnerService.show();
-      const { data } = await this._httpService.post(
-        'auth/changePassword',
-        this.form.value
+      this.userSettings = await this._settingsService.updateUserSettings(
+        this.settingsForm.value
       );
-      this._authService.setJwt(data.jwt);
-      this.passwordChanged = true;
+      this._popupService.showSuccess(
+        'User settings have been saved successfully.',
+        'Success!'
+      );
+      this.displaySaveButton = false;
     } catch ({ error }) {
-      this.errors = error;
+      this._popupService.showApiError(error);
     } finally {
       this._spinnerService.hide();
     }
+  }
+
+  private async _createSettingsForm(): Promise<void> {
+    this.userSettings = await this._settingsService.getUserSettings();
+
+    this.settingsForm = this._formFactory.createForm([
+      {
+        name: 'enableInvestments',
+        label: 'Investments',
+        type: 'checkbox',
+        defaultValue: this.userSettings.enableInvestments
+      },
+      {
+        name: 'enableNetWorth',
+        label: 'Net Worth',
+        type: 'checkbox',
+        defaultValue: this.userSettings.enableNetWorth
+      },
+      {
+        name: 'enableMonthlyDistribution',
+        label: 'Monthly Distribution',
+        type: 'checkbox',
+        defaultValue: this.userSettings.enableMonthlyDistribution
+      },
+      {
+        name: 'enableEmailNotifications',
+        label: 'Enable email notifications',
+        type: 'checkbox',
+        defaultValue: this.userSettings.enableEmailNotifications
+      },
+      {
+        name: 'reminderDate',
+        label: 'Day of the month to update your logs',
+        type: 'text',
+        defaultValue: this.userSettings.reminderDate
+      },
+      {
+        name: 'preferredCurrency',
+        label: 'Preferred currency (symbol)',
+        placeholder: 'e.g. £ or $',
+        type: 'text',
+        defaultValue: this.userSettings.preferredCurrency
+      }
+    ]);
+
+    this.settingsForm.formGroup.valueChanges.subscribe(
+      () => (this.displaySaveButton = true)
+    );
   }
 }

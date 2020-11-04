@@ -1,28 +1,42 @@
-<div class="UserSettings-container">
-  <h2 class="UserSettings-subheading">Change your password</h2>
+<div class="UserSettings-container animate-page-in" *ngIf="settingsForm">
+  <app-change-password-form
+    class="UserSettings-section first"
+  ></app-change-password-form>
 
-  <form
-    class="UserSettings-form"
-    [formGroup]="form.formGroup"
-    (ngSubmit)="submitPasswordChange()"
-    *ngIf="!passwordChanged; else passwordChangedTemplate"
+  <div class="UserSettings-section last" *ngIf="isExperimental">
+    <h2 class="UserSettings-subheading">Configuration</h2>
+    <form [formGroup]="settingsForm.formGroup" class="UserSettings-form">
+      <h3 class="UserSettings-formHeading">Enabled features</h3>
+      <ngx-form-input-checkbox
+        [formInputField]="settingsForm.fields[0]"
+      ></ngx-form-input-checkbox>
+      <ngx-form-input-checkbox
+        [formInputField]="settingsForm.fields[1]"
+      ></ngx-form-input-checkbox>
+      <ngx-form-input-checkbox
+        [formInputField]="settingsForm.fields[2]"
+      ></ngx-form-input-checkbox>
+
+      <h3 class="UserSettings-formHeading">Notification settings</h3>
+      <ngx-form-input-checkbox
+        [formInputField]="settingsForm.fields[3]"
+      ></ngx-form-input-checkbox>
+      <ngx-form-input
+        [formInputField]="settingsForm.fields[4]"
+      ></ngx-form-input>
+
+      <h3 class="UserSettings-formHeading">Preferred currency</h3>
+      <ngx-form-input
+        [formInputField]="settingsForm.fields[5]"
+      ></ngx-form-input>
+    </form>
+  </div>
+
+  <button
+    class="UserSettings-updateButton"
+    (click)="saveChanges()"
+    *ngIf="displaySaveButton"
   >
-    <ngx-form-input-password
-      *ngFor="let field of form.fields"
-      [formInputField]="field"
-    ></ngx-form-input-password>
-
-    <app-form-errors [appFormErrors]="errors"></app-form-errors>
-
-    <app-form-submit
-      [form]="form.formGroup"
-      value="Update password"
-    ></app-form-submit>
-  </form>
-  <ng-template #passwordChangedTemplate>
-    <p class="UserSettings-confirmation">
-      You have successfully changed your password. Your sessions on other
-      devices have now been logged out.
-    </p>
-  </ng-template>
+    Save Changes
+  </button>
 </div>

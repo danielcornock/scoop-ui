@@ -21,6 +21,7 @@ import {
 } from './components/net-worth-summary-form-modal/net-worth-summary-form-modal.component';
 import { SettingsComponent } from './views/settings/settings.component';
 import { UserSettingsComponent } from './views/user-settings/user-settings.component';
+import { ChangePasswordFormComponent } from './components/change-password-form/change-password-form.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { UserSettingsComponent } from './views/user-settings/user-settings.compo
     DashboardSummaryConfigItemComponent,
     MonthlyDistributionFieldsConfigComponent,
     FieldsConfigComponent,
-    UserSettingsComponent
+    UserSettingsComponent,
+    ChangePasswordFormComponent
   ],
   imports: [
     CommonModule,

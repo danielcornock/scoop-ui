@@ -3,6 +3,7 @@
 .UserSettings {
   &-container {
     @include page-container;
+    position: relative;
   }
 
   &-subheading {
@@ -15,8 +16,41 @@
     flex-direction: column;
   }
 
-  &-confirmation {
-    @include default-text;
-    margin-bottom: $spacing-20;
+  &-formHeading {
+    @include subheading-sm;
+    margin-bottom: $spacing-15;
+    margin-top: $spacing-20;
+  }
+
+  &-updateButton {
+    @include button-default;
+    position: fixed;
+    bottom: $spacing-30;
+    right: $spacing-30;
+    z-index: 100;
+
+    @include media-phone {
+      /* To account for menu at botton */
+      bottom: 64px + $spacing-10;
+      right: $spacing-10;
+    }
+  }
+
+  &-section {
+    display: block;
+    padding-bottom: $spacing-40;
+    padding-top: $spacing-40;
+
+    &.last {
+      padding-bottom: 0;
+    }
+
+    &.first {
+      padding-top: 0;
+    }
+
+    & + & {
+      border-top: 1px solid $color-table-divider;
+    }
   }
 }
