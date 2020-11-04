@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges } from '@angular/core';
+import { isString } from 'lodash';
 import { IHttpError } from 'src/app/core/services/http/interfaces/http-error.interface';
 
 @Component({
@@ -26,6 +27,8 @@ export class FormErrorsComponent implements OnChanges {
       this.error = this._capitaliseError(this.appFormErrors.message[0]);
     } else if (this.appFormErrors.message) {
       this.error = this._capitaliseError(this.appFormErrors.message);
+    } else if (isString(this.appFormErrors)) {
+      this.error = this.appFormErrors;
     } else {
       this.error = 'An unknown error occured. Please try again later.';
     }
