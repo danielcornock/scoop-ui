@@ -1,0 +1,20 @@
+<div class="CreateCustomNotificationModal-container">
+  <h3 class="CreateCustomNotificationModal-subheading">
+    Create custom notification
+  </h3>
+  <form
+    class="CreateCustomNotificationModal-form"
+    [formGroup]="form.formGroup"
+    (ngSubmit)="submitForm()"
+  >
+    <ngx-form-input
+      *ngFor="let field of form.fields"
+      [formInputField]="field"
+    ></ngx-form-input>
+    <app-form-errors [appFormErrors]="errors"></app-form-errors>
+    <app-form-submit
+      [form]="form.formGroup"
+      value="Send notification"
+    ></app-form-submit>
+  </form>
+</div>

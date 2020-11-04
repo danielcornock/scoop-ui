@@ -39,6 +39,7 @@ export class SettingsComponent implements OnInit {
 
   public async saveChanges(): Promise<void> {
     try {
+      this._spinnerService.show();
       const { data, meta } = await this._settingsService.updateSettings(
         this.settings
       );
@@ -47,6 +48,8 @@ export class SettingsComponent implements OnInit {
       this.originalSettings = cloneDeep(this.settings);
     } catch ({ error }) {
       this._popupService.showApiError(error);
+    } finally {
+      this._spinnerService.hide();
     }
   }
 }

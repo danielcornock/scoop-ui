@@ -22,13 +22,6 @@
     font-size: 16px;
     margin-bottom: $spacing-5;
     margin: 3px;
-
-    &:not(.is-movable) {
-      cursor: initial;
-      &:hover {
-        background-color: $color-settings-item;
-      }
-    }
   }
 
   &-removeItem {

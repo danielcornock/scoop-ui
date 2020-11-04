@@ -50,7 +50,7 @@ export class UserSettingsMenuComponent implements OnInit {
         id: notification._id,
         title: notification.title,
         text: notification.text,
-        icon: notificationDictionary[notification.name].icon,
+        icon: notificationDictionary[notification.name]?.icon ?? 'alert-circle',
         actions: [
           {
             label: 'Delete',

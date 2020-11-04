@@ -1,0 +1,21 @@
+@import 'src/assets/styles/themes.scss';
+
+.CreateCustomNotificationModal {
+  &-container {
+    min-width: 400px;
+
+    @include media-phone {
+      min-width: initial;
+      width: 100%;
+    }
+  }
+
+  &-subheading {
+    @include modal-title;
+  }
+
+  &-form {
+    display: flex;
+    flex-direction: column;
+  }
+}

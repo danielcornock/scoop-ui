@@ -4,4 +4,9 @@
   &-container {
     @include page-container;
   }
+
+  &-actions {
+    display: block;
+    margin-bottom: $spacing-30;
+  }
 }
