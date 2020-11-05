@@ -10,25 +10,28 @@
       'Change since last month'
     ]"
   >
-    <tr class="InvestmentsLogCard-row" *ngFor="let row of monthlyLogCardItems">
+    <tr
+      class="InvestmentsLogCard-row"
+      *ngFor="let row of investmentsLogCardItems"
+    >
       <td class="InvestmentsLogCard-rowItem">
         {{ row.date | date: 'MMMM y' }}
       </td>
       <td class="InvestmentsLogCard-rowItem">
-        {{ row.addedSinceLast | currency: 'GBP':'symbol':'1.0-2' }}
+        {{ row.addedSinceLast | currency: preferredCurrency:'symbol':'1.0-2' }}
       </td>
       <td class="InvestmentsLogCard-rowItem">
-        {{ row.totalInvested | currency: 'GBP':'symbol':'1.0-2' }}
+        {{ row.totalInvested | currency: preferredCurrency:'symbol':'1.0-2' }}
       </td>
       <td class="InvestmentsLogCard-rowItem">
-        {{ row.totalValue | currency: 'GBP':'symbol':'1.0-2' }}
+        {{ row.totalValue | currency: preferredCurrency:'symbol':'1.0-2' }}
       </td>
       <td
         class="InvestmentsLogCard-rowItem"
         [class.is-negative]="row.profit < 0"
         [class.is-positive]="row.profit > 0"
       >
-        {{ row.profit | currency: 'GBP':'symbol':'1.0-2' }}
+        {{ row.profit | currency: preferredCurrency:'symbol':'1.0-2' }}
       </td>
       <td
         class="InvestmentsLogCard-rowItem"
@@ -42,7 +45,10 @@
         [class.is-negative]="row.profitChangeSinceLast < 0"
         [class.is-positive]="row.profitChangeSinceLast > 0"
       >
-        {{ row.profitChangeSinceLast | currency: 'GBP':'symbol':'1.0-2' }}
+        {{
+          row.profitChangeSinceLast
+            | currency: preferredCurrency:'symbol':'1.0-2'
+        }}
       </td>
       <app-table-actions
         class="InvestmentsLogCard-rowItem"

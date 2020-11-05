@@ -2,11 +2,10 @@ import { CurrencyPipe, PercentPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpService } from 'src/app/core/services/http/http.service';
-import {
-  IDashboardSummaryItem,
-} from 'src/app/shared/components/dashboard-summary/interfaces/dashboard-summary-item.interface';
+import { IDashboardSummaryItem } from 'src/app/shared/components/dashboard-summary/interfaces/dashboard-summary-item.interface';
 
 import { IInvestmentLog } from '../../interfaces/investment-log.interface';
+import { IInvestmentsMeta } from '../../interfaces/investments-meta.interface';
 
 @Component({
   selector: 'app-investments',
@@ -16,6 +15,7 @@ import { IInvestmentLog } from '../../interfaces/investment-log.interface';
 export class InvestmentsComponent implements OnInit {
   public summaryItems: Array<IDashboardSummaryItem>;
   public investmentLogs: Array<IInvestmentLog>;
+  public investmentsMeta: IInvestmentsMeta;
 
   constructor(
     private readonly _httpService: HttpService,
@@ -62,10 +62,11 @@ export class InvestmentsComponent implements OnInit {
   }
 
   private async _fetchInvestmentLogs(): Promise<void> {
-    const { data } = await this._httpService.get<IInvestmentLog[]>(
+    const { data, meta } = await this._httpService.get<IInvestmentLog[]>(
       'investments'
     );
     this.investmentLogs = data;
+    this.investmentsMeta = meta;
   }
 
   private _toPercentage(value: number): string {
@@ -73,6 +74,11 @@ export class InvestmentsComponent implements OnInit {
   }
 
   private _toCurrency(amount: number): string {
-    return this._currencyPipe.transform(amount, '£', 'symbol', '1.0-0');
+    return this._currencyPipe.transform(
+      amount,
+      this.investmentsMeta.preferredCurrency,
+      'symbol',
+      '1.0-0'
+    );
   }
 }
