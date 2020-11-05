@@ -13,16 +13,20 @@
         [class.is-positive]="log.income[fieldName] > 0"
         *ngFor="let fieldName of log.income | keys"
       >
-        {{ log.income[fieldName] | currency: 'GBP':'symbol':'1.0-2' }}
+        {{
+          log.income[fieldName] | currency: preferredCurrency:'symbol':'1.0-2'
+        }}
       </td>
       <td
         class="MonthlyDistributionLogCard-rowItem"
         *ngFor="let fieldName of log.outgoing | keys"
       >
-        {{ log.outgoing[fieldName] | currency: 'GBP':'symbol':'1.0-2' }}
+        {{
+          log.outgoing[fieldName] | currency: preferredCurrency:'symbol':'1.0-2'
+        }}
       </td>
       <td class="MonthlyDistributionLogCard-rowItem">
-        {{ log.remaining | currency: 'GBP':'symbol':'1.0-2' }}
+        {{ log.remaining | currency: preferredCurrency:'symbol':'1.0-2' }}
       </td>
       <app-table-actions
         class="MonthlyDistributionLogCard-rowItem"
