@@ -5,7 +5,10 @@ import { HttpService } from 'src/app/core/services/http/http.service';
 import { IContextMenuItem } from 'src/app/shared/components/context-menu/interfaces/context-menu-item.interface';
 
 import { LogCard } from '../../../shared/abstracts/log-card.abstract';
-import { INetWorthApiResponse } from '../../interfaces/net-worth-api-response.interface';
+import {
+  INetWorthApiMetaResponse,
+  INetWorthApiResponse
+} from '../../interfaces/net-worth-api-response.interface';
 
 @Component({
   selector: 'app-net-worth-log',
@@ -17,7 +20,7 @@ export class NetWorthLogComponent extends LogCard implements OnInit {
   public netWorthLogItems: Array<INetWorthApiResponse>;
 
   @Input()
-  public netWorthColumns: Array<string>;
+  public netWorthMeta: INetWorthApiMetaResponse;
 
   public logs: Array<Dictionary<string | number>>;
   public contextMenuItems: Array<IContextMenuItem>;
@@ -40,7 +43,7 @@ export class NetWorthLogComponent extends LogCard implements OnInit {
     this.logs = this.netWorthLogItems.map((entry) => {
       const baseObject: Dictionary<string | number> = {};
 
-      this.netWorthColumns.forEach((fieldName) => {
+      this.netWorthMeta.fields.forEach((fieldName) => {
         baseObject[fieldName] =
           entry[fieldName] || entry.customValues[fieldName] || 0;
       });

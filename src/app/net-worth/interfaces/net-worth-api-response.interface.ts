@@ -10,6 +10,7 @@ export interface INetWorthApiResponse {
 }
 
 export interface INetWorthApiMetaResponse {
+  preferredCurrency: string;
   fields: Array<string>;
   summaryItems: Array<INetWorthSummaryItem>;
 }

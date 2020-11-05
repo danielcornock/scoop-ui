@@ -3,7 +3,7 @@
   cardTitle="Monthly Log"
   [cardActions]="cardActions"
 >
-  <app-table [tableColumns]="netWorthColumns">
+  <app-table [tableColumns]="netWorthMeta.fields">
     <tr class="NetWorthLog-row" *ngFor="let row of logs">
       <td class="NetWorthLog-rowItem">
         {{ row.date | date: 'MMMM y' }}
@@ -14,7 +14,9 @@
         [class.is-negative]="item === 'change' && row[item] < 0"
         [class.is-positive]="item === 'change' && row[item] > 0"
       >
-        {{ row[item] | currency: 'GBP':'symbol':'1.0-2' }}
+        {{
+          row[item] | currency: netWorthMeta.preferredCurrency:'symbol':'1.0-2'
+        }}
       </td>
       <app-table-actions
         class="NetWorthLog-rowItem"

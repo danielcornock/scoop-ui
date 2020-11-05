@@ -2,11 +2,12 @@ import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpService } from 'src/app/core/services/http/http.service';
-import {
-  IDashboardSummaryItem,
-} from 'src/app/shared/components/dashboard-summary/interfaces/dashboard-summary-item.interface';
+import { IDashboardSummaryItem } from 'src/app/shared/components/dashboard-summary/interfaces/dashboard-summary-item.interface';
 
-import { INetWorthApiMetaResponse, INetWorthApiResponse } from '../../interfaces/net-worth-api-response.interface';
+import {
+  INetWorthApiMetaResponse,
+  INetWorthApiResponse
+} from '../../interfaces/net-worth-api-response.interface';
 
 @Component({
   selector: 'app-net-worth',
@@ -54,6 +55,11 @@ export class NetWorthComponent implements OnInit {
   }
 
   private _toCurrency(amount: number): string {
-    return this._currency.transform(amount, '£', 'symbol', '1.0-0');
+    return this._currency.transform(
+      amount,
+      this.netWorthMeta.preferredCurrency,
+      'symbol',
+      '1.0-0'
+    );
   }
 }
