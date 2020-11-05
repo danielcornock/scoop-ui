@@ -5,7 +5,7 @@ import { ExperimentalService } from 'src/app/shared/services/experimental/experi
 import { PopupService } from 'src/app/shared/services/popup/popup.service';
 
 import { IUserSettings } from '../../interfaces/user-settings.interface';
-import { SettingsService } from '../../services/settings/settings.service';
+import { UserSettingsService } from '../../services/user-settings/user-settings.service';
 
 @Component({
   selector: 'app-user-settings',
@@ -21,7 +21,7 @@ export class UserSettingsComponent implements OnInit {
   constructor(
     private readonly _formFactory: FormFactory,
     private readonly _spinnerService: NgxSpinnerService,
-    private readonly _settingsService: SettingsService,
+    private readonly _userSettingsService: UserSettingsService,
     private readonly _popupService: PopupService,
     private readonly _experimentalService: ExperimentalService
   ) {}
@@ -34,12 +34,12 @@ export class UserSettingsComponent implements OnInit {
   public async saveChanges(): Promise<void> {
     try {
       this._spinnerService.show();
-      this.userSettings = await this._settingsService.updateUserSettings(
+      this.userSettings = await this._userSettingsService.updateUserSettings(
         this.settingsForm.value
       );
       this._popupService.showSuccess(
-        'User settings have been saved successfully.',
-        'Success!'
+        'Some changes may only take effect after a page refresh',
+        'User settings successfully updated'
       );
       this.displaySaveButton = false;
     } catch ({ error }) {
@@ -50,7 +50,7 @@ export class UserSettingsComponent implements OnInit {
   }
 
   private async _createSettingsForm(): Promise<void> {
-    this.userSettings = await this._settingsService.getUserSettings();
+    this.userSettings = await this._userSettingsService.getUserSettings();
 
     this.settingsForm = this._formFactory.createForm([
       {

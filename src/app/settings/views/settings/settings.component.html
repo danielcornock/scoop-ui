@@ -11,29 +11,36 @@
   >
     Save Changes
   </button>
-  <app-net-worth-config
-    class="Settings-section first"
-    id="net-worth-table-config"
-    [netWorthColumns]="settings.netWorthFields"
-  ></app-net-worth-config>
+  <ng-container *ngIf="userSettings?.enableNetWorth">
+    <section class="Settings-section">
+      <app-net-worth-config
+        id="net-worth-table-config"
+        [netWorthColumns]="settings.netWorthFields"
+      ></app-net-worth-config>
+    </section>
 
-  <app-net-worth-summary-config
-    class="Settings-section"
-    id="net-worth-summary-config"
-    [netWorthSummaryConfigOptions]="settings.netWorthSummaryOptions"
-    [netWorthSummaryConfigSelectedItems]="settings.netWorthSummaryItems"
-    [netWorthSummaryConfigAvailableFields]="
-      meta.netWorthSummaryItems.sumOf.options
-    "
-  ></app-net-worth-summary-config>
+    <section class="Settings-section">
+      <app-net-worth-summary-config
+        id="net-worth-summary-config"
+        [netWorthSummaryConfigOptions]="settings.netWorthSummaryOptions"
+        [netWorthSummaryConfigSelectedItems]="settings.netWorthSummaryItems"
+        [netWorthSummaryConfigAvailableFields]="
+          meta.netWorthSummaryItems.sumOf.options
+        "
+      ></app-net-worth-summary-config>
+    </section>
+  </ng-container>
 
-  <app-monthly-distribution-fields-config
-    class="Settings-section last"
-    [monthlyDistributionIncomeColumns]="
-      settings.monthlyDistributionIncomeFields
-    "
-    [monthlyDistributionOutgoingColumns]="
-      settings.monthlyDistributionOutgoingFields
-    "
-  ></app-monthly-distribution-fields-config>
+  <ng-container *ngIf="userSettings.enableMonthlyDistribution">
+    <section class="Settings-section">
+      <app-monthly-distribution-fields-config
+        [monthlyDistributionIncomeColumns]="
+          settings.monthlyDistributionIncomeFields
+        "
+        [monthlyDistributionOutgoingColumns]="
+          settings.monthlyDistributionOutgoingFields
+        "
+      ></app-monthly-distribution-fields-config>
+    </section>
+  </ng-container>
 </div>

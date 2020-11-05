@@ -41,11 +41,11 @@
     padding-bottom: $spacing-40;
     padding-top: $spacing-40;
 
-    &.last {
+    &:last-of-type {
       padding-bottom: 0;
     }
 
-    &.first {
+    &:first-of-type {
       padding-top: 0;
     }
 

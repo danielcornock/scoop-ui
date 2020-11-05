@@ -4,7 +4,6 @@ import { IHttpResponse } from 'src/app/core/services/http/interfaces/http-respon
 
 import { ISettingsMeta } from '../../interfaces/settings-meta.interface';
 import { ISettings } from '../../interfaces/settings.interface';
-import { IUserSettings } from '../../interfaces/user-settings.interface';
 
 export type SettingsHttpResponse = IHttpResponse<ISettings, ISettingsMeta>;
 @Injectable({
@@ -12,7 +11,6 @@ export type SettingsHttpResponse = IHttpResponse<ISettings, ISettingsMeta>;
 })
 export class SettingsService {
   private _settings: SettingsHttpResponse;
-  private _userSettings: IUserSettings;
 
   constructor(private readonly _httpService: HttpService) {}
 
@@ -26,33 +24,11 @@ export class SettingsService {
     }
   }
 
-  public async getUserSettings(): Promise<IUserSettings> {
-    if (this._userSettings) {
-      return this._userSettings;
-    } else {
-      const { data } = await this._httpService.get('user-settings');
-
-      this._userSettings = data;
-
-      return this._userSettings;
-    }
-  }
-
   public async updateSettings(
     newData: ISettings
   ): Promise<SettingsHttpResponse> {
     this._settings = await this._httpService.put('settings', newData);
 
     return this._settings;
-  }
-
-  public async updateUserSettings(
-    newData: IUserSettings
-  ): Promise<IUserSettings> {
-    const { data } = await this._httpService.put('user-settings', newData);
-
-    this._userSettings = data;
-
-    return this._userSettings;
   }
 }

@@ -1,9 +1,9 @@
 <div class="UserSettings-container animate-page-in" *ngIf="settingsForm">
-  <app-change-password-form
-    class="UserSettings-section first"
-  ></app-change-password-form>
+  <section class="UserSettings-section">
+    <app-change-password-form></app-change-password-form>
+  </section>
 
-  <div class="UserSettings-section last" *ngIf="isExperimental">
+  <section class="UserSettings-section" *ngIf="isExperimental">
     <h2 class="UserSettings-subheading">Configuration</h2>
     <form [formGroup]="settingsForm.formGroup" class="UserSettings-form">
       <h3 class="UserSettings-formHeading">Enabled features</h3>
@@ -30,7 +30,7 @@
         [formInputField]="settingsForm.fields[5]"
       ></ngx-form-input>
     </form>
-  </div>
+  </section>
 
   <button
     class="UserSettings-updateButton"
