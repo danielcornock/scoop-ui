@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormContainer, FormFactory } from 'ngx-form-trooper';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { ExperimentalService } from 'src/app/shared/services/experimental/experimental.service';
 import { PopupService } from 'src/app/shared/services/popup/popup.service';
 
 import { IUserSettings } from '../../interfaces/user-settings.interface';
@@ -22,12 +21,10 @@ export class UserSettingsComponent implements OnInit {
     private readonly _formFactory: FormFactory,
     private readonly _spinnerService: NgxSpinnerService,
     private readonly _userSettingsService: UserSettingsService,
-    private readonly _popupService: PopupService,
-    private readonly _experimentalService: ExperimentalService
+    private readonly _popupService: PopupService
   ) {}
 
   async ngOnInit(): Promise<void> {
-    this.isExperimental = this._experimentalService.isExperimental();
     await this._createSettingsForm();
   }
 
