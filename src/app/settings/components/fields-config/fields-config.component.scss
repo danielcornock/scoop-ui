@@ -10,6 +10,10 @@
     display: block;
     max-width: 300px;
     margin-bottom: -23px;
+
+    @include media-phone {
+      max-width: initial;
+    }
   }
 
   &-columnListEntry {

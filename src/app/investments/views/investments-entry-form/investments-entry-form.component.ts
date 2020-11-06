@@ -55,6 +55,7 @@ export class InvestmentsEntryFormComponent implements OnInit {
         name: 'addedSinceLast',
         type: 'number',
         label: 'Money added to investments this month',
+        tooltip: `If this is your first entry, this field should be the total amount you've added to investments`,
         validators: {
           required: true
         }
