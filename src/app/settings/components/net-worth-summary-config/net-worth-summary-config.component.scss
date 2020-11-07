@@ -13,12 +13,23 @@
     display: flex;
     min-width: 100px;
     min-height: 68px;
-
     overflow-y: auto;
+
+    @include media-phone {
+      flex-direction: column;
+    }
   }
 
   &-selectedItem {
     margin-right: $spacing-10;
+
+    @include media-phone {
+      margin-right: 0;
+
+      & + & {
+        margin-top: $spacing-10;
+      }
+    }
   }
 
   &-subheading {
@@ -43,6 +54,8 @@
 
     @include media-phone {
       padding: $spacing-10 $spacing-20;
+      margin-top: $spacing-10;
+      min-height: 90px;
     }
   }
 }

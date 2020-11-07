@@ -1,6 +1,8 @@
 @import 'src/assets/styles/themes.scss';
 
 .FieldsConfig {
+  $cmp: &;
+
   &-columnsList {
     margin-bottom: $spacing-20;
     overflow-y: auto;
@@ -25,7 +27,21 @@
     text-align: left;
     font-size: 16px;
     margin-bottom: $spacing-5;
-    margin: 3px;
+
+    & + & {
+      margin-left: 3px;
+    }
+
+    @include media-phone {
+      margin-left: 0;
+      display: flex;
+      justify-content: center;
+      padding: $spacing-20;
+
+      & + & {
+        margin-top: $spacing-10;
+      }
+    }
   }
 
   &-removeItem {

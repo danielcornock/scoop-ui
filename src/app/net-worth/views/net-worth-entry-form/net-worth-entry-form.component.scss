@@ -8,8 +8,8 @@
   &-form {
     max-width: 400px;
 
-    @include media-tablet {
-      max-width: initial;
+    @include media-phone {
+      max-width: 100%;
     }
   }
 

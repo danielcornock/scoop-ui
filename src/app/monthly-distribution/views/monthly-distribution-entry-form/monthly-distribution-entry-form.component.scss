@@ -10,8 +10,8 @@
     display: flex;
     flex-direction: column;
 
-    @include media-tablet {
-      max-width: initial;
+    @include media-phone {
+      max-width: 100%;
     }
   }
 

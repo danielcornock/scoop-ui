@@ -1,6 +1,9 @@
 import { CdkDragDrop, CdkDropList, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { ModalService } from 'src/app/shared/services/modal/modal.service';
+import { SCREEN_SIZE, ScreenWidthService } from 'src/app/shared/services/screen-width/screen-width.service';
 
 import { INetWorthSummaryItemConfig } from '../../interfaces/settings.interface';
 import { NetWorthSummaryFormModalComponent } from '../net-worth-summary-form-modal/net-worth-summary-form-modal.component';
@@ -10,7 +13,7 @@ import { NetWorthSummaryFormModalComponent } from '../net-worth-summary-form-mod
   templateUrl: './net-worth-summary-config.component.html',
   styleUrls: ['./net-worth-summary-config.component.scss']
 })
-export class NetWorthSummaryConfigComponent {
+export class NetWorthSummaryConfigComponent implements OnInit {
   @Input()
   public netWorthSummaryConfigSelectedItems: Array<INetWorthSummaryItemConfig>;
 
@@ -21,8 +24,24 @@ export class NetWorthSummaryConfigComponent {
   public netWorthSummaryConfigAvailableFields: Array<string>;
 
   public isInvalid: boolean;
+  public dragDropDirection$: Observable<string>;
 
-  constructor(private readonly _modalService: ModalService) {}
+  constructor(
+    private readonly _modalService: ModalService,
+    private readonly _screenWidthService: ScreenWidthService
+  ) {}
+
+  public ngOnInit(): void {
+    this.dragDropDirection$ = this._screenWidthService.getScreenWidth$().pipe(
+      switchMap((size: SCREEN_SIZE) => {
+        if (size === SCREEN_SIZE.Mobile) {
+          return of('vertical');
+        } else {
+          return of('horizontal');
+        }
+      })
+    );
+  }
 
   public removeItem(
     index: number,
@@ -43,8 +62,6 @@ export class NetWorthSummaryConfigComponent {
       this.netWorthSummaryConfigOptions.push(data);
     }
   }
-
-  private _addOption(data: INetWorthSummaryItemConfig): void {}
 
   public dropColumn(event: CdkDragDrop<INetWorthSummaryItemConfig[]>): void {
     if (event.previousContainer === event.container) {

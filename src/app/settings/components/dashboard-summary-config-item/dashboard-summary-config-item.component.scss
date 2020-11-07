@@ -13,8 +13,13 @@
     position: relative;
     min-width: 170px;
 
+    @include media-tablet {
+      padding: $spacing-20 $spacing-10;
+    }
+
     @include media-phone {
       padding: $spacing-10 $spacing-20;
+      min-height: 90px;
     }
 
     &:hover {
@@ -41,8 +46,5 @@
   &-selectedItemAttributes {
     font-size: 10px;
     text-transform: uppercase;
-
-    @include media-phone {
-    }
   }
 }

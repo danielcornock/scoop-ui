@@ -2,6 +2,9 @@ import { CdkDragSortEvent, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { FormContainer, FormFactory } from 'ngx-form-trooper';
+import { Observable, of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+import { SCREEN_SIZE, ScreenWidthService } from 'src/app/shared/services/screen-width/screen-width.service';
 
 @Component({
   selector: 'app-fields-config',
@@ -13,10 +16,24 @@ export class FieldsConfigComponent implements OnInit {
   public fieldsConfigColumns: Array<string>;
 
   public form: FormContainer;
+  public dragDropDirection$: Observable<string>;
 
-  constructor(private readonly _formFactory: FormFactory) {}
+  constructor(
+    private readonly _formFactory: FormFactory,
+    private readonly _screenWidthService: ScreenWidthService
+  ) {}
 
   public ngOnInit(): void {
+    this.dragDropDirection$ = this._screenWidthService.getScreenWidth$().pipe(
+      switchMap((size: SCREEN_SIZE) => {
+        if (size === SCREEN_SIZE.Mobile) {
+          return of('vertical');
+        } else {
+          return of('horizontal');
+        }
+      })
+    );
+
     this.form = this._formFactory.createForm([
       {
         name: 'fieldsConfigColumns',

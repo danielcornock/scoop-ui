@@ -18,7 +18,7 @@
     [cdkDropListData]="netWorthSummaryConfigSelectedItems"
     [cdkDropListConnectedTo]="optionsList"
     (cdkDropListDropped)="dropColumn($event)"
-    cdkDropListOrientation="horizontal"
+    [cdkDropListOrientation]="dragDropDirection$ | async"
   >
     <app-dashboard-summary-config-item
       class="NetWorthSummaryConfig-selectedItem"
@@ -43,7 +43,7 @@
     [cdkDropListData]="netWorthSummaryConfigOptions"
     #optionsList="cdkDropList"
     (cdkDropListDropped)="dropColumn($event)"
-    cdkDropListOrientation="horizontal"
+    [cdkDropListOrientation]="dragDropDirection$ | async"
   >
     <app-dashboard-summary-config-item
       class="NetWorthSummaryConfig-selectedItem"
