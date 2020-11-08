@@ -13,6 +13,10 @@ export class LogCard {
     this._assignContextMenuItems();
   }
 
+  public navigateToEditPage(date: string): void {
+    this._router.navigateByUrl(`${this._createUrl}/edit/${date}`);
+  }
+
   protected _getContextMenuEditText(): string {
     return this.isEditing ? 'Stop Editing' : 'Enable Editing';
   }

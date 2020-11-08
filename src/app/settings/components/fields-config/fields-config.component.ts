@@ -1,6 +1,5 @@
 import { CdkDragSortEvent, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { FormContainer, FormFactory } from 'ngx-form-trooper';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
@@ -51,8 +50,7 @@ export class FieldsConfigComponent implements OnInit {
   }
 
   public add(): void {
-    const control: FormControl = this.form.formGroup.controls
-      .fieldsConfigColumns as FormControl;
+    const control = this.form.formGroup.controls.fieldsConfigColumns;
 
     if ((control.value || '').trim()) {
       this.fieldsConfigColumns.push(control.value);

@@ -7,23 +7,47 @@
 .TableActions {
   &-container {
     display: flex;
+    justify-content: flex-end;
   }
 
-  &-deleteButton {
+  &-button {
     @include button-reset;
-    margin-left: auto;
     transition: all 100ms;
 
     i-feather {
       height: 20px;
       width: 20px;
-      color: $color-form-input-error-border;
     }
 
     &:hover {
       transform: scale(1.2);
+    }
+
+    & + & {
+      margin-left: $spacing-15;
+    }
+  }
+
+  &-deleteButton {
+    i-feather {
+      color: $color-form-input-error-border;
+    }
+
+    &:hover {
       i-feather {
         color: $color-form-input-error-text;
+      }
+    }
+  }
+
+  &-editButton {
+    i-feather {
+      color: $color-table-header;
+    }
+
+    &:hover {
+      i-feather {
+        color: $color-subheading;
       }
     }
   }

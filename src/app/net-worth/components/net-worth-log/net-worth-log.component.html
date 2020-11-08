@@ -21,7 +21,9 @@
       <app-table-actions
         class="NetWorthLog-rowItem"
         *ngIf="isEditing"
+        [tableActionsCanEdit]="true"
         (tableActionsRemove)="removeLog(row.date)"
+        (tableActionsEdit)="navigateToEditPage(row.date)"
       ></app-table-actions></tr
   ></app-table>
 </app-card>

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { ModalService } from '../../services/modal/modal.service';
 
@@ -8,8 +8,14 @@ import { ModalService } from '../../services/modal/modal.service';
   styleUrls: ['./table-actions.component.scss']
 })
 export class TableActionsComponent {
+  @Input()
+  public tableActionsCanEdit: boolean;
+
   @Output()
   public tableActionsRemove: EventEmitter<string> = new EventEmitter();
+
+  @Output()
+  public tableActionsEdit: EventEmitter<string> = new EventEmitter();
 
   constructor(private readonly _modalService: ModalService) {}
 
@@ -20,5 +26,9 @@ export class TableActionsComponent {
       details:
         'This will permanently delete your entry. Do you wish to continue?'
     });
+  }
+
+  public edit(): void {
+    this.tableActionsEdit.emit();
   }
 }
