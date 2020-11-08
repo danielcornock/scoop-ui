@@ -4,7 +4,7 @@ import { Dictionary } from 'lodash';
 import { HttpService } from 'src/app/core/services/http/http.service';
 import { IContextMenuItem } from 'src/app/shared/components/context-menu/interfaces/context-menu-item.interface';
 
-import { LogCard } from '../../../shared/abstracts/log-card.abstract';
+import { LogCard } from '../../../shared/abstracts/log-card/log-card.abstract';
 import { INetWorthApiMetaResponse, INetWorthApiResponse } from '../../interfaces/net-worth-api-response.interface';
 
 @Component({

@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { startCase } from 'lodash';
 import { HttpService } from 'src/app/core/services/http/http.service';
-import { LogCard } from 'src/app/shared/abstracts/log-card.abstract';
+import { LogCard } from 'src/app/shared/abstracts/log-card/log-card.abstract';
 import { IContextMenuItem } from 'src/app/shared/components/context-menu/interfaces/context-menu-item.interface';
 
 import { IMonthlyDistributionLog } from '../../interfaces/monthly-distribution-log.interface';

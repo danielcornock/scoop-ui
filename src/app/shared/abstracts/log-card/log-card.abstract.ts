@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 
-import { IContextMenuItem } from '../components/context-menu/interfaces/context-menu-item.interface';
+import { IContextMenuItem } from '../../components/context-menu/interfaces/context-menu-item.interface';
 
 export class LogCard {
   public isEditing: boolean;
