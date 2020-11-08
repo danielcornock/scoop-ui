@@ -1,6 +1,7 @@
 import { Dictionary } from 'lodash';
 
 export const pageTitles: Dictionary<string> = {
+  '/net-worth/edit': 'Update net worth entry',
   '/net-worth/create': 'New net worth entry',
   '/net-worth': 'Net worth',
   '/monthly-distribution': 'Monthly Distribution',
