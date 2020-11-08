@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { FormContainer, FormFactory } from 'ngx-form-trooper';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpService } from 'src/app/core/services/http/http.service';
-import { IHttpError } from 'src/app/core/services/http/interfaces/http-error.interface';
+import { BaseEntryForm } from 'src/app/shared/abstracts/base-entry-form/base-entry-form.abstract';
 import { DateService } from 'src/app/shared/services/current-date/date.service';
 
 @Component({
@@ -11,37 +11,26 @@ import { DateService } from 'src/app/shared/services/current-date/date.service';
   templateUrl: './investments-entry-form.component.html',
   styleUrls: ['./investments-entry-form.component.scss']
 })
-export class InvestmentsEntryFormComponent implements OnInit {
-  public form: FormContainer;
-  public errors: IHttpError;
-
+export class InvestmentsEntryFormComponent extends BaseEntryForm
+  implements OnInit {
   constructor(
     private readonly _formFactory: FormFactory,
     private readonly _currentDateService: DateService,
-    private readonly _httpService: HttpService,
-    private readonly _router: Router,
-    private readonly _spinnerService: NgxSpinnerService
-  ) {}
+    httpService: HttpService,
+    router: Router,
+    spinnerService: NgxSpinnerService
+  ) {
+    super(spinnerService, httpService, router, 'investments');
+  }
 
   ngOnInit(): void {
-    this._buildForm();
+    super.onInit();
   }
 
-  public async createLog(): Promise<void> {
-    try {
-      this._spinnerService.show();
-      await this._httpService.post('investments', this.form.value);
-      this._router.navigateByUrl('investments');
-    } catch ({ error }) {
-      this._spinnerService.hide();
-      this.errors = error;
-    }
-  }
-
-  private _buildForm(): void {
+  protected _createForm(): FormContainer {
     const currentDate: string = this._currentDateService.getCurrentMonthAndYearForForm();
 
-    this.form = this._formFactory.createForm([
+    return this._formFactory.createForm([
       {
         name: 'date',
         type: 'month',
