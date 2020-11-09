@@ -7,8 +7,8 @@ import { SharedModule } from '../shared/shared.module';
 import { HeaderComponent } from './components/header/header.component';
 import { UserSettingsMenuComponent } from './components/settings-menu/user-settings-menu.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { PageNotFoundComponent } from './components/views/page-not-found/page-not-found.component';
 import { httpProviders } from './providers/http.providers';
+import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [

@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 import { adminRoutes } from '../admin/admin.routes';
 import { authRoutes } from '../auth/auth.routes';
 import { AuthGuardService } from '../auth/services/auth-guard/auth-guard.service';
-import { PageNotFoundComponent } from '../core/components/views/page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from '../core/views/page-not-found/page-not-found.component';
 import { investmentRoutes } from '../investments/investments.routes';
 import { monthlyDistributionRoutes } from '../monthly-distribution/monthly-distribution.routes';
 import { netWorthRoutes } from '../net-worth/net-worth.routes';
