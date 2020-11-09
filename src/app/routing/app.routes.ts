@@ -7,13 +7,14 @@ import { PageNotFoundComponent } from '../core/components/views/page-not-found/p
 import { investmentRoutes } from '../investments/investments.routes';
 import { monthlyDistributionRoutes } from '../monthly-distribution/monthly-distribution.routes';
 import { netWorthRoutes } from '../net-worth/net-worth.routes';
+import { salaryRoutes } from '../salary/salary.routes';
 import { settingsRoutes } from '../settings/settings.routes';
 
 export const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'investments'
+    redirectTo: 'net-worth'
   },
   ...authRoutes,
   {
@@ -24,7 +25,8 @@ export const routes: Routes = [
       ...netWorthRoutes,
       ...monthlyDistributionRoutes,
       ...settingsRoutes,
-      ...adminRoutes
+      ...adminRoutes,
+      ...salaryRoutes
     ]
   },
   {

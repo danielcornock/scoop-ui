@@ -16,6 +16,7 @@ import { InvestmentsModule } from './investments/investments.module';
 import { MonthlyDistributionModule } from './monthly-distribution/monthly-distribution.module';
 import { NetWorthModule } from './net-worth/net-worth.module';
 import { AppRoutingModule } from './routing/app-routing.module';
+import { SalaryModule } from './salary/salary.module';
 import { SettingsModule } from './settings/settings.module';
 import { SharedModule } from './shared/shared.module';
 
@@ -34,6 +35,7 @@ import { SharedModule } from './shared/shared.module';
     SettingsModule,
     NgxFormTrooperModule,
     AdminModule,
+    SalaryModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production
     })

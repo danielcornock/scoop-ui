@@ -69,6 +69,12 @@ export class UserSettingsComponent implements OnInit {
         defaultValue: this.userSettings.enableMonthlyDistribution
       },
       {
+        name: 'enableSalary',
+        label: 'Salary (coming soon)',
+        type: 'checkbox',
+        defaultValue: this.userSettings.enableSalary
+      },
+      {
         name: 'enableEmailNotifications',
         label: 'Enable email notifications',
         type: 'checkbox',

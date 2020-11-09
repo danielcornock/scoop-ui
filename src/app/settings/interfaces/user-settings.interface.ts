@@ -4,6 +4,7 @@ export interface IUserSettings extends IBaseHttpModel {
   enableInvestments: boolean;
   enableNetWorth: boolean;
   enableMonthlyDistribution: boolean;
+  enableSalary: boolean;
   preferredCurrency: string;
   enableEmailNotifications: boolean;
   reminderDate: string;
