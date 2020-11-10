@@ -1,8 +1,9 @@
 <div class="IconPicker-container">
   <button type="button" class="IconPicker-openButton" (click)="openIcons()">
-    <span *ngIf="selectedIcon; else noIcon">
-      <i-feather [name]="selectedIcon"></i-feather>
-    </span>
+    <i-feather
+      [name]="selectedIcon"
+      *ngIf="selectedIcon; else noIcon"
+    ></i-feather>
     <ng-template #noIcon>Select an icon</ng-template>
   </button>
 

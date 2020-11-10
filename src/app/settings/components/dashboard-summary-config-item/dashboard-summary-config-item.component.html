@@ -4,7 +4,12 @@
   <p class="DashboardSummaryConfigItem-selectedItemAttributes">
     {{ dashboardSummaryConfigItem.sumOf | join: ', ' }}
   </p>
-  <button class="DashboardSummaryConfigItem-removeItem" (click)="removeItem()">
-    <i-feather name="x"></i-feather>
-  </button>
+  <div class="DashboardSummaryConfigItem-actions">
+    <button class="DashboardSummaryConfigItem-button" (click)="editItem()">
+      <i-feather name="edit-2"></i-feather>
+    </button>
+    <button class="DashboardSummaryConfigItem-button" (click)="removeItem()">
+      <i-feather name="x"></i-feather>
+    </button>
+  </div>
 </div>

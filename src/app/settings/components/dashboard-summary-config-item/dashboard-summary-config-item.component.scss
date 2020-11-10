@@ -23,23 +23,33 @@
     }
 
     &:hover {
-      #{$cmp}-removeItem {
-        display: block;
+      #{$cmp}-actions {
+        display: flex;
       }
     }
   }
 
-  &-removeItem {
-    @include button-reset;
+  &-actions {
     display: none;
     position: absolute;
-    top: $spacing-5;
-    right: $spacing-5;
-    color: $color-subheading;
+    top: $spacing-10;
+    right: $spacing-10;
+    left: $spacing-10;
     transition: 100ms;
+    justify-content: space-between;
+  }
+
+  &-button {
+    @include button-reset;
+    color: $color-subheading;
 
     &:hover {
       transform: scale(1.2);
+    }
+
+    i-feather {
+      height: 20px;
+      width: 20px;
     }
   }
 

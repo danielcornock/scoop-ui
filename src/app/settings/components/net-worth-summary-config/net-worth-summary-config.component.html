@@ -27,6 +27,9 @@
       (dashboardSummaryConfigItemRemove)="
         removeItem(i, netWorthSummaryConfigSelectedItems)
       "
+      (dashboardSummaryConfigItemEdit)="
+        openEditModal(item, i, netWorthSummaryConfigSelectedItems)
+      "
       cdkDrag
     ></app-dashboard-summary-config-item>
   </div>
@@ -51,6 +54,9 @@
       [dashboardSummaryConfigItem]="item"
       (dashboardSummaryConfigItemRemove)="
         removeItem(i, netWorthSummaryConfigOptions)
+      "
+      (dashboardSummaryConfigItemEdit)="
+        openEditModal(item, i, netWorthSummaryConfigOptions)
       "
       cdkDrag
     ></app-dashboard-summary-config-item>

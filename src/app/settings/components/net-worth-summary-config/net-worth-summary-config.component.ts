@@ -6,6 +6,9 @@ import { ModalService } from 'src/app/shared/services/modal/modal.service';
 import { SCREEN_SIZE, ScreenWidthService } from 'src/app/shared/services/screen-width/screen-width.service';
 
 import { INetWorthSummaryItemConfig } from '../../interfaces/settings.interface';
+import {
+  INetWorthSummaryFormModalConfig,
+} from '../net-worth-summary-form-modal/interfaces/net-worth-summary-form-modal-config.interface';
 import { NetWorthSummaryFormModalComponent } from '../net-worth-summary-form-modal/net-worth-summary-form-modal.component';
 
 @Component({
@@ -43,6 +46,26 @@ export class NetWorthSummaryConfigComponent implements OnInit {
     );
   }
 
+  public async openEditModal(
+    item: INetWorthSummaryItemConfig,
+    index: number,
+    array: Array<INetWorthSummaryItemConfig>
+  ): Promise<void> {
+    const data = await this._modalService.open<
+      INetWorthSummaryFormModalConfig,
+      INetWorthSummaryItemConfig
+    >(NetWorthSummaryFormModalComponent, {
+      data: {
+        fields: this.netWorthSummaryConfigAvailableFields,
+        existingData: item
+      }
+    });
+
+    if (data) {
+      array[index] = data;
+    }
+  }
+
   public removeItem(
     index: number,
     array: Array<INetWorthSummaryItemConfig>
@@ -52,10 +75,10 @@ export class NetWorthSummaryConfigComponent implements OnInit {
 
   public async openFormModal(): Promise<void> {
     const data = await this._modalService.open<
-      string[],
+      INetWorthSummaryFormModalConfig,
       INetWorthSummaryItemConfig
     >(NetWorthSummaryFormModalComponent, {
-      data: this.netWorthSummaryConfigAvailableFields
+      data: { fields: this.netWorthSummaryConfigAvailableFields }
     });
 
     if (data) {

@@ -14,9 +14,16 @@ export class DashboardSummaryConfigItemComponent {
   @Output()
   public dashboardSummaryConfigItemRemove = new EventEmitter<void>();
 
+  @Output()
+  public dashboardSummaryConfigItemEdit = new EventEmitter<void>();
+
   constructor() {}
 
   public removeItem(): void {
     this.dashboardSummaryConfigItemRemove.emit();
+  }
+
+  public editItem(): void {
+    this.dashboardSummaryConfigItemEdit.emit();
   }
 }

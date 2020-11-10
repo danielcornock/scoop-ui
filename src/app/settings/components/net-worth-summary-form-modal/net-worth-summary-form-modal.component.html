@@ -15,6 +15,7 @@
     ></ngx-form-input-multi-select>
     <p class="NetWorthSummaryFormModal-iconPickerLabel">Selected Icon</p>
     <app-icon-picker
+      [iconPickerDefault]="data.existingData?.icon"
       (iconPickerSelected)="onIconSelect($event)"
     ></app-icon-picker>
     <app-form-submit

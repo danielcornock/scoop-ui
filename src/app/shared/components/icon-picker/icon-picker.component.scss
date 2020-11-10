@@ -17,6 +17,10 @@
 
   &-openButton {
     @include button-tertiary;
+
+    i-feather {
+      display: block;
+    }
   }
 
   &-close {
