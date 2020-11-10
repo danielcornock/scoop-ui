@@ -1,0 +1,40 @@
+@import 'src/assets/styles/themes.scss';
+
+.SalaryEntryForm {
+  &-container {
+    @include page-container;
+  }
+
+  &-form {
+    max-width: 400px;
+
+    @include media-phone {
+      max-width: 100%;
+    }
+  }
+
+  &-getDeductionsButton {
+    @include form-button;
+    margin-top: $spacing-20;
+  }
+
+  &-remainingBalance {
+    background-color: $color-primary-light;
+    padding: $spacing-30;
+    border-radius: $br-med;
+    text-align: center;
+    margin-bottom: $spacing-20;
+  }
+
+  &-label {
+    font-size: 16px;
+    margin-bottom: $spacing-10;
+    color: $color-form-label;
+  }
+
+  &-value {
+    font-size: 24px;
+    font-weight: 500;
+    color: $color-primary;
+  }
+}

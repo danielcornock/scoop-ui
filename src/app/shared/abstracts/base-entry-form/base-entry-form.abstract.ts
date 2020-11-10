@@ -10,7 +10,7 @@ export abstract class BaseEntryForm {
 
   constructor(
     private readonly _spinnerService: NgxSpinnerService,
-    private readonly _httpService: HttpService,
+    protected readonly _httpService: HttpService,
     private readonly _router: Router,
     private readonly _resourceName: string
   ) {

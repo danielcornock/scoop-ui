@@ -4,6 +4,9 @@ export interface ISettings {
   netWorthSummaryOptions: Array<INetWorthSummaryItemConfig>;
   monthlyDistributionIncomeFields: string[];
   monthlyDistributionOutgoingFields: string[];
+  salaryYearlySalary: number;
+  salaryStudentFinance: string;
+  salaryPensionContribution: number;
 }
 
 export interface INetWorthSummaryItemConfig {

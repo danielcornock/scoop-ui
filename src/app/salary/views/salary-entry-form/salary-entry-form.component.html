@@ -1,0 +1,39 @@
+<div class="SalaryEntryForm-container" *ngIf="form">
+  <form
+    [formGroup]="form.formGroup"
+    class="SalaryEntryForm-form"
+    (ngSubmit)="submitForm()"
+  >
+    <ngx-form-input [formInputField]="form.fields[0]"></ngx-form-input>
+    <ngx-form-input [formInputField]="form.fields[1]"></ngx-form-input>
+    <button
+      class="SalaryEntryForm-getDeductionsButton"
+      type="button"
+      *ngIf="!salaryDeductions; else fullForm"
+      (click)="sendGrossSalary()"
+    >
+      Get estimated deductions
+    </button>
+
+    <ng-template #fullForm>
+      <ngx-form-input
+        *ngFor="let field of form.fields | slice: 2"
+        [formInputField]="field"
+      ></ngx-form-input>
+
+      <app-form-errors [appFormErrors]="errors"></app-form-errors>
+      <div class="SalaryEntryForm-remainingBalance">
+        <p class="SalaryEntryForm-label">
+          Net Salary
+        </p>
+        <p class="SalaryEntryForm-value">
+          {{ netSalary | async | currency: '£' }}
+        </p>
+      </div>
+      <app-form-submit
+        value="Save salary entry"
+        [form]="form.formGroup"
+      ></app-form-submit>
+    </ng-template>
+  </form>
+</div>
