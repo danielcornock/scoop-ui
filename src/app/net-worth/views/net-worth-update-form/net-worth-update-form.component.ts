@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { capitalize, forEach } from 'lodash';
-import { FormContainer, FormFactory, IFormFactoryConfig } from 'ngx-form-trooper';
+import { FormContainer, FormFactory, FormInputType, IFormFactoryConfig } from 'ngx-form-trooper';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpService } from 'src/app/core/services/http/http.service';
 import { IHttpError } from 'src/app/core/services/http/interfaces/http-error.interface';
@@ -70,7 +70,7 @@ export class NetWorthUpdateFormComponent implements OnInit {
       {
         name: 'date',
         label: 'Month',
-        type: 'month',
+        type: FormInputType.MONTH,
         defaultValue: this.netWorthDate,
         disabled: true,
         validators: {
@@ -82,7 +82,7 @@ export class NetWorthUpdateFormComponent implements OnInit {
       formConfig.push({
         name: columnName,
         label: capitalize(columnName),
-        type: 'number',
+        type: FormInputType.NUMBER,
         defaultValue: value
       });
     });

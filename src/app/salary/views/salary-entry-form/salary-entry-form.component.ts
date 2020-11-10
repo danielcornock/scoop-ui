@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { forEach } from 'lodash';
-import { FormContainer, FormFactory } from 'ngx-form-trooper';
+import { FormContainer, FormFactory, FormInputType } from 'ngx-form-trooper';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable, of } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
@@ -68,7 +68,7 @@ export class SalaryEntryFormComponent extends BaseEntryForm implements OnInit {
       {
         name: 'date',
         label: 'Month',
-        type: 'month',
+        type: FormInputType.MONTH,
         defaultValue: this._currentDateService.getCurrentMonthAndYearForForm(),
         validators: {
           required: true
@@ -77,7 +77,7 @@ export class SalaryEntryFormComponent extends BaseEntryForm implements OnInit {
       {
         name: 'grossSalary',
         label: 'Gross salary this month',
-        type: 'number',
+        type: FormInputType.NUMBER,
         defaultValue: this._defaultSalary,
         validators: {
           required: true
@@ -85,19 +85,23 @@ export class SalaryEntryFormComponent extends BaseEntryForm implements OnInit {
       },
       {
         name: 'incomeTax',
-        label: 'Income tax'
+        label: 'Income tax',
+        type: FormInputType.NUMBER
       },
       {
         name: 'nationalInsurance',
-        label: 'National insurance'
+        label: 'National insurance',
+        type: FormInputType.NUMBER
       },
       {
         name: 'studentLoanPayments',
-        label: 'Student loans'
+        label: 'Student loans',
+        type: FormInputType.NUMBER
       },
       {
         name: 'pensionContributions',
-        label: 'Pension contribution'
+        label: 'Pension contribution',
+        type: FormInputType.NUMBER
       }
     ]);
   }

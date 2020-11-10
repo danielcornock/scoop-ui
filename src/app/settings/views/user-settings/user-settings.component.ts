@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormContainer, FormFactory } from 'ngx-form-trooper';
+import { FormContainer, FormFactory, FormInputType } from 'ngx-form-trooper';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { PopupService } from 'src/app/shared/services/popup/popup.service';
 
@@ -53,44 +53,44 @@ export class UserSettingsComponent implements OnInit {
       {
         name: 'enableInvestments',
         label: 'Investments',
-        type: 'checkbox',
+        type: FormInputType.CHECKBOX,
         defaultValue: this.userSettings.enableInvestments
       },
       {
         name: 'enableNetWorth',
         label: 'Net Worth',
-        type: 'checkbox',
+        type: FormInputType.CHECKBOX,
         defaultValue: this.userSettings.enableNetWorth
       },
       {
         name: 'enableMonthlyDistribution',
         label: 'Monthly Distribution',
-        type: 'checkbox',
+        type: FormInputType.CHECKBOX,
         defaultValue: this.userSettings.enableMonthlyDistribution
       },
       {
         name: 'enableSalary',
         label: 'Salary (coming soon)',
-        type: 'checkbox',
+        type: FormInputType.CHECKBOX,
         defaultValue: this.userSettings.enableSalary
       },
       {
         name: 'enableEmailNotifications',
         label: 'Enable email notifications',
-        type: 'checkbox',
+        type: FormInputType.CHECKBOX,
         defaultValue: this.userSettings.enableEmailNotifications
       },
       {
         name: 'reminderDate',
         label: 'Day of the month to update your logs',
-        type: 'text',
+        type: FormInputType.NUMBER,
         defaultValue: this.userSettings.reminderDate
       },
       {
         name: 'preferredCurrency',
         label: 'Preferred currency (symbol)',
         placeholder: 'e.g. £ or $',
-        type: 'text',
+        type: FormInputType.TEXT,
         defaultValue: this.userSettings.preferredCurrency
       }
     ]);

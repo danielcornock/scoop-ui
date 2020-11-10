@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FormContainer, FormFactory } from 'ngx-form-trooper';
+import { FormContainer, FormFactory, FormInputType } from 'ngx-form-trooper';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpService } from 'src/app/core/services/http/http.service';
 import { IHttpError } from 'src/app/core/services/http/interfaces/http-error.interface';
@@ -27,7 +27,7 @@ export class ResetPasswordComponent implements OnInit {
       {
         name: 'password',
         label: 'New password',
-        type: 'password',
+        type: FormInputType.PASSWORD,
         validators: {
           required: true
         }

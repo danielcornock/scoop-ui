@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormContainer, FormFactory } from 'ngx-form-trooper';
+import { FormContainer, FormFactory, FormInputType } from 'ngx-form-trooper';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpService } from 'src/app/core/services/http/http.service';
 import { BaseEntryForm } from 'src/app/shared/abstracts/base-entry-form/base-entry-form.abstract';
@@ -33,7 +33,7 @@ export class InvestmentsEntryFormComponent extends BaseEntryForm
     return this._formFactory.createForm([
       {
         name: 'date',
-        type: 'month',
+        type: FormInputType.MONTH,
         label: 'Month',
         defaultValue: currentDate,
         validators: {
@@ -42,7 +42,7 @@ export class InvestmentsEntryFormComponent extends BaseEntryForm
       },
       {
         name: 'addedSinceLast',
-        type: 'number',
+        type: FormInputType.NUMBER,
         label: 'Money added to investments this month',
         tooltip: `If this is your first entry, this field should be the total amount you've added to investments`,
         validators: {
@@ -51,7 +51,7 @@ export class InvestmentsEntryFormComponent extends BaseEntryForm
       },
       {
         name: 'totalValue',
-        type: 'number',
+        type: FormInputType.NUMBER,
         label: 'Current value of your investments',
         validators: {
           required: true

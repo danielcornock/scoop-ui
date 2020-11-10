@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormContainer, FormFactory } from 'ngx-form-trooper';
+import { FormContainer, FormFactory, FormInputType } from 'ngx-form-trooper';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from 'src/app/auth/services/auth/auth.service';
 import { HttpService } from 'src/app/core/services/http/http.service';
@@ -27,7 +27,7 @@ export class ChangePasswordFormComponent implements OnInit {
       {
         name: 'oldPassword',
         label: 'Old password',
-        type: 'password',
+        type: FormInputType.PASSWORD,
         validators: {
           required: true
         }
@@ -35,7 +35,7 @@ export class ChangePasswordFormComponent implements OnInit {
       {
         name: 'newPassword',
         label: 'New Password',
-        type: 'password',
+        type: FormInputType.PASSWORD,
         validators: {
           required: true
         }

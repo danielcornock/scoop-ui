@@ -16,9 +16,8 @@ export class AdminKeyActionsComponent implements OnInit {
   ngOnInit(): void {}
 
   public async openNotificationModal(): Promise<void> {
-    const result = await this._modalService.open(
-      CreateCustomNotificationModalComponent,
-      { data: {} }
-    );
+    await this._modalService.open(CreateCustomNotificationModalComponent, {
+      data: {}
+    });
   }
 }

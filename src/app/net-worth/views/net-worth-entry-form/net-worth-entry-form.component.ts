@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { capitalize } from 'lodash';
-import { FormContainer, FormFactory, IFormFactoryConfig } from 'ngx-form-trooper';
+import { FormContainer, FormFactory, FormInputType, IFormFactoryConfig } from 'ngx-form-trooper';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpService } from 'src/app/core/services/http/http.service';
 import { SettingsService } from 'src/app/settings/services/settings/settings.service';
@@ -40,7 +40,7 @@ export class NetWorthEntryFormComponent extends BaseEntryForm
       {
         name: 'date',
         label: 'Month',
-        type: 'month',
+        type: FormInputType.MONTH,
         defaultValue: currentDate,
         validators: {
           required: true
@@ -52,7 +52,7 @@ export class NetWorthEntryFormComponent extends BaseEntryForm
       formConfig.push({
         name: colName,
         label: capitalize(colName),
-        type: 'number'
+        type: FormInputType.NUMBER
       });
     });
 

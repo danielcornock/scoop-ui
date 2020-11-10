@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { reduce, startCase } from 'lodash';
-import { FormContainer, FormFactory, IFormFactoryConfig, IFormInputFactoryFieldConfig } from 'ngx-form-trooper';
+import {
+  FormContainer,
+  FormFactory,
+  FormInputType,
+  IFormFactoryConfig,
+  IFormInputFactoryFieldConfig,
+} from 'ngx-form-trooper';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable, of } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
@@ -45,7 +51,7 @@ export class MonthlyDistributionEntryFormComponent extends BaseEntryForm
       {
         name: 'date',
         label: 'Date',
-        type: 'month',
+        type: FormInputType.MONTH,
         defaultValue: this._dateService.getCurrentMonthAndYearForForm()
       },
       {
@@ -98,7 +104,7 @@ export class MonthlyDistributionEntryFormComponent extends BaseEntryForm
       return {
         name: field,
         label: startCase(field),
-        type: 'number'
+        type: FormInputType.NUMBER
       };
     });
   }

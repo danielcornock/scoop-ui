@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormContainer, FormFactory } from 'ngx-form-trooper';
+import { FormContainer, FormFactory, FormInputType } from 'ngx-form-trooper';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpService } from 'src/app/core/services/http/http.service';
 import { IHttpError } from 'src/app/core/services/http/interfaces/http-error.interface';
@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
       },
       {
         name: 'password',
-        type: 'password',
+        type: FormInputType.PASSWORD,
         label: 'Password',
         validators: {
           required: true

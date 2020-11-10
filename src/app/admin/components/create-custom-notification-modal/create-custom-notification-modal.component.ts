@@ -60,8 +60,7 @@ export class CreateCustomNotificationModalComponent
       },
       {
         name: 'text',
-        label: 'Message',
-        type: 'textarea'
+        label: 'Message'
       }
     ]);
   }
