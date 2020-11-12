@@ -3,45 +3,16 @@
   cardTitle="Monthly log"
   [cardActions]="cardActions"
 >
-  <app-table
-    [tableColumns]="[
-      'Date',
-      'Gross salary',
-      'Income tax',
-      'National insurance',
-      'Pension',
-      'Student Finance',
-      'Net salary'
-    ]"
-  >
+  <app-table [tableColumns]="salaryLogMeta.fields | values">
     <tr class="SalaryLog-row" *ngFor="let row of salaryLogItems">
       <td class="SalaryLog-rowItem">
         {{ row.date | date: 'MMM y' }}
       </td>
-      <td class="SalaryLog-rowItem">
-        {{ row.grossSalary | currency: preferredCurrency:'symbol':'1.0-2' }}
-      </td>
-      <td class="SalaryLog-rowItem">
-        {{ row.incomeTax | currency: preferredCurrency:'symbol':'1.0-2' }}
-      </td>
-      <td class="SalaryLog-rowItem">
-        {{
-          row.nationalInsurance | currency: preferredCurrency:'symbol':'1.0-2'
-        }}
-      </td>
-      <td class="SalaryLog-rowItem">
-        {{
-          row.pensionContributions
-            | currency: preferredCurrency:'symbol':'1.0-2'
-        }}
-      </td>
-      <td class="SalaryLog-rowItem">
-        {{
-          row.studentLoanPayments | currency: preferredCurrency:'symbol':'1.0-2'
-        }}
-      </td>
-      <td class="SalaryLog-rowItem">
-        {{ row.netSalary | currency: preferredCurrency:'symbol':'1.0-2' }}
+      <td
+        class="SalaryLog-rowItem"
+        *ngFor="let column of salaryLogMeta.fields | keys | slice: 1"
+      >
+        {{ row[column] | currency: preferredCurrency:'symbol':'1.0-2' }}
       </td>
       <app-table-actions
         class="SalaryLog-rowItem"

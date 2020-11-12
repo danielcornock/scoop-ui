@@ -25,6 +25,7 @@ import { TableComponent } from './components/table/table.component';
 import { JoinPipe } from './pipes/join/join.pipe';
 import { KebabCasePipe } from './pipes/kebab-case/kebab-case.pipe';
 import { KeysPipe } from './pipes/keys/keys.pipe';
+import { ValuesPipe } from './pipes/values.pipe';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { KeysPipe } from './pipes/keys/keys.pipe';
     JoinPipe,
     TableActionsComponent,
     DetailedContextMenuComponent,
-    ConfirmationModalComponent
+    ConfirmationModalComponent,
+    ValuesPipe
   ],
   imports: [
     CommonModule,
@@ -71,7 +73,8 @@ import { KeysPipe } from './pipes/keys/keys.pipe';
     IconPickerComponent,
     JoinPipe,
     TableActionsComponent,
-    DetailedContextMenuComponent
+    DetailedContextMenuComponent,
+    ValuesPipe
   ]
 })
 export class SharedModule {}

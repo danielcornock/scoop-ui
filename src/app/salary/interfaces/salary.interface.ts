@@ -8,5 +8,6 @@ export interface ISalary extends IBaseHttpModel {
   nationalInsurance: number;
   studentLoanPayments: number;
   pensionContributions: number;
+  otherDeductions: number;
   netSalary: number;
 }

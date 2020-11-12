@@ -102,6 +102,11 @@ export class SalaryEntryFormComponent extends BaseEntryForm implements OnInit {
         name: 'pensionContributions',
         label: 'Pension contribution',
         type: FormInputType.NUMBER
+      },
+      {
+        name: 'otherDeductions',
+        label: 'Other contributions',
+        type: FormInputType.NUMBER
       }
     ]);
   }

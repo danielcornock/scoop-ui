@@ -1,5 +1,5 @@
 <div class="Salary-container" *ngIf="salaryItems">
-  <ng-container *ngIf="!salaryItems.length">
+  <ng-container *ngIf="!salaryItems.length; else content">
     <p class="Salary-noItems">
       To get started, create your first salary entry
       <a routerLink="create">here</a>.

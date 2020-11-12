@@ -18,7 +18,7 @@ export class SalaryLogComponent extends LogCard implements OnInit {
   public salaryLogItems: Array<ISalary>;
 
   @Input()
-  salaryLogMeta: ISalaryMeta;
+  public salaryLogMeta: ISalaryMeta;
 
   constructor(private readonly _httpService: HttpService, router: Router) {
     super(router, 'salary');
