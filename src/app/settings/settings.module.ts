@@ -22,6 +22,7 @@ import {
 import { SettingsComponent } from './views/settings/settings.component';
 import { UserSettingsComponent } from './views/user-settings/user-settings.component';
 import { ChangePasswordFormComponent } from './components/change-password-form/change-password-form.component';
+import { SalaryConfigComponent } from './components/salary-config/salary-config.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ChangePasswordFormComponent } from './components/change-password-form/c
     MonthlyDistributionFieldsConfigComponent,
     FieldsConfigComponent,
     UserSettingsComponent,
-    ChangePasswordFormComponent
+    ChangePasswordFormComponent,
+    SalaryConfigComponent
   ],
   imports: [
     CommonModule,

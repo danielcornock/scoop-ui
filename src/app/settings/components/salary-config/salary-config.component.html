@@ -1,0 +1,16 @@
+<div class="SalaryConfig-container">
+  <h2 class="SalaryConfig-heading">Salary Configuration</h2>
+  <p class="SalaryConfig-description">
+    Here you can set the default value for your salary, choose your student loan
+    type and set your pension contribution so that we can do more of the working
+    out for you.
+  </p>
+
+  <form [formGroup]="form.formGroup" class="SalaryConfig-form">
+    <ngx-form-input [formInputField]="form.fields[0]"></ngx-form-input>
+    <ngx-form-input-select
+      [formInputField]="form.fields[1]"
+    ></ngx-form-input-select>
+    <ngx-form-input [formInputField]="form.fields[2]"></ngx-form-input>
+  </form>
+</div>

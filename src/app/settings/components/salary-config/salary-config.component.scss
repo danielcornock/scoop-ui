@@ -1,0 +1,19 @@
+@import 'src/assets/styles/themes.scss';
+
+.SalaryConfig {
+  &-heading {
+    @include page-subheading;
+  }
+
+  &-description {
+    @include settings-description;
+  }
+
+  &-form {
+    max-width: 400px;
+
+    @include media-phone {
+      max-width: 100%;
+    }
+  }
+}

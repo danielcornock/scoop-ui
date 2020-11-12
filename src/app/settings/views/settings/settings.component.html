@@ -38,4 +38,10 @@
       ></app-monthly-distribution-fields-config>
     </section>
   </ng-container>
+
+  <ng-container *ngIf="userSettings.enableSalary">
+    <section class="Settings-section">
+      <app-salary-config [salaryConfigSettings]="settings"></app-salary-config>
+    </section>
+  </ng-container>
 </div>
