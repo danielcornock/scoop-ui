@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ModalService } from 'src/app/shared/services/modal/modal.service';
 
 import {
@@ -11,7 +12,10 @@ import {
   styleUrls: ['./admin-key-actions.component.scss']
 })
 export class AdminKeyActionsComponent implements OnInit {
-  constructor(private readonly _modalService: ModalService) {}
+  constructor(
+    private readonly _modalService: ModalService,
+    private readonly _router: Router
+  ) {}
 
   ngOnInit(): void {}
 
@@ -19,5 +23,9 @@ export class AdminKeyActionsComponent implements OnInit {
     await this._modalService.open(CreateCustomNotificationModalComponent, {
       data: {}
     });
+  }
+
+  public sendNewsletter(): void {
+    this._router.navigateByUrl('admin/create-newsletter');
   }
 }

@@ -11,13 +11,15 @@ import {
 } from './components/create-custom-notification-modal/create-custom-notification-modal.component';
 import { UsersListComponent } from './components/users-list/users-list.component';
 import { AdminComponent } from './views/admin/admin.component';
+import { CreateNewsletterComponent } from './views/create-newsletter/create-newsletter.component';
 
 @NgModule({
   declarations: [
     AdminComponent,
     UsersListComponent,
     AdminKeyActionsComponent,
-    CreateCustomNotificationModalComponent
+    CreateCustomNotificationModalComponent,
+    CreateNewsletterComponent
   ],
   imports: [
     CommonModule,

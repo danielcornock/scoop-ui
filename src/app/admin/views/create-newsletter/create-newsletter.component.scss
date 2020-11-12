@@ -1,0 +1,29 @@
+@import 'src/assets/styles/themes.scss';
+
+.CreateNewsletter {
+  &-container {
+    @include page-container;
+  }
+
+  &-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+  }
+
+  &-input {
+    max-width: 400px;
+
+    @include media-phone {
+      max-width: 100%;
+    }
+  }
+
+  &-save {
+    max-width: 400px;
+
+    @include media-phone {
+      max-width: 100%;
+    }
+  }
+}

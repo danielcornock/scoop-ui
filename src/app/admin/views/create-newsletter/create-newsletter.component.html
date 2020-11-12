@@ -1,0 +1,24 @@
+<div class="CreateNewsletter-container">
+  <form
+    class="CreateNewsletter-form"
+    [formGroup]="form.formGroup"
+    (ngSubmit)="sendEmail()"
+  >
+    <ngx-form-input
+      class="CreateNewsletter-input"
+      [formInputField]="form.fields[0]"
+    ></ngx-form-input>
+    <ngx-form-input-html
+      class="CreateNewsletter-html"
+      [formInputField]="form.fields[1]"
+    ></ngx-form-input-html>
+
+    <app-form-errors [appFormErrors]="errors"></app-form-errors>
+
+    <app-form-submit
+      class="CreateNewsletter-save"
+      [form]="form.formGroup"
+      value="Send newsletter"
+    ></app-form-submit>
+  </form>
+</div>
