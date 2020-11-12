@@ -8,9 +8,10 @@ import { CoreModule } from '../core/core.module';
 import { SharedModule } from '../shared/shared.module';
 import { SalaryEntryFormComponent } from './views/salary-entry-form/salary-entry-form.component';
 import { SalaryComponent } from './views/salary/salary.component';
+import { SalaryLogComponent } from './components/salary-log/salary-log.component';
 
 @NgModule({
-  declarations: [SalaryComponent, SalaryEntryFormComponent],
+  declarations: [SalaryComponent, SalaryEntryFormComponent, SalaryLogComponent],
   imports: [
     CommonModule,
     SharedModule,

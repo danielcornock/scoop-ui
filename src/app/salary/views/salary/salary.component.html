@@ -1,1 +1,21 @@
-<div class="Salary-container">Salary works!</div>
+<div class="Salary-container" *ngIf="salaryItems">
+  <ng-container *ngIf="!salaryItems.length">
+    <p class="Salary-noItems">
+      To get started, create your first salary entry
+      <a routerLink="create">here</a>.
+    </p>
+    <p class="Salary-noItems">
+      Please note that this feature is intended for UK tax residents only. To
+      disable this feature, you can do so on the
+      <a routerLink="../user-settings">user settings</a> page.
+    </p>
+  </ng-container>
+  <ng-template #content>
+    <div class="Salary-content">
+      <app-salary-log
+        [salaryLogItems]="salaryItems"
+        [salaryLogMeta]="salaryMeta"
+      ></app-salary-log>
+    </div>
+  </ng-template>
+</div>

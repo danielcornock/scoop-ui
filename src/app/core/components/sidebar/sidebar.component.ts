@@ -70,15 +70,9 @@ export class SidebarComponent implements OnInit {
       this.navItems.push({
         label: 'Salary Tracker',
         link: 'salary',
-        icon: 'shopping-bag'
+        icon: 'dollar-sign'
       });
     }
-
-    this.navItems.push({
-      label: 'Settings',
-      link: 'settings',
-      icon: 'settings'
-    });
 
     if (this._authService.isUserAdmin()) {
       this.navItems.push({
@@ -87,5 +81,11 @@ export class SidebarComponent implements OnInit {
         icon: 'lock'
       });
     }
+
+    this.navItems.push({
+      label: 'Settings',
+      link: 'settings',
+      icon: 'settings'
+    });
   }
 }

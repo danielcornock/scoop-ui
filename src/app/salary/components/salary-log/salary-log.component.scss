@@ -1,0 +1,11 @@
+@import 'src/assets/styles/themes.scss';
+
+.SalaryLog {
+  &-row {
+    @include table-row;
+  }
+
+  &-rowItem {
+    @include table-row-item;
+  }
+}
