@@ -29,6 +29,11 @@ export class UserSettingsComponent implements OnInit {
   }
 
   public async saveChanges(): Promise<void> {
+    if (this.settingsForm.isInvalid) {
+      this.settingsForm.formGroup.markAllAsTouched();
+      return;
+    }
+
     try {
       this._spinnerService.show();
       this.userSettings = await this._userSettingsService.updateUserSettings(
@@ -84,7 +89,11 @@ export class UserSettingsComponent implements OnInit {
         name: 'reminderDate',
         label: 'Day of the month to update your logs',
         type: FormInputType.NUMBER,
-        defaultValue: this.userSettings.reminderDate
+        defaultValue: this.userSettings.reminderDate,
+        validators: {
+          min: 1,
+          max: 28
+        }
       },
       {
         name: 'preferredCurrency',

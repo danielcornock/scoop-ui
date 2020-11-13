@@ -6,10 +6,12 @@
   <app-table [tableColumns]="salaryLogMeta.fields | values">
     <tr class="SalaryLog-row" *ngFor="let row of salaryLogItems">
       <td class="SalaryLog-rowItem">
-        {{ row.date | date: 'MMM y' }}
+        {{ row.date | date: 'MMMM y' }}
       </td>
       <td
         class="SalaryLog-rowItem"
+        [class.is-negative]="column === 'netSalary' && row[column] < 0"
+        [class.is-positive]="column === 'netSalary' && row[column] > 0"
         *ngFor="let column of salaryLogMeta.fields | keys | slice: 1"
       >
         {{ row[column] | currency: preferredCurrency:'symbol':'1.0-2' }}
