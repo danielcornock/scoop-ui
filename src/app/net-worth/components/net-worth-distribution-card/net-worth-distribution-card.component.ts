@@ -3,8 +3,6 @@ import { upperFirst } from 'lodash';
 import { chartColors } from 'src/app/shared/constants/chart-colors.constant';
 import { ChartService } from 'src/app/shared/services/chart/chart.service';
 
-import { INetWorthApiResponse } from '../../interfaces/net-worth-api-response.interface';
-
 @Component({
   selector: 'app-net-worth-distribution-card',
   templateUrl: './net-worth-distribution-card.component.html',
@@ -12,25 +10,26 @@ import { INetWorthApiResponse } from '../../interfaces/net-worth-api-response.in
 })
 export class NetWorthDistributionCardComponent implements OnInit {
   @Input()
-  public netWorthDistributionData: INetWorthApiResponse;
+  public netWorthDistributionData: Array<{ label: string; value: number }>;
 
   private _fields: Array<string>;
+  private _values: Array<number>;
 
   constructor(private readonly _chartService: ChartService) {}
 
   ngOnInit(): void {
-    this._fields = Object.keys(this.netWorthDistributionData.customValues);
+    this._fields = this.netWorthDistributionData.map((item) =>
+      upperFirst(item.label)
+    );
+    this._values = this.netWorthDistributionData.map((item) => item.value);
 
     this._chartService.createPieChart(
       'netWorthPieChart',
       {
-        labels: this._fields.map(upperFirst),
+        labels: this._fields,
         datasets: [
           {
-            data: this._fields.map(
-              (fieldName) =>
-                this.netWorthDistributionData.customValues[fieldName]
-            ),
+            data: this._values,
             backgroundColor: [...chartColors].reverse()
           }
         ]

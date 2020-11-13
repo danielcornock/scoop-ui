@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { capitalize, forEach } from 'lodash';
+import { capitalize } from 'lodash';
 import { FormContainer, FormFactory, FormInputType, IFormFactoryConfig } from 'ngx-form-trooper';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpService } from 'src/app/core/services/http/http.service';
@@ -20,6 +20,8 @@ export class NetWorthUpdateFormComponent implements OnInit {
   public errors: IHttpError;
   public netWorthDate: string;
   public netWorth: INetWorthApiResponse;
+
+  private _fields: Array<string>;
 
   constructor(
     private readonly _formFactory: FormFactory,
@@ -59,9 +61,10 @@ export class NetWorthUpdateFormComponent implements OnInit {
     this.netWorthDate = this._activatedRoute.snapshot.paramMap.get(
       'netWorthDate'
     );
-    const { data } = await this._httpService.get(
+    const { data, meta } = await this._httpService.get(
       `net-worth/${this.netWorthDate}`
     );
+    this._fields = meta.fields;
     this.netWorth = data;
   }
 
@@ -76,16 +79,17 @@ export class NetWorthUpdateFormComponent implements OnInit {
         validators: {
           required: true
         }
-      }
+      },
+      ...this._fields.map((fieldName: string) => {
+        return {
+          name: fieldName,
+          label: capitalize(fieldName),
+          type: FormInputType.NUMBER,
+          defaultValue: this.netWorth.customValues[fieldName]
+        };
+      })
     ];
-    forEach(this.netWorth.customValues, (value: number, columnName: string) => {
-      formConfig.push({
-        name: columnName,
-        label: capitalize(columnName),
-        type: FormInputType.NUMBER,
-        defaultValue: value
-      });
-    });
+
     this.form = this._formFactory.createForm(formConfig);
   }
 }

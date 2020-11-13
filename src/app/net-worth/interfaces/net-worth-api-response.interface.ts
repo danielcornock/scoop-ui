@@ -13,4 +13,5 @@ export interface INetWorthApiMetaResponse {
   preferredCurrency: string;
   fields: Array<string>;
   summaryItems: Array<INetWorthSummaryItem>;
+  barChartData: Array<{ label: string; value: number }>;
 }
