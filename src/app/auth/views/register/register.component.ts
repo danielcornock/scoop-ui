@@ -72,7 +72,9 @@ export class RegisterComponent implements OnInit {
         type: FormInputType.PASSWORD,
         label: 'Password',
         validators: {
-          required: true
+          required: true,
+          minLength: 8,
+          maxLength: 64
         }
       }
     ]);
