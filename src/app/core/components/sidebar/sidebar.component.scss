@@ -26,6 +26,18 @@
   display: none;
 }
 
+@mixin navText-hover {
+  color: $color-white;
+  background-color: $color-primary;
+  padding: $spacing-10;
+  font-weight: 500;
+  left: calc(100% + 20px);
+  top: 50%;
+  width: auto;
+  border-radius: $br-med;
+  opacity: 1;
+}
+
 @mixin navItem-min {
   padding: $spacing-15 0;
   justify-content: center;
@@ -33,24 +45,16 @@
   &:hover {
     .Sidebar-navText {
       display: block;
+      @include navText-hover;
     }
   }
 }
 
 @mixin navText-min {
-  color: $color-white;
-  background-color: $color-primary;
-  padding: $spacing-10;
-  font-weight: 500;
-  left: calc(100% + 20px);
-  display: none;
-  border-radius: $br-med;
-  width: auto;
-  position: absolute;
-  white-space: nowrap;
-  top: 50%;
+  opacity: 0;
+
+  width: 0px;
   transform: translateY(-50%);
-  transition: 500ms;
 }
 
 @mixin navIcon-min {
@@ -62,6 +66,7 @@
 
   &-container {
     @include shadow-dark;
+    transition: 250ms ease-in-out;
     z-index: 10;
     height: 100%;
     width: 300px;
@@ -202,7 +207,15 @@
   }
 
   &-navText {
+    overflow: hidden;
+    width: 166px;
+    top: 50%;
+    transform: translateY(-50%);
     font-size: 18px;
+    position: absolute;
+    left: 84px;
+    transition: 250ms;
+    white-space: nowrap;
 
     @include media-ld {
       @include navText-min;
@@ -216,8 +229,8 @@
   &-minimise {
     @include button-reset;
     @include nav-item-base;
-    justify-content: center;
     margin-top: auto;
+    position: relative;
 
     &:hover {
       background-color: $color-primary-gradient;
