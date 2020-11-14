@@ -21,7 +21,7 @@ export class PageTitleService {
       this._findMatchingUrlPaths(formattedUrlString);
 
     if (!title) {
-      this._titleService.setTitle(`Scoop | 404 Page Not Found`);
+      this._titleService.setTitle(`Scoop | Personal Finance Management`);
       return '404 Page Not Found';
     } else {
       this._titleService.setTitle(`Scoop | ${title}`);
