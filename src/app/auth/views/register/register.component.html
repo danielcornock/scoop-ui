@@ -17,6 +17,19 @@
       class="Register-formInput"
       [formInputField]="form.fields[2]"
     ></ngx-form-input-password>
+    <ngx-form-input-checkbox
+      class="Register-formInput"
+      [formInputField]="form.fields[3]"
+    >
+      I have read and agreed to the
+      <a
+        class="Register-labelLink"
+        routerLink="../privacy-policy"
+        target="_blank"
+        rel="noreferrer noopenner"
+        >privacy policy</a
+      >
+    </ngx-form-input-checkbox>
     <app-form-errors [appFormErrors]="errors"></app-form-errors>
     <app-form-submit
       class="Register-submit"

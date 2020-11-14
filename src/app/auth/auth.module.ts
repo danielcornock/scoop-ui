@@ -14,6 +14,7 @@ import {
 import { EmailConfirmationComponent } from './views/email-confirmation/email-confirmation.component';
 import { RegisterComponent } from './views/register/register.component';
 import { ResetPasswordComponent } from './views/reset-password/reset-password.component';
+import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ResetPasswordComponent } from './views/reset-password/reset-password.co
     UnauthenticatedPageWrapperComponent,
     RegisterComponent,
     ForgottenPasswordComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    PrivacyPolicyComponent
   ],
   imports: [
     ReactiveFormsModule,

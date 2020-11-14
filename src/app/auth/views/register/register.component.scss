@@ -29,6 +29,11 @@
     }
   }
 
+  &-labelLink {
+    color: $color-form-label;
+    font-weight: 500;
+  }
+
   &-confirmed {
     @include default-text;
     font-size: 18px;

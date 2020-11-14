@@ -1,0 +1,32 @@
+@import 'src/assets/styles/themes.scss';
+
+:host {
+  display: block;
+  height: 100%;
+  --unauthenticated-page-max-width: 700px;
+}
+.PrivacyPolicy {
+  &-container {
+    padding: 0 $spacing-20;
+  }
+
+  &-heading {
+    @include page-subheading;
+  }
+
+  &-introduction,
+  &-listItem {
+    @include default-text;
+  }
+
+  &-introduction {
+    margin-bottom: $spacing-20;
+  }
+
+  &-listItem {
+    margin-left: 17px;
+    & + & {
+      margin-top: $spacing-10;
+    }
+  }
+}

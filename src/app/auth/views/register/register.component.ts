@@ -76,6 +76,12 @@ export class RegisterComponent implements OnInit {
           minLength: 8,
           maxLength: 64
         }
+      },
+      {
+        name: 'acceptPrivacyPolicy',
+        type: FormInputType.CHECKBOX,
+        label: '',
+        defaultValue: false
       }
     ]);
   }
