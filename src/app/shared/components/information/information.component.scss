@@ -1,0 +1,31 @@
+@import 'src/assets/styles/themes.scss';
+
+:host {
+  margin: $spacing-20 0;
+  display: block;
+}
+.Information {
+  &-container {
+    background-color: $color-primary-light;
+    display: flex;
+    align-items: flex-start;
+    padding: $spacing-20;
+    border-radius: $br-med;
+  }
+
+  &-icon {
+    color: $color-form-label;
+    margin-right: $spacing-20;
+    padding: $spacing-5 0;
+    i-feather {
+      width: 25px;
+      height: 25px;
+      display: block;
+    }
+  }
+
+  &-message {
+    color: $color-form-label;
+    border: $color-form-label;
+  }
+}

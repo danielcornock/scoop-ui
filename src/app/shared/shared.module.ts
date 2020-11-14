@@ -19,6 +19,7 @@ import { DetailedContextMenuComponent } from './components/detailed-context-menu
 import { FormErrorsComponent } from './components/form-errors/form-errors.component';
 import { FormSubmitComponent } from './components/form-submit/form-submit.component';
 import { IconPickerComponent } from './components/icon-picker/icon-picker.component';
+import { InformationComponent } from './components/information/information.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { TableActionsComponent } from './components/table-actions/table-actions.component';
 import { TableComponent } from './components/table/table.component';
@@ -43,7 +44,8 @@ import { ValuesPipe } from './pipes/values.pipe';
     TableActionsComponent,
     DetailedContextMenuComponent,
     ConfirmationModalComponent,
-    ValuesPipe
+    ValuesPipe,
+    InformationComponent
   ],
   imports: [
     CommonModule,
@@ -74,7 +76,8 @@ import { ValuesPipe } from './pipes/values.pipe';
     JoinPipe,
     TableActionsComponent,
     DetailedContextMenuComponent,
-    ValuesPipe
+    ValuesPipe,
+    InformationComponent
   ]
 })
 export class SharedModule {}

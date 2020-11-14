@@ -4,6 +4,10 @@
     [formGroup]="form.formGroup"
     (ngSubmit)="submitForm()"
   >
+    <app-information
+      class="InvestmentsEntryForm-message"
+      informationMessage="If this is your first investment entry, the amount added to investments should be your total contribution so far."
+    ></app-information>
     <ngx-form-input
       *ngFor="let field of form.fields"
       [formInputField]="field"

@@ -44,7 +44,6 @@ export class InvestmentsEntryFormComponent extends BaseEntryForm
         name: 'addedSinceLast',
         type: FormInputType.NUMBER,
         label: 'Money added to investments this month',
-        tooltip: `If this is your first entry, this field should be the total amount you've added to investments`,
         validators: {
           required: true
         }
