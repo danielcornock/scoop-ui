@@ -1,4 +1,4 @@
-<div class="Sidebar-container">
+<div class="Sidebar-container" [class.minimised]="sidebarMinimised">
   <div class="Sidebar-branding">
     <img
       class="Sidebar-brandingLogo"
@@ -19,5 +19,12 @@
       <i-feather class="Sidebar-navIcon" [name]="item.icon"></i-feather>
       <span class="Sidebar-navText">{{ item.label }}</span>
     </a>
+    <button class="Sidebar-minimise" (click)="changeSidebarState()">
+      <i-feather
+        class="Sidebar-navIcon"
+        [name]="sidebarMinimised ? 'chevrons-right' : 'chevrons-left'"
+      ></i-feather>
+      <span class="Sidebar-navText">Minimise</span>
+    </button>
   </nav>
 </div>

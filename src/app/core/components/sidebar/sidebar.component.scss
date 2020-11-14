@@ -1,5 +1,62 @@
 @import 'src/assets/styles/themes.scss';
 
+@mixin nav-item-base {
+  display: flex;
+  color: $color-white;
+  padding: $spacing-15 $spacing-40;
+  cursor: pointer;
+  border-radius: $br-med;
+}
+
+@mixin container-min {
+  width: 80px;
+  padding-top: var(--spacing-page-top);
+}
+
+@mixin brandingLogo-min {
+  height: 30px;
+  margin-right: 0;
+}
+
+@mixin brandingText-min {
+  display: none;
+}
+
+@mixin brandingBeta-min {
+  display: none;
+}
+
+@mixin navItem-min {
+  padding: $spacing-15 0;
+  justify-content: center;
+
+  &:hover {
+    .Sidebar-navText {
+      display: block;
+    }
+  }
+}
+
+@mixin navText-min {
+  color: $color-white;
+  background-color: $color-primary;
+  padding: $spacing-10;
+  font-weight: 500;
+  left: calc(100% + 20px);
+  display: none;
+  border-radius: $br-med;
+  width: auto;
+  position: absolute;
+  white-space: nowrap;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: 500ms;
+}
+
+@mixin navIcon-min {
+  margin-right: 0;
+}
+
 .Sidebar {
   $cmp: &;
 
@@ -11,7 +68,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: $spacing-60 0;
+    padding: $spacing-60 0 $spacing-20;
     position: relative;
     background-image: linear-gradient(
       to bottom,
@@ -20,8 +77,7 @@
     );
 
     @include media-ld {
-      width: 80px;
-      padding-top: var(--spacing-page-top);
+      @include container-min;
     }
 
     @include media-phone {
@@ -51,8 +107,7 @@
     margin-right: $spacing-10;
 
     @include media-ld {
-      height: 30px;
-      margin-right: 0;
+      @include brandingLogo-min;
     }
   }
 
@@ -64,7 +119,7 @@
     letter-spacing: 3px;
 
     @include media-ld {
-      display: none;
+      @include brandingBeta-min;
     }
   }
 
@@ -76,24 +131,23 @@
     bottom: 4px;
 
     @include media-ld {
-      display: none;
+      @include brandingText-min;
     }
   }
 
   &-nav {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 
     @include media-phone {
-      display: flex;
+      flex-direction: row;
     }
   }
 
   &-navItem {
-    display: flex;
-    color: $color-white;
-    padding: $spacing-15 $spacing-40;
-    cursor: pointer;
-    border-radius: $br-med;
+    @include nav-item-base;
     text-decoration: none;
     position: relative;
 
@@ -126,14 +180,7 @@
     }
 
     @include media-ld {
-      padding: $spacing-15 0;
-      justify-content: center;
-
-      &:hover {
-        #{$cmp}-navText {
-          display: block;
-        }
-      }
+      @include navItem-min;
     }
 
     @include media-phone {
@@ -150,7 +197,7 @@
     margin-right: $spacing-20;
 
     @include media-ld {
-      margin-right: 0;
+      @include navIcon-min;
     }
   }
 
@@ -158,23 +205,68 @@
     font-size: 18px;
 
     @include media-ld {
-      color: $color-white;
-      background-color: $color-primary;
-      padding: $spacing-10;
-      font-weight: 500;
-      left: calc(100% + 20px);
-      display: none;
-      border-radius: $br-med;
-      width: auto;
-      position: absolute;
-      white-space: nowrap;
-      top: 50%;
-      transform: translateY(-50%);
-      transition: 500ms;
+      @include navText-min;
     }
 
     @include media-phone {
       display: none !important;
+    }
+  }
+
+  &-minimise {
+    @include button-reset;
+    @include nav-item-base;
+    justify-content: center;
+    margin-top: auto;
+
+    &:hover {
+      background-color: $color-primary-gradient;
+    }
+
+    @include media-ld {
+      display: none;
+    }
+  }
+}
+
+.Sidebar-container.minimised {
+  @include container-min;
+
+  .Sidebar {
+    &-navText {
+      @include navText-min;
+    }
+
+    &-brandingLogo {
+      @include brandingLogo-min;
+    }
+
+    &-brandingBeta {
+      @include brandingBeta-min;
+    }
+
+    &-brandingText {
+      @include brandingText-min;
+    }
+
+    &-navItem {
+      @include navItem-min;
+    }
+
+    &-navIcon {
+      @include navIcon-min;
+    }
+
+    &-minimiseIcon {
+      margin-right: 0;
+    }
+
+    &-minimise {
+      @include navItem-min;
+
+      .Sidebar-navText {
+        display: none !important;
+      }
     }
   }
 }

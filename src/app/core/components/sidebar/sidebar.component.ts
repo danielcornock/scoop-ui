@@ -17,6 +17,7 @@ export class SidebarComponent implements OnInit {
   public isNetWorthEnabled: boolean;
   public isMonthlyDistributionEnabled: boolean;
   public isSalaryEnabled: boolean;
+  public sidebarMinimised: boolean;
 
   constructor(
     private readonly _authService: AuthService,
@@ -26,9 +27,21 @@ export class SidebarComponent implements OnInit {
   ) {}
 
   async ngOnInit(): Promise<void> {
+    this.sidebarMinimised =
+      localStorage.getItem('sidebarState') === 'minimised';
     await this._assignUserSettings();
     this._assignNavItems();
     this._httpService.post('auth/ping', {});
+  }
+
+  public changeSidebarState(): void {
+    if (this.sidebarMinimised) {
+      localStorage.setItem('sidebarState', 'maximised');
+      this.sidebarMinimised = false;
+    } else {
+      localStorage.setItem('sidebarState', 'minimised');
+      this.sidebarMinimised = true;
+    }
   }
 
   private async _assignUserSettings(): Promise<void> {
