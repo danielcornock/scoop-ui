@@ -1,6 +1,8 @@
 @import 'src/assets/styles/themes.scss';
 
 .Sidebar {
+  $cmp: &;
+
   &-container {
     @include shadow-dark;
     z-index: 10;
@@ -126,6 +128,12 @@
     @include media-ld {
       padding: $spacing-15 0;
       justify-content: center;
+
+      &:hover {
+        #{$cmp}-navText {
+          display: block;
+        }
+      }
     }
 
     @include media-phone {
@@ -150,7 +158,23 @@
     font-size: 18px;
 
     @include media-ld {
+      color: $color-white;
+      background-color: $color-primary;
+      padding: $spacing-10;
+      font-weight: 500;
+      left: calc(100% + 20px);
       display: none;
+      border-radius: $br-med;
+      width: auto;
+      position: absolute;
+      white-space: nowrap;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: 500ms;
+    }
+
+    @include media-phone {
+      display: none !important;
     }
   }
 }
