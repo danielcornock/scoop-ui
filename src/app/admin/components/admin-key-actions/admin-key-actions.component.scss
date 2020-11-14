@@ -7,16 +7,10 @@
 
   &-item {
     @include button-reset;
-    color: $color-subheading;
-    background-color: $color-settings-item;
-    border-radius: $br-med;
+    @include settings-moveable-item;
     display: flex;
     align-items: center;
     padding: $spacing-15 $spacing-30;
-
-    &:hover {
-      background-color: $color-settings-item-hover;
-    }
 
     & + & {
       margin-left: $spacing-20;
