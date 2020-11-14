@@ -60,7 +60,8 @@ import { ValuesPipe } from './pipes/values.pipe';
     MatDialogModule,
     ToastrModule.forRoot({
       positionClass: 'toast-top-right',
-      disableTimeOut: true
+      timeOut: 5000,
+      closeButton: true
     })
   ],
   exports: [

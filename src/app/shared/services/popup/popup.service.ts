@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { IPopupWithAction } from 'src/app/core/services/app-update/interfaces/popup.interface';
 import { IHttpError } from 'src/app/core/services/http/interfaces/http-error.interface';
 
 @Injectable({
@@ -22,5 +23,13 @@ export class PopupService {
 
   public showSuccess(text: string, title: string): void {
     this._toast.success(text, title);
+  }
+
+  public showNotificationWithAction(config: IPopupWithAction): void {
+    this._toast
+      .info(config.text, config.title, {
+        disableTimeOut: true
+      })
+      .onTap.subscribe(config.onClick);
   }
 }

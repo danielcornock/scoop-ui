@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 
 import { AuthService } from './auth/services/auth/auth.service';
+import { AppUpdateService } from './core/services/app-update/app-update.service';
 import { PageTitleService } from './core/services/page-title/page-title.service';
 import { ExperimentalService } from './shared/services/experimental/experimental.service';
 import { PopupService } from './shared/services/popup/popup.service';
@@ -22,10 +23,12 @@ export class AppComponent implements OnInit {
     private readonly _router: Router,
     private readonly _pageTitleService: PageTitleService,
     private readonly _popupService: PopupService,
-    private readonly _experimentalService: ExperimentalService
+    private readonly _experimentalService: ExperimentalService,
+    private readonly _appUpdateService: AppUpdateService
   ) {}
 
   public ngOnInit(): void {
+    this._appUpdateService.listenForUpdates();
     this.isDevelopment = this._experimentalService.isDevelopment();
     this._subscribeToTitleChange();
     this._listenToConnectionState();
