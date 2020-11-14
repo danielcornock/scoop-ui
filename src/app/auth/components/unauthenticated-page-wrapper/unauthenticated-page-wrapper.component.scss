@@ -11,10 +11,9 @@
     height: 100%;
     background-image: linear-gradient(
       to bottom,
-      $color-primary,
-      $color-primary-gradient
+      rgba($color-primary, 0.8),
+      rgba($color-primary-gradient, 0.8)
     );
-
     @include media-phone {
       padding: $spacing-10;
     }
