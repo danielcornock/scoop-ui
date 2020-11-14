@@ -11,6 +11,11 @@
 @mixin container-min {
   width: 80px;
   padding-top: var(--spacing-page-top);
+
+  @include media-phone {
+    width: 100%;
+    padding-top: 0;
+  }
 }
 
 @mixin brandingLogo-min {
@@ -47,6 +52,10 @@
       display: block;
       @include navText-hover;
     }
+  }
+
+  @include media-phone {
+    padding: $spacing-20;
   }
 }
 
