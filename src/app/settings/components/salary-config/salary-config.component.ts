@@ -39,7 +39,7 @@ export class SalaryConfigComponent implements OnInit {
         options: [
           { value: null, label: 'None' },
           { value: STUDENT_LOAN_TYPE.Pre2012, label: 'Pre 2012' },
-          { value: STUDENT_LOAN_TYPE.Post2012, label: 'Post 2012' }
+          { value: STUDENT_LOAN_TYPE.Post2012, label: '2012 and after' }
         ]
       },
       {
