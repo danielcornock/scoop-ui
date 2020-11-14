@@ -59,7 +59,8 @@ import { ValuesPipe } from './pipes/values.pipe';
     NgxFormTrooperModule,
     MatDialogModule,
     ToastrModule.forRoot({
-      positionClass: 'toast-top-right'
+      positionClass: 'toast-top-right',
+      disableTimeOut: true
     })
   ],
   exports: [
