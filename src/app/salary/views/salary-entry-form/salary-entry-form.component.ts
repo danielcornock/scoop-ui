@@ -78,7 +78,9 @@ export class SalaryEntryFormComponent extends BaseEntryForm implements OnInit {
         name: 'grossSalary',
         label: 'Gross salary this month',
         type: FormInputType.NUMBER,
-        defaultValue: (this._defaultSalary / 12).toString(),
+        defaultValue: (
+          Math.round((this._defaultSalary / 12) * 100) / 100
+        ).toString(),
         validators: {
           required: true
         }
