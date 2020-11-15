@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
+import { interval } from 'rxjs';
 import { PopupService } from 'src/app/shared/services/popup/popup.service';
 
 @Injectable({
@@ -9,7 +10,11 @@ export class AppUpdateService {
   constructor(
     private readonly _updates: SwUpdate,
     private readonly _popupSeevice: PopupService
-  ) {}
+  ) {
+    if (this._updates.isEnabled) {
+      interval(5000).subscribe(() => this._updates.checkForUpdate());
+    }
+  }
 
   public listenForUpdates(): void {
     this._updates.available.subscribe(() => {
