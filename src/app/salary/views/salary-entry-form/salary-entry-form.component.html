@@ -6,14 +6,24 @@
   >
     <ngx-form-input [formInputField]="form.fields[0]"></ngx-form-input>
     <ngx-form-input [formInputField]="form.fields[1]"></ngx-form-input>
-    <button
-      class="SalaryEntryForm-getDeductionsButton"
-      type="button"
-      *ngIf="!salaryDeductions; else fullForm"
-      (click)="sendGrossSalary()"
-    >
-      Get estimated deductions
-    </button>
+    <ng-container *ngIf="!salaryDeductions; else fullForm">
+      <app-form-errors [appFormErrors]="errors"></app-form-errors>
+
+      <button
+        class="SalaryEntryForm-getDeductionsButton"
+        type="button"
+        (click)="sendGrossSalary()"
+      >
+        Get estimated deductions
+      </button>
+      <button
+        class="SalaryEntryForm-sameAsLastMonthButton"
+        type="button"
+        (click)="logSameAsLastMonth()"
+      >
+        Same as last time
+      </button>
+    </ng-container>
 
     <ng-template #fullForm>
       <ngx-form-input

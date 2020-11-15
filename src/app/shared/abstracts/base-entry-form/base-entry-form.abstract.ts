@@ -9,9 +9,9 @@ export abstract class BaseEntryForm {
   public errors: IHttpError;
 
   constructor(
-    private readonly _spinnerService: NgxSpinnerService,
+    protected readonly _spinnerService: NgxSpinnerService,
     protected readonly _httpService: HttpService,
-    private readonly _router: Router,
+    protected readonly _router: Router,
     private readonly _resourceName: string
   ) {
     this._spinnerService.show();

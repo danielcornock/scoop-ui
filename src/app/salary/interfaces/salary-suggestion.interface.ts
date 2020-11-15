@@ -3,5 +3,5 @@ export interface ISalarySuggestion {
   incomeTax: number;
   nationalInsurance: number;
   pensionContributions: number;
-  studentLoanPayments: number;
+  studentFinance: number;
 }

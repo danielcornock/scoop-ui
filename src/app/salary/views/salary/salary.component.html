@@ -1,4 +1,4 @@
-<div class="Salary-container" *ngIf="salaryItems">
+<div class="Salary-container animate-page-in" *ngIf="salaryItems">
   <ng-container *ngIf="!salaryItems.length; else content">
     <p class="Salary-noItems">
       To get started, create your first salary entry
@@ -12,7 +12,12 @@
   </ng-container>
   <ng-template #content>
     <div class="Salary-content">
+      <app-dashboard-summary
+        class="Salary-item"
+        [dashboardSummaryItems]="summaryItems"
+      ></app-dashboard-summary>
       <app-salary-log
+        class="Salary-item"
         [salaryLogItems]="salaryItems"
         [salaryLogMeta]="salaryMeta"
       ></app-salary-log>

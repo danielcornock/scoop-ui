@@ -48,6 +48,20 @@ export class SalaryEntryFormComponent extends BaseEntryForm implements OnInit {
     }
   }
 
+  public async logSameAsLastMonth(): Promise<void> {
+    try {
+      this._spinnerService.show();
+      await this._httpService.post('salary/duplicate', {
+        date: this.form.value.date
+      });
+      this._router.navigateByUrl('salary');
+    } catch ({ error }) {
+      this.errors = error;
+    } finally {
+      this._spinnerService.hide();
+    }
+  }
+
   public async sendGrossSalary(): Promise<void> {
     if (this.form.isInvalid) {
       this.form.formGroup.markAllAsTouched();
@@ -96,7 +110,7 @@ export class SalaryEntryFormComponent extends BaseEntryForm implements OnInit {
         type: FormInputType.NUMBER
       },
       {
-        name: 'studentLoanPayments',
+        name: 'studentFinance',
         label: 'Student loans',
         type: FormInputType.NUMBER
       },
@@ -125,14 +139,13 @@ export class SalaryEntryFormComponent extends BaseEntryForm implements OnInit {
     this.netSalary = this.form.formGroup.valueChanges.pipe(
       startWith(this.form.formGroup.value),
       switchMap((value: any) => {
-        console.log(value);
-
         const netSalary =
           parseFloat(value.grossSalary) -
           parseFloat(value.incomeTax) -
           parseFloat(value.nationalInsurance) -
-          parseFloat(value.studentLoanPayments) -
-          parseFloat(value.pensionContributions);
+          parseFloat(value.studentFinance) -
+          parseFloat(value.pensionContributions) -
+          parseFloat(value.otherDeductions);
 
         return of(netSalary);
       })

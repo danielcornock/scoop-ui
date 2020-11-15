@@ -23,7 +23,7 @@
     padding: $spacing-30;
     border-radius: $br-med;
     text-align: center;
-    margin-bottom: $spacing-20;
+    margin: $spacing-20 0;
   }
 
   &-label {
@@ -36,5 +36,17 @@
     font-size: 24px;
     font-weight: 500;
     color: $color-primary;
+  }
+
+  &-sameAsLastMonthButton {
+    @include form-button;
+    border: 2px solid $color-primary;
+    color: $color-primary;
+    background-color: transparent;
+    margin-top: $spacing-15;
+
+    &:hover {
+      background-color: $color-white;
+    }
   }
 }
