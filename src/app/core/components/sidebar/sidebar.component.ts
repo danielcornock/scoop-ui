@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth/services/auth/auth.service';
 import { UserSettingsService } from 'src/app/settings/services/user-settings/user-settings.service';
-import { ExperimentalService } from 'src/app/shared/services/experimental/experimental.service';
 
 import { HttpService } from '../../services/http/http.service';
 import { INavigationItem } from './interfaces/navigation-item.interface';
@@ -22,8 +21,7 @@ export class SidebarComponent implements OnInit {
   constructor(
     private readonly _authService: AuthService,
     private readonly _userSettingsService: UserSettingsService,
-    private readonly _httpService: HttpService,
-    private readonly _experimentalService: ExperimentalService
+    private readonly _httpService: HttpService
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -79,7 +77,7 @@ export class SidebarComponent implements OnInit {
       });
     }
 
-    if (this.isSalaryEnabled && this._experimentalService.isExperimental()) {
+    if (this.isSalaryEnabled) {
       this.navItems.push({
         label: 'Salary Tracker',
         link: 'salary',
