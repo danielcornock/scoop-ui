@@ -54,17 +54,17 @@ export class SalaryComponent implements OnInit {
       {
         label: 'Net Salary',
         value: this._toCurrency(values.netSalary),
-        icon: 'dollar-sign'
+        icon: 'user-plus'
       },
       {
         label: 'Tax Paid',
         value: this._toCurrency(values.taxPaid),
-        icon: 'dollar-sign'
+        icon: 'chevrons-down'
       },
       {
         label: 'Estimated tax return',
         value: this._toCurrency(values.projectedTaxReturn),
-        icon: 'dollar-sign'
+        icon: 'corner-down-left'
       }
     ];
   }

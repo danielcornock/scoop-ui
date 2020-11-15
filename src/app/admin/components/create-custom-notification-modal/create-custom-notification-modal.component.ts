@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { FormContainer, FormFactory } from 'ngx-form-trooper';
+import { map, startCase } from 'lodash';
+import { FormContainer, FormFactory, FormInputType } from 'ngx-form-trooper';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { notificationDictionary } from 'src/app/core/constants/notification-dictionary.constant';
 import { HttpService } from 'src/app/core/services/http/http.service';
 import { IHttpError } from 'src/app/core/services/http/interfaces/http-error.interface';
 import {
@@ -49,10 +51,16 @@ export class CreateCustomNotificationModalComponent
   }
 
   private _createForm(): void {
+    const selectOptions = map(notificationDictionary, (val, label) => {
+      return { label: `${startCase(label)} (${val.icon})`, value: label };
+    });
+
     this.form = this._formFactory.createForm([
       {
         name: 'name',
-        label: 'Name'
+        label: 'Name',
+        type: FormInputType.SELECT,
+        options: selectOptions
       },
       {
         name: 'title',

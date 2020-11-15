@@ -5,6 +5,7 @@
   <h2 class="DetailedContextMenu-heading">{{ detailedContextMenuTitle }}</h2>
   <div
     *ngFor="let item of detailedContextMenuItems; let i = index"
+    (click)="$event.stopPropagation()"
     class="DetailedContextMenu-item"
   >
     <div class="DetailedContextMenu-iconContainer">
