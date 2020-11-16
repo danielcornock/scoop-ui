@@ -74,3 +74,13 @@ body {
     display: none;
   }
 }
+
+@include media-phone {
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-overflow-scrolling: auto;
+
+  *::-webkit-scrollbar {
+    width: 0px;
+  }
+}
