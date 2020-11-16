@@ -184,6 +184,12 @@
   }
 }
 
+@mixin media-min-hd {
+  @media only screen and (min-width: 1750px) {
+    @content;
+  }
+}
+
 @mixin modal-title {
   @include page-subheading;
   margin-bottom: $spacing-20;
@@ -208,7 +214,7 @@
   height: 100%;
 
   @include media-phone {
-    padding-top: $spacing-30;
+    padding-top: calc(58px + var(--spacing-page-top));
   }
 }
 

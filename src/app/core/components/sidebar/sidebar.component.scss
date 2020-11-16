@@ -9,7 +9,7 @@
 }
 
 @mixin container-min {
-  width: 80px;
+  width: 70px;
   padding-top: var(--spacing-page-top);
 
   @include media-phone {
@@ -75,7 +75,7 @@
 
   &-container {
     @include shadow-dark;
-    transition: 250ms ease-in-out;
+    transition: 0.6s cubic-bezier(0.68, -0.6, 0.32, 1.6);
     z-index: 10;
     height: 100%;
     width: 300px;
@@ -95,11 +95,11 @@
     }
 
     @include media-phone {
-      border-top: 1px solid $color-page-background;
       width: 100%;
       height: auto;
-      background-color: $color-primary;
       padding: 0;
+      background-color: $color-primary;
+      box-shadow: 0px -2px 8px rgba(black, 0.2);
     }
   }
 
@@ -204,6 +204,10 @@
 
     &:hover {
       background-color: $color-primary;
+
+      @include media-phone {
+        background-color: transparent;
+      }
     }
   }
 

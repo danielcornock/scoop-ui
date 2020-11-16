@@ -57,6 +57,11 @@
     @include center-contents;
     color: $indigo-700;
 
+    @include media-min-hd {
+      height: 80px;
+      width: 80px;
+    }
+
     i-feather {
       height: 30px;
       width: 30px;
@@ -120,6 +125,10 @@
     color: $color-primary;
     line-height: 1;
     margin-bottom: $spacing-5;
+
+    @include media-min-hd {
+      font-size: 36px;
+    }
 
     @include media-phone {
       font-size: 26px;

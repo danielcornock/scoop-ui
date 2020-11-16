@@ -1,5 +1,17 @@
 @import 'src/assets/styles/themes.scss';
+:host {
+  ::ng-deep {
+    .DashboardSummary-container {
+      @include media-sd {
+        min-height: 350px;
+      }
 
+      @include media-phone {
+        min-height: unset;
+      }
+    }
+  }
+}
 .Investments {
   &-container {
     @include page-container;
