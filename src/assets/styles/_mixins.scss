@@ -214,7 +214,7 @@
   height: 100%;
 
   @include media-phone {
-    padding-top: calc(58px + var(--spacing-page-side));
+    padding-top: calc(58px + var(--spacing-page-top));
   }
 }
 
