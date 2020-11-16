@@ -80,6 +80,11 @@ body {
     -webkit-user-select: none;
     -webkit-touch-callout: none;
     -webkit-overflow-scrolling: auto;
+    -webkit-tap-highlight-color: transparent;
+
+    &:not(input):focus {
+      outline: none;
+    }
   }
 
   *::-webkit-scrollbar {
