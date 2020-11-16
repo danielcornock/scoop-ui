@@ -2,7 +2,7 @@
 
 .MonthlyDistributionFieldsConfig {
   &-heading {
-    @include page-subheading;
+    @include settings-heading;
   }
 
   &-description {
@@ -15,5 +15,20 @@
 
   &-section + &-subheading {
     padding-top: $spacing-30;
+  }
+
+  &-expand {
+    @include button-reset;
+    display: none;
+
+    @include media-phone {
+      display: block;
+    }
+  }
+
+  &-expandedContent {
+    &.display {
+      display: block !important;
+    }
   }
 }

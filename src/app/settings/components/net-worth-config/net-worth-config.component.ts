@@ -8,4 +8,10 @@ import { Component, Input } from '@angular/core';
 export class NetWorthConfigComponent {
   @Input()
   public netWorthColumns: Array<string>;
+
+  public isExpanded: boolean;
+
+  public expandSettings(): void {
+    this.isExpanded = !this.isExpanded;
+  }
 }

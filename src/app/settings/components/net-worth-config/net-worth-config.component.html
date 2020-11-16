@@ -1,12 +1,25 @@
 <div class="NetWorthConfig-container">
-  <h2 class="NetWorthConfig-heading">Net Worth Table Configuration</h2>
-  <p class="NetWorthConfig-description">
-    Move the columns around to choose the order that you want them to be
-    displayed when in tables. You can add more using the input below, or remove
-    them by clicking the 'x' next to the column name.
-  </p>
+  <h2 class="NetWorthConfig-heading">
+    Net Worth Table Configuration
+    <button class="NetWorthConfig-expand" (click)="expandSettings()">
+      <i-feather
+        class="feather"
+        [name]="isExpanded ? 'chevron-down' : 'chevron-right'"
+      ></i-feather>
+    </button>
+  </h2>
+  <div
+    class="NetWorthConfig-expandedContent not-mobile"
+    [class.display]="isExpanded"
+  >
+    <p class="NetWorthConfig-description">
+      Move the columns around to choose the order that you want them to be
+      displayed when in tables. You can add more using the input below, or
+      remove them by clicking the 'x' next to the column name.
+    </p>
 
-  <app-fields-config
-    [fieldsConfigColumns]="netWorthColumns"
-  ></app-fields-config>
+    <app-fields-config
+      [fieldsConfigColumns]="netWorthColumns"
+    ></app-fields-config>
+  </div>
 </div>

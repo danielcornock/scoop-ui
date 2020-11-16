@@ -21,19 +21,17 @@
 
   &-section {
     display: block;
-    padding-bottom: $spacing-40;
-    padding-top: $spacing-40;
-
-    &:last-of-type {
-      padding-bottom: 0;
-    }
-
-    &:first-of-type {
-      padding-top: 0;
-    }
 
     & + & {
-      border-top: 1px solid $color-table-divider;
+      margin-top: 80px;
+    }
+
+    @include media-phone {
+      padding: 0;
+      margin-top: 0 !important;
+      & + & {
+        border-top: 1px solid $color-table-divider;
+      }
     }
   }
 }

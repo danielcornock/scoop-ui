@@ -15,12 +15,17 @@ export class SalaryConfigComponent implements OnInit {
   public salaryConfigSettings: ISettings;
 
   public form: FormContainer;
+  public isExpanded: boolean;
 
   constructor(private readonly _formFactory: FormFactory) {}
 
   ngOnInit(): void {
     this._createForm();
     this._listenToFormChanges();
+  }
+
+  public expandSettings(): void {
+    this.isExpanded = !this.isExpanded;
   }
 
   private _createForm(): void {

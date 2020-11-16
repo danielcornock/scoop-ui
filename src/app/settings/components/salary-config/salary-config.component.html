@@ -1,19 +1,33 @@
 <div class="SalaryConfig-container">
-  <h2 class="SalaryConfig-heading">Salary Configuration</h2>
-  <p class="SalaryConfig-description">
-    Here you can set the default value for your salary, choose your student loan
-    type and set your pension contribution so that we can do more of the working
-    out for you.
-  </p>
+  <h2 class="SalaryConfig-heading">
+    Salary Configuration
+    <button class="SalaryConfig-expand" (click)="expandSettings()">
+      <i-feather
+        class="feather"
+        [name]="isExpanded ? 'chevron-down' : 'chevron-right'"
+      ></i-feather>
+    </button>
+  </h2>
 
-  <form [formGroup]="form.formGroup" class="SalaryConfig-form">
-    <ngx-form-input [formInputField]="form.fields[0]"></ngx-form-input>
-    <app-information
-      informationMessage="If you have a student loan, the following field is in regards to when you started your degree."
-    ></app-information>
-    <ngx-form-input-select
-      [formInputField]="form.fields[1]"
-    ></ngx-form-input-select>
-    <ngx-form-input [formInputField]="form.fields[2]"></ngx-form-input>
-  </form>
+  <div
+    class="SalaryConfig-expandedContent not-mobile"
+    [class.display]="isExpanded"
+  >
+    <p class="SalaryConfig-description">
+      Here you can set the default value for your salary, choose your student
+      loan type and set your pension contribution so that we can do more of the
+      working out for you.
+    </p>
+
+    <form [formGroup]="form.formGroup" class="SalaryConfig-form">
+      <ngx-form-input [formInputField]="form.fields[0]"></ngx-form-input>
+      <app-information
+        informationMessage="If you have a student loan, the following field is in regards to when you started your degree."
+      ></app-information>
+      <ngx-form-input-select
+        [formInputField]="form.fields[1]"
+      ></ngx-form-input-select>
+      <ngx-form-input [formInputField]="form.fields[2]"></ngx-form-input>
+    </form>
+  </div>
 </div>

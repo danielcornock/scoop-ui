@@ -11,4 +11,10 @@ export class MonthlyDistributionFieldsConfigComponent {
 
   @Input()
   public monthlyDistributionOutgoingColumns: Array<string>;
+
+  public isExpanded: boolean;
+
+  public expandSettings(): void {
+    this.isExpanded = !this.isExpanded;
+  }
 }
