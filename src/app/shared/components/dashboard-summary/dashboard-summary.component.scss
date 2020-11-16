@@ -41,9 +41,8 @@
     @include media-phone {
       height: auto;
       flex-direction: row;
-      justify-content: space-between;
+      justify-content: flex-start;
       padding: $spacing-15 $spacing-20;
-      flex-direction: row-reverse;
       min-height: 0;
     }
   }
@@ -91,9 +90,7 @@
 
     @include media-phone {
       margin-bottom: 0;
-      background-color: transparent;
-      height: auto;
-      width: auto;
+      margin-right: $spacing-20;
     }
   }
 
