@@ -1,5 +1,8 @@
 <div class="Header-container">
   <!-- TODO: This fallback is horrendous - linked to issue #1 -->
+  <button class="Header-back" (click)="goBack()">
+    <i-feather name="chevron-left"></i-feather>
+  </button>
   <h1 class="Header-title">{{ headerTitle || 'Net Worth' }}</h1>
   <app-user-settings-menu class="Header-menu"></app-user-settings-menu>
 </div>
