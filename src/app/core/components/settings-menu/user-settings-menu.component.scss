@@ -6,9 +6,39 @@
   &-container {
     display: flex;
     align-items: center;
+
+    @include media-phone {
+      justify-content: space-between;
+    }
+
+    &.has-notifications {
+      @include media-phone {
+        #{$cmp}-notificationsContainer {
+          margin-right: 0;
+          padding-right: 0;
+          border-right: 0;
+          display: block;
+        }
+
+        #{$cmp}-back {
+          display: none;
+        }
+      }
+    }
   }
 
-  &-item {
+  &-back {
+    @include button-reset;
+    color: $color-subheading;
+    display: none;
+
+    @include media-phone {
+      display: block;
+    }
+
+    i-feather {
+      display: block;
+    }
   }
 
   &-notificationsContainer {

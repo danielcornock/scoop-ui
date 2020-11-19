@@ -110,5 +110,5 @@ $spacing-menu-horizontal--mobile: $spacing-10;
 }
 
 ::ng-deep .mat-menu-panel {
-  max-width: initial;
+  max-width: initial !important;
 }

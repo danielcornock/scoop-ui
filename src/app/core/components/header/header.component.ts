@@ -1,4 +1,3 @@
-import { Location } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 @Component({
@@ -9,10 +8,4 @@ import { Component, Input } from '@angular/core';
 export class HeaderComponent {
   @Input()
   public headerTitle: string;
-
-  constructor(private _location: Location) {}
-
-  public goBack(): void {
-    this._location.back();
-  }
 }

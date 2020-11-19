@@ -1,10 +1,16 @@
-<div class="SettingsMenu-container">
+<div
+  class="SettingsMenu-container"
+  [class.has-notifications]="notifications.length"
+>
+  <button class="SettingsMenu-back" (click)="goBack()">
+    <i-feather name="chevron-left"></i-feather>
+  </button>
   <app-detailed-context-menu
     [detailedContextMenuItems]="notifications"
     [detailedContextMenuTitle]="
       notifications.length ? 'Notifications' : 'No notifications to show.'
     "
-    class="SettingsMenu-item SettingsMenu-notificationsContainer"
+    class="SettingsMenu-notificationsContainer"
     *ngIf="notifications"
   >
     <div

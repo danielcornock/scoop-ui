@@ -1,10 +1,9 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth/auth.service';
 import { IContextMenuItem } from 'src/app/shared/components/context-menu/interfaces/context-menu-item.interface';
-import {
-  IDetailedContextMenuItem,
-} from 'src/app/shared/components/detailed-context-menu/interfaces/detailed-context-menu-item.interface';
+import { IDetailedContextMenuItem } from 'src/app/shared/components/detailed-context-menu/interfaces/detailed-context-menu-item.interface';
 
 import { notificationDictionary } from '../../constants/notification-dictionary.constant';
 import { HttpService } from '../../services/http/http.service';
@@ -22,7 +21,8 @@ export class UserSettingsMenuComponent implements OnInit {
   constructor(
     private readonly _authService: AuthService,
     private readonly _router: Router,
-    private readonly _httpService: HttpService
+    private readonly _httpService: HttpService,
+    private readonly _location: Location
   ) {}
 
   ngOnInit(): void {
@@ -40,6 +40,10 @@ export class UserSettingsMenuComponent implements OnInit {
         icon: 'log-out'
       }
     ];
+  }
+
+  public goBack(): void {
+    this._location.back();
   }
 
   private async _getNotifications(): Promise<void> {

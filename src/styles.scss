@@ -50,11 +50,11 @@ body {
 
   @include media-phone {
     --spacing-page-top: #{$spacing-20};
-    --spacing-page-side: #{$spacing-20};
+    --spacing-page-side: #{$spacing-15};
   }
 
   @include media(374px) {
-    --spacing-page-top: #{$spacing-10};
+    --spacing-page-top: #{$spacing-15};
     --spacing-page-side: #{$spacing-10};
   }
 }

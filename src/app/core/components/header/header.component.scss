@@ -28,23 +28,9 @@
     top: 50%;
     transform: translatey(-50%);
     right: 0;
-  }
-
-  &-back {
-    @include button-reset;
-    position: absolute;
-    color: $color-subheading;
-    left: 0;
-    top: 50%;
-    transform: translatey(-50%);
-    display: none;
 
     @include media-phone {
-      display: block;
-    }
-
-    i-feather {
-      display: block;
+      width: 100%;
     }
   }
 }
