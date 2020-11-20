@@ -20,13 +20,13 @@
   &-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: $spacing-30;
+    grid-gap: $spacing-30 $spacing-20;
     grid-template-areas:
       'summary summary'
       'monthly trends'
       'log log';
 
-    @include media-phone {
+    @include media-tablet {
       display: block;
     }
   }
@@ -34,8 +34,8 @@
   &-section {
     display: block;
     min-width: 0;
-    @include media-phone {
-      display: block;
+
+    @include media-tablet {
       & + & {
         margin-top: $spacing-20;
       }
