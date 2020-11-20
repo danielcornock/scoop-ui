@@ -1,11 +1,19 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { combineLatest, of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { AuthService } from 'src/app/auth/services/auth/auth.service';
 import { IContextMenuItem } from 'src/app/shared/components/context-menu/interfaces/context-menu-item.interface';
 import { IDetailedContextMenuItem } from 'src/app/shared/components/detailed-context-menu/interfaces/detailed-context-menu-item.interface';
+import {
+  SCREEN_SIZE,
+  ScreenWidthService
+} from 'src/app/shared/services/screen-width/screen-width.service';
 
 import { notificationDictionary } from '../../constants/notification-dictionary.constant';
+import { IHeaderAction } from '../../interfaces/header-action.interface';
+import { HeaderActionService } from '../../services/header-action/header-action.service';
 import { HttpService } from '../../services/http/http.service';
 
 @Component({
@@ -17,15 +25,39 @@ export class UserSettingsMenuComponent implements OnInit {
   public menuItems: Array<IContextMenuItem>;
   public name: string;
   public notifications: Array<IDetailedContextMenuItem>;
+  public action: IHeaderAction | null;
 
   constructor(
     private readonly _authService: AuthService,
     private readonly _router: Router,
     private readonly _httpService: HttpService,
-    private readonly _location: Location
+    private readonly _location: Location,
+    private readonly _headerActionService: HeaderActionService,
+    private readonly _screenWidthService: ScreenWidthService
   ) {}
 
   ngOnInit(): void {
+    combineLatest([
+      this._screenWidthService.getScreenWidth$(),
+      this._headerActionService.getAction()
+    ])
+      .pipe(
+        switchMap(([width, action]) => {
+          if (!action) {
+            return of(null);
+          }
+
+          if (width !== SCREEN_SIZE.Mobile) {
+            return of(null);
+          }
+
+          return of(action);
+        })
+      )
+      .subscribe((action) => {
+        this.action = action;
+      });
+
     this.name = this._authService.getLoggedInUserName();
     this._getNotifications();
     this.menuItems = [

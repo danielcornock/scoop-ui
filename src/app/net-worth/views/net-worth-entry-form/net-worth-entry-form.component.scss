@@ -22,6 +22,10 @@
 
   &-submit {
     margin-top: $spacing-50;
+
+    @include media-phone {
+      display: none;
+    }
   }
 
   &-moreFieldsLink {

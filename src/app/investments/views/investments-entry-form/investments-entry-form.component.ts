@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormContainer, FormFactory, FormInputType } from 'ngx-form-trooper';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { HeaderActionService } from 'src/app/core/services/header-action/header-action.service';
 import { HttpService } from 'src/app/core/services/http/http.service';
 import { BaseEntryForm } from 'src/app/shared/abstracts/base-entry-form/base-entry-form.abstract';
 import { DateService } from 'src/app/shared/services/current-date/date.service';
@@ -12,15 +13,22 @@ import { DateService } from 'src/app/shared/services/current-date/date.service';
   styleUrls: ['./investments-entry-form.component.scss']
 })
 export class InvestmentsEntryFormComponent extends BaseEntryForm
-  implements OnInit {
+  implements OnInit, OnDestroy {
   constructor(
     private readonly _formFactory: FormFactory,
     private readonly _currentDateService: DateService,
     httpService: HttpService,
     router: Router,
-    spinnerService: NgxSpinnerService
+    spinnerService: NgxSpinnerService,
+    headerActionService: HeaderActionService
   ) {
-    super(spinnerService, httpService, router, 'investments');
+    super(
+      spinnerService,
+      httpService,
+      router,
+      headerActionService,
+      'investments'
+    );
   }
 
   ngOnInit(): void {
@@ -57,5 +65,9 @@ export class InvestmentsEntryFormComponent extends BaseEntryForm
         }
       }
     ]);
+  }
+
+  ngOnDestroy(): void {
+    this.onDestroy();
   }
 }

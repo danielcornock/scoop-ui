@@ -49,4 +49,10 @@
       background-color: $color-white;
     }
   }
+
+  &-submit {
+    @include media-phone {
+      display: none;
+    }
+  }
 }

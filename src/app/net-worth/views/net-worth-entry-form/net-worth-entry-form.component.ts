@@ -1,8 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { capitalize } from 'lodash';
-import { FormContainer, FormFactory, FormInputType, IFormFactoryConfig } from 'ngx-form-trooper';
+import {
+  FormContainer,
+  FormFactory,
+  FormInputType,
+  IFormFactoryConfig
+} from 'ngx-form-trooper';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { HeaderActionService } from 'src/app/core/services/header-action/header-action.service';
 import { HttpService } from 'src/app/core/services/http/http.service';
 import { SettingsService } from 'src/app/settings/services/settings/settings.service';
 import { BaseEntryForm } from 'src/app/shared/abstracts/base-entry-form/base-entry-form.abstract';
@@ -14,7 +20,7 @@ import { DateService } from 'src/app/shared/services/current-date/date.service';
   styleUrls: ['./net-worth-entry-form.component.scss']
 })
 export class NetWorthEntryFormComponent extends BaseEntryForm
-  implements OnInit {
+  implements OnInit, OnDestroy {
   public columns: Array<string>;
 
   constructor(
@@ -23,9 +29,16 @@ export class NetWorthEntryFormComponent extends BaseEntryForm
     private readonly _settingsService: SettingsService,
     httpService: HttpService,
     router: Router,
-    spinnerService: NgxSpinnerService
+    spinnerService: NgxSpinnerService,
+    headerActionService: HeaderActionService
   ) {
-    super(spinnerService, httpService, router, 'net-worth');
+    super(
+      spinnerService,
+      httpService,
+      router,
+      headerActionService,
+      'net-worth'
+    );
   }
 
   async ngOnInit(): Promise<void> {
@@ -57,5 +70,9 @@ export class NetWorthEntryFormComponent extends BaseEntryForm
     });
 
     return this._formFactory.createForm(formConfig);
+  }
+
+  ngOnDestroy(): void {
+    this.onDestroy();
   }
 }

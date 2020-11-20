@@ -18,4 +18,10 @@
   &-message {
     margin-top: 0;
   }
+
+  &-submit {
+    @include media-phone {
+      display: none;
+    }
+  }
 }
