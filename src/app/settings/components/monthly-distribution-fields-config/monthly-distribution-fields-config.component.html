@@ -1,22 +1,36 @@
 <div class="MonthlyDistributionFieldsConfig-container">
   <h2 class="MonthlyDistributionFieldsConfig-heading">
-    Monthly Distribution Fields Configuration
+    Monthly Distribution Config
+    <button
+      class="MonthlyDistributionFieldsConfig-expand"
+      (click)="expandSettings()"
+    >
+      <i-feather
+        class="feather"
+        [name]="isExpanded ? 'chevron-down' : 'chevron-right'"
+      ></i-feather>
+    </button>
   </h2>
-  <p class="MonthlyDistributionFieldsConfig-description">
-    Move the columns around to choose the order that you want them to be
-    displayed when in tables. You can add more using the input below, or remove
-    them by clicking the 'x' next to the column name.
-  </p>
+  <div
+    class="MonthlyDistributionFieldsConfig-expandedContent not-mobile"
+    [class.display]="isExpanded"
+  >
+    <p class="MonthlyDistributionFieldsConfig-description">
+      Move the columns around to choose the order that you want them to be
+      displayed when in tables. You can add more using the input below, or
+      remove them by clicking the 'x' next to the column name.
+    </p>
 
-  <h3 class="MonthlyDistributionFieldsConfig-subheading">Income Fields</h3>
-  <app-fields-config
-    class="MonthlyDistributionFieldsConfig-section"
-    [fieldsConfigColumns]="monthlyDistributionIncomeColumns"
-  ></app-fields-config>
+    <h3 class="MonthlyDistributionFieldsConfig-subheading">Income Fields</h3>
+    <app-fields-config
+      class="MonthlyDistributionFieldsConfig-section"
+      [fieldsConfigColumns]="monthlyDistributionIncomeColumns"
+    ></app-fields-config>
 
-  <h3 class="MonthlyDistributionFieldsConfig-subheading">Outgoing Fields</h3>
-  <app-fields-config
-    class="MonthlyDistributionFieldsConfig-section"
-    [fieldsConfigColumns]="monthlyDistributionOutgoingColumns"
-  ></app-fields-config>
+    <h3 class="MonthlyDistributionFieldsConfig-subheading">Outgoing Fields</h3>
+    <app-fields-config
+      class="MonthlyDistributionFieldsConfig-section"
+      [fieldsConfigColumns]="monthlyDistributionOutgoingColumns"
+    ></app-fields-config>
+  </div>
 </div>

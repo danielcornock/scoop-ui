@@ -28,6 +28,7 @@ export class NetWorthSummaryConfigComponent implements OnInit {
 
   public isInvalid: boolean;
   public dragDropDirection$: Observable<string>;
+  public isExpanded: boolean;
 
   constructor(
     private readonly _modalService: ModalService,
@@ -44,6 +45,10 @@ export class NetWorthSummaryConfigComponent implements OnInit {
         }
       })
     );
+  }
+
+  public expandSettings(): void {
+    this.isExpanded = !this.isExpanded;
   }
 
   public async openEditModal(

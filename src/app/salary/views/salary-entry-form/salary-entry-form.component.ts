@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { forEach } from 'lodash';
@@ -6,6 +6,7 @@ import { FormContainer, FormFactory, FormInputType } from 'ngx-form-trooper';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable, of } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
+import { HeaderActionService } from 'src/app/core/services/header-action/header-action.service';
 import { HttpService } from 'src/app/core/services/http/http.service';
 import { SettingsService } from 'src/app/settings/services/settings/settings.service';
 import { BaseEntryForm } from 'src/app/shared/abstracts/base-entry-form/base-entry-form.abstract';
@@ -18,7 +19,8 @@ import { ISalarySuggestion } from '../../interfaces/salary-suggestion.interface'
   templateUrl: './salary-entry-form.component.html',
   styleUrls: ['./salary-entry-form.component.scss']
 })
-export class SalaryEntryFormComponent extends BaseEntryForm implements OnInit {
+export class SalaryEntryFormComponent extends BaseEntryForm
+  implements OnInit, OnDestroy {
   public salaryDeductions: ISalarySuggestion;
   public netSalary: Observable<number>;
   private _defaultSalary: number;
@@ -29,9 +31,10 @@ export class SalaryEntryFormComponent extends BaseEntryForm implements OnInit {
     private readonly _settingsService: SettingsService,
     httpService: HttpService,
     router: Router,
-    spinnerService: NgxSpinnerService
+    spinnerService: NgxSpinnerService,
+    headerActionService: HeaderActionService
   ) {
-    super(spinnerService, httpService, router, 'salary');
+    super(spinnerService, httpService, router, headerActionService, 'salary');
   }
 
   async ngOnInit(): Promise<void> {
@@ -155,5 +158,9 @@ export class SalaryEntryFormComponent extends BaseEntryForm implements OnInit {
         return of(netSalary);
       })
     );
+  }
+
+  ngOnDestroy(): void {
+    this.onDestroy();
   }
 }

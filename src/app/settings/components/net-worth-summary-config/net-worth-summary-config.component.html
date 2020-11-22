@@ -1,70 +1,81 @@
 <div class="NetWorthSummaryConfig-container">
   <h2 class="NetWorthSummaryConfig-heading">
-    Net Worth Summary Card Configuration
-  </h2>
-  <p class="NetWorthSummaryConfig-description">
-    Here you can configure the cards that display at the top of the net worth
-    page. Choose from predefined measures or create your own by combining your
-    fields.
-  </p>
-
-  <h3 class="NetWorthSummaryConfig-subheading">
-    Selected options (4 required)
-  </h3>
-  <div
-    class="NetWorthSummaryConfig-selectedItems"
-    #selectedList="cdkDropList"
-    cdkDropList
-    [cdkDropListData]="netWorthSummaryConfigSelectedItems"
-    [cdkDropListConnectedTo]="optionsList"
-    (cdkDropListDropped)="dropColumn($event)"
-    [cdkDropListOrientation]="dragDropDirection$ | async"
-  >
-    <app-dashboard-summary-config-item
-      class="NetWorthSummaryConfig-selectedItem"
-      *ngFor="let item of netWorthSummaryConfigSelectedItems; let i = index"
-      [dashboardSummaryConfigItem]="item"
-      (dashboardSummaryConfigItemRemove)="
-        removeItem(i, netWorthSummaryConfigSelectedItems)
-      "
-      (dashboardSummaryConfigItemEdit)="
-        openEditModal(item, i, netWorthSummaryConfigSelectedItems)
-      "
-      cdkDrag
-    ></app-dashboard-summary-config-item>
-  </div>
-
-  <p class="NetWorthSummaryConfig-error" *ngIf="isInvalid">
-    You must have exactly 4 entries for net worth summary items.
-  </p>
-
-  <h3 class="NetWorthSummaryConfig-subheading">Available options</h3>
-  <div
-    class="NetWorthSummaryConfig-selectedItems"
-    cdkDropList
-    [cdkDropListConnectedTo]="selectedList"
-    [cdkDropListData]="netWorthSummaryConfigOptions"
-    #optionsList="cdkDropList"
-    (cdkDropListDropped)="dropColumn($event)"
-    [cdkDropListOrientation]="dragDropDirection$ | async"
-  >
-    <app-dashboard-summary-config-item
-      class="NetWorthSummaryConfig-selectedItem"
-      *ngFor="let item of netWorthSummaryConfigOptions; let i = index"
-      [dashboardSummaryConfigItem]="item"
-      (dashboardSummaryConfigItemRemove)="
-        removeItem(i, netWorthSummaryConfigOptions)
-      "
-      (dashboardSummaryConfigItemEdit)="
-        openEditModal(item, i, netWorthSummaryConfigOptions)
-      "
-      cdkDrag
-    ></app-dashboard-summary-config-item>
-    <button
-      class="NetWorthSummaryConfig-addMoreButton"
-      (click)="openFormModal()"
-    >
-      <i-feather name="plus"></i-feather>
+    Net Worth Summary Card Config
+    <button class="NetWorthSummaryConfig-expand" (click)="expandSettings()">
+      <i-feather
+        class="feather"
+        [name]="isExpanded ? 'chevron-down' : 'chevron-right'"
+      ></i-feather>
     </button>
+  </h2>
+  <div
+    class="NetWorthSummaryConfig-expandedContent not-mobile"
+    [class.display]="isExpanded"
+  >
+    <p class="NetWorthSummaryConfig-description">
+      Here you can configure the cards that display at the top of the net worth
+      page. Choose from predefined measures or create your own by combining your
+      fields.
+    </p>
+
+    <h3 class="NetWorthSummaryConfig-subheading">
+      Selected options (4 required)
+    </h3>
+    <div
+      class="NetWorthSummaryConfig-selectedItems"
+      #selectedList="cdkDropList"
+      cdkDropList
+      [cdkDropListData]="netWorthSummaryConfigSelectedItems"
+      [cdkDropListConnectedTo]="optionsList"
+      (cdkDropListDropped)="dropColumn($event)"
+      [cdkDropListOrientation]="dragDropDirection$ | async"
+    >
+      <app-dashboard-summary-config-item
+        class="NetWorthSummaryConfig-selectedItem"
+        *ngFor="let item of netWorthSummaryConfigSelectedItems; let i = index"
+        [dashboardSummaryConfigItem]="item"
+        (dashboardSummaryConfigItemRemove)="
+          removeItem(i, netWorthSummaryConfigSelectedItems)
+        "
+        (dashboardSummaryConfigItemEdit)="
+          openEditModal(item, i, netWorthSummaryConfigSelectedItems)
+        "
+        cdkDrag
+      ></app-dashboard-summary-config-item>
+    </div>
+
+    <p class="NetWorthSummaryConfig-error" *ngIf="isInvalid">
+      You must have exactly 4 entries for net worth summary items.
+    </p>
+
+    <h3 class="NetWorthSummaryConfig-subheading">Available options</h3>
+    <div
+      class="NetWorthSummaryConfig-selectedItems"
+      cdkDropList
+      [cdkDropListConnectedTo]="selectedList"
+      [cdkDropListData]="netWorthSummaryConfigOptions"
+      #optionsList="cdkDropList"
+      (cdkDropListDropped)="dropColumn($event)"
+      [cdkDropListOrientation]="dragDropDirection$ | async"
+    >
+      <app-dashboard-summary-config-item
+        class="NetWorthSummaryConfig-selectedItem"
+        *ngFor="let item of netWorthSummaryConfigOptions; let i = index"
+        [dashboardSummaryConfigItem]="item"
+        (dashboardSummaryConfigItemRemove)="
+          removeItem(i, netWorthSummaryConfigOptions)
+        "
+        (dashboardSummaryConfigItemEdit)="
+          openEditModal(item, i, netWorthSummaryConfigOptions)
+        "
+        cdkDrag
+      ></app-dashboard-summary-config-item>
+      <button
+        class="NetWorthSummaryConfig-addMoreButton"
+        (click)="openFormModal()"
+      >
+        <i-feather name="plus"></i-feather>
+      </button>
+    </div>
   </div>
 </div>

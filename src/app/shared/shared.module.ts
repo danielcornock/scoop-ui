@@ -61,7 +61,8 @@ import { ValuesPipe } from './pipes/values.pipe';
     ToastrModule.forRoot({
       positionClass: 'toast-top-right',
       timeOut: 5000,
-      closeButton: true
+      closeButton: true,
+      preventDuplicates: true
     })
   ],
   exports: [

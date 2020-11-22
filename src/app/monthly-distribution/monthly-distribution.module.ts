@@ -12,12 +12,16 @@ import {
   MonthlyDistributionEntryFormComponent,
 } from './views/monthly-distribution-entry-form/monthly-distribution-entry-form.component';
 import { MonthlyDistributionComponent } from './views/monthly-distribution/monthly-distribution.component';
+import { MonthlyDistributionPieChartComponent } from './components/monthly-distribution-pie-chart/monthly-distribution-pie-chart.component';
+import { MonthlyDistributionSpendingTrendChartComponent } from './components/monthly-distribution-spending-trend-chart/monthly-distribution-spending-trend-chart.component';
 
 @NgModule({
   declarations: [
     MonthlyDistributionComponent,
     MonthlyDistributionEntryFormComponent,
-    MonthlyDistributionLogCardComponent
+    MonthlyDistributionLogCardComponent,
+    MonthlyDistributionPieChartComponent,
+    MonthlyDistributionSpendingTrendChartComponent
   ],
   imports: [
     CommonModule,

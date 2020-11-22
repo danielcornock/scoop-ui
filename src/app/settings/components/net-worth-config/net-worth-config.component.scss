@@ -2,10 +2,29 @@
 
 .NetWorthConfig {
   &-heading {
-    @include page-subheading;
+    @include settings-heading;
+
+    i-feather {
+      color: $color-subheading;
+    }
   }
 
   &-description {
     @include settings-description;
+  }
+
+  &-expand {
+    @include button-reset;
+    display: none;
+
+    @include media-phone {
+      display: block;
+    }
+  }
+
+  &-expandedContent {
+    &.display {
+      display: block !important;
+    }
   }
 }

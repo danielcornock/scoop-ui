@@ -91,6 +91,10 @@
   color: $color-subheading;
   font-size: 22px;
   margin-bottom: $spacing-20;
+
+  @include media-phone {
+    font-size: 20px;
+  }
 }
 
 @mixin settings-description {
@@ -193,10 +197,6 @@
 @mixin modal-title {
   @include page-subheading;
   margin-bottom: $spacing-20;
-
-  @include media-phone {
-    font-size: 20px;
-  }
 }
 
 @mixin form-subheading {
@@ -206,6 +206,22 @@
 
   @include media-phone {
     padding-top: $spacing-10;
+  }
+}
+
+@mixin settings-heading {
+  @include page-subheading;
+  margin-bottom: $spacing-10;
+  padding-bottom: $spacing-10;
+  border-bottom: 1px solid $color-table-divider;
+
+  @include media-phone {
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    padding: $spacing-20 $spacing-5;
+    border-bottom: 0;
+    margin-bottom: 0;
   }
 }
 

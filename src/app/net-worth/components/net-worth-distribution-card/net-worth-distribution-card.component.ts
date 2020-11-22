@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { upperFirst } from 'lodash';
+import { startCase } from 'lodash';
 import { chartColors } from 'src/app/shared/constants/chart-colors.constant';
 import { ChartService } from 'src/app/shared/services/chart/chart.service';
 
@@ -19,7 +19,7 @@ export class NetWorthDistributionCardComponent implements OnInit {
 
   ngOnInit(): void {
     this._fields = this.netWorthDistributionData.map((item) =>
-      upperFirst(item.label)
+      startCase(item.label)
     );
     this._values = this.netWorthDistributionData.map((item) => item.value);
 

@@ -9,9 +9,11 @@ import { SharedModule } from '../shared/shared.module';
 import { SalaryEntryFormComponent } from './views/salary-entry-form/salary-entry-form.component';
 import { SalaryComponent } from './views/salary/salary.component';
 import { SalaryLogComponent } from './components/salary-log/salary-log.component';
+import { SalaryLineChartComponent } from './components/salary-line-chart/salary-line-chart.component';
+import { SalaryDistributionChartComponent } from './components/salary-distribution-chart/salary-distribution-chart.component';
 
 @NgModule({
-  declarations: [SalaryComponent, SalaryEntryFormComponent, SalaryLogComponent],
+  declarations: [SalaryComponent, SalaryEntryFormComponent, SalaryLogComponent, SalaryLineChartComponent, SalaryDistributionChartComponent],
   imports: [
     CommonModule,
     SharedModule,

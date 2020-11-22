@@ -4,6 +4,11 @@
   &-container {
     margin: var(--spacing-page-top) var(--spacing-page-side) 0;
     position: relative;
+
+    @include media-phone {
+      margin: 0;
+      margin: $spacing-20;
+    }
   }
 
   &-title {
@@ -13,7 +18,8 @@
     line-height: 100%;
 
     @include media-phone {
-      font-size: 24px;
+      text-align: center;
+      font-size: 18px;
     }
   }
 
@@ -22,5 +28,9 @@
     top: 50%;
     transform: translatey(-50%);
     right: 0;
+
+    @include media-phone {
+      width: 100%;
+    }
   }
 }

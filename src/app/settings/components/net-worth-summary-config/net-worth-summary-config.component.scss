@@ -2,7 +2,11 @@
 
 .NetWorthSummaryConfig {
   &-heading {
-    @include page-subheading;
+    @include settings-heading;
+
+    i-feather {
+      color: $color-subheading;
+    }
   }
 
   &-description {
@@ -56,6 +60,21 @@
       padding: $spacing-10 $spacing-20;
       margin-top: $spacing-10;
       min-height: 90px;
+    }
+  }
+
+  &-expand {
+    @include button-reset;
+    display: none;
+
+    @include media-phone {
+      display: block;
+    }
+  }
+
+  &-expandedContent {
+    &.display {
+      display: block !important;
     }
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { reduce, startCase } from 'lodash';
 import {
@@ -6,11 +6,12 @@ import {
   FormFactory,
   FormInputType,
   IFormFactoryConfig,
-  IFormInputFactoryFieldConfig,
+  IFormInputFactoryFieldConfig
 } from 'ngx-form-trooper';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable, of } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
+import { HeaderActionService } from 'src/app/core/services/header-action/header-action.service';
 import { HttpService } from 'src/app/core/services/http/http.service';
 import { SettingsService } from 'src/app/settings/services/settings/settings.service';
 import { BaseEntryForm } from 'src/app/shared/abstracts/base-entry-form/base-entry-form.abstract';
@@ -22,7 +23,7 @@ import { DateService } from 'src/app/shared/services/current-date/date.service';
   styleUrls: ['./monthly-distribution-entry-form.component.scss']
 })
 export class MonthlyDistributionEntryFormComponent extends BaseEntryForm
-  implements OnInit {
+  implements OnInit, OnDestroy {
   public remainingBalance: Observable<number>;
 
   private _incomingFields: Array<string>;
@@ -34,9 +35,16 @@ export class MonthlyDistributionEntryFormComponent extends BaseEntryForm
     private readonly _dateService: DateService,
     httpService: HttpService,
     router: Router,
-    spinnerService: NgxSpinnerService
+    spinnerService: NgxSpinnerService,
+    headerActionService: HeaderActionService
   ) {
-    super(spinnerService, httpService, router, 'monthly-distribution');
+    super(
+      spinnerService,
+      httpService,
+      router,
+      headerActionService,
+      'monthly-distribution'
+    );
   }
 
   async ngOnInit(): Promise<void> {
@@ -107,5 +115,9 @@ export class MonthlyDistributionEntryFormComponent extends BaseEntryForm
         type: FormInputType.NUMBER
       };
     });
+  }
+
+  ngOnDestroy(): void {
+    this.onDestroy();
   }
 }

@@ -6,19 +6,54 @@
   &-container {
     display: flex;
     align-items: center;
+
+    @include media-phone {
+      justify-content: space-between;
+    }
+
+    &.has-notifications {
+      @include media-phone {
+        #{$cmp}-notificationsContainer {
+          margin-right: 0;
+          padding-right: 0;
+          border-right: 0;
+          display: block;
+        }
+
+        #{$cmp}-back {
+          display: none;
+        }
+      }
+    }
   }
 
-  &-item {
-    & + & {
-      margin-left: $spacing-20;
-      padding-left: $spacing-20;
-      border-left: 1px solid $color-primary-light;
-      display: block;
+  &-back {
+    @include button-reset;
+    color: $color-subheading;
+    display: none;
 
-      @include media-tablet {
-        margin-left: $spacing-15;
-        padding-left: $spacing-15;
-      }
+    @include media-phone {
+      display: block;
+    }
+
+    i-feather {
+      display: block;
+    }
+  }
+
+  &-notificationsContainer {
+    margin-right: $spacing-20;
+    padding-right: $spacing-20;
+    border-right: 1px solid $color-primary-light;
+    display: block;
+
+    @include media-tablet {
+      margin-right: $spacing-15;
+      padding-right: $spacing-15;
+    }
+
+    @include media-phone {
+      display: none;
     }
   }
 
@@ -50,7 +85,7 @@
   &-notificationsIcon {
     height: 25px;
     width: 25px;
-    color: $color-primary;
+    color: rgba($color-primary, 0.9);
   }
 
   &-profile {
@@ -109,5 +144,11 @@
     @include media-phone {
       display: none;
     }
+  }
+
+  &-action {
+    @include button-reset;
+    font-weight: 500;
+    color: $color-subheading;
   }
 }

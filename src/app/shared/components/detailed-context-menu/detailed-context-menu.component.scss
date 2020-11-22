@@ -66,14 +66,7 @@ $spacing-menu-horizontal--mobile: $spacing-10;
     }
 
     @include media-phone {
-      padding: 10px;
-      max-height: 40px;
-      margin-right: $spacing-menu-horizontal--mobile;
-
-      i-feather {
-        height: 20px;
-        width: 20px;
-      }
+      display: none;
     }
   }
 
@@ -110,5 +103,5 @@ $spacing-menu-horizontal--mobile: $spacing-10;
 }
 
 ::ng-deep .mat-menu-panel {
-  max-width: initial;
+  max-width: initial !important;
 }
