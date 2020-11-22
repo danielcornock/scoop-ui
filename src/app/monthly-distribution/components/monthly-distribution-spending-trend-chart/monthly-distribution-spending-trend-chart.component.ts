@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Dictionary, map, upperFirst } from 'lodash';
+import { Dictionary, map, startCase } from 'lodash';
 import { chartColors } from 'src/app/shared/constants/chart-colors.constant';
 import { ChartService } from 'src/app/shared/services/chart/chart.service';
 
@@ -22,7 +22,7 @@ export class MonthlyDistributionSpendingTrendChartComponent implements OnInit {
 
     const labels = Object.keys(
       this.monthlyDistributionSpendingTrendChartData
-    ).map(upperFirst);
+    ).map(startCase);
 
     this._chartService.createPieChart(
       'monthlyDistributionPieChart2',

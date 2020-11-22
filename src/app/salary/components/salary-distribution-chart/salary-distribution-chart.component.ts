@@ -1,27 +1,27 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Dictionary, map, startCase } from 'lodash';
+import { startCase } from 'lodash';
 import { chartColors } from 'src/app/shared/constants/chart-colors.constant';
 import { ChartService } from 'src/app/shared/services/chart/chart.service';
 
+import { ISalary } from '../../interfaces/salary.interface';
+
 @Component({
-  selector: 'app-monthly-distribution-pie-chart',
-  templateUrl: './monthly-distribution-pie-chart.component.html',
-  styleUrls: ['./monthly-distribution-pie-chart.component.scss']
+  selector: 'app-salary-distribution-chart',
+  templateUrl: './salary-distribution-chart.component.html',
+  styleUrls: ['./salary-distribution-chart.component.scss']
 })
-export class MonthlyDistributionPieChartComponent implements OnInit {
+export class SalaryDistributionChartComponent implements OnInit {
   @Input()
-  monthlyDistributionPieChartData: Dictionary<number>;
+  public salaryDistributionChartData: ISalary;
 
   constructor(private readonly _chartService: ChartService) {}
 
   ngOnInit(): void {
-    const labels = Object.keys(this.monthlyDistributionPieChartData).map(
-      startCase
-    );
-    const data = map(this.monthlyDistributionPieChartData, (item) => item);
+    const labels = Object.keys(this.salaryDistributionChartData).map(startCase);
+    const data = Object.values(this.salaryDistributionChartData);
 
     this._chartService.createPieChart(
-      'monthlyDistributionPieChart',
+      'salaryDeductionsChart',
       {
         labels,
         datasets: [

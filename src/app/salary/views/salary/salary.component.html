@@ -17,11 +17,19 @@
   <ng-template #content>
     <div class="Salary-content">
       <app-dashboard-summary
-        class="Salary-item"
+        class="Salary-item Salary-summary"
         [dashboardSummaryItems]="summaryItems"
       ></app-dashboard-summary>
+      <app-salary-distribution-chart
+        class="Salary-item Salary-distribution"
+        [salaryDistributionChartData]="salaryMeta.latestDeductions"
+      ></app-salary-distribution-chart>
+      <app-salary-line-chart
+        class="Salary-item Salary-line"
+        [salaryLineChartData]="salaryItems"
+      ></app-salary-line-chart>
       <app-salary-log
-        class="Salary-item"
+        class="Salary-item Salary-log"
         [salaryLogItems]="salaryItems"
         [salaryLogMeta]="salaryMeta"
       ></app-salary-log>
