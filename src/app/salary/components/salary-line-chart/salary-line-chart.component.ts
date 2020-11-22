@@ -29,7 +29,9 @@ export class SalaryLineChartComponent implements OnInit {
   }
 
   private _getArrayOfFields(key: string): Array<string | number> {
-    const fields = this.salaryLineChartData.map((item) => item[key]);
+    const fields = [...this.salaryLineChartData]
+      .reverse()
+      .map((item) => item[key]);
 
     return fields;
   }
