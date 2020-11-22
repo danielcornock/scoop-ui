@@ -8,7 +8,7 @@ export const httpProviders: Provider[] = [
     provide: API_URL,
     useFactory: () => {
       if (environment.production) {
-        return 'https://app.scoopfinance.co.uk/api/v1/';
+        return 'https://api.scoopfinance.co.uk/api/v1/';
       } else {
         return 'http://localhost:3000/api/v1/';
       }
