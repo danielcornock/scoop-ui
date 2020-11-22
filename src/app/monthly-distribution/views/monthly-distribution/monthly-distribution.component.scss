@@ -13,4 +13,46 @@
       @include link;
     }
   }
+
+  &-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: $spacing-30;
+    grid-template-areas:
+      'pie trending'
+      'log log';
+
+    @include media-tablet {
+      display: block;
+    }
+  }
+
+  &-item {
+    display: block;
+    min-width: 0;
+
+    @include media-tablet {
+      & + & {
+        margin-top: $spacing-30;
+      }
+    }
+
+    @include media-phone {
+      & + & {
+        margin-top: $spacing-20;
+      }
+    }
+  }
+
+  &-trending {
+    grid-area: trending;
+  }
+
+  &-pie {
+    grid-area: pie;
+  }
+
+  &-log {
+    grid-area: log;
+  }
 }
