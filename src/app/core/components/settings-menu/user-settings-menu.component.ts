@@ -37,6 +37,32 @@ export class UserSettingsMenuComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this._getAction();
+    this.name = this._authService.getLoggedInUserName();
+    this._getNotifications();
+    this._setMenuItems();
+  }
+
+  public goBack(): void {
+    this._location.back();
+  }
+
+  private _setMenuItems(): void {
+    this.menuItems = [
+      {
+        label: 'User Settings',
+        action: this._goToUserSettings.bind(this),
+        icon: 'user'
+      },
+      {
+        label: 'Log Out',
+        action: this._logOut.bind(this),
+        icon: 'log-out'
+      }
+    ];
+  }
+
+  private _getAction(): void {
     combineLatest([
       this._screenWidthService.getScreenWidth$(),
       this._headerActionService.getAction()
@@ -57,25 +83,6 @@ export class UserSettingsMenuComponent implements OnInit {
       .subscribe((action) => {
         this.action = action;
       });
-
-    this.name = this._authService.getLoggedInUserName();
-    this._getNotifications();
-    this.menuItems = [
-      {
-        label: 'User Settings',
-        action: this._goToUserSettings.bind(this),
-        icon: 'user'
-      },
-      {
-        label: 'Log Out',
-        action: this._logOut.bind(this),
-        icon: 'log-out'
-      }
-    ];
-  }
-
-  public goBack(): void {
-    this._location.back();
   }
 
   private async _getNotifications(): Promise<void> {
