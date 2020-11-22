@@ -4,7 +4,7 @@
   "dataGroups": [
     {
       "name": "api",
-      "urls": ["/api/v1/**/*"],
+      "urls": ["https://api.scoopfinance.co.uk/api/v1/**/*"],
       "cacheConfig": {
         "strategy": "freshness",
         "maxSize": 100,
