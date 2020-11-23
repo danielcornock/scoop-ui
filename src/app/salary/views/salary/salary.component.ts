@@ -2,9 +2,7 @@ import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpService } from 'src/app/core/services/http/http.service';
-import {
-  IDashboardSummaryItem,
-} from 'src/app/shared/components/dashboard-summary/interfaces/dashboard-summary-item.interface';
+import { IDashboardSummaryItem } from 'src/app/shared/components/dashboard-summary/interfaces/dashboard-summary-item.interface';
 
 import { ISalaryMeta } from '../../interfaces/salary-meta.interface';
 import { ISalary } from '../../interfaces/salary.interface';
@@ -47,17 +45,17 @@ export class SalaryComponent implements OnInit {
 
     this.summaryItems = [
       {
-        label: 'Gross Salary',
+        label: 'Annual Gross Salary',
         value: this._toCurrency(values.grossSalary),
         icon: 'dollar-sign'
       },
       {
-        label: 'Net Salary',
+        label: 'Annual Net Salary',
         value: this._toCurrency(values.netSalary),
         icon: 'user-plus'
       },
       {
-        label: 'Tax Paid',
+        label: 'Annual Tax Paid',
         value: this._toCurrency(values.taxPaid),
         icon: 'chevrons-down'
       },

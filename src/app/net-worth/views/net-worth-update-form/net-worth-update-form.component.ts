@@ -1,9 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { capitalize } from 'lodash';
-import { FormContainer, FormFactory, FormInputType, IFormFactoryConfig } from 'ngx-form-trooper';
+import {
+  FormContainer,
+  FormFactory,
+  FormInputType,
+  IFormFactoryConfig
+} from 'ngx-form-trooper';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { HeaderActionService } from 'src/app/core/services/header-action/header-action.service';
 import { HttpService } from 'src/app/core/services/http/http.service';
 import { IHttpError } from 'src/app/core/services/http/interfaces/http-error.interface';
 
@@ -14,7 +20,7 @@ import { INetWorthApiResponse } from '../../interfaces/net-worth-api-response.in
   templateUrl: '../net-worth-entry-form/net-worth-entry-form.component.html',
   styleUrls: ['../net-worth-entry-form/net-worth-entry-form.component.scss']
 })
-export class NetWorthUpdateFormComponent implements OnInit {
+export class NetWorthUpdateFormComponent implements OnInit, OnDestroy {
   public form: FormContainer;
   public formFields: Array<FormControl>;
   public errors: IHttpError;
@@ -28,10 +34,12 @@ export class NetWorthUpdateFormComponent implements OnInit {
     private readonly _httpService: HttpService,
     private readonly _router: Router,
     private readonly _spinnerService: NgxSpinnerService,
-    private readonly _activatedRoute: ActivatedRoute
+    private readonly _activatedRoute: ActivatedRoute,
+    protected readonly _headerActionService: HeaderActionService
   ) {}
 
   async ngOnInit(): Promise<void> {
+    this._setHeaderAction();
     this._spinnerService.show();
     await this._getExistingNetWorth();
     this._createForm();
@@ -42,6 +50,7 @@ export class NetWorthUpdateFormComponent implements OnInit {
     this.errors = null;
 
     if (this.form.formGroup.invalid) {
+      this.form.formGroup.markAllAsTouched();
       return;
     }
 
@@ -57,6 +66,16 @@ export class NetWorthUpdateFormComponent implements OnInit {
     }
   }
 
+  ngOnDestroy(): void {
+    this._headerActionService.setAction(undefined);
+  }
+
+  private _setHeaderAction(): void {
+    this._headerActionService.setAction({
+      label: 'Save',
+      action: this.submitForm.bind(this)
+    });
+  }
   private async _getExistingNetWorth(): Promise<void> {
     this.netWorthDate = this._activatedRoute.snapshot.paramMap.get(
       'netWorthDate'
