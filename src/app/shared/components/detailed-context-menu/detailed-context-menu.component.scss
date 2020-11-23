@@ -26,6 +26,7 @@ $spacing-menu-horizontal--mobile: $spacing-20;
     padding: $spacing-15 $spacing-menu-horizontal--normal;
     border-radius: $br-med;
     align-items: center;
+    min-width: 300px;
 
     &:hover {
       background-color: $color-grey-background;
@@ -92,8 +93,4 @@ $spacing-menu-horizontal--mobile: $spacing-20;
 
 ::ng-deep .mat-menu-panel {
   max-width: initial !important;
-}
-
-::ng-deep .mat-menu-content {
-  min-width: 300px !important;
 }

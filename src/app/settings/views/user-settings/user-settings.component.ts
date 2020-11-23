@@ -75,7 +75,7 @@ export class UserSettingsComponent implements OnInit {
       },
       {
         name: 'enableSalary',
-        label: 'Salary (coming soon)',
+        label: 'Salary Tracker',
         type: FormInputType.CHECKBOX,
         defaultValue: this.userSettings.enableSalary
       },
