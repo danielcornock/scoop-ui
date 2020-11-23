@@ -3,6 +3,11 @@
 .MonthlyDistributionFieldsConfig {
   &-subheading {
     @include subheading-sm;
+
+    @include media-phone {
+      font-size: 16px;
+      font-weight: 500;
+    }
   }
 
   &-section + &-subheading {

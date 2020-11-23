@@ -26,7 +26,7 @@ $settings-spacing-desktop: 60px;
     text-transform: uppercase;
     color: $color-table-header;
     font-size: 12px;
-    margin-bottom: $spacing-15;
+    margin-bottom: $spacing-10;
     font-weight: 500;
 
     @include media-phone {
@@ -56,7 +56,7 @@ $settings-spacing-desktop: 60px;
       padding-top: $settings-spacing-desktop;
 
       @include media-phone {
-        margin-top: 0;
+        padding-top: 0;
         border-top: 0;
       }
     }
