@@ -1,5 +1,7 @@
 @import 'src/assets/styles/themes.scss';
 
+$settings-spacing-desktop: 60px;
+
 .Settings {
   &-container {
     @include page-container;
@@ -34,10 +36,10 @@
 
   &-section {
     & + & {
-      margin-top: 80px;
+      padding-top: $settings-spacing-desktop;
 
       @include media-phone {
-        margin-top: $spacing-40;
+        padding-top: $spacing-40;
       }
     }
   }
@@ -51,7 +53,7 @@
     }
 
     & + & {
-      margin-top: 80px;
+      padding-top: $settings-spacing-desktop;
 
       @include media-phone {
         margin-top: 0;
