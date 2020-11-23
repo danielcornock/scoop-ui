@@ -1,7 +1,7 @@
 @import 'src/assets/styles/themes.scss';
 
 $spacing-menu-horizontal--normal: $spacing-20;
-$spacing-menu-horizontal--mobile: $spacing-10;
+$spacing-menu-horizontal--mobile: $spacing-20;
 
 .DetailedContextMenu {
   &-button {
@@ -19,10 +19,6 @@ $spacing-menu-horizontal--mobile: $spacing-10;
     color: $color-table-content;
     font-weight: 500;
     font-size: 18px;
-
-    @include media-phone {
-      padding: $spacing-5 $spacing-menu-horizontal--mobile;
-    }
   }
 
   &-item {
@@ -33,10 +29,6 @@ $spacing-menu-horizontal--mobile: $spacing-10;
 
     &:hover {
       background-color: $color-grey-background;
-    }
-
-    @include media-phone {
-      padding: $spacing-15 $spacing-menu-horizontal--mobile;
     }
   }
 
@@ -63,10 +55,6 @@ $spacing-menu-horizontal--mobile: $spacing-10;
     i-feather {
       height: 28px;
       width: 28px;
-    }
-
-    @include media-phone {
-      display: none;
     }
   }
 
@@ -104,4 +92,8 @@ $spacing-menu-horizontal--mobile: $spacing-10;
 
 ::ng-deep .mat-menu-panel {
   max-width: initial !important;
+}
+
+::ng-deep .mat-menu-content {
+  min-width: 300px !important;
 }
