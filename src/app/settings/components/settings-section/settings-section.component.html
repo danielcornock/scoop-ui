@@ -1,0 +1,17 @@
+<div class="SettingsSection-container">
+  <h2 class="SettingsSection-heading not-mobile">{{ settingsSectionTitle }}</h2>
+  <button class="SettingsSection-buttonHeading" (click)="expandSettings()">
+    <i-feather
+      class="SettingsSection-icon feather"
+      [name]="settingsSectionIcon || 'settings'"
+    ></i-feather>
+    {{ settingsSectionTitle }}
+    <i-feather
+      class="feather SettingsSection-expandIcon"
+      [name]="isExpanded ? 'chevron-down' : 'chevron-right'"
+    ></i-feather>
+  </button>
+  <div class="SettingsSection-content" [class.is-expanded]="isExpanded">
+    <ng-content></ng-content>
+  </div>
+</div>

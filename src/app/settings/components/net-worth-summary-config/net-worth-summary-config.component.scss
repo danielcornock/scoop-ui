@@ -1,18 +1,6 @@
 @import 'src/assets/styles/themes.scss';
 
 .NetWorthSummaryConfig {
-  &-heading {
-    @include settings-heading;
-
-    i-feather {
-      color: $color-subheading;
-    }
-  }
-
-  &-description {
-    @include settings-description;
-  }
-
   &-selectedItems {
     display: flex;
     min-width: 100px;
@@ -60,21 +48,6 @@
       padding: $spacing-10 $spacing-20;
       margin-top: $spacing-10;
       min-height: 90px;
-    }
-  }
-
-  &-expand {
-    @include button-reset;
-    display: none;
-
-    @include media-phone {
-      display: block;
-    }
-  }
-
-  &-expandedContent {
-    &.display {
-      display: block !important;
     }
   }
 }

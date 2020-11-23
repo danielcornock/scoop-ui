@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NetWorthConfigComponent } from './net-worth-config.component';
+import { SettingsSectionComponent } from './settings-section.component';
 
-describe('NetWorthConfigComponent', () => {
-  let component: NetWorthConfigComponent;
-  let fixture: ComponentFixture<NetWorthConfigComponent>;
+describe('SettingsSectionComponent', () => {
+  let component: SettingsSectionComponent;
+  let fixture: ComponentFixture<SettingsSectionComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NetWorthConfigComponent ]
+      declarations: [ SettingsSectionComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NetWorthConfigComponent);
+    fixture = TestBed.createComponent(SettingsSectionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

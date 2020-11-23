@@ -6,28 +6,56 @@
   >
     Save Changes
   </button>
-  <ng-container *ngIf="userSettings?.enableNetWorth">
-    <section class="Settings-section">
-      <app-net-worth-config
-        id="net-worth-table-config"
-        [netWorthColumns]="settings.netWorthFields"
-      ></app-net-worth-config>
-    </section>
+  <section class="Settings-section" *ngIf="userSettings?.enableNetWorth">
+    <p class="Settings-heading">Net worth</p>
+    <app-settings-section
+      class="Settings-subSection"
+      settingsSectionTitle="Net worth fields"
+    >
+      <p class="Settings-description">
+        Move the columns around to choose the order that you want them to be
+        displayed when in tables. You can add more using the input below, or
+        remove them by clicking the 'x' next to the column name.
+      </p>
+      <app-fields-config
+        [fieldsConfigColumns]="settings.netWorthFields"
+      ></app-fields-config>
+    </app-settings-section>
 
-    <section class="Settings-section">
+    <app-settings-section
+      class="Settings-subSection"
+      settingsSectionTitle="Net worth summary items"
+    >
+      <p class="Settings-description">
+        Here you can configure the cards that display at the top of the net
+        worth page. Choose from predefined measures or create your own by
+        combining your fields.
+      </p>
+
       <app-net-worth-summary-config
-        id="net-worth-summary-config"
         [netWorthSummaryConfigOptions]="settings.netWorthSummaryOptions"
         [netWorthSummaryConfigSelectedItems]="settings.netWorthSummaryItems"
         [netWorthSummaryConfigAvailableFields]="
           meta.netWorthSummaryItems.sumOf.options
         "
       ></app-net-worth-summary-config>
-    </section>
-  </ng-container>
+    </app-settings-section>
+  </section>
 
-  <ng-container *ngIf="userSettings.enableMonthlyDistribution">
-    <section class="Settings-section">
+  <section
+    class="Settings-section"
+    *ngIf="userSettings.enableMonthlyDistribution"
+  >
+    <p class="Settings-heading">Monthly distribution</p>
+    <app-settings-section
+      class="Settings-subSection"
+      settingsSectionTitle="Monthly distribution fields"
+    >
+      <p class="Settings-description">
+        Move the columns around to choose the order that you want them to be
+        displayed when in tables. You can add more using the input below, or
+        remove them by clicking the 'x' next to the column name.
+      </p>
       <app-monthly-distribution-fields-config
         [monthlyDistributionIncomeColumns]="
           settings.monthlyDistributionIncomeFields
@@ -36,12 +64,22 @@
           settings.monthlyDistributionOutgoingFields
         "
       ></app-monthly-distribution-fields-config>
-    </section>
-  </ng-container>
+    </app-settings-section>
+  </section>
 
-  <ng-container *ngIf="userSettings.enableSalary">
-    <section class="Settings-section">
-      <app-salary-config [salaryConfigSettings]="settings"></app-salary-config>
-    </section>
-  </ng-container>
+  <section class="Settings-section" *ngIf="userSettings.enableSalary">
+    <p class="Settings-heading">Salary</p>
+
+    <app-settings-section
+      class="Settings-subSection"
+      settingsSectionTitle="Salary configuration"
+    >
+      <p class="Settings-description">
+        Here you can set the default value for your salary, choose your student
+        loan type and set your pension contribution so that we can do more of
+        the working out for you.
+      </p>
+      <app-salary-config [salaryConfigSettings]="settings"></app-salary-config
+    ></app-settings-section>
+  </section>
 </div>

@@ -1,34 +1,11 @@
 @import 'src/assets/styles/themes.scss';
 
 .MonthlyDistributionFieldsConfig {
-  &-heading {
-    @include settings-heading;
-  }
-
-  &-description {
-    @include settings-description;
-  }
-
   &-subheading {
     @include subheading-sm;
   }
 
   &-section + &-subheading {
     padding-top: $spacing-30;
-  }
-
-  &-expand {
-    @include button-reset;
-    display: none;
-
-    @include media-phone {
-      display: block;
-    }
-  }
-
-  &-expandedContent {
-    &.display {
-      display: block !important;
-    }
   }
 }

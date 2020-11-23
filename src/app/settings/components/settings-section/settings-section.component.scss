@@ -1,0 +1,51 @@
+@import 'src/assets/styles/themes.scss';
+
+.SettingsSection {
+  &-heading {
+    @include settings-heading;
+
+    @include media-phone {
+      display: none;
+    }
+  }
+
+  &-buttonHeading {
+    display: none;
+
+    i-feather {
+      color: $color-subheading;
+    }
+
+    @include media-phone {
+      @include button-reset;
+      color: $color-subheading;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      padding: $spacing-15 $spacing-10;
+    }
+  }
+
+  &-icon {
+    color: $color-primary-gradient !important;
+    margin-right: $spacing-15;
+  }
+
+  &-expandIcon {
+    margin-left: auto;
+  }
+
+  &-content {
+    @include media-phone {
+      display: none;
+
+      &.is-expanded {
+        border-top: 1px solid $color-table-divider;
+        padding-top: $spacing-15;
+        display: block;
+        padding-bottom: 30px;
+      }
+    }
+  }
+}
