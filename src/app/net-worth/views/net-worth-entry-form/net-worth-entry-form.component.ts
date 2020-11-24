@@ -1,17 +1,12 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { capitalize } from 'lodash';
-import {
-  FormContainer,
-  FormFactory,
-  FormInputType,
-  IFormFactoryConfig
-} from 'ngx-form-trooper';
+import { FormContainer, FormFactory, FormInputType, IFormFactoryConfig } from 'ngx-form-trooper';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HeaderActionService } from 'src/app/core/services/header-action/header-action.service';
 import { HttpService } from 'src/app/core/services/http/http.service';
 import { SettingsService } from 'src/app/settings/services/settings/settings.service';
-import { BaseEntryForm } from 'src/app/shared/abstracts/base-entry-form/base-entry-form.abstract';
+import { BaseEntryFormComponent } from 'src/app/shared/abstracts/base-entry-form/base-entry-form.abstract';
 import { DateService } from 'src/app/shared/services/current-date/date.service';
 
 @Component({
@@ -19,8 +14,8 @@ import { DateService } from 'src/app/shared/services/current-date/date.service';
   templateUrl: './net-worth-entry-form.component.html',
   styleUrls: ['./net-worth-entry-form.component.scss']
 })
-export class NetWorthEntryFormComponent extends BaseEntryForm
-  implements OnInit, OnDestroy {
+export class NetWorthEntryFormComponent extends BaseEntryFormComponent
+  implements OnInit {
   public columns: Array<string>;
 
   constructor(
@@ -44,7 +39,7 @@ export class NetWorthEntryFormComponent extends BaseEntryForm
   async ngOnInit(): Promise<void> {
     const settings = await this._settingsService.getSettings();
     this.columns = settings.data.netWorthFields;
-    super.onInit();
+    super.ngOnInit();
   }
 
   protected _createForm(): FormContainer {
@@ -70,9 +65,5 @@ export class NetWorthEntryFormComponent extends BaseEntryForm
     });
 
     return this._formFactory.createForm(formConfig);
-  }
-
-  ngOnDestroy(): void {
-    this.onDestroy();
   }
 }

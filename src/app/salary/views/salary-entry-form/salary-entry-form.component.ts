@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { forEach } from 'lodash';
@@ -9,7 +9,7 @@ import { startWith, switchMap } from 'rxjs/operators';
 import { HeaderActionService } from 'src/app/core/services/header-action/header-action.service';
 import { HttpService } from 'src/app/core/services/http/http.service';
 import { SettingsService } from 'src/app/settings/services/settings/settings.service';
-import { BaseEntryForm } from 'src/app/shared/abstracts/base-entry-form/base-entry-form.abstract';
+import { BaseEntryFormComponent } from 'src/app/shared/abstracts/base-entry-form/base-entry-form.abstract';
 import { DateService } from 'src/app/shared/services/current-date/date.service';
 
 import { ISalarySuggestion } from '../../interfaces/salary-suggestion.interface';
@@ -19,8 +19,8 @@ import { ISalarySuggestion } from '../../interfaces/salary-suggestion.interface'
   templateUrl: './salary-entry-form.component.html',
   styleUrls: ['./salary-entry-form.component.scss']
 })
-export class SalaryEntryFormComponent extends BaseEntryForm
-  implements OnInit, OnDestroy {
+export class SalaryEntryFormComponent extends BaseEntryFormComponent
+  implements OnInit {
   public salaryDeductions: ISalarySuggestion;
   public netSalary: Observable<number>;
   private _defaultSalary: number;
@@ -40,7 +40,7 @@ export class SalaryEntryFormComponent extends BaseEntryForm
   async ngOnInit(): Promise<void> {
     const settings = await this._settingsService.getSettings();
     this._defaultSalary = settings.data.salaryYearlySalary;
-    super.onInit();
+    super.ngOnInit();
   }
 
   public async submitForm(): Promise<void> {
@@ -158,9 +158,5 @@ export class SalaryEntryFormComponent extends BaseEntryForm
         return of(netSalary);
       })
     );
-  }
-
-  ngOnDestroy(): void {
-    this.onDestroy();
   }
 }

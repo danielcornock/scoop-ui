@@ -1,3 +1,4 @@
+import { Directive, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormContainer } from 'ngx-form-trooper';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -5,7 +6,9 @@ import { HeaderActionService } from 'src/app/core/services/header-action/header-
 import { HttpService } from 'src/app/core/services/http/http.service';
 import { IHttpError } from 'src/app/core/services/http/interfaces/http-error.interface';
 
-export abstract class BaseEntryForm {
+@Directive()
+// tslint:disable-next-line: directive-class-suffix
+export abstract class BaseEntryFormComponent implements OnDestroy, OnInit {
   public form: FormContainer;
   public errors: IHttpError;
 
@@ -19,17 +22,17 @@ export abstract class BaseEntryForm {
     this._spinnerService.show();
   }
 
-  protected async onInit(): Promise<void> {
+  public ngOnDestroy(): void {
+    this._headerActionService.setAction(undefined);
+  }
+
+  public ngOnInit(): void {
     this._headerActionService.setAction({
       label: 'Save',
       action: this.submitForm.bind(this)
     });
     this.form = this._createForm();
     this._spinnerService.hide();
-  }
-
-  protected onDestroy(): void {
-    this._headerActionService.setAction(undefined);
   }
 
   public async submitForm(): Promise<void> {

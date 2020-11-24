@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { reduce, startCase } from 'lodash';
 import {
@@ -6,7 +6,7 @@ import {
   FormFactory,
   FormInputType,
   IFormFactoryConfig,
-  IFormInputFactoryFieldConfig
+  IFormInputFactoryFieldConfig,
 } from 'ngx-form-trooper';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable, of } from 'rxjs';
@@ -14,7 +14,7 @@ import { startWith, switchMap } from 'rxjs/operators';
 import { HeaderActionService } from 'src/app/core/services/header-action/header-action.service';
 import { HttpService } from 'src/app/core/services/http/http.service';
 import { SettingsService } from 'src/app/settings/services/settings/settings.service';
-import { BaseEntryForm } from 'src/app/shared/abstracts/base-entry-form/base-entry-form.abstract';
+import { BaseEntryFormComponent } from 'src/app/shared/abstracts/base-entry-form/base-entry-form.abstract';
 import { DateService } from 'src/app/shared/services/current-date/date.service';
 
 @Component({
@@ -22,8 +22,9 @@ import { DateService } from 'src/app/shared/services/current-date/date.service';
   templateUrl: './monthly-distribution-entry-form.component.html',
   styleUrls: ['./monthly-distribution-entry-form.component.scss']
 })
-export class MonthlyDistributionEntryFormComponent extends BaseEntryForm
-  implements OnInit, OnDestroy {
+export class MonthlyDistributionEntryFormComponent
+  extends BaseEntryFormComponent
+  implements OnInit {
   public remainingBalance: Observable<number>;
 
   private _incomingFields: Array<string>;
@@ -49,8 +50,7 @@ export class MonthlyDistributionEntryFormComponent extends BaseEntryForm
 
   async ngOnInit(): Promise<void> {
     await this._getFields();
-    this._createForm();
-    await super.onInit();
+    await super.ngOnInit();
     this._watchFormToCalculateRemaining();
   }
 
@@ -115,9 +115,5 @@ export class MonthlyDistributionEntryFormComponent extends BaseEntryForm
         type: FormInputType.NUMBER
       };
     });
-  }
-
-  ngOnDestroy(): void {
-    this.onDestroy();
   }
 }
