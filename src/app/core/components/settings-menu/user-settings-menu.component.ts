@@ -5,11 +5,10 @@ import { combineLatest, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { AuthService } from 'src/app/auth/services/auth/auth.service';
 import { IContextMenuItem } from 'src/app/shared/components/context-menu/interfaces/context-menu-item.interface';
-import { IDetailedContextMenuItem } from 'src/app/shared/components/detailed-context-menu/interfaces/detailed-context-menu-item.interface';
 import {
-  SCREEN_SIZE,
-  ScreenWidthService
-} from 'src/app/shared/services/screen-width/screen-width.service';
+  IDetailedContextMenuItem,
+} from 'src/app/shared/components/detailed-context-menu/interfaces/detailed-context-menu-item.interface';
+import { SCREEN_SIZE, ScreenWidthService } from 'src/app/shared/services/screen-width/screen-width.service';
 
 import { notificationDictionary } from '../../constants/notification-dictionary.constant';
 import { IHeaderAction } from '../../interfaces/header-action.interface';

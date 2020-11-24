@@ -8,7 +8,7 @@
       notifications.length ? 'Notifications' : 'No notifications to show.'
     "
     class="SettingsMenu-notificationsContainer"
-    *ngIf="notifications?.length; else back"
+    *ngIf="notifications"
   >
     <div
       class="SettingsMenu-notifications"
@@ -17,11 +17,9 @@
       <i-feather class="SettingsMenu-notificationsIcon" name="bell"></i-feather>
     </div>
   </app-detailed-context-menu>
-  <ng-template #back>
-    <button class="SettingsMenu-back" (click)="goBack()">
-      <i-feather name="chevron-left"></i-feather>
-    </button>
-  </ng-template>
+  <button class="SettingsMenu-back" (click)="goBack()">
+    <i-feather name="chevron-left"></i-feather>
+  </button>
   <button
     class="SettingsMenu-action"
     *ngIf="action; else defaultMenu"
