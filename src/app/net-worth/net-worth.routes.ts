@@ -7,14 +7,17 @@ import { NetWorthComponent } from './views/net-worth/net-worth.component';
 export const netWorthRoutes: Routes = [
   {
     path: 'net-worth/edit/:netWorthDate',
-    component: NetWorthUpdateFormComponent
+    component: NetWorthUpdateFormComponent,
+    data: { animation: 'netWorthEdit' }
   },
   {
     path: 'net-worth',
-    component: NetWorthComponent
+    component: NetWorthComponent,
+    data: { animation: 'netWorth' }
   },
   {
     path: 'net-worth/create',
-    component: NetWorthEntryFormComponent
+    component: NetWorthEntryFormComponent,
+    data: { animation: 'netWorthCreate' }
   }
 ];

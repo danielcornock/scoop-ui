@@ -1,18 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { Event, NavigationEnd, Router } from '@angular/router';
+import { Event, NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 
 import { AuthService } from './auth/services/auth/auth.service';
 import { AppUpdateService } from './core/services/app-update/app-update.service';
 import { PageTitleService } from './core/services/page-title/page-title.service';
+import { slideIn } from './routing/routing.animation';
 import { ExperimentalService } from './shared/services/experimental/experimental.service';
 import { PopupService } from './shared/services/popup/popup.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  animations: [slideIn]
 })
 export class AppComponent implements OnInit {
   public title: Observable<string>;
@@ -32,6 +34,10 @@ export class AppComponent implements OnInit {
     this.isDevelopment = this._experimentalService.isDevelopment();
     this._subscribeToTitleChange();
     this._listenToConnectionState();
+  }
+
+  public prepareRoute(outlet: RouterOutlet): string {
+    return outlet?.activatedRouteData?.animation;
   }
 
   public isLoggedIn(): boolean {

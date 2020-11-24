@@ -8,10 +8,12 @@ import { MonthlyDistributionComponent } from './views/monthly-distribution/month
 export const monthlyDistributionRoutes: Routes = [
   {
     path: 'monthly-distribution',
-    component: MonthlyDistributionComponent
+    component: MonthlyDistributionComponent,
+    data: { animation: 'monthlyDistribution' }
   },
   {
     path: 'monthly-distribution/create',
-    component: MonthlyDistributionEntryFormComponent
+    component: MonthlyDistributionEntryFormComponent,
+    data: { animation: 'monthlyDistributionCreate' }
   }
 ];

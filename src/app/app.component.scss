@@ -60,6 +60,10 @@
     }
   }
 
+  &-router {
+    position: relative;
+  }
+
   &-settingsMenu {
     position: absolute;
     right: calc(var(--spacing-page-side) - 10px);

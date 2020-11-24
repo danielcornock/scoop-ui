@@ -6,10 +6,12 @@ import { UserSettingsComponent } from './views/user-settings/user-settings.compo
 export const settingsRoutes: Routes = [
   {
     path: 'settings',
-    component: SettingsComponent
+    component: SettingsComponent,
+    data: { animation: 'settings' }
   },
   {
     path: 'user-settings',
-    component: UserSettingsComponent
+    component: UserSettingsComponent,
+    data: { animation: 'userSettings' }
   }
 ];

@@ -6,10 +6,12 @@ import { SalaryComponent } from './views/salary/salary.component';
 export const salaryRoutes: Routes = [
   {
     path: 'salary',
-    component: SalaryComponent
+    component: SalaryComponent,
+    data: { animation: 'salary' }
   },
   {
     path: 'salary/create',
-    component: SalaryEntryFormComponent
+    component: SalaryEntryFormComponent,
+    data: { animation: 'salaryCreate' }
   }
 ];

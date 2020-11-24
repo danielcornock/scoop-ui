@@ -232,6 +232,7 @@
 @mixin page-container {
   padding: var(--spacing-page-top) var(--spacing-page-side);
   height: 100%;
+  background-color: $color-page-background;
 
   @include media-phone {
     padding-top: calc(58px + var(--spacing-page-top));
