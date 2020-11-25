@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { startCase } from 'lodash';
 import { FormContainer, FormFactory } from 'ngx-form-trooper';
 import {
   ModalDialogInstanceComponent,
@@ -47,6 +48,10 @@ export class NetWorthSummaryFormModalComponent
         name: 'sumOf',
         label: 'Combined Fields',
         defaultValue: this.data.existingData?.sumOf,
+        options: this.availableFields.map((field) => ({
+          value: field,
+          label: startCase(field)
+        })),
         validators: {
           required: true
         }
