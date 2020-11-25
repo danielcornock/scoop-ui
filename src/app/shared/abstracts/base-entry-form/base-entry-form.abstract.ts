@@ -38,7 +38,7 @@ export abstract class BaseEntryFormComponent implements OnDestroy, OnInit {
   public async submitForm(): Promise<void> {
     this.errors = null;
 
-    if (this.form.formGroup.invalid) {
+    if (this.form.isInvalid) {
       this.form.formGroup.markAllAsTouched();
       return;
     }
