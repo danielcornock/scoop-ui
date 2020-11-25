@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { capitalize } from 'lodash';
-import { FormContainer, FormFactory, FormInputType, IFormFactoryConfig } from 'ngx-form-trooper';
+import {
+  FormContainer,
+  FormFactory,
+  FormInputType,
+  IFormFactoryConfig
+} from 'ngx-form-trooper';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HeaderActionService } from 'src/app/core/services/header-action/header-action.service';
 import { HttpService } from 'src/app/core/services/http/http.service';

@@ -66,7 +66,10 @@ export class SalaryEntryFormComponent extends BaseEntryFormComponent
   }
 
   public async sendGrossSalary(): Promise<void> {
-    if (this.form.isInvalid) {
+    if (
+      this.form.getField('date').isInvalid ||
+      this.form.getField('grossSalary').isInvalid
+    ) {
       this.form.formGroup.markAllAsTouched();
       return;
     }
@@ -103,27 +106,42 @@ export class SalaryEntryFormComponent extends BaseEntryFormComponent
       {
         name: 'incomeTax',
         label: 'Income tax',
-        type: FormInputType.NUMBER
+        type: FormInputType.NUMBER,
+        validators: {
+          required: true
+        }
       },
       {
         name: 'nationalInsurance',
         label: 'National insurance',
-        type: FormInputType.NUMBER
+        type: FormInputType.NUMBER,
+        validators: {
+          required: true
+        }
       },
       {
         name: 'studentFinance',
         label: 'Student loans',
-        type: FormInputType.NUMBER
+        type: FormInputType.NUMBER,
+        validators: {
+          required: true
+        }
       },
       {
         name: 'pensionContributions',
         label: 'Pension contribution',
-        type: FormInputType.NUMBER
+        type: FormInputType.NUMBER,
+        validators: {
+          required: true
+        }
       },
       {
         name: 'otherDeductions',
         label: 'Other contributions',
-        type: FormInputType.NUMBER
+        type: FormInputType.NUMBER,
+        validators: {
+          required: true
+        }
       }
     ]);
   }

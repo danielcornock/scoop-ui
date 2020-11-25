@@ -12,10 +12,10 @@
       >
     </h2>
 
-    <ngx-form-input
+    <ngx-form-input-number
       *ngFor="let field of form.fields | slice: 1"
       [formInputField]="field"
-    ></ngx-form-input>
+    ></ngx-form-input-number>
 
     <app-form-errors [appFormErrors]="errors"></app-form-errors>
 

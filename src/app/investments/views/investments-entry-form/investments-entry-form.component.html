@@ -8,10 +8,10 @@
       class="InvestmentsEntryForm-message"
       informationMessage="If this is your first investment entry, the amount added to investments should be your total contribution so far."
     ></app-information>
-    <ngx-form-input
+    <ngx-form-input-item
       *ngFor="let field of form.fields"
       [formInputField]="field"
-    ></ngx-form-input>
+    ></ngx-form-input-item>
 
     <app-form-errors [appFormErrors]="errors"></app-form-errors>
 

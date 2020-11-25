@@ -18,10 +18,10 @@
           <i-feather name="plus"></i-feather> Add more fields</a
         >
       </h2>
-      <ngx-form-input
+      <ngx-form-input-number
         *ngFor="let field of form.fields[1].fields"
         [formInputField]="field"
-      ></ngx-form-input>
+      ></ngx-form-input-number>
     </div>
     <div class="MonthlyDistributionEntryForm-section">
       <h2 class="MonthlyDistributionEntryForm-subtitle">
@@ -33,10 +33,10 @@
           <i-feather name="plus"></i-feather> Add more fields</a
         >
       </h2>
-      <ngx-form-input
+      <ngx-form-input-number
         *ngFor="let field of form.fields[2].fields"
         [formInputField]="field"
-      ></ngx-form-input>
+      ></ngx-form-input-number>
     </div>
 
     <div class="MonthlyDistributionEntryForm-remainingBalance">

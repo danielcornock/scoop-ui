@@ -7,7 +7,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FeatherModule } from 'angular-feather';
 import { allIcons } from 'angular-feather/icons';
-import { NgxFormTrooperModule } from 'ngx-form-trooper';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ToastrModule } from 'ngx-toastr';
 
@@ -56,7 +55,6 @@ import { ValuesPipe } from './pipes/values.pipe';
     MatMenuModule,
     MatSelectModule,
     BrowserAnimationsModule,
-    NgxFormTrooperModule,
     MatDialogModule,
     ToastrModule.forRoot({
       positionClass: 'toast-top-right',

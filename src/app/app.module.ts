@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { NgxFormTrooperModule } from 'ngx-form-trooper';
 
 import { environment } from '../environments/environment';
 import { AdminModule } from './admin/admin.module';
@@ -33,7 +32,6 @@ import { SharedModule } from './shared/shared.module';
     BrowserAnimationsModule,
     MonthlyDistributionModule,
     SettingsModule,
-    NgxFormTrooperModule,
     AdminModule,
     SalaryModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
