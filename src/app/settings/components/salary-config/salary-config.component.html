@@ -1,12 +1,15 @@
 <div class="SalaryConfig-container">
   <form [formGroup]="form.formGroup" class="SalaryConfig-form">
     <ngx-form-input [formInputField]="form.fields[0]"></ngx-form-input>
+    <ngx-form-input-checkbox
+      [formInputField]="form.fields[1]"
+    ></ngx-form-input-checkbox>
     <app-information
       informationMessage="If you have a student loan, the following field is in regards to when you started your degree."
     ></app-information>
     <ngx-form-input-select
-      [formInputField]="form.fields[1]"
+      [formInputField]="form.fields[2]"
     ></ngx-form-input-select>
-    <ngx-form-input [formInputField]="form.fields[2]"></ngx-form-input>
+    <ngx-form-input [formInputField]="form.fields[3]"></ngx-form-input>
   </form>
 </div>

@@ -146,10 +146,9 @@ export class SalaryEntryFormComponent extends BaseEntryFormComponent
     ]);
   }
 
-  private _getFormattedDefaultSalary(): string {
+  private _getFormattedDefaultSalary(): number {
     return (
-      this._defaultSalary &&
-      (Math.round((this._defaultSalary / 12) * 100) / 100).toString()
+      this._defaultSalary && Math.round((this._defaultSalary / 12) * 100) / 100
     );
   }
 

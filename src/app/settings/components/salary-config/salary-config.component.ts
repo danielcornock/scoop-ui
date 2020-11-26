@@ -37,6 +37,12 @@ export class SalaryConfigComponent implements OnInit {
         defaultValue: this.salaryConfigSettings.salaryYearlySalary
       },
       {
+        name: 'salaryPensionBeforeTax',
+        label: 'My pension is deducted before tax',
+        type: FormInputType.CHECKBOX,
+        defaultValue: this.salaryConfigSettings.salaryPensionBeforeTax
+      },
+      {
         name: 'salaryStudentFinance',
         label: 'Student finance plan',
         type: FormInputType.RADIO,
