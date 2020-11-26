@@ -92,7 +92,7 @@ export class UserSettingsComponent implements OnInit {
         defaultValue: this.userSettings.reminderDate,
         validators: {
           min: 1,
-          max: 28
+          max: 31
         }
       },
       {

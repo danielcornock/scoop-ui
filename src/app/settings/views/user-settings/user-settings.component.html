@@ -8,27 +8,15 @@
     <form [formGroup]="settingsForm.formGroup" class="UserSettings-form">
       <h3 class="UserSettings-formHeading">Enabled features</h3>
       <ngx-form-input-checkbox
-        [formInputField]="settingsForm.fields[0]"
-      ></ngx-form-input-checkbox>
-      <ngx-form-input-checkbox
-        [formInputField]="settingsForm.fields[1]"
-      ></ngx-form-input-checkbox>
-      <ngx-form-input-checkbox
-        [formInputField]="settingsForm.fields[2]"
-      ></ngx-form-input-checkbox>
-      <ngx-form-input-checkbox
-        [formInputField]="settingsForm.fields[3]"
+        *ngFor="let field of settingsForm.fields | slice: 0:4"
+        [formInputField]="field"
       ></ngx-form-input-checkbox>
 
-      <ng-container>
-        <h3 class="UserSettings-formHeading">Notification settings</h3>
-        <ngx-form-input-checkbox
-          [formInputField]="settingsForm.fields[4]"
-        ></ngx-form-input-checkbox>
-        <ngx-form-input
-          [formInputField]="settingsForm.fields[5]"
-        ></ngx-form-input>
-      </ng-container>
+      <h3 class="UserSettings-formHeading">Notification settings</h3>
+      <ngx-form-input-item
+        *ngFor="let field of settingsForm.fields | slice: 4:6"
+        [formInputField]="field"
+      ></ngx-form-input-item>
 
       <h3 class="UserSettings-formHeading">Preferred currency</h3>
       <ngx-form-input
