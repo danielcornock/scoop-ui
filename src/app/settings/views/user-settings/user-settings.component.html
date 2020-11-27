@@ -14,13 +14,13 @@
 
       <h3 class="UserSettings-formHeading">Notification settings</h3>
       <ngx-form-input-item
-        *ngFor="let field of settingsForm.fields | slice: 4:6"
+        *ngFor="let field of settingsForm.fields | slice: 4:7"
         [formInputField]="field"
       ></ngx-form-input-item>
 
       <h3 class="UserSettings-formHeading">Preferred currency</h3>
       <ngx-form-input
-        [formInputField]="settingsForm.fields[6]"
+        [formInputField]="settingsForm.fields[7]"
       ></ngx-form-input>
     </form>
   </section>

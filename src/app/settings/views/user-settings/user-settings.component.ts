@@ -80,6 +80,12 @@ export class UserSettingsComponent implements OnInit {
         defaultValue: this.userSettings.enableSalary
       },
       {
+        name: 'enableEmailNewsletters',
+        label: 'Enable occasional email newsletters',
+        type: FormInputType.CHECKBOX,
+        defaultValue: this.userSettings.enableEmailNewsletters
+      },
+      {
         name: 'enableEmailNotifications',
         label: 'Enable email notifications',
         type: FormInputType.CHECKBOX,

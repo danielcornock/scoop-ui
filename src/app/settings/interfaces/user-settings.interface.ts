@@ -7,5 +7,6 @@ export interface IUserSettings extends IBaseHttpModel {
   enableSalary: boolean;
   preferredCurrency: string;
   enableEmailNotifications: boolean;
+  enableEmailNewsletters: boolean;
   reminderDate: string;
 }
