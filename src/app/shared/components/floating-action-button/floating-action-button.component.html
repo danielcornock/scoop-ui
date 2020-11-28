@@ -1,4 +1,8 @@
-<button class="FloatingActionButton-container" (click)="clickAction()">
+<button
+  class="FloatingActionButton-container"
+  (click)="clickAction()"
+  [class.hidden]="!displayingAction"
+>
   <i-feather
     class="FloatingActionButton-icon"
     [name]="floatingActionButtonIcon"

@@ -20,6 +20,7 @@
     align-items: center;
     border-radius: $br-max;
     justify-content: center;
+    transition: 250ms ease;
     box-shadow: 0 0px 4px rgba($shadow-color, 0.08),
       0 1px 8px rgba($shadow-color, 0.12), 0 2px 16px rgba($shadow-color, 0.16),
       0 4px 32px rgba($shadow-color, 0.2);
@@ -34,6 +35,10 @@
       height: 56px;
       width: 56px;
       padding: 0;
+    }
+
+    &.hidden {
+      transform: scale(0);
     }
   }
 
