@@ -6,7 +6,7 @@ import {
   FormFactory,
   FormInputType,
   IFormFactoryConfig,
-  IFormInputFactoryFieldConfig,
+  IFormInputFactoryFieldConfig
 } from 'ngx-form-trooper';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable, of } from 'rxjs';
@@ -109,10 +109,19 @@ export class MonthlyDistributionEntryFormComponent
     fields: Array<string>
   ): Array<IFormInputFactoryFieldConfig> {
     return fields.map((field: string) => {
+      /* This is not very good - needs fixing */
+
+      let tooltip;
+      if (field === 'balance carried') {
+        tooltip =
+          'This field is how much balance you had left over at the end of last month, to help work out your total monthly spending.';
+      }
+
       return {
         name: field,
         label: startCase(field),
-        type: FormInputType.NUMBER
+        type: FormInputType.NUMBER,
+        tooltip
       };
     });
   }

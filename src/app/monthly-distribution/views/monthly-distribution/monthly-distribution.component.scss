@@ -16,11 +16,11 @@
 
   &-content {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-gap: $spacing-30;
     grid-template-areas:
-      'log log'
-      'pie trending';
+      'pie line trending'
+      'log log log';
 
     @include media-tablet {
       display: block;
@@ -54,5 +54,13 @@
 
   &-log {
     grid-area: log;
+  }
+
+  &-line {
+    grid-area: line;
+  }
+
+  &-informationMessage {
+    margin-top: 0;
   }
 }

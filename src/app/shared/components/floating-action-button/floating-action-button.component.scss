@@ -7,7 +7,8 @@
 
   @include media-phone {
     /* To account for menu at botton */
-    bottom: 64px + $spacing-20;
+    bottom: 64px + $spacing-15;
+    right: $spacing-15;
   }
 }
 
@@ -31,8 +32,8 @@
     @include media-phone {
       background-color: $color-white;
       color: $color-primary;
-      height: 56px;
-      width: 56px;
+      height: 60px;
+      width: 60px;
       padding: 0;
     }
 

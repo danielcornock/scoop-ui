@@ -13,4 +13,8 @@
   &-section + &-subheading {
     padding-top: $spacing-30;
   }
+
+  &-information {
+    max-width: 700px;
+  }
 }

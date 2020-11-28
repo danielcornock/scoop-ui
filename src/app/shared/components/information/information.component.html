@@ -3,6 +3,10 @@
     <i-feather name="info"></i-feather>
   </div>
   <div class="Information-message">
-    {{ informationMessage }}
+    <span *ngIf="informationMessage; else message"></span
+    >{{ informationMessage }}
+    <ng-template #message>
+      <ng-content></ng-content>
+    </ng-template>
   </div>
 </div>

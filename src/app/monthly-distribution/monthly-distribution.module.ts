@@ -14,6 +14,7 @@ import {
 import { MonthlyDistributionComponent } from './views/monthly-distribution/monthly-distribution.component';
 import { MonthlyDistributionPieChartComponent } from './components/monthly-distribution-pie-chart/monthly-distribution-pie-chart.component';
 import { MonthlyDistributionSpendingTrendChartComponent } from './components/monthly-distribution-spending-trend-chart/monthly-distribution-spending-trend-chart.component';
+import { UncommittedSpendingChartComponent } from './components/uncommitted-spending-chart/uncommitted-spending-chart.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { MonthlyDistributionSpendingTrendChartComponent } from './components/mon
     MonthlyDistributionEntryFormComponent,
     MonthlyDistributionLogCardComponent,
     MonthlyDistributionPieChartComponent,
-    MonthlyDistributionSpendingTrendChartComponent
+    MonthlyDistributionSpendingTrendChartComponent,
+    UncommittedSpendingChartComponent
   ],
   imports: [
     CommonModule,
