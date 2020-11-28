@@ -7,7 +7,7 @@ import {
   Output
 } from '@angular/core';
 import { fromEvent, Subject, timer } from 'rxjs';
-import { switchMap, takeUntil } from 'rxjs/operators';
+import { filter, switchMap, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-floating-action-button',
@@ -43,11 +43,19 @@ export class FloatingActionButtonComponent implements OnInit, OnDestroy {
 
   private _scrollSpy(): void {
     const app = document.querySelector('.App-content');
+    let lastScrollTop = 0;
 
     fromEvent(app, 'scroll')
       .pipe(
         takeUntil(this._destroy$),
-        switchMap(() => {
+        filter((e) => {
+          const scrollTop = (e.target as HTMLElement).scrollTop;
+          const isGoingDown = scrollTop > lastScrollTop;
+          lastScrollTop = scrollTop;
+
+          return isGoingDown;
+        }),
+        switchMap((e) => {
           this.displayingAction = false;
           return timer(1000);
         })

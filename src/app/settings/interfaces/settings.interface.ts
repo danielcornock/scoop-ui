@@ -8,6 +8,7 @@ export interface ISettings {
   salaryStudentFinance: string;
   salaryPensionContribution: number;
   salaryPensionBeforeTax: boolean;
+  salaryTaxCode: string;
 }
 
 export interface INetWorthSummaryItemConfig {

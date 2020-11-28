@@ -7,8 +7,7 @@
 
   @include media-phone {
     /* To account for menu at botton */
-    right: $spacing-10;
-    bottom: 64px + $spacing-10;
+    bottom: 64px + $spacing-20;
   }
 }
 
@@ -43,7 +42,7 @@
   }
 
   &-icon {
-    margin-right: $spacing-10;
+    margin-right: $spacing-5;
 
     @include media-phone {
       margin-right: 0;
