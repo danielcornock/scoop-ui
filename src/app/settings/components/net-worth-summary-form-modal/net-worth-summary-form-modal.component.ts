@@ -1,10 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { startCase } from 'lodash';
-import { FormContainer, FormFactory } from 'ngx-form-trooper';
-import {
-  ModalDialogInstanceComponent,
-} from 'src/app/lib/ngx-modal/components/modal-dialog-instance/modal-dialog-instance.component';
+import { FormContainer, FormFactory, FormInputType } from 'ngx-form-trooper';
+import { ModalDialogInstanceComponent } from 'src/app/lib/ngx-modal/components/modal-dialog-instance/modal-dialog-instance.component';
 
 import { INetWorthSummaryItemConfig } from '../../interfaces/settings.interface';
 import { INetWorthSummaryFormModalConfig } from './interfaces/net-worth-summary-form-modal-config.interface';
@@ -22,6 +20,7 @@ export class NetWorthSummaryFormModalComponent
   implements OnInit {
   public form: FormContainer;
   public availableFields: Array<string>;
+  public modalTitle: string;
 
   private _selectedIcon: string;
 
@@ -35,10 +34,12 @@ export class NetWorthSummaryFormModalComponent
 
   ngOnInit(): void {
     this.availableFields = this.data.fields;
+    this._getModalTitle();
     this.form = this._formFactory.createForm([
       {
         name: 'label',
         label: 'Label',
+        type: FormInputType.TEXT,
         defaultValue: this.data.existingData?.label,
         validators: {
           required: true
@@ -47,6 +48,7 @@ export class NetWorthSummaryFormModalComponent
       {
         name: 'sumOf',
         label: 'Combined Fields',
+        type: FormInputType.MUTLI_SELECT,
         defaultValue: this.data.existingData?.sumOf,
         options: this.availableFields.map((field) => ({
           value: field,
@@ -74,5 +76,13 @@ export class NetWorthSummaryFormModalComponent
       ...this.form.value,
       icon: this._selectedIcon
     });
+  }
+
+  private _getModalTitle(): void {
+    if (this.data.existingData) {
+      this.modalTitle = 'Edit summary item';
+    } else {
+      this.modalTitle = 'Add summary item';
+    }
   }
 }

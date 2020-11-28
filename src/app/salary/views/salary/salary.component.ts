@@ -1,5 +1,6 @@
 import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpService } from 'src/app/core/services/http/http.service';
 import { IDashboardSummaryItem } from 'src/app/shared/components/dashboard-summary/interfaces/dashboard-summary-item.interface';
@@ -20,7 +21,8 @@ export class SalaryComponent implements OnInit {
   constructor(
     private readonly _httpService: HttpService,
     private readonly _spinnerService: NgxSpinnerService,
-    private readonly _currency: CurrencyPipe
+    private readonly _currency: CurrencyPipe,
+    private readonly _router: Router
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -28,6 +30,10 @@ export class SalaryComponent implements OnInit {
     await this._getSalaryLogs();
     this._processSummaryItems();
     this._spinnerService.hide();
+  }
+
+  public createNew(): void {
+    this._router.navigateByUrl('salary/create');
   }
 
   private async _getSalaryLogs(): Promise<void> {

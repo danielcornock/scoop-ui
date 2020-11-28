@@ -1,5 +1,6 @@
 import { CurrencyPipe, PercentPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpService } from 'src/app/core/services/http/http.service';
 import { IDashboardSummaryItem } from 'src/app/shared/components/dashboard-summary/interfaces/dashboard-summary-item.interface';
@@ -21,7 +22,8 @@ export class InvestmentsComponent implements OnInit {
     private readonly _httpService: HttpService,
     private readonly _spinnerService: NgxSpinnerService,
     private readonly _currencyPipe: CurrencyPipe,
-    private readonly _percentPipe: PercentPipe
+    private readonly _percentPipe: PercentPipe,
+    private readonly _router: Router
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -34,6 +36,10 @@ export class InvestmentsComponent implements OnInit {
     }
 
     this._assignSummaryLogs();
+  }
+
+  public createNew(): void {
+    this._router.navigateByUrl('investments/create');
   }
 
   private _assignSummaryLogs(): void {

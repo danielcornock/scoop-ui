@@ -1,6 +1,6 @@
 <div class="NetWorthSummaryFormModal-container">
   <h3 class="NetWorthSummaryFormModal-subheading">
-    Add another item
+    {{ modalTitle }}
   </h3>
   <form
     [formGroup]="form.formGroup"
@@ -8,10 +8,10 @@
     class="NetWorthSummaryFormModal-form"
     *ngIf="form"
   >
-    <ngx-form-input [formInputField]="form.fields[0]"></ngx-form-input>
-    <ngx-form-input-multi-select
-      [formInputField]="form.fields[1]"
-    ></ngx-form-input-multi-select>
+    <ngx-form-input-item
+      *ngFor="let field of form.fields"
+      [formInputField]="field"
+    ></ngx-form-input-item>
     <p class="NetWorthSummaryFormModal-iconPickerLabel">Selected Icon</p>
     <app-icon-picker
       [iconPickerDefault]="data.existingData?.icon"

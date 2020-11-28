@@ -1,0 +1,52 @@
+@import 'src/assets/styles/themes.scss';
+
+:host {
+  position: fixed;
+  bottom: $spacing-20;
+  right: $spacing-20;
+
+  @include media-phone {
+    /* To account for menu at botton */
+    right: $spacing-10;
+    bottom: 64px + $spacing-10;
+  }
+}
+
+.FloatingActionButton {
+  $shadow-color: #333;
+  &-container {
+    @include button-default;
+    display: flex;
+    align-items: center;
+    border-radius: $br-max;
+    justify-content: center;
+    box-shadow: 0 1px 2px rgba($shadow-color, 0.08),
+      0 2px 4px rgba($shadow-color, 0.12), 0 4px 8px rgba($shadow-color, 0.16),
+      0 8px 16px rgba($shadow-color, 0.2);
+
+    &:hover {
+      background-color: darken($color-primary, 10%);
+    }
+
+    @include media-phone {
+      background-color: $color-primary;
+      height: 60px;
+      width: 60px;
+      padding: 0;
+    }
+  }
+
+  &-icon {
+    margin-right: $spacing-10;
+
+    @include media-phone {
+      margin-right: 0;
+    }
+  }
+
+  &-text {
+    @include media-phone {
+      display: none;
+    }
+  }
+}

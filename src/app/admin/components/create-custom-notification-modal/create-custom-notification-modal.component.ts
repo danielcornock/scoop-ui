@@ -6,9 +6,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { notificationDictionary } from 'src/app/core/constants/notification-dictionary.constant';
 import { HttpService } from 'src/app/core/services/http/http.service';
 import { IHttpError } from 'src/app/core/services/http/interfaces/http-error.interface';
-import {
-  ModalDialogInstanceComponent,
-} from 'src/app/lib/ngx-modal/components/modal-dialog-instance/modal-dialog-instance.component';
+import { ModalDialogInstanceComponent } from 'src/app/lib/ngx-modal/components/modal-dialog-instance/modal-dialog-instance.component';
 
 @Component({
   selector: 'app-create-custom-notification-modal',
@@ -68,7 +66,8 @@ export class CreateCustomNotificationModalComponent
       },
       {
         name: 'text',
-        label: 'Message'
+        label: 'Message',
+        type: FormInputType.TEXTAREA
       }
     ]);
   }

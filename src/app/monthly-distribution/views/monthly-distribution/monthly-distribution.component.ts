@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpService } from 'src/app/core/services/http/http.service';
 import { ExperimentalService } from 'src/app/shared/services/experimental/experimental.service';
@@ -18,7 +19,8 @@ export class MonthlyDistributionComponent implements OnInit {
   constructor(
     private readonly _httpService: HttpService,
     private readonly _spinnerService: NgxSpinnerService,
-    private readonly _experimentalService: ExperimentalService
+    private readonly _experimentalService: ExperimentalService,
+    private readonly _router: Router
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -26,6 +28,10 @@ export class MonthlyDistributionComponent implements OnInit {
     this._spinnerService.show();
     await this._fetchLogs();
     this._spinnerService.hide();
+  }
+
+  public createNew(): void {
+    this._router.navigateByUrl('monthly-distribution/create');
   }
 
   private async _fetchLogs(): Promise<void> {

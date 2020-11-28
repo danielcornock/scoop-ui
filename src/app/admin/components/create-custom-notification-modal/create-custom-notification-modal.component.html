@@ -7,13 +7,11 @@
     [formGroup]="form.formGroup"
     (ngSubmit)="submitForm()"
   >
-    <ngx-form-input-select
-      [formInputField]="form.fields[0]"
-    ></ngx-form-input-select>
-    <ngx-form-input
-      *ngFor="let field of form.fields | slice: 1"
+    <ngx-form-input-item
+      *ngFor="let field of form.fields"
       [formInputField]="field"
-    ></ngx-form-input>
+    ></ngx-form-input-item>
+
     <app-form-errors [appFormErrors]="errors"></app-form-errors>
     <app-form-submit
       [form]="form.formGroup"

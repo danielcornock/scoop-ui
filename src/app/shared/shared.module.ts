@@ -15,6 +15,7 @@ import { ConfirmationModalComponent } from './components/confirmation-modal/conf
 import { ContextMenuComponent } from './components/context-menu/context-menu.component';
 import { DashboardSummaryComponent } from './components/dashboard-summary/dashboard-summary.component';
 import { DetailedContextMenuComponent } from './components/detailed-context-menu/detailed-context-menu.component';
+import { FloatingActionButtonComponent } from './components/floating-action-button/floating-action-button.component';
 import { FormErrorsComponent } from './components/form-errors/form-errors.component';
 import { FormSubmitComponent } from './components/form-submit/form-submit.component';
 import { IconPickerComponent } from './components/icon-picker/icon-picker.component';
@@ -44,7 +45,8 @@ import { ValuesPipe } from './pipes/values.pipe';
     DetailedContextMenuComponent,
     ConfirmationModalComponent,
     ValuesPipe,
-    InformationComponent
+    InformationComponent,
+    FloatingActionButtonComponent
   ],
   imports: [
     CommonModule,
@@ -78,7 +80,8 @@ import { ValuesPipe } from './pipes/values.pipe';
     TableActionsComponent,
     DetailedContextMenuComponent,
     ValuesPipe,
-    InformationComponent
+    InformationComponent,
+    FloatingActionButtonComponent
   ]
 })
 export class SharedModule {}
