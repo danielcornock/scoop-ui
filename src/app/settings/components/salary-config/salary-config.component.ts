@@ -40,6 +40,7 @@ export class SalaryConfigComponent implements OnInit {
         name: 'salaryTaxCode',
         label: 'Tax code',
         type: FormInputType.TEXT,
+        placeholder: 'e.g. 1250L',
         defaultValue: this.salaryConfigSettings.salaryTaxCode
       },
       {

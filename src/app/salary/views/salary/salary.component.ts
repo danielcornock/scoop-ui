@@ -66,9 +66,9 @@ export class SalaryComponent implements OnInit {
         icon: 'chevrons-down'
       },
       {
-        label: 'Estimated tax return',
-        value: this._toCurrency(values.projectedTaxReturn),
-        icon: 'corner-down-left'
+        label: 'Projected Gross Salary',
+        value: this._toCurrency(values.projectedGrossSalary),
+        icon: 'calendar'
       }
     ];
   }

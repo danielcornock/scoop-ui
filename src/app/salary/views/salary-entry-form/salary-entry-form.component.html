@@ -28,6 +28,9 @@
     </ng-container>
 
     <ng-template #fullForm>
+      <app-information
+        informationMessage="The following fields are an approximate estimation of your deductions. Feel free to customise each value to match your payslip."
+      ></app-information>
       <ngx-form-input-number
         *ngFor="let field of form.fields | slice: 2"
         [formInputField]="field"
