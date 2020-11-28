@@ -87,6 +87,18 @@ body {
     }
   }
 
+  input {
+    -webkit-user-select: initial;
+
+    &::before {
+      -webkit-user-select: initial;
+    }
+
+    &::after {
+      -webkit-user-select: initial;
+    }
+  }
+
   button:hover,
   a:hover {
     text-decoration: none !important;

@@ -57,7 +57,7 @@ export class SidebarComponent implements OnInit {
       this.navItems.push({
         label: 'Net Worth',
         link: 'net-worth',
-        icon: 'file-text'
+        icon: 'bar-chart'
       });
     }
 
