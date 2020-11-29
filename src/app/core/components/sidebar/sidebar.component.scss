@@ -172,7 +172,10 @@
     text-decoration: none;
     position: relative;
 
+    opacity: 0.5;
+
     &--active {
+      opacity: 1;
       &::before {
         content: '';
         position: absolute;
