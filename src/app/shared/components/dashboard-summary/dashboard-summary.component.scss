@@ -6,6 +6,7 @@
     grid-template-columns: repeat(4, 1fr);
     grid-gap: $spacing-20;
     height: 100%;
+    position: relative;
 
     @include media-sd() {
       grid-template-columns: repeat(2, 1fr);
@@ -53,6 +54,7 @@
     margin-right: $spacing-30;
     height: 60px;
     width: 60px;
+    flex-shrink: 0;
     @include center-contents;
     color: $indigo-700;
 
@@ -129,6 +131,62 @@
 
     @include media-phone {
       font-size: 26px;
+    }
+  }
+
+  &-expand {
+    @include button-reset;
+    border-radius: $br-max;
+    background-color: $color-primary-gradient-solid;
+    color: $color-white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    left: $spacing-10;
+    padding: $spacing-10 $spacing-15;
+    font-weight: 500;
+    font-size: 14px;
+    transform: translateY(50%);
+    @include shadow-light;
+
+    &:focus {
+      // TODO: Find better solution
+      outline: none;
+    }
+
+    @include media-phone {
+      padding: 0;
+      height: 30px;
+      width: 30px;
+      left: initial;
+      right: $spacing-10;
+    }
+  }
+
+  &-expandIcon {
+    transition: 500ms;
+    height: 16px;
+    width: 16px;
+
+    &.is-expanded {
+      transform: rotateX(180deg);
+    }
+
+    @include media-phone {
+      height: 16px;
+      width: 16px;
+    }
+  }
+
+  &-expandText {
+    display: inline-block;
+    margin-right: $spacing-5;
+    line-height: 1;
+
+    @include media-phone {
+      display: none;
     }
   }
 }

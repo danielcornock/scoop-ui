@@ -110,16 +110,16 @@ export class MonthlyDistributionEntryFormComponent
   ): Array<IFormInputFactoryFieldConfig> {
     return fields.map((field: string) => {
       /* This is not very good - needs fixing */
-
-      let tooltip;
+      let tooltip, label;
       if (field === 'balance carried') {
         tooltip =
-          'This field is how much balance you had left over at the end of last month, to help work out your total monthly spending.';
+          'This field is how much balance you have carried over from last month in to the current month, to help work out your total monthly spending.';
+        label = 'Balance carried from last month';
       }
 
       return {
         name: field,
-        label: startCase(field),
+        label: label || startCase(field),
         type: FormInputType.NUMBER,
         tooltip
       };

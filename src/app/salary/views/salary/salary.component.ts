@@ -1,4 +1,4 @@
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, PercentPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -22,7 +22,8 @@ export class SalaryComponent implements OnInit {
     private readonly _httpService: HttpService,
     private readonly _spinnerService: NgxSpinnerService,
     private readonly _currency: CurrencyPipe,
-    private readonly _router: Router
+    private readonly _router: Router,
+    private readonly _percent: PercentPipe
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -69,6 +70,21 @@ export class SalaryComponent implements OnInit {
         label: 'Projected Gross Salary',
         value: this._toCurrency(values.projectedGrossSalary),
         icon: 'calendar'
+      },
+      {
+        label: 'Projected Tax Return',
+        value: this._toCurrency(values.projectedTaxReturn),
+        icon: 'corner-down-left'
+      },
+      {
+        label: 'Take Home',
+        value: this._toPercentage(values.netSalaryOverGrossSalary),
+        icon: 'star'
+      },
+      {
+        label: 'Tax Percentage',
+        value: this._toPercentage(values.taxPercentage),
+        icon: 'percent'
       }
     ];
   }
@@ -80,5 +96,9 @@ export class SalaryComponent implements OnInit {
       'symbol',
       '1.0-0'
     );
+  }
+
+  private _toPercentage(value: number): string {
+    return this._percent.transform(value, '1.0-2');
   }
 }

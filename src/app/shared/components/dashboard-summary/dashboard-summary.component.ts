@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { IDashboardSummaryItem } from './interfaces/dashboard-summary-item.interface';
 
@@ -7,11 +7,15 @@ import { IDashboardSummaryItem } from './interfaces/dashboard-summary-item.inter
   templateUrl: './dashboard-summary.component.html',
   styleUrls: ['./dashboard-summary.component.scss']
 })
-export class DashboardSummaryComponent implements OnInit {
+export class DashboardSummaryComponent {
   @Input()
   public dashboardSummaryItems: Array<IDashboardSummaryItem>;
 
-  constructor() {}
+  public maxItems = 4;
+  public isExpanded = false;
 
-  ngOnInit(): void {}
+  public expandItems(): void {
+    this.isExpanded = !this.isExpanded;
+    this.maxItems = this.isExpanded ? undefined : 4;
+  }
 }

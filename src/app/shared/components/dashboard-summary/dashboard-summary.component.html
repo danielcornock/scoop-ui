@@ -1,7 +1,7 @@
 <div class="DashboardSummary-container">
   <div
     class="DashboardSummary-item animate-list-item"
-    *ngFor="let item of dashboardSummaryItems"
+    *ngFor="let item of dashboardSummaryItems | slice: 0:maxItems"
   >
     <div class="DashboardSummary-icon">
       <i-feather [name]="item.icon"></i-feather>
@@ -11,4 +11,18 @@
       <p class="DashboardSummary-label">{{ item.label }}</p>
     </div>
   </div>
+  <button
+    class="DashboardSummary-expand"
+    *ngIf="dashboardSummaryItems.length > 4"
+    (click)="expandItems()"
+  >
+    <span class="DashboardSummary-expandText">
+      {{ isExpanded ? 'View less' : 'View more' }}
+    </span>
+    <i-feather
+      class="DashboardSummary-expandIcon"
+      [class.is-expanded]="isExpanded"
+      [name]="'chevron-down'"
+    ></i-feather>
+  </button>
 </div>

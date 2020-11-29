@@ -17,22 +17,18 @@ export class MonthlyDistributionPieChartComponent implements OnInit {
   constructor(private readonly _chartService: ChartService) {}
 
   ngOnInit(): void {
-    const labels = Object.keys(
-      this.monthlyDistributionPieChartData.outgoing
-    ).map(startCase);
-
     const data = map(
       this.monthlyDistributionPieChartData.outgoing,
-      (item) => item
-    );
+      (item, key) => ({ label: key, value: item })
+    ).sort((a, b) => b.value - a.value);
 
     this._chartService.createPieChart(
       'monthlyDistributionPieChart',
       {
-        labels,
+        labels: data.map((item) => startCase(item.label)),
         datasets: [
           {
-            data,
+            data: data.map((item) => item.value),
             backgroundColor: [...chartColors].reverse()
           }
         ]
