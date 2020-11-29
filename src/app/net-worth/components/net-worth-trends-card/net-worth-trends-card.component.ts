@@ -43,7 +43,7 @@ export class NetWorthTrendsCardComponent implements OnInit {
             ...new Array(this._processedTrendsData.length - 1),
             ...this.netWorthPredictedData.map((item) => Math.round(item.value))
           ],
-          borderColor: 'rgba(28,128,220, 1)',
+          borderColor: 'rgba(28,128,220, 0.6)',
           backgroundColor: 'rgba(28,128,220, 0.08)',
           borderDash: [5],
           borderWidth: 2
