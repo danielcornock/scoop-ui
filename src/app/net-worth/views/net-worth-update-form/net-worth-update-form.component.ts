@@ -11,104 +11,73 @@ import {
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HeaderActionService } from 'src/app/core/services/header-action/header-action.service';
 import { HttpService } from 'src/app/core/services/http/http.service';
-import { IHttpError } from 'src/app/core/services/http/interfaces/http-error.interface';
+import { BaseUpdateFormComponent } from 'src/app/shared/abstracts/base-update-form/base-update-form.abstract';
 
-import { INetWorthApiResponse } from '../../interfaces/net-worth-api-response.interface';
+import {
+  INetWorthApiMetaResponse,
+  INetWorthApiResponse
+} from '../../interfaces/net-worth-api-response.interface';
 
 @Component({
   selector: 'app-net-worth-update-form',
   templateUrl: '../net-worth-entry-form/net-worth-entry-form.component.html',
   styleUrls: ['../net-worth-entry-form/net-worth-entry-form.component.scss']
 })
-export class NetWorthUpdateFormComponent implements OnInit, OnDestroy {
-  public form: FormContainer;
+export class NetWorthUpdateFormComponent
+  extends BaseUpdateFormComponent<
+    INetWorthApiResponse,
+    INetWorthApiMetaResponse
+  >
+  implements OnInit, OnDestroy {
   public formFields: Array<FormControl>;
-  public errors: IHttpError;
-  public netWorthDate: string;
-  public netWorth: INetWorthApiResponse;
 
   private _fields: Array<string>;
 
   constructor(
-    private readonly _formFactory: FormFactory,
-    private readonly _httpService: HttpService,
-    private readonly _router: Router,
-    private readonly _spinnerService: NgxSpinnerService,
-    private readonly _activatedRoute: ActivatedRoute,
-    protected readonly _headerActionService: HeaderActionService
-  ) {}
+    formFactory: FormFactory,
+    httpService: HttpService,
+    router: Router,
+    spinnerService: NgxSpinnerService,
+    activatedRoute: ActivatedRoute,
+    headerActionService: HeaderActionService
+  ) {
+    super(
+      formFactory,
+      httpService,
+      router,
+      spinnerService,
+      activatedRoute,
+      headerActionService,
+      'net-worth'
+    );
+  }
 
   async ngOnInit(): Promise<void> {
-    this._setHeaderAction();
-    this._spinnerService.show();
-    await this._getExistingNetWorth();
-    this._createForm();
-    this._spinnerService.hide();
+    super.ngOnInit();
   }
 
-  public async submitForm(): Promise<void> {
-    this.errors = null;
-
-    if (this.form.formGroup.invalid) {
-      this.form.formGroup.markAllAsTouched();
-      return;
-    }
-
-    try {
-      this._spinnerService.show();
-      await this._httpService.put(`net-worth/${this.netWorthDate}`, {
-        customValues: this.form.value
-      });
-      this._router.navigateByUrl('net-worth');
-    } catch ({ error }) {
-      this._spinnerService.hide();
-      this.errors = error;
-    }
-  }
-
-  ngOnDestroy(): void {
-    this._headerActionService.setAction(undefined);
-  }
-
-  private _setHeaderAction(): void {
-    this._headerActionService.setAction({
-      label: 'Save',
-      action: this.submitForm.bind(this)
-    });
-  }
-  private async _getExistingNetWorth(): Promise<void> {
-    this.netWorthDate = this._activatedRoute.snapshot.paramMap.get(
-      'netWorthDate'
-    );
-    const { data, meta } = await this._httpService.get(
-      `net-worth/${this.netWorthDate}`
-    );
-    this._fields = meta.fields;
-    this.netWorth = data;
-  }
-
-  private _createForm(): void {
+  protected _createForm({ data }): FormContainer {
     const formConfig: IFormFactoryConfig = [
       {
         name: 'date',
         label: 'Month',
         type: FormInputType.MONTH,
-        defaultValue: this.netWorthDate,
+        defaultValue: this._resourceDate,
         disabled: true,
         validators: {
           required: true
         }
       },
-      ...this._fields.map((fieldName: string) => {
+      ...this._meta.fields.map((fieldName: string) => {
         return {
           name: fieldName,
           label: capitalize(fieldName),
           type: FormInputType.NUMBER,
-          defaultValue: this.netWorth.customValues[fieldName]
+          defaultValue: data.customValues[fieldName]
         };
       })
     ];
 
-    this.form = this._formFactory.createForm(formConfig);
+    return this._formFactory.createForm(formConfig);
   }
 }

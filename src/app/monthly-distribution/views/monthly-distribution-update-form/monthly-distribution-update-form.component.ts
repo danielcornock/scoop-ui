@@ -13,11 +13,9 @@ import { Observable, of } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
 import { HeaderActionService } from 'src/app/core/services/header-action/header-action.service';
 import { HttpService } from 'src/app/core/services/http/http.service';
-import { SettingsService } from 'src/app/settings/services/settings/settings.service';
 import { BaseUpdateFormComponent } from 'src/app/shared/abstracts/base-update-form/base-update-form.abstract';
 
 import { IMonthlyDistributionLog } from '../../interfaces/monthly-distribution-log.interface';
-import { IMonthlyDistributionMeta } from '../../interfaces/monthly-distribution-meta.interface';
 
 @Component({
   selector: 'app-monthly-distribution-update-form',
@@ -30,14 +28,11 @@ import { IMonthlyDistributionMeta } from '../../interfaces/monthly-distribution-
 export class MonthlyDistributionUpdateFormComponent
   extends BaseUpdateFormComponent<
     IMonthlyDistributionLog,
-    IMonthlyDistributionMeta
+    { incomeFields: string[]; outgoingFields: string[] }
   >
   implements OnInit {
   public form: FormContainer;
   public remainingBalance: Observable<number>;
-
-  private _incomingFields: Array<string>;
-  private _outgoingFields: Array<string>;
 
   constructor(
     formFactory: FormFactory,
@@ -45,8 +40,7 @@ export class MonthlyDistributionUpdateFormComponent
     router: Router,
     spinnerService: NgxSpinnerService,
     activatedRoute: ActivatedRoute,
-    headerActionService: HeaderActionService,
-    private readonly _settingsService: SettingsService
+    headerActionService: HeaderActionService
   ) {
     super(
       formFactory,
@@ -60,7 +54,6 @@ export class MonthlyDistributionUpdateFormComponent
   }
 
   public async ngOnInit(): Promise<void> {
-    await this._getFields();
     await super.ngOnInit();
     this._watchFormToCalculateRemaining();
   }
@@ -80,12 +73,12 @@ export class MonthlyDistributionUpdateFormComponent
       {
         name: 'income',
         label: 'Income',
-        fields: this._mapCustomFields(this._incomingFields, 'income')
+        fields: this._mapCustomFields(this._meta.incomeFields, 'income')
       },
       {
         name: 'outgoing',
         label: 'Outgoings',
-        fields: this._mapCustomFields(this._outgoingFields, 'outgoing')
+        fields: this._mapCustomFields(this._meta.outgoingFields, 'outgoing')
       }
     ];
 
@@ -111,13 +104,6 @@ export class MonthlyDistributionUpdateFormComponent
         return of(incoming - outgoing);
       })
     );
-  }
-
-  private async _getFields(): Promise<void> {
-    const { data } = await this._settingsService.getSettings();
-
-    this._incomingFields = data.monthlyDistributionIncomeFields;
-    this._outgoingFields = data.monthlyDistributionOutgoingFields;
   }
 
   private _mapCustomFields(

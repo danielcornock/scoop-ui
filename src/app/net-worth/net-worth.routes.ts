@@ -6,7 +6,7 @@ import { NetWorthComponent } from './views/net-worth/net-worth.component';
 
 export const netWorthRoutes: Routes = [
   {
-    path: 'net-worth/edit/:netWorthDate',
+    path: 'net-worth/edit/:date',
     component: NetWorthUpdateFormComponent
   },
   {
