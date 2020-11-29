@@ -101,12 +101,11 @@
       height: auto;
       padding: 0;
       background-color: $color-white;
-      background-image: none;
-      // background-image: linear-gradient(
-      //   to bottom,
-      //   $color-primary,
-      //   $color-primary-gradient
-      // );
+      background-image: linear-gradient(
+        to bottom,
+        $color-primary,
+        lighten($color-primary, 5%)
+      );
       box-shadow: 0px -2px 8px rgba(black, 0.2);
     }
   }
@@ -175,7 +174,7 @@
 
     &--active {
       &::before {
-        // content: '';
+        content: '';
         position: absolute;
         border-radius: $br-max;
         left: 0;
@@ -199,10 +198,6 @@
           width: 100%;
         }
       }
-
-      @include media-phone {
-        color: $color-primary !important;
-      }
     }
 
     @include media-ld {
@@ -211,7 +206,6 @@
 
     @include media-phone {
       flex: 1 1 25%;
-      color: $color-table-header;
       padding: $spacing-20 0;
     }
 
