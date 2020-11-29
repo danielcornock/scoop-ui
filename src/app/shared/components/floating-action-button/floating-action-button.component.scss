@@ -13,7 +13,7 @@
 }
 
 .FloatingActionButton {
-  $shadow-color: #999;
+  $shadow-color: #333;
   &-container {
     @include button-default;
     display: flex;
@@ -31,7 +31,7 @@
 
     @include media-phone {
       color: $color-white;
-      background-color: cornflowerblue;
+      background-color: rgb(28, 127, 219);
       height: 60px;
       width: 60px;
       padding: 0;

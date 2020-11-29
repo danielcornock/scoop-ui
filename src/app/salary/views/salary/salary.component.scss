@@ -51,7 +51,7 @@
   &-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: $spacing-30;
+    grid-gap: $spacing-30 $spacing-20;
     grid-template-areas:
       'summary summary'
       'distribution line'
