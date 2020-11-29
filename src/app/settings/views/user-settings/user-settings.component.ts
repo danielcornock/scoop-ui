@@ -96,6 +96,7 @@ export class UserSettingsComponent implements OnInit {
         label: 'Day of the month to update your logs',
         type: FormInputType.NUMBER,
         defaultValue: this.userSettings.reminderDate,
+        tooltip: `If your date falls on a day that doesn't exist in the current month, your notification will be sent on the last day of the month instead`,
         validators: {
           min: 1,
           max: 31

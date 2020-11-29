@@ -30,8 +30,8 @@
     }
 
     @include media-phone {
-      background-color: $color-white;
-      color: $color-primary;
+      color: $color-white;
+      background-color: $color-primary;
       height: 60px;
       width: 60px;
       padding: 0;
