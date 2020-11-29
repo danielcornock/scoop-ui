@@ -14,7 +14,7 @@ export class NetWorthTrendsCardComponent implements OnInit {
   public netWorthTrendsData: Array<INetWorthApiResponse>;
 
   @Input()
-  public netWorthPredictedData: Array<ILabelValuePair>;
+  public netWorthPredictedData: ILabelValuePair<number>[];
 
   private _processedTrendsData: Array<{ date: string; total: number }>;
 
@@ -22,12 +22,13 @@ export class NetWorthTrendsCardComponent implements OnInit {
 
   ngOnInit(): void {
     this._processTrendsData();
+    const projectedLabels = this.netWorthPredictedData.map(
+      (item) => item.label
+    );
+    projectedLabels.shift();
 
     this._chartService.createLineChart('netWorthTrends', {
-      labels: [
-        ...this._getArrayOfFields('date'),
-        ...this.netWorthPredictedData.map((item) => item.label)
-      ],
+      labels: [...this._getArrayOfFields('date'), ...projectedLabels],
       datasets: [
         {
           label: 'Net Worth',
@@ -40,7 +41,7 @@ export class NetWorthTrendsCardComponent implements OnInit {
           label: 'Net worth prediction',
           data: [
             ...new Array(this._processedTrendsData.length - 1),
-            ...this.netWorthPredictedData.map((item) => item.value)
+            ...this.netWorthPredictedData.map((item) => Math.round(item.value))
           ],
           borderColor: 'rgba(28,128,220, 1)',
           backgroundColor: 'rgba(28,128,220, 0.08)',
