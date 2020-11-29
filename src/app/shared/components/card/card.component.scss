@@ -14,7 +14,7 @@
     justify-content: space-between;
 
     @include media-phone {
-      padding: $spacing-15 $spacing-20;
+      padding: $spacing-20 $spacing-20 $spacing-15;
     }
   }
 
