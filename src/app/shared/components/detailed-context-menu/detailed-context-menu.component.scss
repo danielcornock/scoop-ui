@@ -25,7 +25,6 @@ $spacing-menu-horizontal--mobile: $spacing-20;
     display: flex;
     padding: $spacing-15 $spacing-menu-horizontal--normal;
     border-radius: $br-med;
-    align-items: center;
     min-width: 300px;
 
     &:hover {
@@ -52,6 +51,10 @@ $spacing-menu-horizontal--mobile: $spacing-20;
     background-color: $color-primary-light;
     color: $color-primary;
     border-radius: $br-max;
+
+    @include media-phone {
+      display: none;
+    }
 
     i-feather {
       height: 28px;

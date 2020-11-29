@@ -38,7 +38,7 @@ export class NetWorthTrendsCardComponent implements OnInit {
           borderWidth: 2
         },
         {
-          label: 'Net worth prediction',
+          label: 'Net worth projection',
           data: [
             ...new Array(this._processedTrendsData.length - 1),
             ...this.netWorthPredictedData.map((item) => Math.round(item.value))
