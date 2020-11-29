@@ -77,12 +77,12 @@ export class SalaryComponent implements OnInit {
         icon: 'corner-down-left'
       },
       {
-        label: 'Take Home',
+        label: 'Annual Take Home',
         value: this._toPercentage(values.netSalaryOverGrossSalary),
         icon: 'home'
       },
       {
-        label: 'Tax Percentage',
+        label: 'Annual Tax Percentage',
         value: this._toPercentage(values.taxPercentage),
         icon: 'percent'
       }
