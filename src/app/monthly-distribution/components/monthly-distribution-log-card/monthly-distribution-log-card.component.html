@@ -31,7 +31,9 @@
       <app-table-actions
         class="MonthlyDistributionLogCard-rowItem"
         *ngIf="isEditing"
+        [tableActionsCanEdit]="true"
         (tableActionsRemove)="removeLog(log.date)"
+        (tableActionsEdit)="navigateToEditPage(log.date)"
       ></app-table-actions>
     </tr>
   </app-table>
