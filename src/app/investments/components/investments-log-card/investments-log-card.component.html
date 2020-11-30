@@ -53,7 +53,9 @@
       <app-table-actions
         class="InvestmentsLogCard-rowItem"
         *ngIf="isEditing"
+        [tableActionsCanEdit]="true"
         (tableActionsRemove)="removeLog(row.date)"
+        (tableActionsEdit)="navigateToEditPage(row.date)"
       ></app-table-actions>
     </tr>
   </app-table>

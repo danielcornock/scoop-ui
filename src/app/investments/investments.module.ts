@@ -13,6 +13,7 @@ import {
 import { TrendsCardComponent } from './components/trends-card/trends-card.component';
 import { InvestmentsEntryFormComponent } from './views/investments-entry-form/investments-entry-form.component';
 import { InvestmentsComponent } from './views/investments/investments.component';
+import { InvestmentsUpdateFormComponent } from './views/investments-update-form/investments-update-form.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { InvestmentsComponent } from './views/investments/investments.component'
     TrendsCardComponent,
     InvestmentsLogCardComponent,
     InvestmentsEntryFormComponent,
-    InvestmentsMonthlyChangeCardComponent
+    InvestmentsMonthlyChangeCardComponent,
+    InvestmentsUpdateFormComponent
   ],
   imports: [
     CommonModule,
