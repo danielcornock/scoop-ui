@@ -2,7 +2,10 @@ import { Injectable, Type } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import { ConfirmationModalComponent } from '../../components/confirmation-modal/confirmation-modal.component';
-import { IConfirmationModalConfig, IConfirmationModalData } from './interfaces/confirmation-modal-config.interface';
+import {
+  IConfirmationModalConfig,
+  IConfirmationModalData
+} from './interfaces/confirmation-modal-config.interface';
 import { IModalConfig } from './interfaces/modal-config.interface';
 
 @Injectable({

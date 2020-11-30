@@ -4,6 +4,7 @@ import { startCase } from 'lodash';
 import { HttpService } from 'src/app/core/services/http/http.service';
 import { LogCard } from 'src/app/shared/abstracts/log-card/log-card.abstract';
 import { IContextMenuItem } from 'src/app/shared/components/context-menu/interfaces/context-menu-item.interface';
+import { PopupService } from 'src/app/shared/services/popup/popup.service';
 
 import { IMonthlyDistributionLog } from '../../interfaces/monthly-distribution-log.interface';
 import { IMonthlyDistributionMeta } from '../../interfaces/monthly-distribution-meta.interface';
@@ -25,7 +26,11 @@ export class MonthlyDistributionLogCardComponent extends LogCard
   public fields: Array<string>;
   public preferredCurrency: string;
 
-  constructor(private readonly _httpService: HttpService, router: Router) {
+  constructor(
+    private readonly _httpService: HttpService,
+    private readonly _popupService: PopupService,
+    router: Router
+  ) {
     super(router, 'monthly-distribution');
   }
 
@@ -35,9 +40,13 @@ export class MonthlyDistributionLogCardComponent extends LogCard
   }
 
   public async removeLog(date: string): Promise<void> {
-    await this._httpService.delete(`monthly-distribution/${date}`);
-    this.monthlyDistributionLogCardItems = this.monthlyDistributionLogCardItems.filter(
-      (log) => log.date !== date
-    );
+    try {
+      await this._httpService.delete(`monthly-distribution/${date}`);
+      this.monthlyDistributionLogCardItems = this.monthlyDistributionLogCardItems.filter(
+        (log) => log.date !== date
+      );
+    } catch ({ error }) {
+      this._popupService.showApiError(error);
+    }
   }
 }

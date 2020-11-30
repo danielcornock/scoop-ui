@@ -3,9 +3,13 @@ import { Router } from '@angular/router';
 import { Dictionary } from 'lodash';
 import { HttpService } from 'src/app/core/services/http/http.service';
 import { IContextMenuItem } from 'src/app/shared/components/context-menu/interfaces/context-menu-item.interface';
+import { PopupService } from 'src/app/shared/services/popup/popup.service';
 
 import { LogCard } from '../../../shared/abstracts/log-card/log-card.abstract';
-import { INetWorthApiMetaResponse, INetWorthApiResponse } from '../../interfaces/net-worth-api-response.interface';
+import {
+  INetWorthApiMetaResponse,
+  INetWorthApiResponse
+} from '../../interfaces/net-worth-api-response.interface';
 
 @Component({
   selector: 'app-net-worth-log',
@@ -23,7 +27,11 @@ export class NetWorthLogComponent extends LogCard implements OnInit {
   public contextMenuItems: Array<IContextMenuItem>;
   public isEditing: boolean;
 
-  constructor(private readonly _httpService: HttpService, router: Router) {
+  constructor(
+    private readonly _httpService: HttpService,
+    private readonly _popupService: PopupService,
+    router: Router
+  ) {
     super(router, 'net-worth');
   }
 
@@ -32,8 +40,12 @@ export class NetWorthLogComponent extends LogCard implements OnInit {
   }
 
   public async removeLog(date: string): Promise<void> {
-    await this._httpService.delete(`net-worth/${date}`);
-    this.logs = this.logs.filter((log) => log.date !== date);
+    try {
+      await this._httpService.delete(`net-worth/${date}`);
+      this.logs = this.logs.filter((log) => log.date !== date);
+    } catch ({ error }) {
+      this._popupService.showApiError(error);
+    }
   }
 
   private _assignLogs(): void {
