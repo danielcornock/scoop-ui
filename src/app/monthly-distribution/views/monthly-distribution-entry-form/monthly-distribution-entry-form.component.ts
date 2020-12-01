@@ -117,6 +117,10 @@ export class MonthlyDistributionEntryFormComponent
         label = 'Balance carried from last month';
       }
 
+      if (field === 'salary') {
+        tooltip = `If updating your logs at the start of the month, this should be the salary you've just been paid at the end of last month.`;
+      }
+
       return {
         name: field,
         label: label || startCase(field),

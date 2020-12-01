@@ -1,0 +1,15 @@
+@import 'src/assets/styles/themes.scss';
+
+:host {
+  position: relative;
+}
+.NetWorthMonthlyChangeCard {
+  &-apology {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: $color-table-header;
+    text-align: center;
+  }
+}

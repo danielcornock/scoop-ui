@@ -99,6 +99,8 @@ export class SalaryEntryFormComponent extends BaseEntryFormComponent
         label: 'Gross salary this month',
         type: FormInputType.NUMBER,
         defaultValue: this._getFormattedDefaultSalary(),
+        tooltip:
+          'Your gross salary is your salary before any deductions - this should also include your pension contributions if you are choosing to include them in the log.',
         validators: {
           required: true
         }
@@ -139,6 +141,8 @@ export class SalaryEntryFormComponent extends BaseEntryFormComponent
         name: 'otherDeductions',
         label: 'Other contributions',
         type: FormInputType.NUMBER,
+        tooltip:
+          'If you receive any tax-free reimbursements, these can be included here as a negative number.',
         validators: {
           required: true
         }

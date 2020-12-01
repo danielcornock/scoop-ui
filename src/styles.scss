@@ -141,3 +141,9 @@ body {
 .feather {
   display: block !important;
 }
+
+::ng-deep .mat-tooltip {
+  /* your own custom styles here */
+  /* e.g. */
+  font-size: 16px !important;
+}

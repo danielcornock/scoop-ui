@@ -1,3 +1,10 @@
 <app-card cardTitle="Monthly Change">
   <canvas id="netWorthMonthlyChange"></canvas>
+  <p
+    class="NetWorthMonthlyChangeCard-apology"
+    *ngIf="netWorthMonthlyChangeData.length <= 1"
+  >
+    You need to log more entries for this graph to function properly. Try again
+    next month!
+  </p>
 </app-card>
