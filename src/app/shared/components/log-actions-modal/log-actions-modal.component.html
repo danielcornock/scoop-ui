@@ -1,0 +1,12 @@
+<div class="LogActionsModal-container">
+  <button
+    class="LogActionsModal-item"
+    *ngFor="let item of data"
+    (click)="action(item.action)"
+  >
+    <i-feather class="LogActionsModal-icon" [name]="item.icon"></i-feather>
+    <span class="LogActionsModal-text">
+      {{ item.label }}
+    </span>
+  </button>
+</div>

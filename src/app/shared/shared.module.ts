@@ -23,10 +23,12 @@ import { InformationComponent } from './components/information/information.compo
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { TableActionsComponent } from './components/table-actions/table-actions.component';
 import { TableComponent } from './components/table/table.component';
+import { LongPressDirective } from './directives/long-press/long-press.directive';
 import { JoinPipe } from './pipes/join/join.pipe';
 import { KebabCasePipe } from './pipes/kebab-case/kebab-case.pipe';
 import { KeysPipe } from './pipes/keys/keys.pipe';
 import { ValuesPipe } from './pipes/values.pipe';
+import { LogActionsModalComponent } from './components/log-actions-modal/log-actions-modal.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { ValuesPipe } from './pipes/values.pipe';
     ConfirmationModalComponent,
     ValuesPipe,
     InformationComponent,
-    FloatingActionButtonComponent
+    FloatingActionButtonComponent,
+    LongPressDirective,
+    LogActionsModalComponent
   ],
   imports: [
     CommonModule,
@@ -81,7 +85,8 @@ import { ValuesPipe } from './pipes/values.pipe';
     DetailedContextMenuComponent,
     ValuesPipe,
     InformationComponent,
-    FloatingActionButtonComponent
+    FloatingActionButtonComponent,
+    LongPressDirective
   ]
 })
 export class SharedModule {}

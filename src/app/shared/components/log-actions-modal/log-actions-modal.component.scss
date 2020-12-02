@@ -1,0 +1,42 @@
+@import 'src/assets/styles/themes.scss';
+
+.LogActionsModal {
+  &-item {
+    @include button-reset;
+    display: flex;
+    align-items: center;
+    padding: $spacing-20;
+    color: $color-table-header;
+    width: 100%;
+    border-radius: $br-med;
+    position: relative;
+
+    & + & {
+      &::after {
+        box-sizing: border-box;
+        content: '';
+        position: absolute;
+        height: 1px;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: $color-table-divider;
+      }
+    }
+
+    &:hover {
+      background-color: $color-primary-light;
+    }
+  }
+
+  &-icon {
+    display: block;
+    margin-right: $spacing-10;
+    color: $color-table-header;
+  }
+
+  &-text {
+    color: $color-table-content;
+    font-weight: 500;
+  }
+}

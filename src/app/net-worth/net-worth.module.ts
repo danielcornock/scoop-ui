@@ -15,8 +15,8 @@ import {
 } from './components/net-worth-monthly-change-card/net-worth-monthly-change-card.component';
 import { NetWorthTrendsCardComponent } from './components/net-worth-trends-card/net-worth-trends-card.component';
 import { NetWorthEntryFormComponent } from './views/net-worth-entry-form/net-worth-entry-form.component';
-import { NetWorthComponent } from './views/net-worth/net-worth.component';
 import { NetWorthUpdateFormComponent } from './views/net-worth-update-form/net-worth-update-form.component';
+import { NetWorthComponent } from './views/net-worth/net-worth.component';
 
 @NgModule({
   declarations: [

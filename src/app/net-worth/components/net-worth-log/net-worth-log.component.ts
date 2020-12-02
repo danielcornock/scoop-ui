@@ -3,13 +3,11 @@ import { Router } from '@angular/router';
 import { Dictionary } from 'lodash';
 import { HttpService } from 'src/app/core/services/http/http.service';
 import { IContextMenuItem } from 'src/app/shared/components/context-menu/interfaces/context-menu-item.interface';
+import { ModalService } from 'src/app/shared/services/modal/modal.service';
 import { PopupService } from 'src/app/shared/services/popup/popup.service';
 
 import { LogCard } from '../../../shared/abstracts/log-card/log-card.abstract';
-import {
-  INetWorthApiMetaResponse,
-  INetWorthApiResponse
-} from '../../interfaces/net-worth-api-response.interface';
+import { INetWorthApiMetaResponse, INetWorthApiResponse } from '../../interfaces/net-worth-api-response.interface';
 
 @Component({
   selector: 'app-net-worth-log',
@@ -30,9 +28,10 @@ export class NetWorthLogComponent extends LogCard implements OnInit {
   constructor(
     private readonly _httpService: HttpService,
     private readonly _popupService: PopupService,
+    modalService: ModalService,
     router: Router
   ) {
-    super(router, 'net-worth');
+    super(router, modalService, 'net-worth');
   }
 
   ngOnInit(): void {

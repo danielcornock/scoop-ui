@@ -4,7 +4,12 @@
   [cardActions]="cardActions"
 >
   <app-table [tableColumns]="salaryLogMeta.fields | values">
-    <tr class="SalaryLog-row" *ngFor="let row of salaryLogItems">
+    <tr
+      class="SalaryLog-row"
+      *ngFor="let row of salaryLogItems"
+      appLongPress
+      (longPress)="onLongPress(row.date)"
+    >
       <td class="SalaryLog-rowItem">
         {{ row.date | date: 'MMMM y' }}
       </td>

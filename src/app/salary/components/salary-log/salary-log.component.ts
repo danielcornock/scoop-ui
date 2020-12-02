@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpService } from 'src/app/core/services/http/http.service';
 import { LogCard } from 'src/app/shared/abstracts/log-card/log-card.abstract';
+import { ModalService } from 'src/app/shared/services/modal/modal.service';
 import { PopupService } from 'src/app/shared/services/popup/popup.service';
 
 import { ISalaryMeta } from '../../interfaces/salary-meta.interface';
@@ -24,10 +25,10 @@ export class SalaryLogComponent extends LogCard implements OnInit {
   constructor(
     private readonly _httpService: HttpService,
     private readonly _popupService: PopupService,
-
+    modalService: ModalService,
     router: Router
   ) {
-    super(router, 'salary');
+    super(router, modalService, 'salary');
   }
 
   ngOnInit(): void {

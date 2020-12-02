@@ -3,6 +3,8 @@
     <tr
       class="MonthlyDistributionLogCard-row"
       *ngFor="let log of monthlyDistributionLogCardItems"
+      appLongPress
+      (longPress)="onLongPress(log.date)"
     >
       <td class="MonthlyDistributionLogCard-rowItem">
         {{ log.date | date: 'MMMM y' }}

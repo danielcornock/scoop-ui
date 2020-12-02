@@ -4,6 +4,7 @@ import { startCase } from 'lodash';
 import { HttpService } from 'src/app/core/services/http/http.service';
 import { LogCard } from 'src/app/shared/abstracts/log-card/log-card.abstract';
 import { IContextMenuItem } from 'src/app/shared/components/context-menu/interfaces/context-menu-item.interface';
+import { ModalService } from 'src/app/shared/services/modal/modal.service';
 import { PopupService } from 'src/app/shared/services/popup/popup.service';
 
 import { IMonthlyDistributionLog } from '../../interfaces/monthly-distribution-log.interface';
@@ -29,9 +30,10 @@ export class MonthlyDistributionLogCardComponent extends LogCard
   constructor(
     private readonly _httpService: HttpService,
     private readonly _popupService: PopupService,
+    modalService: ModalService,
     router: Router
   ) {
-    super(router, 'monthly-distribution');
+    super(router, modalService, 'monthly-distribution');
   }
 
   ngOnInit(): void {

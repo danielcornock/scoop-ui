@@ -4,7 +4,12 @@
   [cardActions]="cardActions"
 >
   <app-table [tableColumns]="netWorthMeta.fields">
-    <tr class="NetWorthLog-row" *ngFor="let row of logs">
+    <tr
+      class="NetWorthLog-row"
+      *ngFor="let row of logs"
+      appLongPress
+      (longPress)="onLongPress(row.date)"
+    >
       <td class="NetWorthLog-rowItem">
         {{ row.date | date: 'MMMM y' }}
       </td>

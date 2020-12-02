@@ -13,6 +13,8 @@
     <tr
       class="InvestmentsLogCard-row"
       *ngFor="let row of investmentsLogCardItems"
+      appLongPress
+      (longPress)="onLongPress(row.date)"
     >
       <td class="InvestmentsLogCard-rowItem">
         {{ row.date | date: 'MMMM y' }}

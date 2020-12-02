@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { HttpService } from 'src/app/core/services/http/http.service';
 import { LogCard } from 'src/app/shared/abstracts/log-card/log-card.abstract';
 import { IContextMenuItem } from 'src/app/shared/components/context-menu/interfaces/context-menu-item.interface';
+import { ModalService } from 'src/app/shared/services/modal/modal.service';
 import { PopupService } from 'src/app/shared/services/popup/popup.service';
 
 import { IInvestmentLog } from '../../interfaces/investment-log.interface';
@@ -27,9 +28,10 @@ export class InvestmentsLogCardComponent extends LogCard implements OnInit {
   constructor(
     private readonly _httpService: HttpService,
     private readonly _popupService: PopupService,
+    modalService: ModalService,
     router: Router
   ) {
-    super(router, 'investments');
+    super(router, modalService, 'investments');
   }
 
   public ngOnInit(): void {
