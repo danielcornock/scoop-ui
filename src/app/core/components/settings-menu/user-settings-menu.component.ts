@@ -54,11 +54,20 @@ export class UserSettingsMenuComponent implements OnInit {
         icon: 'user'
       },
       {
+        label: 'User Manual',
+        action: this._goToDocumentation.bind(this),
+        icon: 'external-link'
+      },
+      {
         label: 'Log Out',
         action: this._logOut.bind(this),
         icon: 'log-out'
       }
     ];
+  }
+
+  private _goToDocumentation(): void {
+    window.open('https://www.scoopfinance.co.uk/documentation');
   }
 
   private _getAction(): void {
