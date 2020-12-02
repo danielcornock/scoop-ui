@@ -33,11 +33,13 @@ export class LongPressDirective implements OnInit, OnDestroy {
     this.destroy$.unsubscribe();
   }
 
+  @HostListener('ontouchend')
   @HostListener('mouseup', ['$event'])
   public onMouseUp(): void {
     this.mouseup$.next(true);
   }
 
+  @HostListener('ontouchstart')
   @HostListener('mousedown', ['$event'])
   public onMouseDown(): void {
     this.mousedown$.next(true);
