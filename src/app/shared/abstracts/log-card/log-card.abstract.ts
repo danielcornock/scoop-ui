@@ -35,8 +35,6 @@ export abstract class LogCard {
               details:
                 'This will permanently delete your entry. Do you wish to continue?'
             });
-
-            this.removeLog(date);
           }
         },
         {
