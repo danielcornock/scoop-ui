@@ -12,7 +12,7 @@
     position: relative;
 
     & + & {
-      &::after {
+      &::before {
         box-sizing: border-box;
         content: '';
         position: absolute;
