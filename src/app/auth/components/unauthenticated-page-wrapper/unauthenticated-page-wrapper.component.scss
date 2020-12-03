@@ -3,12 +3,13 @@
 :host {
   display: block;
   height: 100%;
+  overflow-y: auto;
 }
 
 .UnauthenticatedPageWrapper {
   &-container {
     @include center-contents;
-    height: 100%;
+    min-height: 100%;
     background-image: linear-gradient(
       to bottom,
       rgba($color-primary, 0.8),
@@ -32,7 +33,7 @@
     width: 100%;
 
     @include media-phone-sm {
-      padding: $spacing-80 $spacing-20 $spacing-50;
+      padding: $spacing-50 $spacing-20 $spacing-50;
     }
   }
 
@@ -43,6 +44,11 @@
     margin: auto;
     margin-bottom: $spacing-60;
     position: relative;
+
+    @include media-phone-sm {
+      margin-bottom: $spacing-40;
+      transform: scale(0.8);
+    }
   }
 
   &-brandingBeta {

@@ -8,6 +8,11 @@
 .PrivacyPolicy {
   &-container {
     padding: 0 $spacing-20;
+
+    @include media-phone {
+      padding: 0;
+      font-size: 14px;
+    }
   }
 
   &-heading {
