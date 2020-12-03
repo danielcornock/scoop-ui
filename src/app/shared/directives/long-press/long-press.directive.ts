@@ -1,8 +1,25 @@
-import { Directive, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import {
+  Directive,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output
+} from '@angular/core';
 import { BehaviorSubject, Subject, timer } from 'rxjs';
-import { filter, switchMap, takeUntil, tap, withLatestFrom } from 'rxjs/operators';
+import {
+  filter,
+  switchMap,
+  takeUntil,
+  tap,
+  withLatestFrom
+} from 'rxjs/operators';
 
-import { SCREEN_SIZE, ScreenWidthService } from '../../services/screen-width/screen-width.service';
+import {
+  SCREEN_SIZE,
+  ScreenWidthService
+} from '../../services/screen-width/screen-width.service';
 
 @Directive({
   selector: '[appLongPress]'
@@ -22,6 +39,7 @@ export class LongPressDirective implements OnInit, OnDestroy {
   constructor(private readonly _screenWidthService: ScreenWidthService) {}
 
   public ngOnInit(): void {
+    this._listenForLongPress();
     this._screenWidthService.getScreenWidth$().subscribe((width) => {
       this._isMobile = width === SCREEN_SIZE.Mobile;
     });
@@ -32,27 +50,22 @@ export class LongPressDirective implements OnInit, OnDestroy {
     this._destroy$.unsubscribe();
   }
 
-  @HostListener('ontouchend')
+  @HostListener('touchend')
   @HostListener('mouseup')
   public onMouseUp(): void {
     this._mouseup$.next(true);
   }
 
-  @HostListener('ontouchstart')
+  @HostListener('touchstart')
   @HostListener('mousedown')
-  @HostListener('click')
   public onMouseDown(): void {
-    if (this._isMobile) {
-      this.longPress.emit();
-      /* Currently unused until I can get long press to work on mobile */
-      // this._mousedown$.next(true);
-    }
+    this._mousedown$.next(true);
   }
 
-  /* Currently unused until I can get long press to work on mobile */
   private _listenForLongPress(): void {
     this._mousedown$
       .pipe(
+        filter(() => this._isMobile),
         tap(() => this._mouseup$.next(false)),
         switchMap(() => timer(this.appLongPress || 500)),
         withLatestFrom(this._mouseup$),
