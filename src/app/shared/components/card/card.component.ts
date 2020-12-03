@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+
 import { IContextMenuItem } from '../context-menu/interfaces/context-menu-item.interface';
 
 @Component({

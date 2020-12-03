@@ -15,7 +15,7 @@
   }
 
   &-headerItem {
-    @include table-row;
+    padding: $spacing-15 0;
     text-align: left;
     font-size: 16px;
     font-weight: 400;

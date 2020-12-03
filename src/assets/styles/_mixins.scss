@@ -25,10 +25,16 @@
 
 @mixin table-row {
   padding: $spacing-15 0;
+
+  @include media-phone {
+    &:hover {
+      background-color: $color-primary-light-solid;
+    }
+  }
 }
 
 @mixin table-row-item {
-  @include table-row;
+  padding: $spacing-15 0;
   color: $color-table-content;
   border-top: 1px solid $color-table-divider;
   white-space: nowrap;
