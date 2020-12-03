@@ -300,3 +300,23 @@
     background-color: darken($color-primary, 10%);
   }
 }
+
+@mixin settings-save-button {
+  @include button-default;
+  position: fixed;
+  bottom: $spacing-30;
+  right: $spacing-30;
+  z-index: 100;
+  border-radius: $br-max;
+
+  @include media-phone {
+    /* To account for menu at botton */
+    bottom: 64px + $spacing-15;
+    right: $spacing-15;
+    padding: $spacing-15 $spacing-20;
+  }
+
+  &:hover {
+    background-color: darken($color-primary, 10%);
+  }
+}
