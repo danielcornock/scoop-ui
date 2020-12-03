@@ -7,8 +7,7 @@
     <tr
       class="NetWorthLog-row"
       *ngFor="let row of logs"
-      appLongPress
-      (longPress)="onLongPress(row.date)"
+      (click)="onLongPress(row.date)"
     >
       <td class="NetWorthLog-rowItem">
         {{ row.date | date: 'MMMM y' }}

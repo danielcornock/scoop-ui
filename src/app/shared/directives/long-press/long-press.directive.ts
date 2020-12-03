@@ -52,13 +52,13 @@ export class LongPressDirective implements OnInit, OnDestroy {
 
   @HostListener('touchend')
   @HostListener('mouseup')
-  public onMouseUp(): void {
+  public onTouchEnd(): void {
     this._mouseup$.next(true);
   }
 
   @HostListener('touchstart')
   @HostListener('mousedown')
-  public onMouseDown(): void {
+  public onTouch(): void {
     this._mousedown$.next(true);
   }
 

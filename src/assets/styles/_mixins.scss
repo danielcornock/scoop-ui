@@ -26,10 +26,9 @@
 @mixin table-row {
   padding: $spacing-15 0;
 
-  @include media-phone {
-    &:hover {
-      background-color: $color-primary-light-solid;
-    }
+  &:hover {
+    background-color: $color-primary-light-solid;
+    cursor: pointer;
   }
 }
 

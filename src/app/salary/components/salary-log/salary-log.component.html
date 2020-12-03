@@ -7,8 +7,7 @@
     <tr
       class="SalaryLog-row"
       *ngFor="let row of salaryLogItems"
-      appLongPress
-      (longPress)="onLongPress(row.date)"
+      (click)="onLongPress(row.date)"
     >
       <td class="SalaryLog-rowItem">
         {{ row.date | date: 'MMMM y' }}
