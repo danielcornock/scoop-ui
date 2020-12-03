@@ -5,11 +5,20 @@
     @include button-reset;
     display: flex;
     align-items: center;
-    padding: 12px;
+    flex-direction: column;
+    padding: 15px 10px;
     color: $color-table-header;
     width: 100%;
     border-radius: $br-med;
     position: relative;
+
+    &:last-child {
+      padding-bottom: 5px;
+    }
+
+    &:first-child {
+      padding-top: 5px;
+    }
 
     & + & {
       &::before {
@@ -23,16 +32,13 @@
         background-color: $color-table-divider;
       }
     }
-
-    &:hover {
-      background-color: $color-primary-light;
-    }
   }
 
   &-icon {
     display: block;
-    margin-right: $spacing-10;
+    margin-bottom: $spacing-5;
     color: $color-table-header;
+    color: $color-primary-gradient;
   }
 
   &-text {
