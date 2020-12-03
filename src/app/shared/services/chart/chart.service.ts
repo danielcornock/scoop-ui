@@ -91,7 +91,9 @@ export class ChartService {
         yAxes: [
           {
             gridLines: {
-              display: false
+              display: true,
+              color: '#eeeeee',
+              drawOnChartArea: false
             },
             ticks: {
               fontFamily: 'Quicksand',
@@ -99,21 +101,20 @@ export class ChartService {
               fontColor: '#a0a0a0',
               fontSize: 12,
               stepSize: lineChartConfig?.yAxisStepSize,
-              beginAtZero: false
+              beginAtZero: false,
+              display: true
             }
           }
         ],
         xAxes: [
           {
-            display: false,
             gridLines: {
-              display: false
+              display: true,
+              color: '#eeeeee',
+              drawOnChartArea: false
             },
             ticks: {
-              fontFamily: 'Quicksand',
-              fontStyle: '500',
-              fontColor: '#a0a0a0',
-              fontSize: 12,
+              display: false,
               beginAtZero: false
             }
           }
