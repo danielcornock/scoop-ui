@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FeatherModule } from 'angular-feather';
 import { allIcons } from 'angular-feather/icons';
 import { NgxSpinnerModule } from 'ngx-spinner';
@@ -21,6 +20,7 @@ import { FormSubmitComponent } from './components/form-submit/form-submit.compon
 import { IconPickerComponent } from './components/icon-picker/icon-picker.component';
 import { InformationComponent } from './components/information/information.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
+import { LogActionsModalComponent } from './components/log-actions-modal/log-actions-modal.component';
 import { TableActionsComponent } from './components/table-actions/table-actions.component';
 import { TableComponent } from './components/table/table.component';
 import { LongPressDirective } from './directives/long-press/long-press.directive';
@@ -28,7 +28,6 @@ import { JoinPipe } from './pipes/join/join.pipe';
 import { KebabCasePipe } from './pipes/kebab-case/kebab-case.pipe';
 import { KeysPipe } from './pipes/keys/keys.pipe';
 import { ValuesPipe } from './pipes/values.pipe';
-import { LogActionsModalComponent } from './components/log-actions-modal/log-actions-modal.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +59,6 @@ import { LogActionsModalComponent } from './components/log-actions-modal/log-act
     ReactiveFormsModule,
     MatMenuModule,
     MatSelectModule,
-    BrowserAnimationsModule,
     MatDialogModule,
     ToastrModule.forRoot({
       positionClass: 'toast-top-right',

@@ -13,7 +13,6 @@ import { TokenInterceptor } from './auth/interceptors/token/token.interceptor';
 import { CoreModule } from './core/core.module';
 import { InvestmentsModule } from './investments/investments.module';
 import { MonthlyDistributionModule } from './monthly-distribution/monthly-distribution.module';
-import { NetWorthModule } from './net-worth/net-worth.module';
 import { AppRoutingModule } from './routing/app-routing.module';
 import { SalaryModule } from './salary/salary.module';
 import { SettingsModule } from './settings/settings.module';
@@ -27,7 +26,6 @@ import { SharedModule } from './shared/shared.module';
     SharedModule,
     CoreModule,
     InvestmentsModule,
-    NetWorthModule,
     AuthModule,
     BrowserAnimationsModule,
     MonthlyDistributionModule,

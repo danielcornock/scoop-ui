@@ -1,4 +1,4 @@
-import { CommonModule, PercentPipe } from '@angular/common';
+import { CommonModule, CurrencyPipe, PercentPipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -12,8 +12,8 @@ import {
 } from './components/investments-monthly-change-card/investments-monthly-change-card.component';
 import { TrendsCardComponent } from './components/trends-card/trends-card.component';
 import { InvestmentsEntryFormComponent } from './views/investments-entry-form/investments-entry-form.component';
-import { InvestmentsComponent } from './views/investments/investments.component';
 import { InvestmentsUpdateFormComponent } from './views/investments-update-form/investments-update-form.component';
+import { InvestmentsComponent } from './views/investments/investments.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +34,6 @@ import { InvestmentsUpdateFormComponent } from './views/investments-update-form/
     RouterModule
   ],
   exports: [],
-  providers: [PercentPipe]
+  providers: [PercentPipe, CurrencyPipe]
 })
 export class InvestmentsModule {}
