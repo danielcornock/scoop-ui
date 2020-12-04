@@ -5,7 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatChipsModule } from '@angular/material/chips';
 import { NgxFormTrooperModule } from 'ngx-form-trooper';
 
-import { CoreModule } from '../core/core.module';
 import { SharedModule } from '../shared/shared.module';
 import { ChangePasswordFormComponent } from './components/change-password-form/change-password-form.component';
 import {
@@ -44,7 +43,6 @@ import { UserSettingsComponent } from './views/user-settings/user-settings.compo
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    CoreModule,
     NgxFormTrooperModule
   ]
 })

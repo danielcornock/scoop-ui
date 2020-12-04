@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgxFormTrooperModule } from 'ngx-form-trooper';
 
-import { CoreModule } from '../core/core.module';
 import { SharedModule } from '../shared/shared.module';
 import {
   SalaryDistributionChartComponent,
@@ -29,8 +28,7 @@ import { SalaryComponent } from './views/salary/salary.component';
     NgxFormTrooperModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forChild(salaryRoutes),
-    CoreModule
+    RouterModule.forChild(salaryRoutes)
   ],
   providers: [CurrencyPipe, PercentPipe]
 })
