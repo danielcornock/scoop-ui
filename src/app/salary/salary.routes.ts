@@ -5,11 +5,11 @@ import { SalaryComponent } from './views/salary/salary.component';
 
 export const salaryRoutes: Routes = [
   {
-    path: 'salary',
+    path: '',
     component: SalaryComponent
   },
   {
-    path: 'salary/create',
+    path: 'create',
     component: SalaryEntryFormComponent
   }
 ];

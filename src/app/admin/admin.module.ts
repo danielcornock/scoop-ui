@@ -1,10 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { NgxFormTrooperModule } from 'ngx-form-trooper';
 
 import { CoreModule } from '../core/core.module';
 import { SharedModule } from '../shared/shared.module';
+import { adminRoutes } from './admin.routes';
 import { AdminKeyActionsComponent } from './components/admin-key-actions/admin-key-actions.component';
 import {
   CreateCustomNotificationModalComponent,
@@ -27,7 +29,8 @@ import { CreateNewsletterComponent } from './views/create-newsletter/create-news
     NgxFormTrooperModule,
     FormsModule,
     ReactiveFormsModule,
-    CoreModule
+    CoreModule,
+    RouterModule.forChild(adminRoutes)
   ]
 })
 export class AdminModule {}

@@ -11,6 +11,7 @@ import {
   InvestmentsMonthlyChangeCardComponent,
 } from './components/investments-monthly-change-card/investments-monthly-change-card.component';
 import { TrendsCardComponent } from './components/trends-card/trends-card.component';
+import { investmentRoutes } from './investments.routes';
 import { InvestmentsEntryFormComponent } from './views/investments-entry-form/investments-entry-form.component';
 import { InvestmentsUpdateFormComponent } from './views/investments-update-form/investments-update-form.component';
 import { InvestmentsComponent } from './views/investments/investments.component';
@@ -31,7 +32,7 @@ import { InvestmentsComponent } from './views/investments/investments.component'
     NgxFormTrooperModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule.forChild(investmentRoutes)
   ],
   exports: [],
   providers: [PercentPipe, CurrencyPipe]

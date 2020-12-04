@@ -5,11 +5,11 @@ import { CreateNewsletterComponent } from './views/create-newsletter/create-news
 
 export const adminRoutes: Routes = [
   {
-    path: 'admin',
+    path: '',
     component: AdminComponent
   },
   {
-    path: 'admin/create-newsletter',
+    path: 'create-newsletter',
     component: CreateNewsletterComponent
   }
 ];

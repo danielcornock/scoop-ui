@@ -9,13 +9,22 @@ import {
   MonthlyDistributionLogCardComponent,
 } from './components/monthly-distribution-log-card/monthly-distribution-log-card.component';
 import {
+  MonthlyDistributionPieChartComponent,
+} from './components/monthly-distribution-pie-chart/monthly-distribution-pie-chart.component';
+import {
+  MonthlyDistributionSpendingTrendChartComponent,
+} from './components/monthly-distribution-spending-trend-chart/monthly-distribution-spending-trend-chart.component';
+import {
+  UncommittedSpendingChartComponent,
+} from './components/uncommitted-spending-chart/uncommitted-spending-chart.component';
+import { monthlyDistributionRoutes } from './monthly-distribution.routes';
+import {
   MonthlyDistributionEntryFormComponent,
 } from './views/monthly-distribution-entry-form/monthly-distribution-entry-form.component';
+import {
+  MonthlyDistributionUpdateFormComponent,
+} from './views/monthly-distribution-update-form/monthly-distribution-update-form.component';
 import { MonthlyDistributionComponent } from './views/monthly-distribution/monthly-distribution.component';
-import { MonthlyDistributionPieChartComponent } from './components/monthly-distribution-pie-chart/monthly-distribution-pie-chart.component';
-import { MonthlyDistributionSpendingTrendChartComponent } from './components/monthly-distribution-spending-trend-chart/monthly-distribution-spending-trend-chart.component';
-import { UncommittedSpendingChartComponent } from './components/uncommitted-spending-chart/uncommitted-spending-chart.component';
-import { MonthlyDistributionUpdateFormComponent } from './views/monthly-distribution-update-form/monthly-distribution-update-form.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +42,7 @@ import { MonthlyDistributionUpdateFormComponent } from './views/monthly-distribu
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-    RouterModule
+    RouterModule.forChild(monthlyDistributionRoutes)
   ]
 })
 export class MonthlyDistributionModule {}

@@ -6,15 +6,15 @@ import { InvestmentsComponent } from './views/investments/investments.component'
 
 export const investmentRoutes: Routes = [
   {
-    path: 'investments/edit/:date',
+    path: 'edit/:date',
     component: InvestmentsUpdateFormComponent
   },
   {
-    path: 'investments',
+    path: '',
     component: InvestmentsComponent
   },
   {
-    path: 'investments/create',
+    path: 'create',
     component: InvestmentsEntryFormComponent
   }
 ];
