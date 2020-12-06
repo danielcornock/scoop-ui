@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatSelectModule } from '@angular/material/select';
 import { FeatherModule } from 'angular-feather';
 import { allIcons } from 'angular-feather/icons';
+import { NgxFormTrooperModule } from 'ngx-form-trooper';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ToastrModule } from 'ngx-toastr';
 
@@ -16,6 +16,7 @@ import { DashboardSummaryComponent } from './components/dashboard-summary/dashbo
 import { DetailedContextMenuComponent } from './components/detailed-context-menu/detailed-context-menu.component';
 import { FloatingActionButtonComponent } from './components/floating-action-button/floating-action-button.component';
 import { FormErrorsComponent } from './components/form-errors/form-errors.component';
+import { FormModalComponent } from './components/form-modal/form-modal.component';
 import { FormSubmitComponent } from './components/form-submit/form-submit.component';
 import { IconPickerComponent } from './components/icon-picker/icon-picker.component';
 import { InformationComponent } from './components/information/information.component';
@@ -49,7 +50,8 @@ import { ValuesPipe } from './pipes/values.pipe';
     InformationComponent,
     FloatingActionButtonComponent,
     LongPressDirective,
-    LogActionsModalComponent
+    LogActionsModalComponent,
+    FormModalComponent
   ],
   imports: [
     CommonModule,
@@ -57,8 +59,8 @@ import { ValuesPipe } from './pipes/values.pipe';
     NgxSpinnerModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxFormTrooperModule,
     MatMenuModule,
-    MatSelectModule,
     MatDialogModule,
     ToastrModule.forRoot({
       positionClass: 'toast-top-right',
@@ -84,7 +86,8 @@ import { ValuesPipe } from './pipes/values.pipe';
     ValuesPipe,
     InformationComponent,
     FloatingActionButtonComponent,
-    LongPressDirective
+    LongPressDirective,
+    FormModalComponent
   ]
 })
 export class SharedModule {}

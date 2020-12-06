@@ -1,0 +1,21 @@
+@import 'src/assets/styles/themes.scss';
+
+.FormModal {
+  &-container {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+
+    @include media-phone {
+      width: 100%;
+    }
+  }
+
+  &-subheading {
+    @include modal-title;
+  }
+
+  &-submit {
+    margin-top: $spacing-50;
+  }
+}

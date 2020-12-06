@@ -1,0 +1,21 @@
+<div class="FormModal-container">
+  <h3 class="FormModal-subheading">
+    {{ data.title }}
+  </h3>
+  <form
+    (ngSubmit)="submit()"
+    class="FormModal-form"
+    [formGroup]="form.formGroup"
+  >
+    <ngx-form-input-item
+      *ngFor="let field of form.fields"
+      [formInputField]="field"
+    ></ngx-form-input-item>
+    <app-form-errors [appFormErrors]="errors"></app-form-errors>
+    <app-form-submit
+      class="FormModal-submit"
+      [form]="form.formGroup"
+      [value]="data.actionLabel"
+    ></app-form-submit>
+  </form>
+</div>
