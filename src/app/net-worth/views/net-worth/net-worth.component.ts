@@ -3,12 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpService } from 'src/app/core/services/http/http.service';
-import { IDashboardSummaryItem } from 'src/app/shared/components/dashboard-summary/interfaces/dashboard-summary-item.interface';
-
 import {
-  INetWorthApiMetaResponse,
-  INetWorthApiResponse
-} from '../../interfaces/net-worth-api-response.interface';
+  IDashboardSummaryItem,
+} from 'src/app/shared/components/dashboard-summary/interfaces/dashboard-summary-item.interface';
+
+import { INetWorthApiMetaResponse, INetWorthApiResponse } from '../../interfaces/net-worth-api-response.interface';
 
 @Component({
   selector: 'app-net-worth',

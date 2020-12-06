@@ -13,11 +13,12 @@
     grid-template-areas:
       'summary summary summary'
       'pie line bar'
+      'goals goals goals'
       'log log log';
 
     @include media-sd() {
       grid-template-columns: repeat(2, 1fr);
-      grid-template-areas: 'summary line' 'pie bar' 'log log';
+      grid-template-areas: 'summary line' 'pie bar' 'goals goals' 'log log';
     }
 
     @include media-tablet {
@@ -40,6 +41,10 @@
         margin-top: $spacing-20;
       }
     }
+  }
+
+  &-goals {
+    grid-area: goals;
   }
 
   &-summary {

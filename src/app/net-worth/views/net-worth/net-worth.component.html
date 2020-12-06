@@ -32,6 +32,12 @@
         [netWorthLogItems]="netWorthItems"
         [netWorthMeta]="netWorthMeta"
       ></app-net-worth-log>
+
+      <app-net-worth-goals-card
+        class="NetWorth-item NetWorth-goals animate-list-item"
+        [netWorthGoalsCardGoals]="netWorthMeta.goals"
+        [netWorthGoalsCardMeta]="netWorthMeta"
+      ></app-net-worth-goals-card>
     </div>
   </ng-template>
 </div>
