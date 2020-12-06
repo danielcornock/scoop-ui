@@ -89,6 +89,10 @@
   font-weight: 500;
   padding: $spacing-10 $spacing-15;
   border-radius: $br-sm;
+
+  &:hover {
+    background-color: darken($color-primary, 10%);
+  }
 }
 
 @mixin page-subheading {
@@ -314,9 +318,5 @@
     bottom: 64px + $spacing-15;
     right: $spacing-15;
     padding: $spacing-15 $spacing-20;
-  }
-
-  &:hover {
-    background-color: darken($color-primary, 10%);
   }
 }
