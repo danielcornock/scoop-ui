@@ -34,15 +34,16 @@ export class TrendsCardComponent implements OnInit {
           {
             label: 'Total Invested',
             data: this._getArrayOfFields('invested') as number[],
-            borderColor: 'rgba(28,128,220, 1)',
-            backgroundColor: 'rgba(28,128,220, 0.08)',
-            borderWidth: 2
+            borderColor: 'rgba(28,128,220, 0.6)',
+            backgroundColor: 'transparent',
+            borderWidth: 2,
+            borderDash: [5]
           },
           {
             label: 'Investment Value',
             data: this._getArrayOfFields('value') as number[],
-            borderColor: 'green',
-            backgroundColor: 'rgba(54,87,220, 0.08)',
+            borderColor: 'rgba(28,128,220, 1)',
+            backgroundColor: 'rgba(28,128,220, 0.08)',
             borderWidth: 2
           }
         ]
