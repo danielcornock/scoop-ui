@@ -23,6 +23,14 @@ export class SalaryLineChartComponent implements OnInit {
           borderColor: 'rgba(28,128,220, 1)',
           backgroundColor: 'rgba(28,128,220, 0.08)',
           borderWidth: 2
+        },
+        {
+          label: 'Gross Salary',
+          data: this._getArrayOfFields('grossSalary').map(Math.round),
+          borderColor: 'rgba(28,128,220, 0.6)',
+          backgroundColor: 'rgba(28,128,220, 0.08)',
+          borderWidth: 2,
+          borderDash: [5]
         }
       ]
     });

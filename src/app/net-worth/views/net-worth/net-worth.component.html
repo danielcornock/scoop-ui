@@ -27,17 +27,17 @@
         [netWorthMonthlyChangeData]="netWorthItems"
       ></app-net-worth-monthly-change-card>
 
-      <app-net-worth-log
-        class="NetWorth-item NetWorth-log animate-list-item"
-        [netWorthLogItems]="netWorthItems"
-        [netWorthMeta]="netWorthMeta"
-      ></app-net-worth-log>
-
       <app-net-worth-goals-card
         class="NetWorth-item NetWorth-goals animate-list-item"
         [netWorthGoalsCardGoals]="netWorthMeta.goals"
         [netWorthGoalsCardMeta]="netWorthMeta"
       ></app-net-worth-goals-card>
+
+      <app-net-worth-log
+        class="NetWorth-item NetWorth-log animate-list-item"
+        [netWorthLogItems]="netWorthItems"
+        [netWorthMeta]="netWorthMeta"
+      ></app-net-worth-log>
     </div>
   </ng-template>
 </div>
