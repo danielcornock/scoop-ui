@@ -7,7 +7,7 @@ import {
   IDashboardSummaryItem,
 } from 'src/app/shared/components/dashboard-summary/interfaces/dashboard-summary-item.interface';
 
-import { INetWorthApiMetaResponse, INetWorthApiResponse } from '../../interfaces/net-worth-api-response.interface';
+import { INetWorthData, INetWorthMeta } from '../../interfaces/net-worth-api-response.interface';
 
 @Component({
   selector: 'app-net-worth',
@@ -16,8 +16,8 @@ import { INetWorthApiMetaResponse, INetWorthApiResponse } from '../../interfaces
 })
 export class NetWorthComponent implements OnInit {
   public summaryItems: Array<IDashboardSummaryItem>;
-  public netWorthItems: Array<INetWorthApiResponse>;
-  public netWorthMeta: INetWorthApiMetaResponse;
+  public netWorthItems: Array<INetWorthData>;
+  public netWorthMeta: INetWorthMeta;
 
   constructor(
     private readonly _httpService: HttpService,

@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ILabelValuePair } from 'ngx-form-trooper/lib/interfaces/key-value.interface';
 import { ChartService } from 'src/app/shared/services/chart/chart.service';
 
-import { INetWorthApiResponse } from '../../interfaces/net-worth-api-response.interface';
+import { INetWorthData } from '../../interfaces/net-worth-api-response.interface';
 
 @Component({
   selector: 'app-net-worth-trends-card',
@@ -11,7 +11,7 @@ import { INetWorthApiResponse } from '../../interfaces/net-worth-api-response.in
 })
 export class NetWorthTrendsCardComponent implements OnInit {
   @Input()
-  public netWorthTrendsData: Array<INetWorthApiResponse>;
+  public netWorthTrendsData: Array<INetWorthData>;
 
   @Input()
   public netWorthPredictedData: ILabelValuePair<number>[];

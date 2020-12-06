@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { barChartColors } from 'src/app/shared/constants/chart-colors.constant';
 import { ChartService } from 'src/app/shared/services/chart/chart.service';
 
-import { INetWorthApiResponse } from '../../interfaces/net-worth-api-response.interface';
+import { INetWorthData } from '../../interfaces/net-worth-api-response.interface';
 
 @Component({
   selector: 'app-net-worth-monthly-change-card',
@@ -11,7 +11,7 @@ import { INetWorthApiResponse } from '../../interfaces/net-worth-api-response.in
 })
 export class NetWorthMonthlyChangeCardComponent implements OnInit {
   @Input()
-  public netWorthMonthlyChangeData: Array<INetWorthApiResponse>;
+  public netWorthMonthlyChangeData: Array<INetWorthData>;
 
   private _processedTrendsData: Array<{ date: string; change: number }>;
 

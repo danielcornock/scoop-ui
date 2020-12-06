@@ -6,7 +6,7 @@ import { ModalService } from 'src/app/shared/services/modal/modal.service';
 import { PopupService } from 'src/app/shared/services/popup/popup.service';
 
 import { LogCard } from '../../../shared/abstracts/log-card/log-card.abstract';
-import { INetWorthApiMetaResponse, INetWorthApiResponse } from '../../interfaces/net-worth-api-response.interface';
+import { INetWorthData, INetWorthMeta } from '../../interfaces/net-worth-api-response.interface';
 
 @Component({
   selector: 'app-net-worth-log',
@@ -15,10 +15,10 @@ import { INetWorthApiMetaResponse, INetWorthApiResponse } from '../../interfaces
 })
 export class NetWorthLogComponent extends LogCard implements OnInit {
   @Input()
-  public netWorthLogItems: Array<INetWorthApiResponse>;
+  public netWorthLogItems: Array<INetWorthData>;
 
   @Input()
-  public netWorthMeta: INetWorthApiMetaResponse;
+  public netWorthMeta: INetWorthMeta;
 
   public logs: Array<Dictionary<string | number>>;
 

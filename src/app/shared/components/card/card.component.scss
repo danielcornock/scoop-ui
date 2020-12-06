@@ -42,5 +42,9 @@
   &-content {
     padding: $spacing-20;
     overflow-y: auto;
+
+    @include media-phone {
+      padding-top: $spacing-10;
+    }
   }
 }

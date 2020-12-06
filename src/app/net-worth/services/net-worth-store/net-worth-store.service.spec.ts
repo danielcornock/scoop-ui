@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { NetWorthHttpService } from './net-worth-http.service';
+import { NetWorthStoreService } from './net-worth-store.service';
 
-describe('NetWorthHttpService', () => {
-  let service: NetWorthHttpService;
+describe('NetWorthStoreService', () => {
+  let service: NetWorthStoreService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(NetWorthHttpService);
+    service = TestBed.inject(NetWorthStoreService);
   });
 
   it('should be created', () => {

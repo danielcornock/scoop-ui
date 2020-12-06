@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth/auth.service';
 
 import { API_URL } from '../../providers/http.providers';
@@ -22,9 +23,7 @@ export class HttpService {
   }
 
   public get<T = any>(url: string): Promise<IHttpResponse<T>> {
-    return this._httpClient.get(`${this._apiUrl}${url}`).toPromise() as Promise<
-      IHttpResponse<T>
-    >;
+    return this.get$<T>(url).toPromise() as Promise<IHttpResponse<T>>;
   }
 
   public put(url: string, data: any): Promise<IHttpResponse> {
@@ -37,5 +36,11 @@ export class HttpService {
     return this._httpClient
       .delete(`${this._apiUrl}${url}`)
       .toPromise() as Promise<any>;
+  }
+
+  public get$<T = any>(url: string): Observable<IHttpResponse<T>> {
+    return this._httpClient.get(`${this._apiUrl}${url}`) as Observable<
+      IHttpResponse<T>
+    >;
   }
 }

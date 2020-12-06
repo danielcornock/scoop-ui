@@ -7,7 +7,7 @@ import { IContextMenuItem } from 'src/app/shared/components/context-menu/interfa
 import { FormModalComponent } from 'src/app/shared/components/form-modal/form-modal.component';
 import { ModalService } from 'src/app/shared/services/modal/modal.service';
 
-import { INetWorthApiMetaResponse } from '../../interfaces/net-worth-api-response.interface';
+import { INetWorthMeta } from '../../interfaces/net-worth-api-response.interface';
 import { INetWorthGoal } from '../../interfaces/net-worth-goal.interface';
 
 @Component({
@@ -20,7 +20,7 @@ export class NetWorthGoalsCardComponent implements OnInit, AfterViewInit {
   public netWorthGoalsCardGoals: Array<INetWorthGoal>;
 
   @Input()
-  public netWorthGoalsCardMeta: INetWorthApiMetaResponse;
+  public netWorthGoalsCardMeta: INetWorthMeta;
 
   public actions: Array<IContextMenuItem>;
   public showPercentage: boolean;

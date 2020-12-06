@@ -2,21 +2,13 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { capitalize } from 'lodash';
-import {
-  FormContainer,
-  FormFactory,
-  FormInputType,
-  IFormFactoryConfig
-} from 'ngx-form-trooper';
+import { FormContainer, FormFactory, FormInputType, IFormFactoryConfig } from 'ngx-form-trooper';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HeaderActionService } from 'src/app/core/services/header-action/header-action.service';
 import { HttpService } from 'src/app/core/services/http/http.service';
 import { BaseUpdateFormComponent } from 'src/app/shared/abstracts/base-update-form/base-update-form.abstract';
 
-import {
-  INetWorthApiMetaResponse,
-  INetWorthApiResponse
-} from '../../interfaces/net-worth-api-response.interface';
+import { INetWorthData, INetWorthMeta } from '../../interfaces/net-worth-api-response.interface';
 
 @Component({
   selector: 'app-net-worth-update-form',
@@ -24,14 +16,9 @@ import {
   styleUrls: ['../net-worth-entry-form/net-worth-entry-form.component.scss']
 })
 export class NetWorthUpdateFormComponent
-  extends BaseUpdateFormComponent<
-    INetWorthApiResponse,
-    INetWorthApiMetaResponse
-  >
+  extends BaseUpdateFormComponent<INetWorthData, INetWorthMeta>
   implements OnInit, OnDestroy {
   public formFields: Array<FormControl>;
-
-  private _fields: Array<string>;
 
   constructor(
     formFactory: FormFactory,
