@@ -3,7 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpService } from 'src/app/core/services/http/http.service';
-import { IDashboardSummaryItem } from 'src/app/shared/components/dashboard-summary/interfaces/dashboard-summary-item.interface';
+import {
+  IDashboardSummaryItem,
+} from 'src/app/shared/components/dashboard-summary/interfaces/dashboard-summary-item.interface';
 
 import { ISalaryMeta } from '../../interfaces/salary-meta.interface';
 import { ISalary } from '../../interfaces/salary.interface';
@@ -72,9 +74,9 @@ export class SalaryComponent implements OnInit {
         icon: 'calendar'
       },
       {
-        label: 'Projected Tax Return',
-        value: this._toCurrency(values.projectedTaxReturn),
-        icon: 'corner-down-left'
+        label: 'Projected Net Salary',
+        value: this._toCurrency(values.projectedNetSalary),
+        icon: 'trending-up'
       },
       {
         label: 'Annual Take Home',
@@ -85,6 +87,11 @@ export class SalaryComponent implements OnInit {
         label: 'Annual Tax Percentage',
         value: this._toPercentage(values.taxPercentage),
         icon: 'percent'
+      },
+      {
+        label: 'Projected Tax Return',
+        value: this._toCurrency(values.projectedTaxReturn),
+        icon: 'corner-down-left'
       }
     ];
   }
