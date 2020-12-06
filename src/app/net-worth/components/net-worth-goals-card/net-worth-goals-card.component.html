@@ -1,0 +1,84 @@
+<app-card cardTitle="Goals" [cardActions]="actions">
+  <p
+    class="NetWorthGoalsCard-noContent"
+    *ngIf="!netWorthGoalsCardGoals?.length; else content"
+  >
+    You haven't created any goals yet!
+    <button class="NetWorthGoalsCard-createGoal" (click)="openModal()">
+      Create one now
+    </button>
+  </p>
+  <ng-template #content>
+    <div
+      class="NetWorthGoalsCard-goal"
+      *ngFor="let goal of netWorthGoalsCardGoals"
+    >
+      <div class="NetWorthGoalsCard-itemHeader">
+        <div class="NetWorthGoalsCard-title">
+          {{ goal.title | titlecase }}
+          <button
+            class="NetWorthGoalsCard-delete"
+            aria-label="Delete goal"
+            *ngIf="isEditing"
+            (click)="deleteGoal(goal._id)"
+          >
+            <i-feather name="x"></i-feather>
+          </button>
+        </div>
+        <div
+          class="NetWorthGoalsCard-completed"
+          *ngIf="goal.completed; else endDate"
+        >
+          <i-feather
+            class="NetWorthGoalsCard-pillIcon"
+            name="check"
+          ></i-feather>
+          <span class="NetWorthGoalsCard-pillLabel">Completed</span>
+        </div>
+        <ng-template #endDate>
+          <div class="NetWorthGoalsCard-endDate" *ngIf="goal.endDate">
+            <i-feather
+              class="NetWorthGoalsCard-pillIcon"
+              name="calendar"
+            ></i-feather>
+            <span class="NetWorthGoalsCard-pillLabel">{{
+              goal.endDate | date
+            }}</span>
+          </div>
+        </ng-template>
+      </div>
+      <div class="NetWorthGoalsCard-barLabels">
+        <div class="NetWorthGoalsCard-zero">
+          {{
+            goal.startingAmount
+              | currency: netWorthGoalsCardMeta.preferredCurrency:'symbol':'1.0'
+          }}
+        </div>
+        <div class="NetWorthGoalsCard-target">
+          {{
+            goal.target
+              | currency: netWorthGoalsCardMeta.preferredCurrency:'symbol':'1.0'
+          }}
+        </div>
+      </div>
+      <div class="NetWorthGoalsCard-bar">
+        <div
+          class="NetWorthGoalsCard-currentAmount"
+          [style.left]="showPercentage && goal.percentage * 100 + '%'"
+        >
+          {{
+            goal.current
+              | currency: netWorthGoalsCardMeta.preferredCurrency:'symbol':'1.0'
+          }}
+        </div>
+        <div
+          class="NetWorthGoalsCard-completedBar"
+          [style.width]="showPercentage && goal.percentage * 100 + '%'"
+        ></div>
+      </div>
+      <p class="NetWorthGoalsCard-motivation">
+        {{ goal.percentage | goalFeedback }}
+      </p>
+    </div>
+  </ng-template>
+</app-card>

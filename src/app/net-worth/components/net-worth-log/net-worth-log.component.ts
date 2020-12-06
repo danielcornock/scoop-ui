@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Dictionary } from 'lodash';
 import { HttpService } from 'src/app/core/services/http/http.service';
-import { IContextMenuItem } from 'src/app/shared/components/context-menu/interfaces/context-menu-item.interface';
 import { ModalService } from 'src/app/shared/services/modal/modal.service';
 import { PopupService } from 'src/app/shared/services/popup/popup.service';
 
@@ -22,8 +21,6 @@ export class NetWorthLogComponent extends LogCard implements OnInit {
   public netWorthMeta: INetWorthApiMetaResponse;
 
   public logs: Array<Dictionary<string | number>>;
-  public contextMenuItems: Array<IContextMenuItem>;
-  public isEditing: boolean;
 
   constructor(
     private readonly _httpService: HttpService,

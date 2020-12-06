@@ -1,6 +1,7 @@
-import { ILabelValuePair } from 'ngx-form-trooper/lib/interfaces/key-value.interface';
+import { ILabelValue } from 'src/app/shared/interfaces/label-value.interface';
 
 import { INetWorthCustomValues } from './net-worth-custom-values.interface';
+import { INetWorthGoal } from './net-worth-goal.interface';
 import { INetWorthSummaryItem } from './net-worth-summary-item.interface';
 
 export interface INetWorthApiResponse {
@@ -15,6 +16,8 @@ export interface INetWorthApiMetaResponse {
   preferredCurrency: string;
   fields: Array<string>;
   summaryItems: Array<INetWorthSummaryItem>;
-  barChartData: Array<ILabelValuePair>;
-  projectedNetWorth: Array<ILabelValuePair>;
+  barChartData: Array<ILabelValue>;
+  projectedNetWorth: Array<ILabelValue>;
+  goals: Array<INetWorthGoal>;
+  goalsFields: Array<string>;
 }

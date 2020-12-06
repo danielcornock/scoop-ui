@@ -1,0 +1,171 @@
+@import 'src/assets/styles/themes.scss';
+
+@mixin net-worth-goals-pill {
+  padding: $spacing-5 $spacing-10;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  border-radius: $br-sm;
+  font-size: 14px;
+}
+
+.NetWorthGoalsCard {
+  $cmp: &;
+
+  &-goal {
+    & + & {
+      margin-top: $spacing-30;
+      padding-top: $spacing-30;
+      border-top: 1px solid #eee;
+    }
+  }
+
+  &-delete {
+    @include button-reset;
+    color: $color-negative;
+    padding: 5px;
+    border-radius: $br-sm;
+    transition: background-color 250ms;
+    margin-left: 2px;
+
+    i-feather {
+      display: block;
+      height: 20px;
+      width: 20px;
+    }
+
+    &:hover {
+      background-color: $color-negative-background--light;
+    }
+  }
+
+  &-noContent {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    @include default-text;
+  }
+
+  &-createGoal {
+    @include button-default;
+    margin-top: $spacing-10;
+  }
+
+  &-bar {
+    height: 34px;
+    border-radius: $br-max;
+    overflow: hidden;
+    background-color: $color-page-background;
+    position: relative;
+  }
+
+  &-timePercentage {
+    width: 0px;
+    height: 120%;
+    top: 50%;
+    height: 100%;
+    transform: translateY(-50%);
+    border: 1px dashed $color-table-divider;
+    position: absolute;
+    z-index: 1000;
+  }
+
+  &-motivation {
+    font-size: 14px;
+    margin-top: $spacing-10;
+    color: $color-table-header;
+  }
+
+  &-completedBar {
+    transition: width 1000ms ease-in-out;
+    width: 0%;
+    height: 100%;
+    border-radius: $br-max;
+    max-width: 100%;
+    background: linear-gradient(
+      -45deg,
+      $color-primary,
+      $color-primary-gradient-solid,
+      #23a6d5,
+      #23d5ab
+    );
+    background-size: 400% 400%;
+    animation: gradient 3s ease infinite;
+  }
+
+  &-barLabels {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin-bottom: $spacing-10;
+  }
+
+  &-title {
+    font-size: 18px;
+    color: $color-table-content;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+  }
+
+  &-itemHeader {
+    margin-bottom: $spacing-15;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &-endDate {
+    @include net-worth-goals-pill;
+    background-color: $color-primary-light;
+    color: $color-primary;
+  }
+
+  &-completed {
+    @include net-worth-goals-pill;
+    background-color: $color-positive-background;
+    color: $color-positive;
+  }
+
+  &-pillIcon {
+    height: 16px;
+    width: 16px;
+    display: block;
+    margin-right: $spacing-5;
+  }
+
+  &-pillLabel {
+    display: inline-block;
+  }
+
+  &-zero,
+  &-target {
+    color: $color-table-header;
+    font-size: 14px;
+  }
+
+  &-currentAmount {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(-100%, -50%);
+    font-weight: 500;
+    color: $color-white;
+    padding-right: $spacing-10;
+    font-size: 16px;
+    z-index: 100;
+    transition: left 1000ms ease-in-out;
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

@@ -9,6 +9,7 @@ import { SharedModule } from '../shared/shared.module';
 import {
   NetWorthDistributionCardComponent,
 } from './components/net-worth-distribution-card/net-worth-distribution-card.component';
+import { NetWorthGoalsCardComponent } from './components/net-worth-goals-card/net-worth-goals-card.component';
 import { NetWorthLogComponent } from './components/net-worth-log/net-worth-log.component';
 import {
   NetWorthMonthlyChangeCardComponent,
@@ -18,6 +19,7 @@ import { netWorthRoutes } from './net-worth.routes';
 import { NetWorthEntryFormComponent } from './views/net-worth-entry-form/net-worth-entry-form.component';
 import { NetWorthUpdateFormComponent } from './views/net-worth-update-form/net-worth-update-form.component';
 import { NetWorthComponent } from './views/net-worth/net-worth.component';
+import { GoalFeedbackPipe } from './pipes/goal-feedback/goal-feedback.pipe';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { NetWorthComponent } from './views/net-worth/net-worth.component';
     NetWorthTrendsCardComponent,
     NetWorthMonthlyChangeCardComponent,
     NetWorthEntryFormComponent,
-    NetWorthUpdateFormComponent
+    NetWorthUpdateFormComponent,
+    NetWorthGoalsCardComponent,
+    GoalFeedbackPipe
   ],
   imports: [
     CommonModule,
