@@ -25,6 +25,7 @@ import { LogActionsModalComponent } from './components/log-actions-modal/log-act
 import { TableActionsComponent } from './components/table-actions/table-actions.component';
 import { TableComponent } from './components/table/table.component';
 import { LongPressDirective } from './directives/long-press/long-press.directive';
+import { CapitalizePipe } from './pipes/capitalize/capitalize.pipe';
 import { JoinPipe } from './pipes/join/join.pipe';
 import { KebabCasePipe } from './pipes/kebab-case/kebab-case.pipe';
 import { KeysPipe } from './pipes/keys/keys.pipe';
@@ -51,7 +52,8 @@ import { ValuesPipe } from './pipes/values.pipe';
     FloatingActionButtonComponent,
     LongPressDirective,
     LogActionsModalComponent,
-    FormModalComponent
+    FormModalComponent,
+    CapitalizePipe
   ],
   imports: [
     CommonModule,
@@ -87,7 +89,8 @@ import { ValuesPipe } from './pipes/values.pipe';
     InformationComponent,
     FloatingActionButtonComponent,
     LongPressDirective,
-    FormModalComponent
+    FormModalComponent,
+    CapitalizePipe
   ]
 })
 export class SharedModule {}
