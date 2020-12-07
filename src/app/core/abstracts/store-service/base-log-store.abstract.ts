@@ -1,7 +1,7 @@
 import { Dictionary } from 'lodash';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { filter, switchMap } from 'rxjs/operators';
 
 import { LogModelService } from '../../interfaces/log-model-service.interface';
 import { IHttpResponse } from '../../services/http/interfaces/http-response.interface';
@@ -10,7 +10,7 @@ export abstract class BaseLogStore<
   TCollection extends IHttpResponse<any[]>,
   TModel extends IHttpResponse<any>
 > {
-  private readonly _collection = new BehaviorSubject<TCollection>(null);
+  private _collection = new BehaviorSubject<TCollection>(null);
 
   private _models: Dictionary<TModel> = {};
 
@@ -25,13 +25,13 @@ export abstract class BaseLogStore<
 
   public clearCache(): void {
     this._models = {};
-    this.collection = undefined;
+    this._collection = new BehaviorSubject(null);
   }
 
   public getAll$(): Observable<TCollection> {
     return this._collection.asObservable().pipe(
       switchMap((data) => {
-        if (data === null) {
+        if (!data) {
           this._spinnerService.show();
           return this._modelService.getAll().pipe(
             switchMap((newData) => {
@@ -43,14 +43,16 @@ export abstract class BaseLogStore<
         } else {
           return of(data);
         }
-      })
+      }),
+      filter((val) => Boolean(val))
     );
   }
 
   public async update(date: string, data: any): Promise<void> {
     try {
       this._spinnerService.show();
-      const res = await this._modelService.update(date, data);
+      await this._modelService.update(date, data);
+      delete this._models[date];
       this.invalidateCollection();
     } finally {
       this._spinnerService.hide();
@@ -71,6 +73,7 @@ export abstract class BaseLogStore<
     try {
       this._spinnerService.show();
       await this._modelService.create(data);
+      delete this._models[data.date];
       this.invalidateCollection();
     } finally {
       this._spinnerService.hide();
