@@ -1,8 +1,8 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { combineLatest, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { combineLatest, of, Subject } from 'rxjs';
+import { switchMap, takeUntil } from 'rxjs/operators';
 import { AuthService } from 'src/app/auth/services/auth/auth.service';
 import { IContextMenuItem } from 'src/app/shared/components/context-menu/interfaces/context-menu-item.interface';
 import {
@@ -20,11 +20,13 @@ import { HttpService } from '../../services/http/http.service';
   templateUrl: './user-settings-menu.component.html',
   styleUrls: ['./user-settings-menu.component.scss']
 })
-export class UserSettingsMenuComponent implements OnInit {
+export class UserSettingsMenuComponent implements OnInit, OnDestroy {
   public menuItems: Array<IContextMenuItem>;
   public name: string;
   public notifications: Array<IDetailedContextMenuItem>;
   public action: IHeaderAction | null;
+
+  private _destroy$ = new Subject<void>();
 
   constructor(
     private readonly _authService: AuthService,
@@ -40,6 +42,11 @@ export class UserSettingsMenuComponent implements OnInit {
     this.name = this._authService.getLoggedInUserName();
     this._getNotifications();
     this._setMenuItems();
+  }
+
+  ngOnDestroy(): void {
+    this._destroy$.next();
+    this._destroy$.complete();
   }
 
   public goBack(): void {
@@ -86,7 +93,8 @@ export class UserSettingsMenuComponent implements OnInit {
           }
 
           return of(action);
-        })
+        }),
+        takeUntil(this._destroy$)
       )
       .subscribe((action) => {
         this.action = action;

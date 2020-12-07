@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormContainer, FormFactory, FormInputType } from 'ngx-form-trooper';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { PopupService } from 'src/app/shared/services/popup/popup.service';
 
 import { IUserSettings } from '../../interfaces/user-settings.interface';
@@ -11,11 +13,13 @@ import { UserSettingsService } from '../../services/user-settings/user-settings.
   templateUrl: './user-settings.component.html',
   styleUrls: ['./user-settings.component.scss']
 })
-export class UserSettingsComponent implements OnInit {
+export class UserSettingsComponent implements OnInit, OnDestroy {
   public userSettings: IUserSettings;
   public settingsForm: FormContainer;
   public isExperimental: boolean;
   public displaySaveButton: boolean;
+
+  private _destroy$ = new Subject<void>();
 
   constructor(
     private readonly _formFactory: FormFactory,
@@ -26,6 +30,11 @@ export class UserSettingsComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     await this._createSettingsForm();
+  }
+
+  ngOnDestroy(): void {
+    this._destroy$.next();
+    this._destroy$.complete();
   }
 
   public async saveChanges(): Promise<void> {
@@ -111,8 +120,8 @@ export class UserSettingsComponent implements OnInit {
       }
     ]);
 
-    this.settingsForm.formGroup.valueChanges.subscribe(
-      () => (this.displaySaveButton = true)
-    );
+    this.settingsForm.formGroup.valueChanges
+      .pipe(takeUntil(this._destroy$))
+      .subscribe(() => (this.displaySaveButton = true));
   }
 }

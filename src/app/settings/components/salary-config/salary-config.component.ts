@@ -1,6 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { forEach } from 'lodash';
 import { FormContainer, FormFactory, FormInputType } from 'ngx-form-trooper';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { STUDENT_LOAN_TYPE } from 'src/app/salary/constants/student-loan-type.enum';
 
 import { ISettings } from '../../interfaces/settings.interface';
@@ -10,18 +12,25 @@ import { ISettings } from '../../interfaces/settings.interface';
   templateUrl: './salary-config.component.html',
   styleUrls: ['./salary-config.component.scss']
 })
-export class SalaryConfigComponent implements OnInit {
+export class SalaryConfigComponent implements OnInit, OnDestroy {
   @Input()
   public salaryConfigSettings: ISettings;
 
   public form: FormContainer;
   public isExpanded: boolean;
 
+  private _destroy$ = new Subject<void>();
+
   constructor(private readonly _formFactory: FormFactory) {}
 
   ngOnInit(): void {
     this._createForm();
     this._listenToFormChanges();
+  }
+
+  ngOnDestroy(): void {
+    this._destroy$.next();
+    this._destroy$.complete();
   }
 
   public expandSettings(): void {
@@ -70,10 +79,12 @@ export class SalaryConfigComponent implements OnInit {
   }
 
   private _listenToFormChanges(): void {
-    this.form.formGroup.valueChanges.subscribe((formValue) => {
-      forEach(formValue, (value: unknown, key: string) => {
-        this.salaryConfigSettings[key] = value;
+    this.form.formGroup.valueChanges
+      .pipe(takeUntil(this._destroy$))
+      .subscribe((formValue) => {
+        forEach(formValue, (value: unknown, key: string) => {
+          this.salaryConfigSettings[key] = value;
+        });
       });
-    });
   }
 }

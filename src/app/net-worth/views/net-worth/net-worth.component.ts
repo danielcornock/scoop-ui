@@ -20,7 +20,7 @@ export class NetWorthComponent implements OnInit, OnDestroy {
   public netWorthItems: Array<INetWorthData>;
   public netWorthMeta: INetWorthMeta;
 
-  private _destroy = new Subject<void>();
+  private _destroy$ = new Subject<void>();
 
   constructor(
     private readonly _currency: CurrencyPipe,
@@ -31,13 +31,13 @@ export class NetWorthComponent implements OnInit, OnDestroy {
   async ngOnInit(): Promise<void> {
     this._netWorthStoreService
       .getAll$()
-      .pipe(takeUntil(this._destroy))
+      .pipe(takeUntil(this._destroy$))
       .subscribe(this._onNetWorthDataChange.bind(this));
   }
 
   ngOnDestroy(): void {
-    this._destroy.next();
-    this._destroy.complete();
+    this._destroy$.next();
+    this._destroy$.complete();
   }
 
   public createNew(): void {
