@@ -1,11 +1,9 @@
 import { Observable } from 'rxjs';
 
-import { IHttpResponse } from '../services/http/interfaces/http-response.interface';
-
-export interface LogModelService {
-  getAll(): Observable<IHttpResponse>;
-  create(data: any): Promise<IHttpResponse>;
-  update(date: string, data: any): Promise<IHttpResponse>;
-  get(date: string): Promise<IHttpResponse>;
+export interface LogModelService<TCollection, TModel> {
+  getAll(): Observable<TCollection>;
+  create(data: any): Promise<TModel>;
+  update(date: string, data: any): Promise<TModel>;
+  get(date: string): Promise<TModel>;
   delete(date: string): Promise<void>;
 }

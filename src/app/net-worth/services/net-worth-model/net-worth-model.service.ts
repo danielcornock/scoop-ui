@@ -8,7 +8,9 @@ import { INetWorthCollectionResponse, INetWorthModelResponse } from '../../inter
 @Injectable({
   providedIn: 'root'
 })
-export class NetWorthModelService implements LogModelService {
+export class NetWorthModelService
+  implements
+    LogModelService<INetWorthCollectionResponse, INetWorthModelResponse> {
   constructor(private readonly _httpService: HttpService) {}
 
   public getAll(): Observable<INetWorthCollectionResponse> {
