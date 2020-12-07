@@ -116,7 +116,7 @@ export class NetWorthGoalsCardComponent implements OnInit, AfterViewInit {
       },
       {
         name: 'fields',
-        label: 'What values should this include?',
+        label: 'What items should this include?',
         type: FormInputType.MUTLI_SELECT,
         validators: {
           required: true,
@@ -135,13 +135,13 @@ export class NetWorthGoalsCardComponent implements OnInit, AfterViewInit {
           required: true
         },
         options: [
-          { label: 'All time (includes existing progress)', value: '0' },
-          { label: 'From now', value: 'now' }
+          { label: 'All time (maintain existing progress)', value: '0' },
+          { label: 'Starting from now', value: 'now' }
         ]
       },
       {
         name: 'endDate',
-        label: 'When do you aim to reach your goal? (optional)',
+        label: 'When do you want to reach your goal? (optional)',
         type: FormInputType.DATE
       }
     ];
