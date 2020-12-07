@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AuthService } from 'src/app/auth/services/auth/auth.service';
 
 import { API_URL } from '../../providers/http.providers';
 import { IHttpResponse } from './interfaces/http-response.interface';
@@ -12,8 +11,7 @@ import { IHttpResponse } from './interfaces/http-response.interface';
 export class HttpService {
   constructor(
     @Inject(API_URL) private readonly _apiUrl: string,
-    private readonly _httpClient: HttpClient,
-    private readonly _authService: AuthService
+    private readonly _httpClient: HttpClient
   ) {}
 
   public post(url: string, data: any): Promise<IHttpResponse> {

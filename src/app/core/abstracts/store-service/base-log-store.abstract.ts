@@ -1,7 +1,7 @@
 import { Dictionary } from 'lodash';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { switchMap, tap } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 
 import { LogModelService } from '../../interfaces/log-model-service.interface';
 import { IHttpResponse } from '../../services/http/interfaces/http-response.interface';
@@ -12,7 +12,7 @@ export abstract class BaseLogStore<
 > {
   private readonly _collection = new BehaviorSubject<TCollection>(null);
 
-  private readonly _models: Dictionary<TModel> = {};
+  private _models: Dictionary<TModel> = {};
 
   constructor(
     private readonly _modelService: LogModelService<TCollection, TModel>,
@@ -23,14 +23,19 @@ export abstract class BaseLogStore<
     this.collection = null;
   }
 
+  public clearCache(): void {
+    this._models = {};
+    this.collection = undefined;
+  }
+
   public getAll$(): Observable<TCollection> {
     return this._collection.asObservable().pipe(
       switchMap((data) => {
-        if (!data) {
+        if (data === null) {
           this._spinnerService.show();
           return this._modelService.getAll().pipe(
-            tap(() => this._spinnerService.hide()),
             switchMap((newData) => {
+              this._spinnerService.hide();
               this.collection = newData;
               return of(newData);
             })

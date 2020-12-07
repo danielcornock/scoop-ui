@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { CacheService } from 'src/app/shared/services/cache-service/cache.service';
 
 import { IJwt } from '../../interfaces/jwt.interface';
 
@@ -7,7 +8,10 @@ import { IJwt } from '../../interfaces/jwt.interface';
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private readonly _jwtService: JwtHelperService) {}
+  constructor(
+    private readonly _jwtService: JwtHelperService,
+    private readonly _cacheService: CacheService
+  ) {}
 
   public isAuthenticated(): boolean {
     return !this._jwtService.isTokenExpired();
@@ -15,6 +19,7 @@ export class AuthService {
 
   public removeJwt(): void {
     localStorage.removeItem('jwt');
+    this._cacheService.clearAllCaches();
   }
 
   public setJwt(token: string): void {
