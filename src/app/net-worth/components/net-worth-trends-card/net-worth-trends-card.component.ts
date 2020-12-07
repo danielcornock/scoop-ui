@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { ILabelValuePair } from 'ngx-form-trooper/lib/interfaces/key-value.interface';
 import { ChartService } from 'src/app/shared/services/chart/chart.service';
 
@@ -9,7 +9,7 @@ import { INetWorthData } from '../../interfaces/net-worth-api-response.interface
   templateUrl: './net-worth-trends-card.component.html',
   styleUrls: ['./net-worth-trends-card.component.scss']
 })
-export class NetWorthTrendsCardComponent implements OnInit {
+export class NetWorthTrendsCardComponent implements OnChanges {
   @Input()
   public netWorthTrendsData: Array<INetWorthData>;
 
@@ -20,7 +20,7 @@ export class NetWorthTrendsCardComponent implements OnInit {
 
   constructor(private readonly _chartService: ChartService) {}
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
     this._processTrendsData();
     const projectedLabels = this.netWorthPredictedData.map(
       (item) => item.label

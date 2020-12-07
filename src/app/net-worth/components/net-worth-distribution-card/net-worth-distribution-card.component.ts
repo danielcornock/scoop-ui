@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { startCase } from 'lodash';
 import { chartColors } from 'src/app/shared/constants/chart-colors.constant';
 import { ChartService } from 'src/app/shared/services/chart/chart.service';
@@ -8,7 +8,7 @@ import { ChartService } from 'src/app/shared/services/chart/chart.service';
   templateUrl: './net-worth-distribution-card.component.html',
   styleUrls: ['./net-worth-distribution-card.component.scss']
 })
-export class NetWorthDistributionCardComponent implements OnInit {
+export class NetWorthDistributionCardComponent implements OnChanges {
   @Input()
   public netWorthDistributionData: Array<{ label: string; value: number }>;
 
@@ -17,7 +17,7 @@ export class NetWorthDistributionCardComponent implements OnInit {
 
   constructor(private readonly _chartService: ChartService) {}
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
     this._fields = this.netWorthDistributionData.map((item) =>
       startCase(item.label)
     );

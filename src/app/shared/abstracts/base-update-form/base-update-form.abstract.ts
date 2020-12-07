@@ -25,7 +25,7 @@ export abstract class BaseUpdateFormComponent<TData, TMeta>
     protected readonly _spinnerService: NgxSpinnerService,
     protected readonly _activatedRoute: ActivatedRoute,
     protected readonly _headerActionService: HeaderActionService,
-    private readonly _resourceName: string
+    protected readonly _resourceName: string
   ) {
     this._spinnerService.show();
   }
@@ -66,7 +66,7 @@ export abstract class BaseUpdateFormComponent<TData, TMeta>
     }
   }
 
-  private async _getExistingResouce(): Promise<IHttpResponse<TData, TMeta>> {
+  protected async _getExistingResouce(): Promise<IHttpResponse<TData, TMeta>> {
     this._resourceDate = this._activatedRoute.snapshot.paramMap.get('date');
 
     const response = await this._httpService.get(

@@ -1,46 +1,53 @@
 import { CurrencyPipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { HttpService } from 'src/app/core/services/http/http.service';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import {
   IDashboardSummaryItem,
 } from 'src/app/shared/components/dashboard-summary/interfaces/dashboard-summary-item.interface';
 
 import { INetWorthData, INetWorthMeta } from '../../interfaces/net-worth-api-response.interface';
+import { NetWorthStoreService } from '../../services/net-worth-store/net-worth-store.service';
 
 @Component({
   selector: 'app-net-worth',
   templateUrl: './net-worth.component.html',
   styleUrls: ['./net-worth.component.scss']
 })
-export class NetWorthComponent implements OnInit {
+export class NetWorthComponent implements OnInit, OnDestroy {
   public summaryItems: Array<IDashboardSummaryItem>;
   public netWorthItems: Array<INetWorthData>;
   public netWorthMeta: INetWorthMeta;
 
+  private _destroy = new Subject<void>();
+
   constructor(
-    private readonly _httpService: HttpService,
     private readonly _currency: CurrencyPipe,
-    private readonly _spinnerService: NgxSpinnerService,
-    private readonly _router: Router
+    private readonly _router: Router,
+    private readonly _netWorthStoreService: NetWorthStoreService
   ) {}
 
   async ngOnInit(): Promise<void> {
-    this._spinnerService.show();
-    await this._getNetWorthEntries();
-    this._assignSummaryItems();
-    this._spinnerService.hide();
+    this._netWorthStoreService
+      .getAll$()
+      .pipe(takeUntil(this._destroy))
+      .subscribe(this._onNetWorthDataChange.bind(this));
+  }
+
+  ngOnDestroy(): void {
+    this._destroy.next();
+    this._destroy.complete();
   }
 
   public createNew(): void {
     this._router.navigateByUrl('net-worth/create');
   }
 
-  private async _getNetWorthEntries(): Promise<void> {
-    const { data, meta } = await this._httpService.get('net-worth');
+  private _onNetWorthDataChange({ data, meta }): void {
     this.netWorthMeta = meta;
     this.netWorthItems = data;
+    this._assignSummaryItems();
   }
 
   private _assignSummaryItems(): void {

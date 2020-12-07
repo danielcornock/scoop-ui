@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Dictionary } from 'lodash';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { switchMap, tap } from 'rxjs/operators';
 import { LogModelStore } from 'src/app/core/interfaces/log-model-store.interface';
 
 import { INetWorthCollectionResponse, INetWorthModelResponse } from '../../interfaces/net-worth-api-response.interface';
@@ -15,42 +15,77 @@ export class NetWorthStoreService implements LogModelStore {
     INetWorthCollectionResponse
   >(null);
 
-  private readonly _netWorthModels = new BehaviorSubject<
-    Dictionary<INetWorthModelResponse>
-  >({});
+  private readonly _netWorthModels = {};
 
-  constructor(private readonly _modelService: NetWorthModelService) {}
+  constructor(
+    private readonly _modelService: NetWorthModelService,
+    private readonly _spinnerService: NgxSpinnerService
+  ) {}
 
   public getAll$(): Observable<INetWorthCollectionResponse> {
     return this._netWorthCollection.asObservable().pipe(
       switchMap((data) => {
         if (!data) {
+          this._spinnerService.show();
           return this._modelService.getAll().pipe(
+            tap(() => this._spinnerService.hide()),
             switchMap((newData) => {
               this.collection = newData;
-
               return of(newData);
             })
           );
+        } else {
+          return of(data);
         }
       })
     );
   }
 
-  public async create(data: any): Promise<void> {
-    const res = await this._modelService.create(data);
-    this._addToModels(res);
-    this.invalidateCollection();
+  public async update(date: string, data: any): Promise<void> {
+    try {
+      this._spinnerService.show();
+      const res = await this._modelService.update(date, data);
+      this._addToModels(res);
+      this.invalidateCollection();
+    } finally {
+      this._spinnerService.hide();
+    }
   }
 
-  public getOne(date: string): Promise<INetWorthModelResponse> {
-    return this._netWorthModels
-      .pipe(
-        map((data) => {
-          return data[date];
-        })
-      )
-      .toPromise();
+  public async delete(date: string): Promise<void> {
+    try {
+      this._spinnerService.show();
+      await this._modelService.delete(date);
+      this.invalidateCollection();
+    } finally {
+      this._spinnerService.hide();
+    }
+  }
+
+  public async create(data: any): Promise<void> {
+    try {
+      this._spinnerService.show();
+      const res = await this._modelService.create(data);
+      this._addToModels(res);
+      this.invalidateCollection();
+    } finally {
+      this._spinnerService.hide();
+    }
+  }
+
+  public async getOne(date: string): Promise<INetWorthModelResponse> {
+    if (this._netWorthModels[date]) {
+      return Promise.resolve(this._netWorthModels[date]);
+    }
+
+    try {
+      this._spinnerService.show();
+      const res = await this._modelService.get(date);
+      this._addToModels(res);
+      return res;
+    } finally {
+      this._spinnerService.hide();
+    }
   }
 
   public invalidateCollection(): void {
@@ -65,18 +100,7 @@ export class NetWorthStoreService implements LogModelStore {
     this._netWorthCollection.next(val);
   }
 
-  private get models(): Dictionary<INetWorthModelResponse> {
-    return this._netWorthModels.getValue();
-  }
-
-  private set models(val: Dictionary<INetWorthModelResponse>) {
-    this._netWorthModels.next(val);
-  }
-
   private _addToModels(model: INetWorthModelResponse): void {
-    this.models = {
-      ...this.models,
-      [model.data.date]: model
-    };
+    this._netWorthModels[model.data.date] = model;
   }
 }

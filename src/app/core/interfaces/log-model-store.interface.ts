@@ -7,4 +7,6 @@ export interface LogModelStore {
   create(data: any): Promise<void>;
   getOne(date: string): Promise<IHttpResponse>;
   invalidateCollection(): void;
+  update(date: string, values: any): Promise<void>;
+  delete(date: string): Promise<void>;
 }

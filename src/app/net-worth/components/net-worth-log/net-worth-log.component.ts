@@ -1,19 +1,19 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { Dictionary } from 'lodash';
-import { HttpService } from 'src/app/core/services/http/http.service';
 import { ModalService } from 'src/app/shared/services/modal/modal.service';
 import { PopupService } from 'src/app/shared/services/popup/popup.service';
 
 import { LogCard } from '../../../shared/abstracts/log-card/log-card.abstract';
 import { INetWorthData, INetWorthMeta } from '../../interfaces/net-worth-api-response.interface';
+import { NetWorthStoreService } from '../../services/net-worth-store/net-worth-store.service';
 
 @Component({
   selector: 'app-net-worth-log',
   templateUrl: './net-worth-log.component.html',
   styleUrls: ['./net-worth-log.component.scss']
 })
-export class NetWorthLogComponent extends LogCard implements OnInit {
+export class NetWorthLogComponent extends LogCard implements OnChanges {
   @Input()
   public netWorthLogItems: Array<INetWorthData>;
 
@@ -23,22 +23,21 @@ export class NetWorthLogComponent extends LogCard implements OnInit {
   public logs: Array<Dictionary<string | number>>;
 
   constructor(
-    private readonly _httpService: HttpService,
     private readonly _popupService: PopupService,
+    private readonly _netWorthStoreService: NetWorthStoreService,
     modalService: ModalService,
     router: Router
   ) {
     super(router, modalService, 'net-worth');
   }
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
     this._assignLogs();
   }
 
   public async removeLog(date: string): Promise<void> {
     try {
-      await this._httpService.delete(`net-worth/${date}`);
-      this.logs = this.logs.filter((log) => log.date !== date);
+      await this._netWorthStoreService.delete(date);
     } catch ({ error }) {
       this._popupService.showApiError(error);
     }

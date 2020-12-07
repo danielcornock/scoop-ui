@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LogModelService } from 'src/app/core/interfaces/log-model-service.interface';
 import { HttpService } from 'src/app/core/services/http/http.service';
-import { IHttpResponse } from 'src/app/core/services/http/interfaces/http-response.interface';
 
-import { INetWorthCollectionResponse, INetWorthData } from '../../interfaces/net-worth-api-response.interface';
+import { INetWorthCollectionResponse, INetWorthModelResponse } from '../../interfaces/net-worth-api-response.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -16,18 +15,19 @@ export class NetWorthModelService implements LogModelService {
     return this._httpService.get$('net-worth');
   }
 
-  public async create(data: any): Promise<IHttpResponse<INetWorthData>> {
+  public create(data: any): Promise<INetWorthModelResponse> {
     return this._httpService.post('net-worth', data);
   }
 
-  public async update(
-    date: string,
-    data: any
-  ): Promise<IHttpResponse<INetWorthData>> {
+  public update(date: string, data: any): Promise<INetWorthModelResponse> {
     return this._httpService.put(`net-worth/${date}`, data);
   }
 
-  public async get(date: string): Promise<IHttpResponse<INetWorthData>> {
+  public get(date: string): Promise<INetWorthModelResponse> {
     return this._httpService.get(`net-worth/${date}`);
+  }
+
+  public delete(date: string): Promise<void> {
+    return this._httpService.delete(`net-worth/${date}`);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { barChartColors } from 'src/app/shared/constants/chart-colors.constant';
 import { ChartService } from 'src/app/shared/services/chart/chart.service';
 
@@ -9,7 +9,7 @@ import { INetWorthData } from '../../interfaces/net-worth-api-response.interface
   templateUrl: './net-worth-monthly-change-card.component.html',
   styleUrls: ['./net-worth-monthly-change-card.component.scss']
 })
-export class NetWorthMonthlyChangeCardComponent implements OnInit {
+export class NetWorthMonthlyChangeCardComponent implements OnChanges {
   @Input()
   public netWorthMonthlyChangeData: Array<INetWorthData>;
 
@@ -17,7 +17,7 @@ export class NetWorthMonthlyChangeCardComponent implements OnInit {
 
   constructor(private readonly _chartService: ChartService) {}
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
     this._processTrendsData();
     this._createBarChart();
   }

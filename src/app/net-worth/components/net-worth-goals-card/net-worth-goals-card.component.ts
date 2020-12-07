@@ -9,6 +9,7 @@ import { ModalService } from 'src/app/shared/services/modal/modal.service';
 
 import { INetWorthMeta } from '../../interfaces/net-worth-api-response.interface';
 import { INetWorthGoal } from '../../interfaces/net-worth-goal.interface';
+import { NetWorthStoreService } from '../../services/net-worth-store/net-worth-store.service';
 
 @Component({
   selector: 'app-net-worth-goals-card',
@@ -29,7 +30,8 @@ export class NetWorthGoalsCardComponent implements OnInit, AfterViewInit {
   constructor(
     private readonly _modalService: ModalService,
     private readonly _httpService: HttpService,
-    private readonly _spinnerService: NgxSpinnerService
+    private readonly _spinnerService: NgxSpinnerService,
+    private readonly _netWorthStoreService: NetWorthStoreService
   ) {}
 
   ngOnInit(): void {
@@ -90,6 +92,7 @@ export class NetWorthGoalsCardComponent implements OnInit, AfterViewInit {
 
   private async _createGoal(formData: any): Promise<void> {
     await this._httpService.post('net-worth-goals', formData);
+    this._netWorthStoreService.invalidateCollection();
   }
 
   private _createFormConfig(): IFormFactoryConfig {

@@ -8,7 +8,8 @@ import { HeaderActionService } from 'src/app/core/services/header-action/header-
 import { HttpService } from 'src/app/core/services/http/http.service';
 import { BaseUpdateFormComponent } from 'src/app/shared/abstracts/base-update-form/base-update-form.abstract';
 
-import { INetWorthData, INetWorthMeta } from '../../interfaces/net-worth-api-response.interface';
+import { INetWorthData, INetWorthMeta, INetWorthModelResponse } from '../../interfaces/net-worth-api-response.interface';
+import { NetWorthStoreService } from '../../services/net-worth-store/net-worth-store.service';
 
 @Component({
   selector: 'app-net-worth-update-form',
@@ -26,7 +27,8 @@ export class NetWorthUpdateFormComponent
     router: Router,
     spinnerService: NgxSpinnerService,
     activatedRoute: ActivatedRoute,
-    headerActionService: HeaderActionService
+    headerActionService: HeaderActionService,
+    private readonly _netWorthStoreService: NetWorthStoreService
   ) {
     super(
       formFactory,
@@ -41,6 +43,27 @@ export class NetWorthUpdateFormComponent
 
   async ngOnInit(): Promise<void> {
     super.ngOnInit();
+  }
+
+  /* TODO: Delete this override when implemented in base class */
+  public async submitForm(): Promise<void> {
+    this.errors = null;
+
+    if (this.form.isInvalid) {
+      this.form.formGroup.markAllAsTouched();
+      return;
+    }
+
+    try {
+      await this._netWorthStoreService.update(
+        this._resourceDate,
+        this.form.value
+      );
+
+      this._router.navigateByUrl(this._resourceName);
+    } catch ({ error }) {
+      this.errors = error;
+    }
   }
 
   protected _createForm({ data }): FormContainer {
@@ -66,5 +89,19 @@ export class NetWorthUpdateFormComponent
     ];
 
     return this._formFactory.createForm(formConfig);
+  }
+
+  /* TODO: Delete this override when implemented in base class */
+  protected async _getExistingResouce(): Promise<INetWorthModelResponse> {
+    this._resourceDate = this._activatedRoute.snapshot.paramMap.get('date');
+
+    const response = await this._netWorthStoreService.getOne(
+      this._resourceDate
+    );
+
+    this._data = response.data;
+    this._meta = response.meta;
+
+    return response;
   }
 }

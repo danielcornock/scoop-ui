@@ -1,18 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { capitalize } from 'lodash';
-import {
-  FormContainer,
-  FormFactory,
-  FormInputType,
-  IFormFactoryConfig
-} from 'ngx-form-trooper';
+import { FormContainer, FormFactory, FormInputType, IFormFactoryConfig } from 'ngx-form-trooper';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HeaderActionService } from 'src/app/core/services/header-action/header-action.service';
 import { HttpService } from 'src/app/core/services/http/http.service';
 import { SettingsService } from 'src/app/settings/services/settings/settings.service';
 import { BaseEntryFormComponent } from 'src/app/shared/abstracts/base-entry-form/base-entry-form.abstract';
 import { DateService } from 'src/app/shared/services/current-date/date.service';
+
+import { NetWorthStoreService } from '../../services/net-worth-store/net-worth-store.service';
 
 @Component({
   selector: 'app-net-worth-entry-form',
@@ -27,6 +24,7 @@ export class NetWorthEntryFormComponent extends BaseEntryFormComponent
     private readonly _formFactory: FormFactory,
     private readonly _currentDateService: DateService,
     private readonly _settingsService: SettingsService,
+    private readonly _netWorthStoreService: NetWorthStoreService,
     httpService: HttpService,
     router: Router,
     spinnerService: NgxSpinnerService,
@@ -45,6 +43,24 @@ export class NetWorthEntryFormComponent extends BaseEntryFormComponent
     const settings = await this._settingsService.getSettings();
     this.columns = settings.data.netWorthFields;
     super.ngOnInit();
+  }
+
+  /* TODO: Remove this override when implemented in base class */
+  public async submitForm(): Promise<void> {
+    this.errors = null;
+
+    if (this.form.isInvalid) {
+      this.form.formGroup.markAllAsTouched();
+      return;
+    }
+
+    try {
+      await this._netWorthStoreService.create(this.form.value);
+      this._router.navigateByUrl(this._resourceName);
+    } catch ({ error }) {
+      this._spinnerService.hide();
+      this.errors = error;
+    }
   }
 
   protected _createForm(): FormContainer {
