@@ -14,26 +14,26 @@
   <ng-template #content>
     <div class="MonthlyDistribution-content">
       <app-monthly-distribution-pie-chart
-        class="MonthlyDistribution-item MonthlyDistribution-pie"
+        class="MonthlyDistribution-item MonthlyDistribution-pie animate-list-item"
         [monthlyDistributionPieChartData]="monthlyDistributionItems[0]"
       ></app-monthly-distribution-pie-chart>
 
       <app-uncommitted-spending-chart
-        class="MonthlyDistribution-item MonthlyDistribution-line"
+        class="MonthlyDistribution-item MonthlyDistribution-line animate-list-item"
         [uncommittedSpendingChartData]="
           monthlyDistributionMeta.uncommittedSpendingData
         "
       ></app-uncommitted-spending-chart>
 
       <app-monthly-distribution-spending-trend-chart
-        class="MonthlyDistribution-item MonthlyDistribution-trending"
+        class="MonthlyDistribution-item MonthlyDistribution-trending animate-list-item"
         [monthlyDistributionSpendingTrendChartData]="
           monthlyDistributionMeta.allTimeDistribution
         "
       ></app-monthly-distribution-spending-trend-chart>
 
       <app-monthly-distribution-log-card
-        class="MonthlyDistribution-item MonthlyDistribution-log"
+        class="MonthlyDistribution-item MonthlyDistribution-log animate-list-item"
         [monthlyDistributionLogCardItems]="monthlyDistributionItems"
         [monthlyDistributionLogCardMeta]="monthlyDistributionMeta"
       ></app-monthly-distribution-log-card>
