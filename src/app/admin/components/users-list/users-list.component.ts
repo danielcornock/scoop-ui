@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { AuthService } from 'src/app/auth/services/auth/auth.service';
 import { HttpService } from 'src/app/core/services/http/http.service';
 
 @Component({
@@ -13,8 +12,7 @@ export class UsersListComponent implements OnInit {
 
   constructor(
     private readonly _httpService: HttpService,
-    private readonly _spinnerService: NgxSpinnerService,
-    private readonly _authService: AuthService
+    private readonly _spinnerService: NgxSpinnerService
   ) {}
 
   async ngOnInit(): Promise<void> {
