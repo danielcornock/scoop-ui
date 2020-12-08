@@ -1,78 +1,85 @@
 import { CurrencyPipe, PercentPipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { HttpService } from 'src/app/core/services/http/http.service';
-import { IDashboardSummaryItem } from 'src/app/shared/components/dashboard-summary/interfaces/dashboard-summary-item.interface';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import {
+  IDashboardSummaryItem,
+} from 'src/app/shared/components/dashboard-summary/interfaces/dashboard-summary-item.interface';
 
 import { IInvestmentLog } from '../../interfaces/investment-log.interface';
 import { IInvestmentsMeta } from '../../interfaces/investments-meta.interface';
+import { InvestmentsStoreService } from '../../services/investments-store/investments-store.service';
 
 @Component({
   selector: 'app-investments',
   templateUrl: './investments.component.html',
   styleUrls: ['./investments.component.scss']
 })
-export class InvestmentsComponent implements OnInit {
+export class InvestmentsComponent implements OnInit, OnDestroy {
   public summaryItems: Array<IDashboardSummaryItem>;
   public investmentLogs: Array<IInvestmentLog>;
   public investmentsMeta: IInvestmentsMeta;
 
+  private _destroy$ = new Subject<void>();
+
   constructor(
-    private readonly _httpService: HttpService,
-    private readonly _spinnerService: NgxSpinnerService,
+    private readonly _store: InvestmentsStoreService,
     private readonly _currencyPipe: CurrencyPipe,
     private readonly _percentPipe: PercentPipe,
     private readonly _router: Router
   ) {}
 
   async ngOnInit(): Promise<void> {
-    this._spinnerService.show();
-    await this._fetchInvestmentLogs();
-    this._spinnerService.hide();
+    this._store
+      .getAll$()
+      .pipe(takeUntil(this._destroy$))
+      .subscribe(this._assignData.bind(this));
+  }
 
-    if (!this.investmentLogs.length) {
-      return;
-    }
-
-    this._assignSummaryLogs();
+  ngOnDestroy(): void {
+    this._destroy$.next();
+    this._destroy$.complete();
   }
 
   public createNew(): void {
     this._router.navigateByUrl('investments/create');
   }
 
-  private _assignSummaryLogs(): void {
+  private _assignData({ data, meta }): void {
+    this.investmentLogs = data;
+    this.investmentsMeta = meta;
+
+    this._assignSummaryLogs(data);
+  }
+
+  private _assignSummaryLogs(data: IInvestmentLog[]): void {
+    if (!data.length) {
+      return;
+    }
+
     this.summaryItems = [
       {
         label: 'Total Returns',
-        value: this._toCurrency(this.investmentLogs[0].profit),
+        value: this._toCurrency(data[0].profit),
         icon: 'dollar-sign'
       },
       {
         label: 'Percentage Returns',
-        value: this._toPercentage(this.investmentLogs[0].profitPercentage),
+        value: this._toPercentage(data[0].profitPercentage),
         icon: 'trending-up'
       },
       {
         label: 'Investment Value',
-        value: this._toCurrency(this.investmentLogs[0].totalValue),
+        value: this._toCurrency(data[0].totalValue),
         icon: 'chevrons-up'
       },
       {
         label: 'Invested',
-        value: this._toCurrency(this.investmentLogs[0].totalInvested),
+        value: this._toCurrency(data[0].totalInvested),
         icon: 'save'
       }
     ];
-  }
-
-  private async _fetchInvestmentLogs(): Promise<void> {
-    const { data, meta } = await this._httpService.get<IInvestmentLog[]>(
-      'investments'
-    );
-    this.investmentLogs = data;
-    this.investmentsMeta = meta;
   }
 
   private _toPercentage(value: number): string {

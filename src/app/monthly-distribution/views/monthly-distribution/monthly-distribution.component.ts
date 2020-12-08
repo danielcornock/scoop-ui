@@ -1,38 +1,46 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { HttpService } from 'src/app/core/services/http/http.service';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { IMonthlyDistributionLog } from '../../interfaces/monthly-distribution-log.interface';
+import {
+  MonthlyDistributionStoreService,
+} from '../../services/monthly-distribution-store/monthly-distribution-store.service';
 
 @Component({
   selector: 'app-monthly-distribution',
   templateUrl: './monthly-distribution.component.html',
   styleUrls: ['./monthly-distribution.component.scss']
 })
-export class MonthlyDistributionComponent implements OnInit {
+export class MonthlyDistributionComponent implements OnInit, OnDestroy {
   public monthlyDistributionItems: Array<IMonthlyDistributionLog>;
   public monthlyDistributionMeta: any;
 
+  private _destroy$ = new Subject<void>();
+
   constructor(
-    private readonly _httpService: HttpService,
-    private readonly _spinnerService: NgxSpinnerService,
-    private readonly _router: Router
+    private readonly _router: Router,
+    private readonly _monthlyDistributionStore: MonthlyDistributionStoreService
   ) {}
 
   async ngOnInit(): Promise<void> {
-    this._spinnerService.show();
-    await this._fetchLogs();
-    this._spinnerService.hide();
+    this._monthlyDistributionStore
+      .getAll$()
+      .pipe(takeUntil(this._destroy$))
+      .subscribe(this._assignLogs.bind(this));
+  }
+
+  ngOnDestroy(): void {
+    this._destroy$.next();
+    this._destroy$.complete();
   }
 
   public createNew(): void {
     this._router.navigateByUrl('monthly-distribution/create');
   }
 
-  private async _fetchLogs(): Promise<void> {
-    const { data, meta } = await this._httpService.get('monthly-distribution');
-
+  private async _assignLogs({ data, meta }): Promise<void> {
     this.monthlyDistributionItems = data;
     this.monthlyDistributionMeta = meta;
   }

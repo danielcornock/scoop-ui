@@ -1,27 +1,32 @@
 import { CurrencyPipe, PercentPipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Dictionary } from 'lodash';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { HttpService } from 'src/app/core/services/http/http.service';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import {
   IDashboardSummaryItem,
 } from 'src/app/shared/components/dashboard-summary/interfaces/dashboard-summary-item.interface';
 
 import { ISalaryMeta } from '../../interfaces/salary-meta.interface';
 import { ISalary } from '../../interfaces/salary.interface';
+import { SalaryStoreService } from '../../services/salary-store/salary-store.service';
 
 @Component({
   selector: 'app-salary',
   templateUrl: './salary.component.html',
   styleUrls: ['./salary.component.scss']
 })
-export class SalaryComponent implements OnInit {
+export class SalaryComponent implements OnInit, OnDestroy {
   public salaryItems: Array<ISalary>;
   public salaryMeta: ISalaryMeta;
   public summaryItems: Array<IDashboardSummaryItem>;
 
+  private _destroy$ = new Subject<void>();
+
   constructor(
-    private readonly _httpService: HttpService,
+    private readonly _store: SalaryStoreService,
     private readonly _spinnerService: NgxSpinnerService,
     private readonly _currency: CurrencyPipe,
     private readonly _router: Router,
@@ -29,23 +34,28 @@ export class SalaryComponent implements OnInit {
   ) {}
 
   async ngOnInit(): Promise<void> {
-    this._spinnerService.show();
-    await this._getSalaryLogs();
-    this._processSummaryItems();
-    this._spinnerService.hide();
+    this._store
+      .getAll$()
+      .pipe(takeUntil(this._destroy$))
+      .subscribe(this._processSalary.bind(this));
+  }
+
+  ngOnDestroy(): void {
+    this._destroy$.next();
+    this._destroy$.complete();
   }
 
   public createNew(): void {
     this._router.navigateByUrl('salary/create');
   }
 
-  private async _getSalaryLogs(): Promise<void> {
-    const { data, meta } = await this._httpService.get('salary');
+  private async _processSalary({ data, meta }): Promise<void> {
     this.salaryItems = data;
     this.salaryMeta = meta;
+    this._processSummaryItems(meta.summaryItems);
   }
 
-  private _processSummaryItems(): void {
+  private _processSummaryItems(summaryItems: Dictionary<number>): void {
     const values = this.salaryMeta.summaryItems;
 
     if (!values) {
