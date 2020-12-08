@@ -1,16 +1,18 @@
 import { Directive, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormContainer, FormFactory } from 'ngx-form-trooper';
-import { NgxSpinnerService } from 'ngx-spinner';
+import { BaseLogStore } from 'src/app/core/abstracts/store-service/base-log-store.abstract';
 import { HeaderActionService } from 'src/app/core/services/header-action/header-action.service';
-import { HttpService } from 'src/app/core/services/http/http.service';
 import { IHttpError } from 'src/app/core/services/http/interfaces/http-error.interface';
 import { IHttpResponse } from 'src/app/core/services/http/interfaces/http-response.interface';
 
 @Directive()
 // tslint:disable-next-line: directive-class-suffix
-export abstract class BaseUpdateFormComponent<TData, TMeta>
-  implements OnDestroy, OnInit {
+export abstract class BaseUpdateFormComponent<
+  TModel extends IHttpResponse,
+  TData,
+  TMeta
+> implements OnDestroy, OnInit {
   public form: FormContainer;
   public errors: IHttpError;
 
@@ -20,15 +22,12 @@ export abstract class BaseUpdateFormComponent<TData, TMeta>
 
   constructor(
     protected readonly _formFactory: FormFactory,
-    protected readonly _httpService: HttpService,
+    protected readonly _store: BaseLogStore<any, TModel>,
     protected readonly _router: Router,
-    protected readonly _spinnerService: NgxSpinnerService,
     protected readonly _activatedRoute: ActivatedRoute,
     protected readonly _headerActionService: HeaderActionService,
     protected readonly _resourceName: string
-  ) {
-    this._spinnerService.show();
-  }
+  ) {}
 
   public ngOnDestroy(): void {
     this._headerActionService.setAction(undefined);
@@ -41,7 +40,6 @@ export abstract class BaseUpdateFormComponent<TData, TMeta>
     });
     const response = await this._getExistingResouce();
     this.form = this._createForm(response);
-    this._spinnerService.hide();
   }
 
   public async submitForm(): Promise<void> {
@@ -53,25 +51,17 @@ export abstract class BaseUpdateFormComponent<TData, TMeta>
     }
 
     try {
-      this._spinnerService.show();
-      await this._httpService.put(
-        `${this._resourceName}/${this._resourceDate}`,
-        this.form.value
-      );
-
+      await this._store.update(this._resourceDate, this.form.value);
       this._router.navigateByUrl(this._resourceName);
     } catch ({ error }) {
-      this._spinnerService.hide();
       this.errors = error;
     }
   }
 
-  protected async _getExistingResouce(): Promise<IHttpResponse<TData, TMeta>> {
+  protected async _getExistingResouce(): Promise<TModel> {
     this._resourceDate = this._activatedRoute.snapshot.paramMap.get('date');
 
-    const response = await this._httpService.get(
-      `${this._resourceName}/${this._resourceDate}`
-    );
+    const response = await this._store.getOne(this._resourceDate);
 
     this._data = response.data;
     this._meta = response.meta;
@@ -79,7 +69,5 @@ export abstract class BaseUpdateFormComponent<TData, TMeta>
     return response;
   }
 
-  protected abstract _createForm(
-    res: IHttpResponse<TData, TMeta>
-  ): FormContainer;
+  protected abstract _createForm(res: IHttpResponse): FormContainer;
 }

@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormContainer, FormFactory, FormInputType } from 'ngx-form-trooper';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { HeaderActionService } from 'src/app/core/services/header-action/header-action.service';
-import { HttpService } from 'src/app/core/services/http/http.service';
 import { BaseUpdateFormComponent } from 'src/app/shared/abstracts/base-update-form/base-update-form.abstract';
 
-import { IInvestmentLog } from '../../interfaces/investment-log.interface';
+import { IInvestmentLog, IInvestmentModelResponse } from '../../interfaces/investment-log.interface';
+import { InvestmentsStoreService } from '../../services/investments-store/investments-store.service';
 
 @Component({
   selector: 'app-investments-update-form',
@@ -15,21 +14,23 @@ import { IInvestmentLog } from '../../interfaces/investment-log.interface';
   styleUrls: ['../investments-entry-form/investments-entry-form.component.scss']
 })
 export class InvestmentsUpdateFormComponent
-  extends BaseUpdateFormComponent<IInvestmentLog, {}>
+  extends BaseUpdateFormComponent<
+    IInvestmentModelResponse,
+    IInvestmentLog,
+    undefined
+  >
   implements OnInit {
   constructor(
     formFactory: FormFactory,
-    httpService: HttpService,
+    store: InvestmentsStoreService,
     router: Router,
-    spinnerService: NgxSpinnerService,
     activatedRoute: ActivatedRoute,
     headerActionService: HeaderActionService
   ) {
     super(
       formFactory,
-      httpService,
+      store,
       router,
-      spinnerService,
       activatedRoute,
       headerActionService,
       'investments'

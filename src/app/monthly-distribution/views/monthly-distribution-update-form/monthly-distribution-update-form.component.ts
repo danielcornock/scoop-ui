@@ -6,16 +6,20 @@ import {
   FormFactory,
   FormInputType,
   IFormFactoryConfig,
-  IFormInputFactoryFieldConfig
+  IFormInputFactoryFieldConfig,
 } from 'ngx-form-trooper';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable, of } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
 import { HeaderActionService } from 'src/app/core/services/header-action/header-action.service';
-import { HttpService } from 'src/app/core/services/http/http.service';
 import { BaseUpdateFormComponent } from 'src/app/shared/abstracts/base-update-form/base-update-form.abstract';
 
-import { IMonthlyDistributionLog } from '../../interfaces/monthly-distribution-log.interface';
+import {
+  IMonthlyDistributionLog,
+  IMonthlyDistributionModelResponse,
+} from '../../interfaces/monthly-distribution-log.interface';
+import {
+  MonthlyDistributionStoreService,
+} from '../../services/monthly-distribution-store/monthly-distribution-store.service';
 
 @Component({
   selector: 'app-monthly-distribution-update-form',
@@ -27,26 +31,24 @@ import { IMonthlyDistributionLog } from '../../interfaces/monthly-distribution-l
 })
 export class MonthlyDistributionUpdateFormComponent
   extends BaseUpdateFormComponent<
+    IMonthlyDistributionModelResponse,
     IMonthlyDistributionLog,
     { incomeFields: string[]; outgoingFields: string[] }
   >
   implements OnInit {
-  public form: FormContainer;
   public remainingBalance: Observable<number>;
 
   constructor(
+    store: MonthlyDistributionStoreService,
     formFactory: FormFactory,
-    httpService: HttpService,
     router: Router,
-    spinnerService: NgxSpinnerService,
     activatedRoute: ActivatedRoute,
     headerActionService: HeaderActionService
   ) {
     super(
       formFactory,
-      httpService,
+      store,
       router,
-      spinnerService,
       activatedRoute,
       headerActionService,
       'monthly-distribution'
