@@ -8,15 +8,19 @@ import { LogModelService } from '../model-service/base-log-model-service.abstrac
 
 export abstract class BaseLogStore<
   TCollection extends IHttpResponse<any[]>,
-  TModel extends IHttpResponse<any>
+  TModel extends IHttpResponse<any>,
+  TModelService extends LogModelService<TCollection, TModel> = LogModelService<
+    TCollection,
+    TModel
+  >
 > {
   private _collection = new BehaviorSubject<TCollection>(null);
 
   private _models: Dictionary<TModel> = {};
 
   constructor(
-    private readonly _modelService: LogModelService<TCollection, TModel>,
-    private readonly _spinnerService: NgxSpinnerService
+    protected readonly _modelService: TModelService,
+    protected readonly _spinnerService: NgxSpinnerService
   ) {}
 
   public invalidateCollection(): void {
@@ -52,7 +56,7 @@ export abstract class BaseLogStore<
     try {
       this._spinnerService.show();
       await this._modelService.update(date, data);
-      delete this._models[date];
+      this._removeModelFromCache(date);
       this.invalidateCollection();
     } finally {
       this._spinnerService.hide();
@@ -63,6 +67,7 @@ export abstract class BaseLogStore<
     try {
       this._spinnerService.show();
       await this._modelService.delete(date);
+      this._removeModelFromCache(date);
       this.invalidateCollection();
     } finally {
       this._spinnerService.hide();
@@ -73,7 +78,7 @@ export abstract class BaseLogStore<
     try {
       this._spinnerService.show();
       await this._modelService.create(data);
-      delete this._models[data.date];
+      this._removeModelFromCache(data.date);
       this.invalidateCollection();
     } finally {
       this._spinnerService.hide();
@@ -93,6 +98,10 @@ export abstract class BaseLogStore<
     } finally {
       this._spinnerService.hide();
     }
+  }
+
+  protected _removeModelFromCache(date: string): void {
+    delete this._models[date];
   }
 
   protected get collection(): TCollection {
