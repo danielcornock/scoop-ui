@@ -24,6 +24,10 @@ export class SettingsService {
     }
   }
 
+  public clearCache(): void {
+    this._settings = null;
+  }
+
   public async updateSettings(
     newData: ISettings
   ): Promise<SettingsHttpResponse> {

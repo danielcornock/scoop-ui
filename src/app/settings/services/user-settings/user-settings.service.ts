@@ -23,6 +23,10 @@ export class UserSettingsService {
     }
   }
 
+  public clearCache(): void {
+    this._userSettings = null;
+  }
+
   public async updateUserSettings(
     newData: IUserSettings
   ): Promise<IUserSettings> {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { cloneDeep, isEqual } from 'lodash';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { CacheService } from 'src/app/shared/services/cache-service/cache.service';
 import { PopupService } from 'src/app/shared/services/popup/popup.service';
 
 import { ISettingsMeta } from '../../interfaces/settings-meta.interface';
@@ -24,7 +25,8 @@ export class SettingsComponent implements OnInit {
     private readonly _settingsService: SettingsService,
     private readonly _popupService: PopupService,
     private readonly _spinnerService: NgxSpinnerService,
-    private readonly _userSettingsService: UserSettingsService
+    private readonly _userSettingsService: UserSettingsService,
+    private readonly _cacheService: CacheService
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -52,6 +54,7 @@ export class SettingsComponent implements OnInit {
       const { data, meta } = await this._settingsService.updateSettings(
         this.settings
       );
+      this._cacheService.clearAllFeatureCaches();
       this._popupService.showSuccess(
         'Some changes may only take effect after a page refresh',
         'Settings successfully updated'
