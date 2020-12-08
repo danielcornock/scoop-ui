@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { startCase } from 'lodash';
 import { chartColors } from 'src/app/shared/constants/chart-colors.constant';
 import { ChartService } from 'src/app/shared/services/chart/chart.service';
@@ -10,13 +10,13 @@ import { ISalary } from '../../interfaces/salary.interface';
   templateUrl: './salary-distribution-chart.component.html',
   styleUrls: ['./salary-distribution-chart.component.scss']
 })
-export class SalaryDistributionChartComponent implements OnInit {
+export class SalaryDistributionChartComponent implements OnChanges {
   @Input()
   public salaryDistributionChartData: ISalary;
 
   constructor(private readonly _chartService: ChartService) {}
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
     const labels = Object.keys(this.salaryDistributionChartData).map(startCase);
     const data = Object.values(this.salaryDistributionChartData);
 

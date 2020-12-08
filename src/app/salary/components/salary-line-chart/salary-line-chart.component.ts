@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { ChartService } from 'src/app/shared/services/chart/chart.service';
 
 import { ISalary } from '../../interfaces/salary.interface';
@@ -8,12 +8,12 @@ import { ISalary } from '../../interfaces/salary.interface';
   templateUrl: './salary-line-chart.component.html',
   styleUrls: ['./salary-line-chart.component.scss']
 })
-export class SalaryLineChartComponent implements OnInit {
+export class SalaryLineChartComponent implements OnChanges {
   @Input() salaryLineChartData: Array<ISalary>;
 
   constructor(private readonly _chartService: ChartService) {}
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
     this._chartService.createLineChart('netSalaryChart', {
       labels: this._getArrayOfFields('date'),
       datasets: [
