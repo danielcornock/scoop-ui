@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { ChartService } from 'src/app/shared/services/chart/chart.service';
 
 import { IInvestmentLog } from '../../interfaces/investment-log.interface';
@@ -8,7 +8,7 @@ import { IInvestmentLog } from '../../interfaces/investment-log.interface';
   templateUrl: './trends-card.component.html',
   styleUrls: ['./trends-card.component.scss']
 })
-export class TrendsCardComponent implements OnInit {
+export class TrendsCardComponent implements OnChanges {
   @Input()
   public trendsCardData: Array<IInvestmentLog>;
 
@@ -20,7 +20,7 @@ export class TrendsCardComponent implements OnInit {
 
   constructor(private readonly _chartService: ChartService) {}
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
     this._processTrendsData();
     this._createGraphConfig();
   }

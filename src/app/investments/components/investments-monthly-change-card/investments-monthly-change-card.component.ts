@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { barChartColors } from 'src/app/shared/constants/chart-colors.constant';
 import { ChartService } from 'src/app/shared/services/chart/chart.service';
 
@@ -9,7 +9,7 @@ import { IInvestmentLog } from '../../interfaces/investment-log.interface';
   templateUrl: './investments-monthly-change-card.component.html',
   styleUrls: ['./investments-monthly-change-card.component.scss']
 })
-export class InvestmentsMonthlyChangeCardComponent implements OnInit {
+export class InvestmentsMonthlyChangeCardComponent implements OnChanges {
   @Input()
   public investmentsMonthlyChangeData: Array<IInvestmentLog>;
 
@@ -17,7 +17,7 @@ export class InvestmentsMonthlyChangeCardComponent implements OnInit {
 
   constructor(private readonly _chartService: ChartService) {}
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
     this._processTrendsData();
     this._createBarChart();
   }
