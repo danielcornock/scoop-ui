@@ -8,8 +8,8 @@ export abstract class LogModelService<
   TModel extends IHttpResponse<any>
 > {
   constructor(
-    private readonly _httpService: HttpService,
-    private readonly _resourceName: string
+    protected readonly _httpService: HttpService,
+    protected readonly _resourceName: string
   ) {}
 
   public getAll(): Observable<TCollection> {
