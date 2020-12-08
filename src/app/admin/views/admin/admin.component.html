@@ -1,6 +1,8 @@
-<div class="Admin-container animate-page-in">
-  <app-admin-key-actions
-    class="Admin-actions animate-list-item"
-  ></app-admin-key-actions>
-  <app-users-list class="Admin-usersList animate-list-item"></app-users-list>
+<div class="Admin-container animate-page-in" *ngIf="users">
+  <app-admin-key-actions class="Admin-actions"></app-admin-key-actions>
+  <app-users-list
+    class="Admin-usersList"
+    [usersList]="users"
+    (usersListDelete)="deleteUser($event)"
+  ></app-users-list>
 </div>

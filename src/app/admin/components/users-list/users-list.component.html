@@ -1,6 +1,6 @@
 <app-card cardTitle="Users">
   <app-table [tableColumns]="['email', 'name', 'last online']">
-    <tr class="UsersList-row" *ngFor="let user of users">
+    <tr class="UsersList-row" *ngFor="let user of usersList">
       <td class="UsersList-rowItem">
         <div class="UsersList-detailedItem">
           {{ user.email }}

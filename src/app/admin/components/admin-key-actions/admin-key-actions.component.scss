@@ -3,21 +3,34 @@
 .AdminKeyActions {
   &-container {
     display: flex;
+    flex-wrap: wrap;
+
+    @include media-phone {
+      display: block;
+    }
   }
 
   &-item {
     @include button-reset;
     @include settings-moveable-item;
+    white-space: nowrap;
     display: flex;
     align-items: center;
     padding: $spacing-15 $spacing-30;
-
-    & + & {
-      margin-left: $spacing-20;
-    }
+    flex-grow: 1;
+    margin: $spacing-5;
 
     i-feather {
       margin-right: $spacing-10;
+    }
+
+    @include media-phone {
+      width: 100%;
+      margin: 0;
+
+      & + & {
+        margin-top: $spacing-10;
+      }
     }
   }
 }
