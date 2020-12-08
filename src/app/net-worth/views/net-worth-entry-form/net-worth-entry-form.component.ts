@@ -4,11 +4,11 @@ import { capitalize } from 'lodash';
 import { FormContainer, FormFactory, FormInputType, IFormFactoryConfig } from 'ngx-form-trooper';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HeaderActionService } from 'src/app/core/services/header-action/header-action.service';
-import { HttpService } from 'src/app/core/services/http/http.service';
 import { SettingsService } from 'src/app/settings/services/settings/settings.service';
 import { BaseEntryFormComponent } from 'src/app/shared/abstracts/base-entry-form/base-entry-form.abstract';
 import { DateService } from 'src/app/shared/services/current-date/date.service';
 
+import { INetWorthModelResponse } from '../../interfaces/net-worth-api-response.interface';
 import { NetWorthStoreService } from '../../services/net-worth-store/net-worth-store.service';
 
 @Component({
@@ -16,7 +16,8 @@ import { NetWorthStoreService } from '../../services/net-worth-store/net-worth-s
   templateUrl: './net-worth-entry-form.component.html',
   styleUrls: ['./net-worth-entry-form.component.scss']
 })
-export class NetWorthEntryFormComponent extends BaseEntryFormComponent
+export class NetWorthEntryFormComponent
+  extends BaseEntryFormComponent<INetWorthModelResponse, NetWorthStoreService>
   implements OnInit {
   public columns: Array<string>;
 
@@ -24,43 +25,18 @@ export class NetWorthEntryFormComponent extends BaseEntryFormComponent
     private readonly _formFactory: FormFactory,
     private readonly _currentDateService: DateService,
     private readonly _settingsService: SettingsService,
-    private readonly _netWorthStoreService: NetWorthStoreService,
-    httpService: HttpService,
+    store: NetWorthStoreService,
     router: Router,
     spinnerService: NgxSpinnerService,
     headerActionService: HeaderActionService
   ) {
-    super(
-      spinnerService,
-      httpService,
-      router,
-      headerActionService,
-      'net-worth'
-    );
+    super(spinnerService, store, router, headerActionService, 'net-worth');
   }
 
   async ngOnInit(): Promise<void> {
     const settings = await this._settingsService.getSettings();
     this.columns = settings.data.netWorthFields;
     super.ngOnInit();
-  }
-
-  /* TODO: Remove this override when implemented in base class */
-  public async submitForm(): Promise<void> {
-    this.errors = null;
-
-    if (this.form.isInvalid) {
-      this.form.formGroup.markAllAsTouched();
-      return;
-    }
-
-    try {
-      await this._netWorthStoreService.create(this.form.value);
-      this._router.navigateByUrl(this._resourceName);
-    } catch ({ error }) {
-      this._spinnerService.hide();
-      this.errors = error;
-    }
   }
 
   protected _createForm(): FormContainer {

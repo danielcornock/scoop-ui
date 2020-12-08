@@ -13,13 +13,16 @@ import { BaseEntryFormComponent } from 'src/app/shared/abstracts/base-entry-form
 import { DateService } from 'src/app/shared/services/current-date/date.service';
 
 import { ISalarySuggestion } from '../../interfaces/salary-suggestion.interface';
+import { ISalaryModelResponse } from '../../interfaces/salary.interface';
+import { SalaryStoreService } from '../../services/salary-store/salary-store.service';
 
 @Component({
   selector: 'app-salary-entry-form',
   templateUrl: './salary-entry-form.component.html',
   styleUrls: ['./salary-entry-form.component.scss']
 })
-export class SalaryEntryFormComponent extends BaseEntryFormComponent
+export class SalaryEntryFormComponent
+  extends BaseEntryFormComponent<ISalaryModelResponse, SalaryStoreService>
   implements OnInit {
   public salaryDeductions: ISalarySuggestion;
   public netSalary: Observable<number>;
@@ -29,12 +32,13 @@ export class SalaryEntryFormComponent extends BaseEntryFormComponent
     private readonly _formFactory: FormFactory,
     private readonly _currentDateService: DateService,
     private readonly _settingsService: SettingsService,
-    httpService: HttpService,
+    private readonly _httpService: HttpService,
+    store: SalaryStoreService,
     router: Router,
     spinnerService: NgxSpinnerService,
     headerActionService: HeaderActionService
   ) {
-    super(spinnerService, httpService, router, headerActionService, 'salary');
+    super(spinnerService, store, router, headerActionService, 'salary');
   }
 
   async ngOnInit(): Promise<void> {
@@ -53,15 +57,10 @@ export class SalaryEntryFormComponent extends BaseEntryFormComponent
 
   public async logSameAsLastMonth(): Promise<void> {
     try {
-      this._spinnerService.show();
-      await this._httpService.post('salary/duplicate', {
-        date: this.form.value.date
-      });
+      await this._store.duplicate(this.form.value.date);
       this._router.navigateByUrl('salary');
     } catch ({ error }) {
       this.errors = error;
-    } finally {
-      this._spinnerService.hide();
     }
   }
 
@@ -73,14 +72,19 @@ export class SalaryEntryFormComponent extends BaseEntryFormComponent
       this.form.formGroup.markAllAsTouched();
       return;
     }
-    const { data } = await this._httpService.post('salary/gross', {
-      date: this.form.value.date,
-      grossSalary: this.form.value.grossSalary
-    });
+    try {
+      this._spinnerService.show();
+      const { data } = await this._httpService.post('salary/gross', {
+        date: this.form.value.date,
+        grossSalary: this.form.value.grossSalary
+      });
 
-    this.salaryDeductions = data;
-    this._assignNewValuesToForm();
-    this._watchFormToCalculateNetSalary();
+      this.salaryDeductions = data;
+      this._assignNewValuesToForm();
+      this._watchFormToCalculateNetSalary();
+    } finally {
+      this._spinnerService.hide();
+    }
   }
 
   protected _createForm(): FormContainer {

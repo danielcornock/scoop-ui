@@ -6,7 +6,7 @@ import {
   FormFactory,
   FormInputType,
   IFormFactoryConfig,
-  IFormInputFactoryFieldConfig
+  IFormInputFactoryFieldConfig,
 } from 'ngx-form-trooper';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable, of } from 'rxjs';
@@ -17,13 +17,18 @@ import { SettingsService } from 'src/app/settings/services/settings/settings.ser
 import { BaseEntryFormComponent } from 'src/app/shared/abstracts/base-entry-form/base-entry-form.abstract';
 import { DateService } from 'src/app/shared/services/current-date/date.service';
 
+import { IMonthlyDistributionModelResponse } from '../../interfaces/monthly-distribution-log.interface';
+import {
+  MonthlyDistributionStoreService,
+} from '../../services/monthly-distribution-store/monthly-distribution-store.service';
+
 @Component({
   selector: 'app-monthly-distribution-entry-form',
   templateUrl: './monthly-distribution-entry-form.component.html',
   styleUrls: ['./monthly-distribution-entry-form.component.scss']
 })
 export class MonthlyDistributionEntryFormComponent
-  extends BaseEntryFormComponent
+  extends BaseEntryFormComponent<IMonthlyDistributionModelResponse>
   implements OnInit {
   public remainingBalance: Observable<number>;
 
@@ -34,6 +39,7 @@ export class MonthlyDistributionEntryFormComponent
     private readonly _formFactory: FormFactory,
     private readonly _settingsService: SettingsService,
     private readonly _dateService: DateService,
+    store: MonthlyDistributionStoreService,
     httpService: HttpService,
     router: Router,
     spinnerService: NgxSpinnerService,
@@ -41,7 +47,7 @@ export class MonthlyDistributionEntryFormComponent
   ) {
     super(
       spinnerService,
-      httpService,
+      store,
       router,
       headerActionService,
       'monthly-distribution'
@@ -50,7 +56,7 @@ export class MonthlyDistributionEntryFormComponent
 
   async ngOnInit(): Promise<void> {
     await this._getFields();
-    await super.ngOnInit();
+    super.ngOnInit();
     this._watchFormToCalculateRemaining();
   }
 

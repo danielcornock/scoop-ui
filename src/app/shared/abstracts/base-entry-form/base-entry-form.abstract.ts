@@ -2,19 +2,23 @@ import { Directive, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormContainer } from 'ngx-form-trooper';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { BaseLogStore } from 'src/app/core/abstracts/store-service/base-log-store.abstract';
 import { HeaderActionService } from 'src/app/core/services/header-action/header-action.service';
-import { HttpService } from 'src/app/core/services/http/http.service';
 import { IHttpError } from 'src/app/core/services/http/interfaces/http-error.interface';
+import { IHttpResponse } from 'src/app/core/services/http/interfaces/http-response.interface';
 
 @Directive()
 // tslint:disable-next-line: directive-class-suffix
-export abstract class BaseEntryFormComponent implements OnDestroy, OnInit {
+export abstract class BaseEntryFormComponent<
+  TModel extends IHttpResponse<any>,
+  TStore extends BaseLogStore<any, TModel> = BaseLogStore<any, TModel>
+> implements OnDestroy, OnInit {
   public form: FormContainer;
   public errors: IHttpError;
 
   constructor(
     protected readonly _spinnerService: NgxSpinnerService,
-    protected readonly _httpService: HttpService,
+    protected readonly _store: TStore,
     protected readonly _router: Router,
     protected readonly _headerActionService: HeaderActionService,
     protected readonly _resourceName: string
@@ -44,12 +48,10 @@ export abstract class BaseEntryFormComponent implements OnDestroy, OnInit {
     }
 
     try {
-      this._spinnerService.show();
-      await this._httpService.post(this._resourceName, this.form.value);
+      await this._store.create(this.form.value);
 
       this._router.navigateByUrl(this._resourceName);
     } catch ({ error }) {
-      this._spinnerService.hide();
       this.errors = error;
     }
   }
