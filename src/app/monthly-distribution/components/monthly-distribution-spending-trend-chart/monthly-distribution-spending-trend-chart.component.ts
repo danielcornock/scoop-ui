@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { Dictionary, map, startCase } from 'lodash';
 import { chartColors } from 'src/app/shared/constants/chart-colors.constant';
 import { ChartService } from 'src/app/shared/services/chart/chart.service';
@@ -8,13 +8,14 @@ import { ChartService } from 'src/app/shared/services/chart/chart.service';
   templateUrl: './monthly-distribution-spending-trend-chart.component.html',
   styleUrls: ['./monthly-distribution-spending-trend-chart.component.scss']
 })
-export class MonthlyDistributionSpendingTrendChartComponent implements OnInit {
+export class MonthlyDistributionSpendingTrendChartComponent
+  implements OnChanges {
   @Input()
   public monthlyDistributionSpendingTrendChartData: Dictionary<number>;
 
   constructor(private readonly _chartService: ChartService) {}
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
     const data = map(
       this.monthlyDistributionSpendingTrendChartData,
       (item, key) => ({ label: key, value: item })
