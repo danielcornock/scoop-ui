@@ -3,8 +3,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { filter, switchMap } from 'rxjs/operators';
 
-import { LogModelService } from '../../interfaces/log-model-service.interface';
 import { IHttpResponse } from '../../services/http/interfaces/http-response.interface';
+import { LogModelService } from '../model-service/base-log-model-service.abstract';
 
 export abstract class BaseLogStore<
   TCollection extends IHttpResponse<any[]>,
