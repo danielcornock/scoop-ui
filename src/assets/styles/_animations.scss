@@ -1,15 +1,23 @@
 .animate-page-in {
-  animation: enter-page 500ms forwards;
+  animation: enter-page 800ms forwards;
+
+  @media (prefers-reduced-motion) {
+    animation: initial;
+  }
 
   .animate-list-item {
     animation: enter-list 500ms forwards;
     transform-origin: middle;
+
+    @media (prefers-reduced-motion) {
+      animation: initial;
+    }
   }
 }
 
 @keyframes enter-list {
   from {
-    transform: scale(0.9);
+    transform: scale(0.6);
   }
   to {
     transform: scale(1);
