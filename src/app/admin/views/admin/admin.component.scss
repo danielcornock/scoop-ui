@@ -3,10 +3,17 @@
 .Admin {
   &-container {
     @include page-container;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: $spacing-30;
   }
 
   &-actions {
     display: block;
-    margin-bottom: $spacing-30;
+    min-width: 0;
+  }
+
+  &-usersList {
+    min-width: 0;
   }
 }

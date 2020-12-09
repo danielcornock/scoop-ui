@@ -119,6 +119,7 @@
     @include net-worth-goals-pill;
     background-color: $color-primary-light;
     color: $color-primary;
+    white-space: nowrap;
   }
 
   &-completed {
