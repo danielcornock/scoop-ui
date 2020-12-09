@@ -151,11 +151,6 @@
     transform: translateY(50%);
     @include shadow-light;
 
-    &:focus {
-      // TODO: Find better solution
-      outline: none;
-    }
-
     @include media-phone {
       padding: 0;
       height: 30px;

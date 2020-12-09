@@ -7,10 +7,6 @@ $spacing-menu-horizontal--mobile: $spacing-20;
   &-button {
     @include button-reset;
     display: block;
-
-    &:focus {
-      outline: 0; // TODO: Fix this - not good for accessibility
-    }
   }
 
   &-heading {

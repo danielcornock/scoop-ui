@@ -75,16 +75,22 @@ body {
   }
 }
 
+a:focus,
+button:focus {
+  outline: 0;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px dashed orange !important;
+}
+
 @include media-phone {
   * {
     -webkit-user-select: none;
     -webkit-touch-callout: none;
     -webkit-overflow-scrolling: auto;
     -webkit-tap-highlight-color: transparent;
-
-    &:not(input):focus {
-      outline: none;
-    }
   }
 
   input {

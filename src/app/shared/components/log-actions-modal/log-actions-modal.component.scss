@@ -16,11 +16,6 @@
     border-radius: $br-med;
     position: relative;
 
-    &:focus {
-      // TODO: Fix - this is bad
-      outline: none;
-    }
-
     &:last-child {
       padding-bottom: 5px;
     }
