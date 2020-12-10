@@ -10,10 +10,6 @@
     }
   }
 
-  &-subheading {
-    @include modal-title;
-  }
-
   &-form {
     @include media-tablet {
       display: block;

@@ -9,7 +9,7 @@ export abstract class ModalDialogInstanceComponent<
     private _data: TData
   ) {}
 
-  protected close(data: TReturnData): void {
+  public close(data: TReturnData | undefined): void {
     this._dialogRef.close(data);
   }
 

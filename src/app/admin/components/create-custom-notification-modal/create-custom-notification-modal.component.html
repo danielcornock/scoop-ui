@@ -1,7 +1,8 @@
 <div class="CreateCustomNotificationModal-container">
-  <h3 class="CreateCustomNotificationModal-subheading">
-    Create custom notification
-  </h3>
+  <app-modal-header
+    modalHeaderText="Create custom notification"
+    (modalHeaderClose)="close()"
+  ></app-modal-header>
   <form
     class="CreateCustomNotificationModal-form"
     [formGroup]="form.formGroup"

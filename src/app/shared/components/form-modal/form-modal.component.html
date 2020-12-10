@@ -1,7 +1,8 @@
 <div class="FormModal-container">
-  <h3 class="FormModal-subheading">
-    {{ data.title }}
-  </h3>
+  <app-modal-header
+    [modalHeaderText]="data.title"
+    (modalHeaderClose)="close()"
+  ></app-modal-header>
   <form
     (ngSubmit)="submit()"
     class="FormModal-form"

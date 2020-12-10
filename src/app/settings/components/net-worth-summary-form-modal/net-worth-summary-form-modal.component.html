@@ -1,7 +1,8 @@
 <div class="NetWorthSummaryFormModal-container">
-  <h3 class="NetWorthSummaryFormModal-subheading">
-    {{ modalTitle }}
-  </h3>
+  <app-modal-header
+    [modalHeaderText]="modalTitle"
+    (modalHeaderClose)="close()"
+  ></app-modal-header>
   <form
     [formGroup]="form.formGroup"
     (ngSubmit)="addOption()"

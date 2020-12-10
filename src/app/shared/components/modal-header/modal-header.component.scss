@@ -1,0 +1,28 @@
+@import 'src/assets/styles/themes.scss';
+
+.ModalHeader {
+  &-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: $spacing-20;
+    align-items: center;
+  }
+
+  &-heading {
+    @include page-subheading;
+    margin-bottom: 0;
+  }
+
+  &-close {
+    @include button-reset;
+    color: $color-table-content;
+
+    &:hover {
+      color: black;
+    }
+
+    i-feather {
+      display: block;
+    }
+  }
+}

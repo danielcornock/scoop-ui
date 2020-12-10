@@ -22,6 +22,7 @@ import { IconPickerComponent } from './components/icon-picker/icon-picker.compon
 import { InformationComponent } from './components/information/information.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { LogActionsModalComponent } from './components/log-actions-modal/log-actions-modal.component';
+import { ModalHeaderComponent } from './components/modal-header/modal-header.component';
 import { TableActionsComponent } from './components/table-actions/table-actions.component';
 import { TableComponent } from './components/table/table.component';
 import { LongPressDirective } from './directives/long-press/long-press.directive';
@@ -53,7 +54,8 @@ import { ValuesPipe } from './pipes/values.pipe';
     LongPressDirective,
     LogActionsModalComponent,
     FormModalComponent,
-    CapitalizePipe
+    CapitalizePipe,
+    ModalHeaderComponent
   ],
   imports: [
     CommonModule,
@@ -90,7 +92,8 @@ import { ValuesPipe } from './pipes/values.pipe';
     FloatingActionButtonComponent,
     LongPressDirective,
     FormModalComponent,
-    CapitalizePipe
+    CapitalizePipe,
+    ModalHeaderComponent
   ]
 })
 export class SharedModule {}
