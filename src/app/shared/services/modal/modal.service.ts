@@ -2,10 +2,7 @@ import { Injectable, Type } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import { ConfirmationModalComponent } from '../../components/confirmation-modal/confirmation-modal.component';
-import {
-  IConfirmationModalConfig,
-  IConfirmationModalData
-} from './interfaces/confirmation-modal-config.interface';
+import { IConfirmationModalConfig, IConfirmationModalData } from './interfaces/confirmation-modal-config.interface';
 import { IModalConfig } from './interfaces/modal-config.interface';
 
 @Injectable({
@@ -28,13 +25,14 @@ export class ModalService {
 
   public async openConfirmationModal(
     config: IConfirmationModalConfig
-  ): Promise<void> {
+  ): Promise<boolean> {
     const confirmed: boolean = await this.open<IConfirmationModalData, boolean>(
       ConfirmationModalComponent,
       {
         data: {
           prompt: config.prompt,
-          details: config.details
+          details: config.details,
+          icon: config.icon
         }
       }
     );
@@ -42,5 +40,7 @@ export class ModalService {
     if (confirmed) {
       config.onConfirm();
     }
+
+    return confirmed;
   }
 }

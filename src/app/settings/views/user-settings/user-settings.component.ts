@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormContainer, FormFactory, FormInputType } from 'ngx-form-trooper';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { Observable, of, Subject } from 'rxjs';
+import { startWith, switchMap } from 'rxjs/operators';
 import { PopupService } from 'src/app/shared/services/popup/popup.service';
 
 import { IUserSettings } from '../../interfaces/user-settings.interface';
@@ -17,7 +17,7 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
   public userSettings: IUserSettings;
   public settingsForm: FormContainer;
   public isExperimental: boolean;
-  public displaySaveButton: boolean;
+  public dirty$: Observable<boolean>;
 
   private _destroy$ = new Subject<void>();
 
@@ -52,7 +52,6 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
         'Some changes may only take effect after a page refresh',
         'User settings successfully updated'
       );
-      this.displaySaveButton = false;
     } catch ({ error }) {
       this._popupService.showApiError(error);
     } finally {
@@ -120,8 +119,9 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
       }
     ]);
 
-    this.settingsForm.formGroup.valueChanges
-      .pipe(takeUntil(this._destroy$))
-      .subscribe(() => (this.displaySaveButton = true));
+    this.dirty$ = this.settingsForm.formGroup.valueChanges.pipe(
+      startWith({}),
+      switchMap(() => of(this.settingsForm.formGroup.dirty))
+    );
   }
 }

@@ -1,6 +1,9 @@
 <div class="ConfirmationModal-container">
   <div class="ConfirmationModal-iconContainer">
-    <i-feather class="ConfirmationModal-icon" name="trash"></i-feather>
+    <i-feather
+      class="ConfirmationModal-icon"
+      [name]="data.icon || 'trash'"
+    ></i-feather>
   </div>
   <div class="ConfirmationModal-content">
     <h2 class="ConfirmationModal-title">
@@ -19,7 +22,7 @@
       class="ConfirmationModal-button ConfirmationModal-confirmButton"
       (click)="accept()"
     >
-      Delete
+      Confirm
     </button>
   </div>
 </div>

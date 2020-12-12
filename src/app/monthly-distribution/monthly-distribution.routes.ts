@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 
+import { FormDirtyCheckService } from '../core/services/form-dirty-check/form-dirty-check.service';
 import {
   MonthlyDistributionEntryFormComponent,
 } from './views/monthly-distribution-entry-form/monthly-distribution-entry-form.component';
@@ -19,6 +20,7 @@ export const monthlyDistributionRoutes: Routes = [
   },
   {
     path: 'create',
-    component: MonthlyDistributionEntryFormComponent
+    component: MonthlyDistributionEntryFormComponent,
+    canDeactivate: [FormDirtyCheckService]
   }
 ];

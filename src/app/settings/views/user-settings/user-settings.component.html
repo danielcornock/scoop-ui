@@ -28,7 +28,7 @@
   <button
     class="UserSettings-updateButton"
     (click)="saveChanges()"
-    *ngIf="displaySaveButton"
+    *ngIf="dirty$ | async"
   >
     Save Changes
   </button>
