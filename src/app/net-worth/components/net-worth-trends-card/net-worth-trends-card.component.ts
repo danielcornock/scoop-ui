@@ -64,7 +64,7 @@ export class NetWorthTrendsCardComponent implements OnChanges {
       .map((data) => {
         return {
           date: data.date,
-          total: data.total
+          total: Math.round(data.total)
         };
       });
   }

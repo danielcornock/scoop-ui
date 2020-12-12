@@ -43,7 +43,7 @@ export class NetWorthMonthlyChangeCardComponent implements OnChanges {
       .map((data) => {
         return {
           date: data.date,
-          change: data.change
+          change: Math.round(data.change)
         };
       });
   }

@@ -21,7 +21,9 @@ export class NetWorthDistributionCardComponent implements OnChanges {
     this._fields = this.netWorthDistributionData.map((item) =>
       startCase(item.label)
     );
-    this._values = this.netWorthDistributionData.map((item) => item.value);
+    this._values = this.netWorthDistributionData.map((item) =>
+      Math.round(item.value)
+    );
 
     this._chartService.createPieChart(
       'netWorthPieChart',
