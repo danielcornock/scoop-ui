@@ -8,7 +8,8 @@ import { InvestmentsComponent } from './views/investments/investments.component'
 export const investmentRoutes: Routes = [
   {
     path: 'edit/:date',
-    component: InvestmentsUpdateFormComponent
+    component: InvestmentsUpdateFormComponent,
+    canDeactivate: [FormDirtyCheckService]
   },
   {
     path: '',

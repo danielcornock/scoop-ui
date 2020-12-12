@@ -8,7 +8,8 @@ import { NetWorthComponent } from './views/net-worth/net-worth.component';
 export const netWorthRoutes: Routes = [
   {
     path: 'edit/:date',
-    component: NetWorthUpdateFormComponent
+    component: NetWorthUpdateFormComponent,
+    canDeactivate: [FormDirtyCheckService]
   },
   {
     path: '',

@@ -1,7 +1,10 @@
 import { Directive, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormContainer, FormFactory } from 'ngx-form-trooper';
+import { Observable, of } from 'rxjs';
+import { startWith, switchMap } from 'rxjs/operators';
 import { BaseLogStore } from 'src/app/core/abstracts/store-service/base-log-store.abstract';
+import { FormPage } from 'src/app/core/services/form-dirty-check/form-dirty-check.service';
 import { HeaderActionService } from 'src/app/core/services/header-action/header-action.service';
 import { IHttpError } from 'src/app/core/services/http/interfaces/http-error.interface';
 import { IHttpResponse } from 'src/app/core/services/http/interfaces/http-response.interface';
@@ -12,9 +15,10 @@ export abstract class BaseUpdateFormComponent<
   TModel extends IHttpResponse,
   TData,
   TMeta
-> implements OnDestroy, OnInit {
+> implements OnDestroy, OnInit, FormPage {
   public form: FormContainer;
   public errors: IHttpError;
+  public dirty$: Observable<boolean>;
 
   protected _data: TData;
   protected _meta: TMeta;
@@ -40,6 +44,10 @@ export abstract class BaseUpdateFormComponent<
     });
     const response = await this._getExistingResouce();
     this.form = this._createForm(response);
+    this.dirty$ = this.form.formGroup.valueChanges.pipe(
+      startWith(this.form.value),
+      switchMap(() => of(this.form.formGroup.dirty))
+    );
   }
 
   public async submitForm(): Promise<void> {

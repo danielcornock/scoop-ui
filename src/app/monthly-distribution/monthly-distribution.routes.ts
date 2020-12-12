@@ -12,7 +12,8 @@ import { MonthlyDistributionComponent } from './views/monthly-distribution/month
 export const monthlyDistributionRoutes: Routes = [
   {
     path: 'edit/:date',
-    component: MonthlyDistributionUpdateFormComponent
+    component: MonthlyDistributionUpdateFormComponent,
+    canDeactivate: [FormDirtyCheckService]
   },
   {
     path: '',

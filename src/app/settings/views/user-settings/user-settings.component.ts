@@ -3,6 +3,7 @@ import { FormContainer, FormFactory, FormInputType } from 'ngx-form-trooper';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable, of, Subject } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
+import { FormPage } from 'src/app/core/services/form-dirty-check/form-dirty-check.service';
 import { PopupService } from 'src/app/shared/services/popup/popup.service';
 
 import { IUserSettings } from '../../interfaces/user-settings.interface';
@@ -13,7 +14,7 @@ import { UserSettingsService } from '../../services/user-settings/user-settings.
   templateUrl: './user-settings.component.html',
   styleUrls: ['./user-settings.component.scss']
 })
-export class UserSettingsComponent implements OnInit, OnDestroy {
+export class UserSettingsComponent implements OnInit, OnDestroy, FormPage {
   public userSettings: IUserSettings;
   public settingsForm: FormContainer;
   public isExperimental: boolean;
