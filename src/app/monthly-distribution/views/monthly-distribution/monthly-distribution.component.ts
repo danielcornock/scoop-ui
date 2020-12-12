@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { IMonthlyDistributionLog } from '../../interfaces/monthly-distribution-log.interface';
+import { IMonthlyDistributionMeta } from '../../interfaces/monthly-distribution-meta.interface';
 import {
   MonthlyDistributionStoreService,
 } from '../../services/monthly-distribution-store/monthly-distribution-store.service';
@@ -15,7 +16,7 @@ import {
 })
 export class MonthlyDistributionComponent implements OnInit, OnDestroy {
   public monthlyDistributionItems: Array<IMonthlyDistributionLog>;
-  public monthlyDistributionMeta: any;
+  public monthlyDistributionMeta: IMonthlyDistributionMeta;
 
   private _destroy$ = new Subject<void>();
 

@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { barChartColors } from 'src/app/shared/constants/chart-colors.constant';
+import { IDateValue } from 'src/app/shared/interfaces/date-value.interface';
 import { ChartService } from 'src/app/shared/services/chart/chart.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { ChartService } from 'src/app/shared/services/chart/chart.service';
 })
 export class UncommittedSpendingChartComponent implements OnChanges {
   @Input()
-  public uncommittedSpendingChartData: Array<{ date: string; value: number }>;
+  public uncommittedSpendingChartData: Array<IDateValue>;
 
   constructor(private readonly _chartService: ChartService) {}
 
