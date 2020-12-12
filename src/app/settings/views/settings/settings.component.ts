@@ -56,8 +56,8 @@ export class SettingsComponent implements OnInit {
       );
       this._cacheService.clearAllFeatureCaches();
       this._popupService.showSuccess(
-        'Some changes may only take effect after a page refresh',
-        'Settings successfully updated'
+        'Settings successfully updated',
+        'Success!'
       );
       this.settings = data;
       this.meta = meta;

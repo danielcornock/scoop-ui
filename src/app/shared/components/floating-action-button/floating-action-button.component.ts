@@ -1,11 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { fromEvent, Subject, timer } from 'rxjs';
 import { filter, switchMap, takeUntil } from 'rxjs/operators';
 
@@ -22,7 +15,7 @@ export class FloatingActionButtonComponent implements OnInit, OnDestroy {
   public floatingActionButtonIcon: string;
 
   @Output()
-  public floatingActionButtonAction: EventEmitter<void> = new EventEmitter();
+  public floatingActionButtonClick: EventEmitter<void> = new EventEmitter();
 
   public displayingAction = true;
 
@@ -38,7 +31,7 @@ export class FloatingActionButtonComponent implements OnInit, OnDestroy {
   }
 
   public clickAction(): void {
-    this.floatingActionButtonAction.emit();
+    this.floatingActionButtonClick.emit();
   }
 
   private _scrollSpy(): void {
