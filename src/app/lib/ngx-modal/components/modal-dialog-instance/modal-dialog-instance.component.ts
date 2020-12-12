@@ -5,7 +5,7 @@ export abstract class ModalDialogInstanceComponent<
   TReturnData = any
 > {
   constructor(
-    private readonly _dialogRef: MatDialogRef<any>,
+    protected readonly _dialogRef: MatDialogRef<any>,
     private _data: TData
   ) {}
 

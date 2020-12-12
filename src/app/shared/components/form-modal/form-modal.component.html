@@ -1,7 +1,7 @@
 <div class="FormModal-container">
   <app-modal-header
     [modalHeaderText]="data.title"
-    (modalHeaderClose)="close()"
+    (modalHeaderClose)="closeWithoutSaving()"
   ></app-modal-header>
   <form
     (ngSubmit)="submit()"
