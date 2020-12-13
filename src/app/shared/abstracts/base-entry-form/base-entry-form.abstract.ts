@@ -57,7 +57,7 @@ export abstract class BaseEntryFormComponent<
 
     try {
       await this._store.create(this.form.value);
-
+      this.form.formGroup.reset();
       this._router.navigateByUrl(this._resourceName);
     } catch ({ error }) {
       this.errors = error;

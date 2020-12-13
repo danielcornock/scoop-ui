@@ -53,6 +53,7 @@ export class UserSettingsComponent implements OnInit, OnDestroy, FormPage {
         'Some changes may only take effect after a page refresh',
         'User settings successfully updated'
       );
+      this.settingsForm.formGroup.markAsPristine();
     } catch ({ error }) {
       this._popupService.showApiError(error);
     } finally {

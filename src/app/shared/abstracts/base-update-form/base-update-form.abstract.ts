@@ -60,6 +60,7 @@ export abstract class BaseUpdateFormComponent<
 
     try {
       await this._store.update(this._resourceDate, this.form.value);
+      this.form.formGroup.reset();
       this._router.navigateByUrl(this._resourceName);
     } catch ({ error }) {
       this.errors = error;
