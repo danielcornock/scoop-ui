@@ -2,6 +2,7 @@
   <app-table [tableColumns]="fields">
     <tr
       class="MonthlyDistributionLogCard-row"
+      tabindex="0"
       *ngFor="let log of monthlyDistributionLogCardItems"
       (click)="onLongPress(log.date)"
     >

@@ -6,6 +6,7 @@
   <app-table [tableColumns]="salaryLogMeta.fields | values">
     <tr
       class="SalaryLog-row"
+      tabindex="0"
       *ngFor="let row of salaryLogItems"
       (click)="onLongPress(row.date)"
     >

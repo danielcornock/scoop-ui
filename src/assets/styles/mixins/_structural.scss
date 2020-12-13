@@ -27,6 +27,14 @@
     background-color: $color-primary-light-solid;
     cursor: pointer;
   }
+
+  &:focus {
+    outline: 0;
+  }
+
+  &:focus-visible {
+    outline: 2px dashed orange;
+  }
 }
 
 @mixin table-row-item {

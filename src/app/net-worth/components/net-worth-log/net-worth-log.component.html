@@ -6,6 +6,7 @@
   <app-table [tableColumns]="netWorthMeta.fields">
     <tr
       class="NetWorthLog-row"
+      tabindex="0"
       *ngFor="let row of logs"
       (click)="onLongPress(row.date)"
     >
