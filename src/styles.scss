@@ -76,12 +76,14 @@ body {
 }
 
 a:focus,
-button:focus {
+button:focus,
+input[type='submit'] {
   outline: 0;
 }
 
 a:focus-visible,
-button:focus-visible {
+button:focus-visible,
+input[type='submit']:focus-visible {
   outline: 2px dashed orange !important;
 }
 
