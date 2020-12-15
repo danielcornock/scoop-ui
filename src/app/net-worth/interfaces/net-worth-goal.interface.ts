@@ -10,4 +10,7 @@ export interface INetWorthGoal extends IBaseHttpModel {
   startingAmount: number;
   startDate: number;
   completed: boolean;
+  isHidden: boolean;
+  hasReceivedCongratulations: boolean;
+  completedOn: number;
 }

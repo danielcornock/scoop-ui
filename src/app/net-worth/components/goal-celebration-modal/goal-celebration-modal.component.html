@@ -1,0 +1,42 @@
+<div class="GoalCelebrationModal-container">
+  <h2 class="GoalCelebrationModal-heading">
+    <span class="gradient">Congratulations!</span> 🎉
+  </h2>
+  <p class="GoalCelebrationModal-text">You have completed your goal!</p>
+  <div class="GoalCelebrationModal-grid">
+    <div class="GoalCelebrationModal-label">Goal name</div>
+    <div class="GoalCelebrationModal-value">
+      {{ netWorthGoal.title }}
+    </div>
+    <div class="GoalCelebrationModal-label">Fields</div>
+    <div class="GoalCelebrationModal-value">
+      {{ netWorthGoal.fields | join: ', ' | titlecase }}
+    </div>
+    <div class="GoalCelebrationModal-label">Started goal on</div>
+    <div class="GoalCelebrationModal-value">
+      {{ (netWorthGoal.startDate | date) || 'Not set' }}
+    </div>
+    <div class="GoalCelebrationModal-label">Completed on</div>
+    <div class="GoalCelebrationModal-value">{{ completedOn | date }}</div>
+    <div class="GoalCelebrationModal-label">Target date</div>
+    <div class="GoalCelebrationModal-value">
+      {{ (netWorthGoal.endDate | date) || 'Not set' }}
+    </div>
+    <div class="GoalCelebrationModal-label">Starting amount</div>
+    <div class="GoalCelebrationModal-value">
+      {{ netWorthGoal.startingAmount | currency: preferredCurrency }}
+    </div>
+    <div class="GoalCelebrationModal-label">Target amount</div>
+    <div class="GoalCelebrationModal-value">
+      {{ netWorthGoal.target | currency: preferredCurrency }}
+    </div>
+    <div class="GoalCelebrationModal-label">Ending amount</div>
+    <div class="GoalCelebrationModal-value">
+      {{ netWorthGoal.current | currency: preferredCurrency }}
+    </div>
+  </div>
+  <p class="GoalCelebrationModal-note">
+    You can view this pop up again by clicking on the <b>completed</b> button on
+    your goal.
+  </p>
+</div>

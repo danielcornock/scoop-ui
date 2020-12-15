@@ -9,10 +9,7 @@
     </button>
   </p>
   <ng-template #content>
-    <div
-      class="NetWorthGoalsCard-goal"
-      *ngFor="let goal of netWorthGoalsCardGoals"
-    >
+    <div class="NetWorthGoalsCard-goal" *ngFor="let goal of goals">
       <div class="NetWorthGoalsCard-itemHeader">
         <div class="NetWorthGoalsCard-title">
           {{ goal.title | titlecase }}
@@ -24,9 +21,18 @@
           >
             <i-feather name="x"></i-feather>
           </button>
+          <button
+            class="NetWorthGoalsCard-hidden"
+            aria-label="Hide goal"
+            *ngIf="isEditing"
+            (click)="setHidden(goal._id)"
+          >
+            <i-feather [name]="goal.isHidden ? 'eye' : 'eye-off'"></i-feather>
+          </button>
         </div>
-        <div
+        <button
           class="NetWorthGoalsCard-completed"
+          (click)="openCompletedModal(goal)"
           *ngIf="goal.completed; else endDate"
         >
           <i-feather
@@ -34,7 +40,7 @@
             name="check"
           ></i-feather>
           <span class="NetWorthGoalsCard-pillLabel">Completed</span>
-        </div>
+        </button>
         <ng-template #endDate>
           <div class="NetWorthGoalsCard-endDate" *ngIf="goal.endDate">
             <i-feather

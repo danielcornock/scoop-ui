@@ -2,14 +2,14 @@ import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { startCase } from 'lodash';
 import { FormInputType, IFormFactoryConfig } from 'ngx-form-trooper';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { HttpService } from 'src/app/core/services/http/http.service';
 import { IContextMenuItem } from 'src/app/shared/components/context-menu/interfaces/context-menu-item.interface';
 import { FormModalComponent } from 'src/app/shared/components/form-modal/form-modal.component';
 import { ModalService } from 'src/app/shared/services/modal/modal.service';
 
 import { INetWorthMeta } from '../../interfaces/net-worth-api-response.interface';
 import { INetWorthGoal } from '../../interfaces/net-worth-goal.interface';
-import { NetWorthStoreService } from '../../services/net-worth-store/net-worth-store.service';
+import { NetWorthGoalsService } from '../../services/net-worth-goals/net-worth-goals.service';
+import { GoalCelebrationModalComponent } from '../goal-celebration-modal/goal-celebration-modal.component';
 
 @Component({
   selector: 'app-net-worth-goals-card',
@@ -27,11 +27,12 @@ export class NetWorthGoalsCardComponent implements OnInit, AfterViewInit {
   public showPercentage: boolean;
   public isEditing: boolean;
 
+  private _displayHidden: boolean;
+
   constructor(
     private readonly _modalService: ModalService,
-    private readonly _httpService: HttpService,
     private readonly _spinnerService: NgxSpinnerService,
-    private readonly _netWorthStoreService: NetWorthStoreService
+    private readonly _netWorthGoalsService: NetWorthGoalsService
   ) {}
 
   ngOnInit(): void {
@@ -45,6 +46,12 @@ export class NetWorthGoalsCardComponent implements OnInit, AfterViewInit {
         generateLabel: this._getContextMenuEditText.bind(this),
         action: () => (this.isEditing = !this.isEditing),
         icon: 'edit'
+      },
+      {
+        generateLabel: () =>
+          this._displayHidden ? 'Hide hidden goals' : 'Display hidden goals',
+        action: () => (this._displayHidden = !this._displayHidden),
+        icon: 'eye'
       }
     ];
   }
@@ -55,6 +62,32 @@ export class NetWorthGoalsCardComponent implements OnInit, AfterViewInit {
     }, 100);
   }
 
+  public async openCompletedModal(goal: INetWorthGoal): Promise<void> {
+    await this._modalService.open(GoalCelebrationModalComponent, {
+      data: {
+        goal: goal,
+        preferredCurrency: this.netWorthGoalsCardMeta.preferredCurrency
+      }
+    });
+  }
+
+  public async setHidden(id: string): Promise<void> {
+    const goalToEdit = this.netWorthGoalsCardGoals.find(
+      (goal) => goal._id === id
+    );
+    goalToEdit.isHidden = !goalToEdit.isHidden;
+
+    await this._netWorthGoalsService.setHidden(id, goalToEdit.isHidden);
+  }
+
+  public get goals(): Array<INetWorthGoal> {
+    if (this._displayHidden) {
+      return this.netWorthGoalsCardGoals;
+    } else {
+      return this.netWorthGoalsCardGoals.filter((goal) => !goal.isHidden);
+    }
+  }
+
   public deleteGoal(id: string): void {
     this._modalService.openConfirmationModal({
       prompt: 'You are deleting a goal',
@@ -63,7 +96,7 @@ export class NetWorthGoalsCardComponent implements OnInit, AfterViewInit {
       onConfirm: async () => {
         try {
           this._spinnerService.show();
-          await this._httpService.delete(`net-worth-goals/${id}`);
+          await this._netWorthGoalsService.deleteGoal(id);
           this.netWorthGoalsCardGoals = this.netWorthGoalsCardGoals.filter(
             (goal) => goal._id !== id
           );
@@ -91,8 +124,7 @@ export class NetWorthGoalsCardComponent implements OnInit, AfterViewInit {
   }
 
   private async _createGoal(formData: any): Promise<void> {
-    await this._httpService.post('net-worth-goals', formData);
-    this._netWorthStoreService.invalidateCollection();
+    await this._netWorthGoalsService.createGoal(formData);
   }
 
   private _createFormConfig(): IFormFactoryConfig {

@@ -1,0 +1,66 @@
+@import 'src/assets/styles/themes.scss';
+
+.GoalCelebrationModal {
+  &-container {
+    text-align: center;
+    padding: $spacing-10;
+    max-width: 500px;
+  }
+
+  &-heading {
+    font-size: 40px;
+    margin-bottom: $spacing-10;
+
+    .gradient {
+      background: -webkit-linear-gradient(
+        $color-primary,
+        $color-primary-gradient
+      );
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    @include media-phone {
+      font-size: 28px;
+    }
+  }
+
+  &-text {
+    @include default-text;
+    font-size: 20px;
+    margin-bottom: $spacing-20;
+
+    @include media-phone {
+      font-size: 18px;
+    }
+  }
+
+  &-grid {
+    max-width: 300px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: $spacing-20;
+    margin: auto;
+    margin-bottom: $spacing-20;
+  }
+
+  &-label {
+    text-align: right;
+    font-weight: 500;
+    color: $color-table-header;
+  }
+
+  &-value {
+    text-align: left;
+    font-weight: 500;
+    color: $color-table-content;
+  }
+
+  &-note {
+    font-size: 14px;
+    color: $color-table-header;
+    max-width: 300px;
+    margin: auto;
+  }
+}

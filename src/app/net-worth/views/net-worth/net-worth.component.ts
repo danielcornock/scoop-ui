@@ -3,11 +3,17 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import {
-  IDashboardSummaryItem,
-} from 'src/app/shared/components/dashboard-summary/interfaces/dashboard-summary-item.interface';
+import { IDashboardSummaryItem } from 'src/app/shared/components/dashboard-summary/interfaces/dashboard-summary-item.interface';
+import { ModalService } from 'src/app/shared/services/modal/modal.service';
 
-import { INetWorthData, INetWorthMeta } from '../../interfaces/net-worth-api-response.interface';
+import { GoalCelebrationModalComponent } from '../../components/goal-celebration-modal/goal-celebration-modal.component';
+import {
+  INetWorthCollectionResponse,
+  INetWorthData,
+  INetWorthMeta
+} from '../../interfaces/net-worth-api-response.interface';
+import { INetWorthGoal } from '../../interfaces/net-worth-goal.interface';
+import { NetWorthGoalsService } from '../../services/net-worth-goals/net-worth-goals.service';
 import { NetWorthStoreService } from '../../services/net-worth-store/net-worth-store.service';
 
 @Component({
@@ -25,7 +31,9 @@ export class NetWorthComponent implements OnInit, OnDestroy {
   constructor(
     private readonly _currency: CurrencyPipe,
     private readonly _router: Router,
-    private readonly _netWorthStoreService: NetWorthStoreService
+    private readonly _netWorthStoreService: NetWorthStoreService,
+    private readonly _modalService: ModalService,
+    private readonly _netWorthGoalsService: NetWorthGoalsService
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -44,10 +52,14 @@ export class NetWorthComponent implements OnInit, OnDestroy {
     this._router.navigateByUrl('net-worth/create');
   }
 
-  private _onNetWorthDataChange({ data, meta }): void {
+  private _onNetWorthDataChange({
+    data,
+    meta
+  }: INetWorthCollectionResponse): void {
     this.netWorthMeta = meta;
     this.netWorthItems = data;
     this._assignSummaryItems();
+    this._checkForCompletedGoals(meta.goals);
   }
 
   private _assignSummaryItems(): void {
@@ -64,6 +76,24 @@ export class NetWorthComponent implements OnInit, OnDestroy {
         icon: item.icon
       };
     });
+  }
+
+  private async _checkForCompletedGoals(
+    netWorthGoals: Array<INetWorthGoal>
+  ): Promise<void> {
+    const goalToCelebrate = netWorthGoals.find((goal) => {
+      return goal.completed && !goal.hasReceivedCongratulations;
+    });
+
+    if (goalToCelebrate) {
+      await this._modalService.open(GoalCelebrationModalComponent, {
+        data: {
+          goal: goalToCelebrate,
+          preferredCurrency: this.netWorthMeta.preferredCurrency
+        }
+      });
+      await this._netWorthGoalsService.acknowledgeGoal(goalToCelebrate._id);
+    }
   }
 
   private _toCurrency(amount: number): string {

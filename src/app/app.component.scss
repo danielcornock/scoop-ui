@@ -66,3 +66,12 @@
     top: calc(var(--spacing-page-top) - 10px);
   }
 }
+
+#confetti {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}

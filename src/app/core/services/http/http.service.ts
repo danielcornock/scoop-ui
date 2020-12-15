@@ -30,6 +30,12 @@ export class HttpService {
       .toPromise() as Promise<IHttpResponse>;
   }
 
+  public patch(url: string, data: any): Promise<IHttpResponse> {
+    return this._httpClient
+      .patch(`${this._apiUrl}${url}`, data)
+      .toPromise() as Promise<IHttpResponse>;
+  }
+
   public delete(url: string): Promise<void> {
     return this._httpClient
       .delete(`${this._apiUrl}${url}`)
