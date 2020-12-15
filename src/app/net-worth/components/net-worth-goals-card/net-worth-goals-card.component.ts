@@ -1,6 +1,4 @@
 import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
-import { startCase } from 'lodash';
-import { FormInputType, IFormFactoryConfig } from 'ngx-form-trooper';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { IContextMenuItem } from 'src/app/shared/components/context-menu/interfaces/context-menu-item.interface';
 import { FormModalComponent } from 'src/app/shared/components/form-modal/form-modal.component';
@@ -8,6 +6,7 @@ import { ModalService } from 'src/app/shared/services/modal/modal.service';
 
 import { INetWorthMeta } from '../../interfaces/net-worth-api-response.interface';
 import { INetWorthGoal } from '../../interfaces/net-worth-goal.interface';
+import { NetWorthGoalsFormService } from '../../services/net-worth-goals-form/net-worth-goals-form.service';
 import { NetWorthGoalsService } from '../../services/net-worth-goals/net-worth-goals.service';
 import { GoalCelebrationModalComponent } from '../goal-celebration-modal/goal-celebration-modal.component';
 
@@ -32,7 +31,8 @@ export class NetWorthGoalsCardComponent implements OnInit, AfterViewInit {
   constructor(
     private readonly _modalService: ModalService,
     private readonly _spinnerService: NgxSpinnerService,
-    private readonly _netWorthGoalsService: NetWorthGoalsService
+    private readonly _netWorthGoalsService: NetWorthGoalsService,
+    private readonly _netWorthGoalsFormService: NetWorthGoalsFormService
   ) {}
 
   ngOnInit(): void {
@@ -108,11 +108,14 @@ export class NetWorthGoalsCardComponent implements OnInit, AfterViewInit {
   }
 
   public openModal(): void {
-    this._createFormConfig();
+    const formConfig = this._netWorthGoalsFormService.createConfig(
+      this.netWorthGoalsCardMeta.goalsFields
+    );
+
     this._modalService.open(FormModalComponent, {
       data: {
         title: 'Create a goal',
-        formConfig: this._createFormConfig(),
+        formConfig,
         onSubmit: this._createGoal.bind(this),
         actionLabel: 'Create goal'
       }
@@ -125,57 +128,5 @@ export class NetWorthGoalsCardComponent implements OnInit, AfterViewInit {
 
   private async _createGoal(formData: any): Promise<void> {
     await this._netWorthGoalsService.createGoal(formData);
-  }
-
-  private _createFormConfig(): IFormFactoryConfig {
-    return [
-      {
-        name: 'title',
-        label: 'Name your goal',
-        type: FormInputType.TEXT,
-        validators: {
-          required: true
-        }
-      },
-      {
-        name: 'target',
-        label: 'Target amount',
-        type: FormInputType.NUMBER,
-        validators: {
-          required: true,
-          min: 0
-        }
-      },
-      {
-        name: 'fields',
-        label: 'What items should this include?',
-        type: FormInputType.MUTLI_SELECT,
-        validators: {
-          required: true,
-          minLength: 1
-        },
-        options: this.netWorthGoalsCardMeta.goalsFields.map((field) => ({
-          label: startCase(field),
-          value: field
-        }))
-      },
-      {
-        name: 'goalType',
-        label: 'What type of goal would you like to set?',
-        type: FormInputType.RADIO,
-        validators: {
-          required: true
-        },
-        options: [
-          { label: 'All time (maintain existing progress)', value: '0' },
-          { label: 'Starting from now', value: 'now' }
-        ]
-      },
-      {
-        name: 'endDate',
-        label: 'When do you want to reach your goal? (optional)',
-        type: FormInputType.DATE
-      }
-    ];
   }
 }
