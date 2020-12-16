@@ -36,6 +36,5 @@ export class NetWorthGoalsService {
       `net-worth-goals/acknowledged-congraulations/${id}`,
       {}
     );
-    this._netWorthStoreService.invalidateCollection();
   }
 }

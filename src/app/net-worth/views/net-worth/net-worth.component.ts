@@ -93,6 +93,7 @@ export class NetWorthComponent implements OnInit, OnDestroy {
         }
       });
       await this._netWorthGoalsService.acknowledgeGoal(goalToCelebrate._id);
+      goalToCelebrate.hasReceivedCongratulations = true;
     }
   }
 
