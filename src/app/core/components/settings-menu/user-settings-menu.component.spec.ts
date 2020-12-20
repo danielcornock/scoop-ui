@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UserSettingsMenuComponent } from './user-user-settings-menu.component';
+import { UserSettingsMenuComponent } from './user-settings-menu.component';
 
 describe('UserSettingsMenuComponent', () => {
   let component: UserSettingsMenuComponent;
