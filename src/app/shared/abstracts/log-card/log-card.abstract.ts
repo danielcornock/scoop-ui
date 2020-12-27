@@ -56,11 +56,6 @@ export abstract class LogCard {
         label: 'Create Entry',
         action: () => this._router.navigateByUrl(`${this._createUrl}/create`),
         icon: 'plus'
-      },
-      {
-        generateLabel: this._getContextMenuEditText.bind(this),
-        action: () => (this.isEditing = !this.isEditing),
-        icon: 'edit'
       }
     ];
   }

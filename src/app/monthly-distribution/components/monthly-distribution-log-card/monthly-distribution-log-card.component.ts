@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { Router } from '@angular/router';
-import { startCase } from 'lodash';
+import { Dictionary, startCase } from 'lodash';
 import { LogCard } from 'src/app/shared/abstracts/log-card/log-card.abstract';
 import { IContextMenuItem } from 'src/app/shared/components/context-menu/interfaces/context-menu-item.interface';
 import { ModalService } from 'src/app/shared/services/modal/modal.service';
@@ -28,6 +28,7 @@ export class MonthlyDistributionLogCardComponent extends LogCard
   public cardActions: Array<IContextMenuItem>;
   public fields: Array<string>;
   public preferredCurrency: string;
+  public mappedLogs: Array<Dictionary<string | number>>;
 
   constructor(
     private readonly _monthlyDistributionStore: MonthlyDistributionStoreService,
@@ -41,6 +42,7 @@ export class MonthlyDistributionLogCardComponent extends LogCard
   ngOnChanges(): void {
     this.fields = this.monthlyDistributionLogCardMeta.fields.map(startCase);
     this.preferredCurrency = this.monthlyDistributionLogCardMeta.preferredCurrency;
+    this._assignLogs();
   }
 
   public async removeLog(date: string): Promise<void> {
@@ -49,5 +51,22 @@ export class MonthlyDistributionLogCardComponent extends LogCard
     } catch ({ error }) {
       this._popupService.showApiError(error);
     }
+  }
+
+  private _assignLogs(): void {
+    this.mappedLogs = this.monthlyDistributionLogCardItems.map((item) => {
+      return this.monthlyDistributionLogCardMeta.fields.reduce(
+        (accum, fieldName) => {
+          accum[fieldName] =
+            item[fieldName] ||
+            item.income[fieldName] ||
+            item.outgoing[fieldName] ||
+            0;
+
+          return accum;
+        },
+        {}
+      );
+    });
   }
 }

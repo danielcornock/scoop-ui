@@ -3,7 +3,7 @@
     <tr
       class="MonthlyDistributionLogCard-row"
       tabindex="0"
-      *ngFor="let log of monthlyDistributionLogCardItems"
+      *ngFor="let log of mappedLogs"
       (click)="onLongPress(log.date)"
     >
       <td class="MonthlyDistributionLogCard-rowItem">
@@ -11,32 +11,10 @@
       </td>
       <td
         class="MonthlyDistributionLogCard-rowItem"
-        [class.is-negative]="log.income[fieldName] < 0"
-        [class.is-positive]="log.income[fieldName] > 0"
-        *ngFor="let fieldName of log.income | keys"
+        *ngFor="let fieldName of log | keys | slice: 1"
       >
-        {{
-          log.income[fieldName] | currency: preferredCurrency:'symbol':'1.0-2'
-        }}
+        {{ log[fieldName] | currency: preferredCurrency:'symbol':'1.0-2' }}
       </td>
-      <td
-        class="MonthlyDistributionLogCard-rowItem"
-        *ngFor="let fieldName of log.outgoing | keys"
-      >
-        {{
-          log.outgoing[fieldName] | currency: preferredCurrency:'symbol':'1.0-2'
-        }}
-      </td>
-      <td class="MonthlyDistributionLogCard-rowItem">
-        {{ log.remaining | currency: preferredCurrency:'symbol':'1.0-2' }}
-      </td>
-      <app-table-actions
-        class="MonthlyDistributionLogCard-rowItem"
-        *ngIf="isEditing"
-        [tableActionsCanEdit]="true"
-        (tableActionsRemove)="removeLog(log.date)"
-        (tableActionsEdit)="navigateToEditPage(log.date)"
-      ></app-table-actions>
     </tr>
   </app-table>
 </app-card>
