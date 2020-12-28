@@ -1,0 +1,36 @@
+<div class="InvestmentsProjectionModal-container">
+  <app-modal-header
+    modalHeaderText="Investment projections"
+    (modalHeaderClose)="close()"
+  ></app-modal-header>
+  <form [formGroup]="form.formGroup" class="InvestmentsProjectionModal-form">
+    <ngx-form-input-item
+      *ngFor="let field of form.fields"
+      [formInputField]="field"
+    ></ngx-form-input-item>
+  </form>
+  <div class="InvestmentsProjectionModal-results">
+    <div class="InvestmentsProjectionModal-resultContainer">
+      <p class="InvestmentsProjectionModal-label">Total invested</p>
+      <p class="InvestmentsProjectionModal-value">
+        {{
+          totalInvested | async | currency: preferredCurrency:'symbol':'1.0-2'
+        }}
+      </p>
+    </div>
+
+    <div class="InvestmentsProjectionModal-resultContainer">
+      <p class="InvestmentsProjectionModal-label">Total portfolio value</p>
+      <p class="InvestmentsProjectionModal-value">
+        {{ totalValue | async | currency: preferredCurrency:'symbol':'1.0-2' }}
+      </p>
+    </div>
+
+    <div class="InvestmentsProjectionModal-resultContainer profit">
+      <p class="InvestmentsProjectionModal-label">Total profit</p>
+      <p class="InvestmentsProjectionModal-value">
+        {{ totalProfit | async | currency: preferredCurrency:'symbol':'1.0-2' }}
+      </p>
+    </div>
+  </div>
+</div>

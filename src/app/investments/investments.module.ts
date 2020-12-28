@@ -15,6 +15,7 @@ import { investmentRoutes } from './investments.routes';
 import { InvestmentsEntryFormComponent } from './views/investments-entry-form/investments-entry-form.component';
 import { InvestmentsUpdateFormComponent } from './views/investments-update-form/investments-update-form.component';
 import { InvestmentsComponent } from './views/investments/investments.component';
+import { InvestmentsProjectionModalComponent } from './components/investments-projection-modal/investments-projection-modal.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { InvestmentsComponent } from './views/investments/investments.component'
     InvestmentsLogCardComponent,
     InvestmentsEntryFormComponent,
     InvestmentsMonthlyChangeCardComponent,
-    InvestmentsUpdateFormComponent
+    InvestmentsUpdateFormComponent,
+    InvestmentsProjectionModalComponent
   ],
   imports: [
     CommonModule,

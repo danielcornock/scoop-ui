@@ -1,16 +1,21 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { IContextMenuItem } from 'src/app/shared/components/context-menu/interfaces/context-menu-item.interface';
 import { ChartService } from 'src/app/shared/services/chart/chart.service';
+import { ModalService } from 'src/app/shared/services/modal/modal.service';
 
 import { IInvestmentLog } from '../../interfaces/investment-log.interface';
+import { InvestmentsProjectionModalComponent } from '../investments-projection-modal/investments-projection-modal.component';
 
 @Component({
   selector: 'app-trends-card',
   templateUrl: './trends-card.component.html',
   styleUrls: ['./trends-card.component.scss']
 })
-export class TrendsCardComponent implements OnChanges {
+export class TrendsCardComponent implements OnChanges, OnInit {
   @Input()
   public trendsCardData: Array<IInvestmentLog>;
+
+  public cardActions: Array<IContextMenuItem>;
 
   private _processedTrendsData: Array<{
     date: string;
@@ -18,11 +23,30 @@ export class TrendsCardComponent implements OnChanges {
     value: number;
   }>;
 
-  constructor(private readonly _chartService: ChartService) {}
+  constructor(
+    private readonly _chartService: ChartService,
+    private readonly _modalService: ModalService
+  ) {}
 
   ngOnChanges(): void {
     this._processTrendsData();
     this._createGraphConfig();
+  }
+
+  ngOnInit(): void {
+    this.cardActions = [
+      {
+        label: 'Get projection',
+        icon: 'trending-up',
+        action: this._openProjectionsModal.bind(this)
+      }
+    ];
+  }
+
+  private _openProjectionsModal(): void {
+    this._modalService.open(InvestmentsProjectionModalComponent, {
+      data: {}
+    });
   }
 
   private _createGraphConfig(): void {

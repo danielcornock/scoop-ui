@@ -10,7 +10,7 @@ export abstract class LogCard {
 
   constructor(
     private readonly _router: Router,
-    private readonly _modalService: ModalService,
+    protected readonly _modalService: ModalService,
     private readonly _createUrl: string
   ) {
     this._assignContextMenuItems();

@@ -12,7 +12,7 @@ export class ChartService {
   constructor() {}
 
   public createChart(
-    chartName: string,
+    chartName: string | HTMLCanvasElement,
     config: Chart.ChartConfiguration
   ): Chart {
     return new Chart(chartName, config);
