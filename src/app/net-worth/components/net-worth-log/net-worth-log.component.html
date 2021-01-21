@@ -16,8 +16,12 @@
       <td
         class="NetWorthLog-rowItem"
         *ngFor="let item of row | keys | slice: 1"
-        [class.is-negative]="(item === 'change' || '% Change') && row[item] < 0"
-        [class.is-positive]="(item === 'change' || '% Change') && row[item] > 0"
+        [class.is-negative]="
+          (item === 'change' || item === '% Change') && row[item] < 0
+        "
+        [class.is-positive]="
+          (item === 'change' || item === '% Change') && row[item] > 0
+        "
       >
         <ng-container *ngIf="item === '% Change'; else currency">
           {{ row[item] | percent }}
