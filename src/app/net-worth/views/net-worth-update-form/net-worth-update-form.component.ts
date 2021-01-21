@@ -3,7 +3,6 @@ import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { capitalize } from 'lodash';
 import { FormContainer, FormFactory, FormInputType, IFormFactoryConfig } from 'ngx-form-trooper';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { HeaderActionService } from 'src/app/core/services/header-action/header-action.service';
 import { BaseUpdateFormComponent } from 'src/app/shared/abstracts/base-update-form/base-update-form.abstract';
 
@@ -27,7 +26,6 @@ export class NetWorthUpdateFormComponent
   constructor(
     formFactory: FormFactory,
     router: Router,
-    spinnerService: NgxSpinnerService,
     activatedRoute: ActivatedRoute,
     headerActionService: HeaderActionService,
     store: NetWorthStoreService

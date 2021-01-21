@@ -21,7 +21,7 @@ export class UncommittedSpendingChartComponent implements OnChanges {
       datasets: [
         {
           label: 'Uncommitted spending this month',
-          data: formattedData.map((data) => data.value),
+          data: formattedData.map((data) => Math.round(data.value)),
           borderColor: 'rgba(255,255,255, 0)',
           backgroundColor: [...barChartColors],
           borderWidth: 2

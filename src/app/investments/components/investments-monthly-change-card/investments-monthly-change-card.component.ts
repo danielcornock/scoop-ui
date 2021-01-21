@@ -39,7 +39,7 @@ export class InvestmentsMonthlyChangeCardComponent implements OnChanges {
       datasets: [
         {
           label: 'Change from previous month',
-          data: this._getArrayOfFields('change') as number[],
+          data: this._getArrayOfFields('change').map(Math.round) as number[],
           borderColor: 'rgba(255,255,255, 0)',
           backgroundColor: [...barChartColors],
           borderWidth: 2

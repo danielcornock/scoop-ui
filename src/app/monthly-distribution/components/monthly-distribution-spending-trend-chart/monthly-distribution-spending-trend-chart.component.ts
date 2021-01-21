@@ -27,7 +27,7 @@ export class MonthlyDistributionSpendingTrendChartComponent
         labels: data.map((item) => startCase(item.label)),
         datasets: [
           {
-            data: data.map((item) => item.value),
+            data: data.map((item) => Math.round(item.value)),
             backgroundColor: [...chartColors].reverse()
           }
         ]
