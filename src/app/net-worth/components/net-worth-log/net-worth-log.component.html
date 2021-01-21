@@ -16,19 +16,19 @@
       <td
         class="NetWorthLog-rowItem"
         *ngFor="let item of row | keys | slice: 1"
-        [class.is-negative]="item === 'change' && row[item] < 0"
-        [class.is-positive]="item === 'change' && row[item] > 0"
+        [class.is-negative]="(item === 'change' || '% Change') && row[item] < 0"
+        [class.is-positive]="(item === 'change' || '% Change') && row[item] > 0"
       >
-        {{
-          row[item] | currency: netWorthMeta.preferredCurrency:'symbol':'1.0-2'
-        }}
+        <ng-container *ngIf="item === '% Change'; else currency">
+          {{ row[item] | percent }}
+        </ng-container>
+        <ng-template #currency>
+          {{
+            row[item]
+              | currency: netWorthMeta.preferredCurrency:'symbol':'1.0-2'
+          }}
+        </ng-template>
       </td>
-      <app-table-actions
-        class="NetWorthLog-rowItem"
-        *ngIf="isEditing"
-        [tableActionsCanEdit]="true"
-        (tableActionsRemove)="removeLog(row.date)"
-        (tableActionsEdit)="navigateToEditPage(row.date)"
-      ></app-table-actions></tr
-  ></app-table>
+    </tr></app-table
+  >
 </app-card>
