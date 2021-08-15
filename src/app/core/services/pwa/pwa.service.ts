@@ -25,8 +25,6 @@ export class PwaService {
 
   private listenToInstallPrompt(): void {
     window.addEventListener('beforeinstallprompt', (e: BeforeInstallEvent) => {
-      console.log('Before install prompt triggered');
-      console.log(e);
       e.preventDefault();
 
       if (e) {

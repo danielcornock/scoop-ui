@@ -84,14 +84,9 @@ export class InvestmentsProjectionModalComponent
       .pipe(
         startWith(this.form.value),
         tap((val) => {
-          console.log(val);
           const results = this._investmentsProjectionService.getPrediction(
             val as any
           );
-
-          // this.chart.data.datasets[0].data = results.chartData.map(
-          //   (x) => x.value.total
-          // );
 
           this.totalInvested.next(results.totalInvested);
           this.totalProfit.next(results.totalProfit);
