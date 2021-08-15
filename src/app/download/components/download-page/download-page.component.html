@@ -1,0 +1,22 @@
+<div class="DownloadPage-container animate-page-in">
+  <div class="DownloadPage-content">
+    <img
+      src="../../../../assets/icons/icon-512x512.png"
+      alt=""
+      class="DownloadPage-icon"
+    />
+    <h2 class="DownloadPage-heading">Download Scoop</h2>
+    <p class="DownloadPage-subheading">
+      Click the button below to download the app to your device.
+    </p>
+    <button
+      class="DownloadPage-button"
+      (click)="downloadApp()"
+      [disabled]="!(canDownload$ | async)"
+    >
+      Download
+    </button>
+
+    <a routerLink="/" class="DownloadPage-alternative">Continue to web app</a>
+  </div>
+</div>

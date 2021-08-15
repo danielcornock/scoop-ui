@@ -2,12 +2,14 @@
   <ng-content></ng-content>
 </button>
 <mat-menu #menu="matMenu" yPosition="below" xPosition="before" class="dropdown">
-  <button
-    *ngFor="let item of contextMenuItems; let i = index"
-    class="ContextMenu-item"
-    (click)="selectItem(i)"
-  >
-    <i-feather [name]="item.icon" *ngIf="item.icon"></i-feather>
-    {{ (item.label ? item.label : item.generateLabel()) | capitalize }}
-  </button>
+  <ng-container *ngFor="let item of contextMenuItems; let i = index">
+    <button
+      class="ContextMenu-item"
+      *ngIf="!(item.hideWhen$ | async)"
+      (click)="selectItem(i)"
+    >
+      <i-feather [name]="item.icon" *ngIf="item.icon"></i-feather>
+      {{ (item.label ? item.label : item.generateLabel()) | capitalize }}
+    </button>
+  </ng-container>
 </mat-menu>

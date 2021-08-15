@@ -13,6 +13,11 @@ export const routes: Routes = [
   },
   ...authRoutes,
   {
+    path: 'download',
+    loadChildren: () =>
+      import('../download/download.module').then((m) => m.DownloadModule)
+  },
+  {
     path: '',
     canActivate: [AuthGuardService],
     children: [

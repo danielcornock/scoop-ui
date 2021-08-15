@@ -12,5 +12,6 @@ export const pageTitles: Dictionary<string> = {
   '/user-settings': 'User settings',
   '/admin': 'Admin',
   '/salary/create': 'New salary entry',
-  '/salary': 'Salary Tracker'
+  '/salary': 'Salary Tracker',
+  '/download': 'Download'
 };

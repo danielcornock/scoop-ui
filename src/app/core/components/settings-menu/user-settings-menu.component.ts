@@ -2,8 +2,9 @@ import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { combineLatest, of, Subject } from 'rxjs';
-import { switchMap, takeUntil } from 'rxjs/operators';
+import { map, switchMap, takeUntil } from 'rxjs/operators';
 import { AuthService } from 'src/app/auth/services/auth/auth.service';
+import { PwaService } from 'src/app/download/services/pwa/pwa.service';
 import { IContextMenuItem } from 'src/app/shared/components/context-menu/interfaces/context-menu-item.interface';
 import {
   IDetailedContextMenuItem,
@@ -34,7 +35,8 @@ export class UserSettingsMenuComponent implements OnInit, OnDestroy {
     private readonly _httpService: HttpService,
     private readonly _location: Location,
     private readonly _headerActionService: HeaderActionService,
-    private readonly _screenWidthService: ScreenWidthService
+    private readonly _screenWidthService: ScreenWidthService,
+    private _pwaService: PwaService
   ) {}
 
   ngOnInit(): void {
@@ -64,6 +66,14 @@ export class UserSettingsMenuComponent implements OnInit, OnDestroy {
         label: 'User Manual',
         action: this._goToDocumentation.bind(this),
         icon: 'external-link'
+      },
+      {
+        label: 'Download',
+        icon: 'download',
+        action: this._pwaService.promptDownload.bind(this),
+        hideWhen$: this._pwaService.canDownload$.pipe(
+          map((canDownload) => !canDownload)
+        )
       },
       {
         label: 'Log Out',

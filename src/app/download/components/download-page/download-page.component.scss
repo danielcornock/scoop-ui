@@ -1,0 +1,38 @@
+@import 'src/assets/styles/themes.scss';
+
+:host {
+  height: 100%;
+}
+
+.DownloadPage {
+  &-container {
+    @include page-container;
+    @include center-contents;
+    height: 100%;
+    text-align: center;
+  }
+
+  &-button {
+    @include form-button;
+    margin-bottom: $spacing-15;
+  }
+
+  &-subheading {
+    margin-bottom: $spacing-30;
+  }
+
+  &-heading {
+    font-size: 28px;
+    margin-bottom: $spacing-5;
+  }
+
+  &-icon {
+    margin-bottom: $spacing-20;
+    max-width: 120px;
+  }
+
+  &-alternative {
+    @include button-reset;
+    @include link;
+  }
+}
