@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { PwaService } from '../../services/pwa/pwa.service';
+import { PwaService } from '../../../core/services/pwa/pwa.service';
 
 @Component({
   selector: 'app-download-page',

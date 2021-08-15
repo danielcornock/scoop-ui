@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { BeforeInstallEvent } from '../../components/download-page/interfaces/before-install-event.interface';
+import { BeforeInstallEvent } from '../../../download/components/download-page/interfaces/before-install-event.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -25,14 +25,17 @@ export class PwaService {
 
   private listenToInstallPrompt(): void {
     window.addEventListener('beforeinstallprompt', (e: BeforeInstallEvent) => {
+      console.log('Before install prompt triggered');
+      console.log(e);
       e.preventDefault();
+
+      this.deferredPrompt = e;
 
       if (this.isInstalled) {
         return;
       }
 
       this.canDownloadSubject$.next(true);
-      this.deferredPrompt = e;
     });
   }
 

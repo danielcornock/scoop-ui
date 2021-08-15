@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { combineLatest, of, Subject } from 'rxjs';
 import { map, switchMap, takeUntil } from 'rxjs/operators';
 import { AuthService } from 'src/app/auth/services/auth/auth.service';
-import { PwaService } from 'src/app/download/services/pwa/pwa.service';
+import { PwaService } from 'src/app/core/services/pwa/pwa.service';
 import { IContextMenuItem } from 'src/app/shared/components/context-menu/interfaces/context-menu-item.interface';
 import {
   IDetailedContextMenuItem,
