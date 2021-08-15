@@ -68,9 +68,9 @@ export class UserSettingsMenuComponent implements OnInit, OnDestroy {
         icon: 'external-link'
       },
       {
-        label: 'Download',
+        label: 'install App',
         icon: 'download',
-        action: this._pwaService.promptDownload.bind(this),
+        action: () => this._pwaService.promptDownload(),
         hideWhen$: this._pwaService.canDownload$.pipe(
           map((canDownload) => !canDownload)
         )

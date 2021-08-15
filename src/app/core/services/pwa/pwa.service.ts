@@ -29,7 +29,9 @@ export class PwaService {
       console.log(e);
       e.preventDefault();
 
-      this.deferredPrompt = e;
+      if (e) {
+        this.deferredPrompt = e;
+      }
 
       if (this.isInstalled) {
         return;
